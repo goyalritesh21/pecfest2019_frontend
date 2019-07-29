@@ -1,0 +1,15 @@
+@import "./base/settings";
+@import "./base/base";
+@import "./components/auth/loginRegisterStyle";
+@import "./components/layout/Background";
+@import "./components/layout/Footer";
+@import "./components/layout/Header";
+@import "./components/pages/Home";
+@import "./components/common/NotFound";
+@import "./components/pages/Eventpage";
+@import "./components/events/description";
+@import "./components/events/descriptionModal";
+@import "./components/events/eventInfo";
+@import "./components/events/footer";
+@import "./components/events/typesCategories";
+@import './components/common/Loader';

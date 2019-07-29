@@ -1,0 +1,32 @@
+.carousel .carousel-slide-item {
+    display: flex !important;
+}
+.controls-top {
+    display: none;
+}
+.row {
+    margin-left: 0;
+}
+.col-md-4 {
+    max-width: 100% !important;
+    height: 100%;
+    padding: 0;
+}
+.col-md-3 {
+    padding: 0;
+}
+.card {
+    
+    width: 100%;
+    height: 100%;
+
+}
+.card-body {
+    padding-top: 60px;
+}
+.img-fluid {
+    height: 300px;
+}
+.carousel-indicators {
+    display: none;
+}

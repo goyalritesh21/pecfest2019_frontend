@@ -1,0 +1,116 @@
+ul {
+  list-style: none;
+}
+
+.header-list a {
+  position: relative;
+  display: inline-block;
+  color: #040504;
+  text-decoration: none;
+  font-size: 3em;
+  line-height: 1.5em;
+  margin-left: -5%;
+}
+.header-list a:after {
+  position: absolute;
+  top: 76%;
+  left: -5%;
+  right: -5%;
+  margin: auto;
+  height: 2px;
+  content: '';
+  opacity: 0;
+  transition: all 700ms ease-in;
+  -webkit-transform: translateY(10px);
+  transform: translateY(10px);
+}
+.header-list a:hover:after, ul a:focus:after {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-x: hidden;
+  transition: 0.5s;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  top: 15%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+:root {
+  --mainColor: #00b894;
+}
+.slide-fade a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: background-size 0.3s;
+  background: linear-gradient(to bottom, var(--mainColor) 0%,
+          var(--mainColor) 100%
+  ) repeat-x 0 100%;
+  background-size: 4px 0px;
+}
+
+.slide-fade a:hover, .overlay a:focus {
+  color: #f1f1f1;
+  outline: none;
+  background-size: 4px 60px;
+}
+
+.overlay button {
+  position: absolute;
+  top: -37px;
+  right: 0px;
+  font-size: 60px;
+}
+
+.bLyUej {
+  padding: 30px 30px 5px;
+}
+
+.open-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.overlay-content ul {
+  list-style: none;
+}
+.open-wrapper div {
+  z-index: 100;
+}
+
+button:focus {
+  outline: none;
+}
+
+@media all and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}

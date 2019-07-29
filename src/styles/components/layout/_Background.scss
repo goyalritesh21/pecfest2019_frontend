@@ -1,0 +1,44 @@
+html,
+body {
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+html .slides,
+body .slides,
+html > .dg,
+body > .dg {
+  display: none;
+}
+
+#particle-slider {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 400px;
+  top: 250px;
+  left: 0;
+}
+
+@media (min-width: 1000px) {
+  body {
+    background-repeat: no-repeat;
+  }
+  body > .dg {
+    display: block;
+  }
+}
+
+@media (max-width: 400px) {
+  .particle-effect-canvas {
+    width: 50%;
+    height: auto;
+  }
+}
