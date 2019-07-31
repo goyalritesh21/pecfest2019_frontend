@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {loadEvent, clearEvent} from "../../actions/individualEvent";
-import {connect} from 'react-redux';
+import { loadEvent, clearEvent } from "../../actions/individualEvent";
+import { connect } from 'react-redux';
 import CountDownTimer from "./CountDownTimer";
 import Description from "./Description";
 import Footer from "./Footer";
@@ -19,18 +19,18 @@ class EventInfo extends Component {
     };
 
     componentDidMount() {
-        const {eventId} = this.props.match.params;
+        const { eventId } = this.props.match.params;
         this.props.loadEvent(eventId);
     }
 
     componentWillUnmount() {
-        this.props.clearEvent();
+        // this.props.clearEvent();
     }
 
     render() {
-        const {event} = this.props;
-        if(!event){
-            return (<Loader/>);
+        const { event } = this.props;
+        if (!event) {
+            return (<Loader />);
         }
         return (
             <div className="card text-center item">
@@ -42,12 +42,12 @@ class EventInfo extends Component {
                 </div>
                 <div className="card-body">
                     <div className="form">
-                        <CountDownTimer startDate={new Date('November 1, 2019')}/>
-                        <Description {...event}/>
+                        <CountDownTimer startDate={new Date('November 1, 2019')} />
+                        <Description {...event} />
                     </div>
                 </div>
                 <div className="card-footer">
-                    <Footer name={event.name} coordinators={event.coordinators}/>
+                    <Footer name={event.name} coordinators={event.coordinators} />
                 </div>
             </div>
         );
@@ -58,4 +58,4 @@ const mapStateToProps = (state) => ({
     event: state.individualEvent.event
 });
 
-export default connect(mapStateToProps, {loadEvent, clearEvent})(EventInfo);
+export default connect(mapStateToProps, { loadEvent, clearEvent })(EventInfo);

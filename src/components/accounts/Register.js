@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, Redirect } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../actions/auth';
@@ -18,16 +18,15 @@ export class Register extends Component {
         isAuthenticated: PropTypes.bool,
         createMessage: PropTypes.func.isRequired,
         user: PropTypes.object,
-        isLoading : PropTypes.bool.isRequired
+        isLoading: PropTypes.bool.isRequired
     };
 
     onChange = e => {
         const key = e.target.name;
         const val = e.target.value;
         this.setState(() => ({ [key]: val }));
-        if(key === 'username')
-        {
-            this.setState(() => ({username: val.toUpperCase()}));
+        if (key === 'username') {
+            this.setState(() => ({ username: val.toUpperCase() }));
         }
     };
 
@@ -38,24 +37,27 @@ export class Register extends Component {
             this.props.createMessage({ passwordsNotMatch: 'Passwords do not match.' })
         }
         else {
-            const user = {username:username.toLowerCase(), email, password };
+            const user = { username: username.toLowerCase(), email, password };
             this.props.register(user);
         }
 
     };
+    redirectToLogin = () => {
+        this.props.history.push(`/login`)
+    }
 
     render() {
-        const {isAuthenticated, user, isLoading} = this.props;
-        if (isAuthenticated  ) {
-            if(user!== null && !user.participant.firstTimer) {
-                return <Redirect to="/"/>
+        const { isAuthenticated, user, isLoading } = this.props;
+        if (isAuthenticated) {
+            if (user !== null && !user.participant.firstTimer) {
+                return <Redirect to="/" />
             }
             else {
-                return <Redirect to="/update"/>
+                return <Redirect to="/update" />
             }
         }
-        if(isLoading){
-            return (<Loader/>)
+        if (isLoading) {
+            return (<Loader />)
         }
         const { username, email, password, password2 } = this.state;
         return (
@@ -123,10 +125,10 @@ export class Register extends Component {
                         <div className="form-group">
                             <button type="submit" className="btn btn-slide" tabIndex="5">
                                 Register
-                            </button>
+                                </button>
                         </div>
                         <p>
-                            Already have an account? <Link tabIndex="5" to="/login">Login</Link>
+                            Already have an account? <Link to="/login">Login</Link>
                         </p>
                     </form>
                 </div>
@@ -141,4 +143,4 @@ const mapStateToProps = state => ({
     isLoading: state.auth.isLoading
 });
 
-export default connect(mapStateToProps, { register, createMessage })(Register);
+export default withRouter(connect(mapStateToProps, { register, createMessage })(Register));

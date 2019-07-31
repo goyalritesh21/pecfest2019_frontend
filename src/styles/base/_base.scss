@@ -7,8 +7,11 @@ body {
   height: 100%;
   width: 100%;
   margin: 0;
-  background-color: #172228
+  background-color: #172228;
+  scrollbar-width: none
 }
+
+::-webkit-scrollbar { width: 0 !important }
 
 .overlay-2 {
   height: 100%;
@@ -28,5 +31,5 @@ body {
 
 #page-wrap {
   text-align: center;
-  overflow: auto;
+  overflow-x: hidden;
 }

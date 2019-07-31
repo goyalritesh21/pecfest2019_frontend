@@ -1,8 +1,7 @@
 import axios from 'axios';
-import {returnErrors} from './messages';
+import { returnErrors } from './messages';
 
 import {
-    URL,
     USER_LOADED,
     USER_LOADING,
     AUTH_ERROR,
@@ -14,20 +13,20 @@ import {
 } from './types';
 
 export const loadUser = () => (dispatch, getState) => {
-    dispatch({type: USER_LOADING});
+    dispatch({ type: USER_LOADING });
 
-    axios.get(`${URL}/api/auth/user`, tokenConfig(getState))
+    axios.get(`api/auth/user`, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: USER_LOADED,
                 payload: res.data
             });
         }).catch(err => {
-        dispatch(returnErrors("User Loading Failed", 400));
-        dispatch({
-            type: AUTH_ERROR
-        });
-    })
+            dispatch(returnErrors("User Loading Failed", 400));
+            dispatch({
+                type: AUTH_ERROR
+            });
+        })
 };
 
 export const login = (username, password) => dispatch => {
@@ -37,9 +36,9 @@ export const login = (username, password) => dispatch => {
         }
     };
 
-    const body = JSON.stringify({username, password});
+    const body = JSON.stringify({ username, password });
 
-    axios.post(`${URL}/api/auth/login`, body, config)
+    axios.post(`api/auth/login`, body, config)
         .then(res => {
             console.log(res.data);
             dispatch({
@@ -47,37 +46,37 @@ export const login = (username, password) => dispatch => {
                 payload: res.data
             });
         }).catch(err => {
-        dispatch(returnErrors("USer login failed", 400));
-        dispatch({
-            type: LOGIN_FAIL
-        });
-    })
+            dispatch(returnErrors("USer login failed", 400));
+            dispatch({
+                type: LOGIN_FAIL
+            });
+        })
 };
 
-export const register = ({username, email, password}) => dispatch => {
+export const register = ({ username, email, password }) => dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json'
         }
     };
 
-    const body = JSON.stringify({username, email, password});
+    const body = JSON.stringify({ username, email, password });
 
-    axios.post(`${URL}/api/auth/register`, body, config)
+    axios.post(`api/auth/register`, body, config)
         .then(res => {
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data
             });
         }).catch(err => {
-        dispatch(returnErrors("User registration failed", 400));
-        dispatch({
-            type: REGISTER_FAIL
-        });
-    })
+            dispatch(returnErrors("User registration failed", 400));
+            dispatch({
+                type: REGISTER_FAIL
+            });
+        })
 };
 
-export const update = ({firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender, id, firstTimer}) => (dispatch, getState) => {
+export const update = ({ firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender, id, firstTimer }) => (dispatch, getState) => {
 
     const body = JSON.stringify({
         firstName,
@@ -92,30 +91,30 @@ export const update = ({firstName, lastName, contactNumber, accommodation, colle
         firstTimer
     });
 
-    axios.post(`${URL}/api/auth/profile`, body, tokenConfig(getState))
+    axios.post(`api/auth/profile`, body, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: UPDATE_SUCCESS,
                 payload: res.data
             });
         }).catch(err => {
-        dispatch(returnErrors("User update failed", 400));
-        dispatch({
-            type: UPDATE_FAIL
-        });
-    })
+            dispatch(returnErrors("User update failed", 400));
+            dispatch({
+                type: UPDATE_FAIL
+            });
+        })
 };
 
 export const logout = () => (dispatch, getState) => {
 
-    axios.post(`${URL}/api/auth/logout/`, null, tokenConfig(getState))
+    axios.post(`api/auth/logout/`, null, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: LOGOUT_SUCCESS
             });
         }).catch(err => {
-        dispatch(returnErrors("User Logout failed", 400));
-    })
+            dispatch(returnErrors("User Logout failed", 400));
+        })
 };
 
 export const tokenConfig = (getState) => {
