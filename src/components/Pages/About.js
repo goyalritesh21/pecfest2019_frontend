@@ -18,7 +18,7 @@ class About extends Component {
                 {/* <MDBContainer className={"aboutus"}> */}
                   <MDBCarousel
                   activeItem={1}
-                  length={2}
+                  length={3}
                   showControls={true}
                   showIndicators={true}
                   className="z-depth-1"
@@ -86,6 +86,20 @@ class About extends Component {
                         
 
 
+                      </MDBCarouselCaption>
+                    </MDBCarouselItem>
+                    <MDBCarouselItem itemId="3">
+                      <MDBView className="d-block w-100">
+                        
+                      <MDBMask overlay="black-light" />
+                      </MDBView>
+                      <MDBCarouselCaption>
+                    {/* //   <img src={Pecfest} style={{width:'150px',filter:'brightness(200%)'}}></img> */}
+                        <h2 className={"title"}>
+                            STATS
+                        </h2>
+                         
+                        {/* <p>First text</p> */}
                       </MDBCarouselCaption>
                     </MDBCarouselItem>
                     
