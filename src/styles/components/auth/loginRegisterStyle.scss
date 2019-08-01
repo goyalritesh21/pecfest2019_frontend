@@ -40,7 +40,7 @@
 	justify-content: center;
 }
 
-.input{
+.input,	.input[readonly] {
 	margin-bottom: 0.5em;
 	width: 70%;
 	height: 80%;
@@ -49,6 +49,7 @@
 	/*font-weight: bold;*/
 	font-size: 1.5em;
 	border-width: 0 0 1px 0;
+	border-color: var(--mainColor);
 	text-align: center;
 	text-align-last: center;
 }
@@ -80,6 +81,7 @@ input:focus + label {
 
 .upper-padding-register {
 	padding-top: 2.5em;
+	padding-bottom: 2.5em;
 }
 
 .row-break {
