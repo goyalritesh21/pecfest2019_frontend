@@ -36,12 +36,6 @@ export class Login extends Component {
         this.props.login(username.toLowerCase(), password);
     };
 
-    componentWillMount() {
-        const { isLoading } = this.props;
-        if (isLoading)
-            return <Loader />
-    }
-
     render() {
         const { isAuthenticated, user, isLoading } = this.props;
         if (isAuthenticated) {
