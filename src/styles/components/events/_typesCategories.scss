@@ -9,6 +9,13 @@
   border: 0;
   text-decoration: none;
 }
+#scrollDown {
+  display: button;
+  z-index: 3;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+}
 
 @media screen and (max-width: 992px) {
   .responsive-header .main-navigation {
