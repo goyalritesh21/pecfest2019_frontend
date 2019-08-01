@@ -54,6 +54,8 @@ export class Login extends Component {
             }
         }
         const { username, password } = this.state;
+        let randIdName = "username" + new Date().getTime().toString();
+
         return (
             <div>
                 {isLoading ? <Loader /> : (
@@ -61,34 +63,44 @@ export class Login extends Component {
                         <div className="mt-5 main">
                             <h2 className="text-center">Login</h2>
                             <br />
-                            <form autoComplete="off" onSubmit={this.onSubmit}>
+                            <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <label htmlFor="username">Username</label>
                                     <div className="input-outer">
+                                        <input 
+                                            type="hidden" 
+                                            name="username"
+                                            value={username}
+                                        />
                                         <input
                                             type="text"
                                             className="form-control input"
-                                            name="username"
+                                            name={randIdName}
                                             onChange={this.onChange}
                                             value={username}
                                             tabIndex="1"
-                                            id="username_login"
+                                            id={randIdName}
                                             spellCheck="false"
-                                            autoComplete="off"
+                                            autoComplete="new-username"
                                         />
                                     </div>
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>
                                     <div className="input-outer">
+                                        <input 
+                                            type="hidden" 
+                                            name="password"
+                                            value={password}
+                                        />
                                         <input
                                             type="password"
                                             className="form-control input"
-                                            name="password"
+                                            name={randIdName}
                                             onChange={this.onChange}
                                             value={password}
                                             tabIndex="2"
-                                            autoComplete={"password"}
+                                            autoComplete="new-password"
                                             spellCheck="false"
                                         />
                                     </div>
@@ -96,8 +108,7 @@ export class Login extends Component {
                                 <br />
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-slide" tabIndex="3">
-                                        Login
-                            </button>
+                                    </button>
                                 </div>
                                 <p>
                                     Don't have an account? <Link to="/register">Register</Link>

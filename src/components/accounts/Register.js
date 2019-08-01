@@ -60,19 +60,26 @@ export class Register extends Component {
             return (<Loader />)
         }
         const { username, email, password, password2 } = this.state;
+        let randIdName = "username" + new Date().getTime().toString();
+
         return (
             <div className="col-md-6 m-auto upper-padding-register">
-                <div className="mt-5 main">
+                <div className="main">
                     <h2 className="text-center">Register</h2>
                     <br />
                     <form autoComplete="off" onSubmit={this.onSubmit}>
                         <div className="form-group">
                             <label>Username</label>
                             <div className="input-outer">
+                                <input 
+                                    type="hidden" 
+                                    name="username"
+                                    value={username}
+                                />
                                 <input
                                     type="text"
                                     className="form-control input"
-                                    name="username"
+                                    name={randIdName}
                                     onChange={this.onChange}
                                     value={username}
                                     tabIndex="1"
@@ -83,10 +90,15 @@ export class Register extends Component {
                         <div className="form-group">
                             <label>Email</label>
                             <div className="input-outer">
+                                <input 
+                                    type="hidden" 
+                                    name="email"
+                                    value={email}
+                                />
                                 <input
                                     type="email"
                                     className="form-control input"
-                                    name="email"
+                                    name={randIdName}
                                     onChange={this.onChange}
                                     value={email}
                                     tabIndex="2"
@@ -97,10 +109,15 @@ export class Register extends Component {
                         <div className="form-group">
                             <label>Password</label>
                             <div className="input-outer">
+                                <input 
+                                    type="hidden" 
+                                    name="password"
+                                    value={password}
+                                />
                                 <input
                                     type="password"
                                     className="form-control input"
-                                    name="password"
+                                    name={randIdName}
                                     onChange={this.onChange}
                                     value={password}
                                     tabIndex="3"
@@ -111,10 +128,15 @@ export class Register extends Component {
                         <div className="form-group">
                             <label>Confirm Password</label>
                             <div className="input-outer">
+                                <input 
+                                    type="hidden" 
+                                    name="password2"
+                                    value={password2}
+                                />
                                 <input
                                     type="password"
                                     className="form-control input"
-                                    name="password2"
+                                    name={randIdName}
                                     onChange={this.onChange}
                                     value={password2}
                                     tabIndex="4"
