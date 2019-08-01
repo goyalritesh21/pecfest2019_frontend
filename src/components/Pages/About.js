@@ -5,14 +5,15 @@ import Sukh from '../../images/sukhwinder.jpg';
 import Farhan from '../../images/Farhan.jpg';
 import Amit from '../../images/Amit.jpg';
 import Pecfest from '../../images/pecfest.jpg';
+import Pecmap from '../../images/pecmap.jpg';
 
 class About extends Component {
     render() {
         return (
             
             <div className={"row overlay-2"}>
-                <div className={"indicators"}>
-                    </div>
+                <div className={"indicators"}style={{backgroundImage: `url(${Pecmap})`,backgroundSize: '100% 100%'}}>
+                </div>
                 <div className={"aboutus"}>
                 {/* <MDBContainer className={"aboutus"}> */}
                   <MDBCarousel
