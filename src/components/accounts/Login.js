@@ -23,9 +23,11 @@ export class Login extends Component {
     onChange = e => {
         const key = e.target.name;
         const val = e.target.value;
-        this.setState(() => ({ [key]: val }));
-        if (key === 'username') {
+        if (key === 'username2019') {
             this.setState(() => ({ username: val.toUpperCase() }));
+        }
+        else {
+            this.setState(() => ({ password: val }));
         }
 
     };
@@ -48,7 +50,8 @@ export class Login extends Component {
             }
         }
         const { username, password } = this.state;
-        let randIdName = "username" + new Date().getTime().toString();
+        const randUserId = "username2019";
+        const randPassId = "password2019";
 
         return (
             <div>
@@ -61,19 +64,18 @@ export class Login extends Component {
                                 <div className="form-group">
                                     <label htmlFor="username">Username</label>
                                     <div className="input-outer">
-                                        <input 
-                                            type="hidden" 
+                                        <input
+                                            type="hidden"
                                             name="username"
-                                            value={username}
                                         />
                                         <input
                                             type="text"
                                             className="form-control input"
-                                            name={randIdName}
+                                            name={randUserId}
                                             onChange={this.onChange}
                                             value={username}
                                             tabIndex="1"
-                                            id={randIdName}
+                                            id={randUserId}
                                             spellCheck="false"
                                             autoComplete="new-username"
                                         />
@@ -82,18 +84,18 @@ export class Login extends Component {
                                 <div className="form-group">
                                     <label>Password</label>
                                     <div className="input-outer">
-                                        <input 
-                                            type="hidden" 
+                                        <input
+                                            type="hidden"
                                             name="password"
-                                            value={password}
                                         />
                                         <input
                                             type="password"
                                             className="form-control input"
-                                            name={randIdName}
+                                            name={randPassId}
                                             onChange={this.onChange}
                                             value={password}
                                             tabIndex="2"
+                                            id={randPassId}
                                             autoComplete="new-password"
                                             spellCheck="false"
                                         />
@@ -101,7 +103,7 @@ export class Login extends Component {
                                 </div>
                                 <br />
                                 <div className="form-group">
-                                    <button type="submit" className="btn btn-slide" tabIndex="3">
+                                    <button type="submit" className="btn btn-slide" tabIndex="3">Login
                                     </button>
                                 </div>
                                 <p>

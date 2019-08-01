@@ -24,9 +24,17 @@ export class Register extends Component {
     onChange = e => {
         const key = e.target.name;
         const val = e.target.value;
-        this.setState(() => ({ [key]: val }));
-        if (key === 'username') {
+        if (key === 'username2019') {
             this.setState(() => ({ username: val.toUpperCase() }));
+        }
+        else if (key === 'email2019') {
+            this.setState(() => ({ email: val }));
+        }
+        else if (key === 'password2019') {
+            this.setState(() => ({ password: val }));
+        }
+        else if (key === 'password22019') {
+            this.setState(() => ({ password2: val }));
         }
     };
 
@@ -42,9 +50,6 @@ export class Register extends Component {
         }
 
     };
-    redirectToLogin = () => {
-        this.props.history.push(`/login`)
-    }
 
     render() {
         const { isAuthenticated, user, isLoading } = this.props;
@@ -60,7 +65,10 @@ export class Register extends Component {
             return (<Loader />)
         }
         const { username, email, password, password2 } = this.state;
-        let randIdName = "username" + new Date().getTime().toString();
+        const randUserId = "username2019";
+        const randPassId = "password2019";
+        const randEmailId = "email2019";
+        const randPassId2 = "password22019";
 
         return (
             <div className="col-md-6 m-auto upper-padding-register">
@@ -71,17 +79,18 @@ export class Register extends Component {
                         <div className="form-group">
                             <label>Username</label>
                             <div className="input-outer">
-                                <input 
-                                    type="hidden" 
+                                <input
+                                    type="hidden"
                                     name="username"
                                     value={username}
                                 />
                                 <input
                                     type="text"
                                     className="form-control input"
-                                    name={randIdName}
+                                    name={randUserId}
                                     onChange={this.onChange}
                                     value={username}
+                                    id={randUserId}
                                     tabIndex="1"
                                     spellCheck="false"
                                 />
@@ -90,15 +99,15 @@ export class Register extends Component {
                         <div className="form-group">
                             <label>Email</label>
                             <div className="input-outer">
-                                <input 
-                                    type="hidden" 
+                                <input
+                                    type="hidden"
                                     name="email"
                                     value={email}
                                 />
                                 <input
                                     type="email"
                                     className="form-control input"
-                                    name={randIdName}
+                                    name={randEmailId}
                                     onChange={this.onChange}
                                     value={email}
                                     tabIndex="2"
@@ -109,15 +118,15 @@ export class Register extends Component {
                         <div className="form-group">
                             <label>Password</label>
                             <div className="input-outer">
-                                <input 
-                                    type="hidden" 
+                                <input
+                                    type="hidden"
                                     name="password"
                                     value={password}
                                 />
                                 <input
                                     type="password"
                                     className="form-control input"
-                                    name={randIdName}
+                                    name={randPassId}
                                     onChange={this.onChange}
                                     value={password}
                                     tabIndex="3"
@@ -128,15 +137,15 @@ export class Register extends Component {
                         <div className="form-group">
                             <label>Confirm Password</label>
                             <div className="input-outer">
-                                <input 
-                                    type="hidden" 
+                                <input
+                                    type="hidden"
                                     name="password2"
                                     value={password2}
                                 />
                                 <input
                                     type="password"
                                     className="form-control input"
-                                    name={randIdName}
+                                    name={randPassId2}
                                     onChange={this.onChange}
                                     value={password2}
                                     tabIndex="4"
