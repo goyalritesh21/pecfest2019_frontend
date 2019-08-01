@@ -9,13 +9,13 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL, UPDATE_SUCCESS, UPDATE_FAIL
+    REGISTER_FAIL, UPDATE_SUCCESS, UPDATE_FAIL,URL
 } from './types';
 
 export const loadUser = () => (dispatch, getState) => {
     dispatch({ type: USER_LOADING });
 
-    axios.get(`api/auth/user`, tokenConfig(getState))
+    axios.get(`${URL}/api/auth/user`, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: USER_LOADED,
@@ -38,7 +38,7 @@ export const login = (username, password) => dispatch => {
 
     const body = JSON.stringify({ username, password });
 
-    axios.post(`api/auth/login`, body, config)
+    axios.post(`${URL}/api/auth/login`, body, config)
         .then(res => {
             console.log(res.data);
             dispatch({
@@ -62,7 +62,7 @@ export const register = ({ username, email, password }) => dispatch => {
 
     const body = JSON.stringify({ username, email, password });
 
-    axios.post(`api/auth/register`, body, config)
+    axios.post(`${URL}/api/auth/register`, body, config)
         .then(res => {
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -91,7 +91,7 @@ export const update = ({ firstName, lastName, contactNumber, accommodation, coll
         firstTimer
     });
 
-    axios.post(`api/auth/profile`, body, tokenConfig(getState))
+    axios.post(`${URL}/api/auth/profile`, body, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: UPDATE_SUCCESS,
@@ -107,7 +107,7 @@ export const update = ({ firstName, lastName, contactNumber, accommodation, coll
 
 export const logout = () => (dispatch, getState) => {
 
-    axios.post(`api/auth/logout/`, null, tokenConfig(getState))
+    axios.post(`${URL}/api/auth/logout/`, null, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: LOGOUT_SUCCESS

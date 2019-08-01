@@ -147,15 +147,7 @@ class Types extends Component {
                             <h3>2K19</h3>
                         </div>
                         <div className="darkness" />
-<<<<<<< HEAD
                         {events.length > 0 && (<div><i className="fa fa-chevron-down fa-3x go-down" aria-hidden="true" /></div>)}
-=======
-                        {events.length > 0 && (
-                        <div id="scrollDown">
-                            <i className="fa fa-chevron-down fa-3x go-down" aria-hidden="true"/>
-                        </div>)}
-                        
->>>>>>> a0740adc75310bd96e48207c2476947fd0373da1
                     </div>
                 </section>
                 <div>
@@ -199,14 +191,9 @@ class Types extends Component {
                             </div>
                         </div>
                     </section>) : (
-<<<<<<< HEAD
                         null
                     )}
-=======
-                    null
-                )}
-                </div>
->>>>>>> a0740adc75310bd96e48207c2476947fd0373da1
+            </div>
             </div>
         );
     }
