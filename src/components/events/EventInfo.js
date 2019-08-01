@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
 import PropTypes from "prop-types";
 import { loadEvent, clearEvent } from "../../actions/individualEvent";
 import { connect } from 'react-redux';
@@ -19,9 +20,21 @@ class EventInfo extends Component {
     };
 
     componentDidMount() {
+    //     const node = ReactDOM.findDOMNode(this['_div']);
+    // if (node) {
+    //   node.scrollIntoView();
+    // }
         const { eventId } = this.props.match.params;
         this.props.loadEvent(eventId);
     }
+    componentDidUpdate() {
+        // Scroll as new elements come along
+        // var len = this.props.events.length - 1;
+        const node = ReactDOM.findDOMNode(this['_div']);
+        if (node) {
+          node.scrollIntoView();
+        }
+      }
 
     componentWillUnmount() {
         // this.props.clearEvent();
@@ -33,7 +46,7 @@ class EventInfo extends Component {
             return (<Loader />);
         }
         return (
-            <div className="card text-center item">
+            <div className="card text-center item" ref={(ref) => this['_div'] = ref}>
                 <div className="card-header">
                     <h3
                         className="card-title display1">

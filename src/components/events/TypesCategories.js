@@ -55,8 +55,8 @@ class Types extends Component {
         this.props.loadCategories(categoryDict[category].toLowerCase());
         this.getImage();
         
-        var len = this.props.events.length - 1;
-    const node = ReactDOM.findDOMNode(this['_div' + len]);
+        // var len = this.props.events.length - 1;
+    const node = ReactDOM.findDOMNode(this['_div']);
     if (node) {
       node.scrollIntoView();
     }
@@ -64,8 +64,8 @@ class Types extends Component {
     }
     componentDidUpdate() {
         // Scroll as new elements come along
-        var len = this.props.events.length - 1;
-        const node = ReactDOM.findDOMNode(this['_div' + len]);
+        // var len = this.props.events.length - 1;
+        const node = ReactDOM.findDOMNode(this['_div']);
         if (node) {
           node.scrollIntoView();
         }
@@ -152,7 +152,7 @@ class Types extends Component {
                 </section>
                 <div>
                 {events.length > 0 ? (
-                    <section id="events-section">
+                    <section id="events-section" ref={(ref) => this['_div'] = ref}>
 
                         <div className="container">
                             <div>
@@ -161,7 +161,7 @@ class Types extends Component {
                                 <div className="events">
                                     {events.map(({ id, eventID, name }) => (
 
-                                        <div key={id} data-wow-duration="1s" className="event" ref={(ref) => this['_div' + id] = ref}>
+                                        <div key={id} data-wow-duration="1s" className="event">
                                             <Link to={`/event/${eventID}`}>
                                                 <div className="card">
                                                     <div className="card-item card-front">
