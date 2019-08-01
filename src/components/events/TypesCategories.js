@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setCategory, loadCategories, loadEvents, clearEvents } from "../../actions/events";
@@ -16,7 +17,14 @@ const Lectback = '../../images/lectback.jpg';
 const Profile3 = '../../images/profile3.jpg';
 const Workback = '../../images/workback.jpg';
 
+// const messagesEndRef = useRef(null);
+
+
+ 
 class Types extends Component {
+    constructor(props) {
+        super(props);
+    }
     state = {
         name: this.props.category,
         img: null,
@@ -33,7 +41,9 @@ class Types extends Component {
         events: PropTypes.array.isRequired,
         clearEvents: PropTypes.func.isRequired
     };
-
+    
+    
+    
     componentDidMount() {
         const { category } = this.props.match.params;
         if (category) {
@@ -44,8 +54,24 @@ class Types extends Component {
         this.props.setCategory(category);
         this.props.loadCategories(categoryDict[category].toLowerCase());
         this.getImage();
+        
+        var len = this.props.events.length - 1;
+    const node = ReactDOM.findDOMNode(this['_div' + len]);
+    if (node) {
+      node.scrollIntoView();
     }
-
+        
+    }
+    componentDidUpdate() {
+        // Scroll as new elements come along
+        var len = this.props.events.length - 1;
+        const node = ReactDOM.findDOMNode(this['_div' + len]);
+        if (node) {
+          node.scrollIntoView();
+        }
+      }
+    
+    
     componentWillUnmount() {
         this.props.clearEvents();
     }
@@ -53,8 +79,8 @@ class Types extends Component {
     loadCategoryEvents = (id) => {
         const subCategory = this.state.name + id;
         this.props.loadEvents(subCategory);
+        
     };
-
     getImage = () => {
         let { category } = this.state;
         if (!category) {
@@ -121,10 +147,18 @@ class Types extends Component {
                             <h3>2K19</h3>
                         </div>
                         <div className="darkness" />
+<<<<<<< HEAD
                         {events.length > 0 && (<div><i className="fa fa-chevron-down fa-3x go-down" aria-hidden="true" /></div>)}
+=======
+                        {events.length > 0 && (
+                        <div id="scrollDown">
+                            <i className="fa fa-chevron-down fa-3x go-down" aria-hidden="true"/>
+                        </div>)}
+                        
+>>>>>>> a0740adc75310bd96e48207c2476947fd0373da1
                     </div>
                 </section>
-
+                <div>
                 {events.length > 0 ? (
                     <section id="events-section">
 
@@ -135,7 +169,7 @@ class Types extends Component {
                                 <div className="events">
                                     {events.map(({ id, eventID, name }) => (
 
-                                        <div key={id} data-wow-duration="1s" className="event">
+                                        <div key={id} data-wow-duration="1s" className="event" ref={(ref) => this['_div' + id] = ref}>
                                             <Link to={`/event/${eventID}`}>
                                                 <div className="card">
                                                     <div className="card-item card-front">
@@ -165,8 +199,14 @@ class Types extends Component {
                             </div>
                         </div>
                     </section>) : (
+<<<<<<< HEAD
                         null
                     )}
+=======
+                    null
+                )}
+                </div>
+>>>>>>> a0740adc75310bd96e48207c2476947fd0373da1
             </div>
         );
     }
