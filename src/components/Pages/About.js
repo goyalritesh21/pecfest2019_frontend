@@ -6,13 +6,14 @@ import Farhan from '../../images/Farhan.jpg';
 import Amit from '../../images/Amit.jpg';
 import Pecfest from '../../images/pecfest.jpg';
 import Pecmap from '../../images/pecmap.jpg';
+import islandHula from '../../images/island_hula.gif';
 
 class About extends Component {
     render() {
         return (
             
             <div className={"row overlay-2"}>
-                <div className={"indicators"}style={{backgroundImage: `url(${Pecmap})`,backgroundSize: '100% 100%'}}>
+                <div className={"indicators"} style={{backgroundImage: `url(${Pecmap})`,backgroundSize: '100% 100%'}}>
                 </div>
                 <div className={"aboutus"}>
                 {/* <MDBContainer className={"aboutus"}> */}
@@ -22,6 +23,7 @@ class About extends Component {
                   showControls={true}
                   showIndicators={true}
                   className="z-depth-1"
+                  onHoverStop={true}
                 >
                   <MDBCarouselInner>
                     <MDBCarouselItem itemId="1">
@@ -90,14 +92,60 @@ class About extends Component {
                     </MDBCarouselItem>
                     <MDBCarouselItem itemId="3">
                       <MDBView className="d-block w-100">
-                        
+                     
                       <MDBMask overlay="black-light" />
                       </MDBView>
-                      <MDBCarouselCaption>
+                    <MDBCarouselCaption>
+                    <h2 className={"title"}>STATISTICS</h2>
                     {/* //   <img src={Pecfest} style={{width:'150px',filter:'brightness(200%)'}}></img> */}
-                        <h2 className={"title"}>
-                            STATS
-                        </h2>
+                    <div className="row" id="ads" >
+     
+    <div className="col-md-12" >
+                         
+            <div className="card-image">
+                <span className="card-notify-badge">Because Its Good To Feel</span>
+                <span className="card-notify-year">2019</span>
+                <img className="img-fluid" src={`${islandHula}`} alt="Island_Hula"/>
+            </div>
+            <div className="card-image-overlay m-auto">
+            <div class="counter">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="employees">
+                    <p class="counter-count">879</p>
+                    <p class="employee-p">Employee</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="customer">
+                    <p class="counter-count">954</p>
+                    <p class="customer-p">Customer</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="design">
+                    <p class="counter-count">1050</p>
+                    <p class="design-p">Design</p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                <div class="order">
+                    <p class="counter-count">652</p>
+                    <p class="order-p">Orders</p>
+                </div>
+            </div>
+        
+    </div>
+</div>
+            </div>
+           
+              
+        </div>
+    </div>
+
                          
                         {/* <p>First text</p> */}
                       </MDBCarouselCaption>
