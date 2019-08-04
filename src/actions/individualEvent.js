@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {returnErrors} from "./messages";
+import {returnErrors, createMessage} from "./messages";
 
 import {
     EVENT_LOADED,
@@ -9,6 +9,7 @@ import {
     EVENT_REGISTER_FAIL, SET_EVENT, CLEAR_EVENT, URL
 } from "./types";
 import {tokenConfig} from "./auth";
+// import { create } from 'jss';
 
 export const clearEvent = () => (dispatch) => {
     dispatch({type: CLEAR_EVENT});
@@ -31,15 +32,16 @@ export const loadEvent = (eventId) => (dispatch) => {
         })
 };
 
-export const registerEvent = (eventId) => (dispatch, getState) => {
+export const registerEvent = (eventID,username) => (dispatch, getState) => {
     dispatch({type: EVENT_LOADING});
-    const body = JSON.stringify({eventId});
-    axios.post(`${URL}/api/events/register/${eventId}`, body, tokenConfig(getState))
+    const body = JSON.stringify({eventID,username});
+    axios.post(`${URL}/api/events/register`, body, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: EVENT_REGISTER_SUCCESS,
                 payload: res.data
             });
+            dispatch(createMessage({registerEventSuccess: "Registered Successfully!"}));
         })
         .catch(error => {
             dispatch(returnErrors(error.response.data, error.response.status));

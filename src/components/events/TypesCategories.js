@@ -111,7 +111,7 @@ class Types extends Component {
         }
         return (
             <ReactCSSTransitionGroup
-                     transitionName="example"
+                     transitionName="typecateg"
                      transitionAppear={true}
                      transitionAppearTimeout={800}
                      transitionEnter={false}

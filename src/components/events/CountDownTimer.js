@@ -13,7 +13,7 @@ class Countdown extends React.Component {
         this.interval = setInterval(() => {
             const { timeTillDate } = this.props;
             console.log(timeTillDate);
-            const then = moment(timeTillDate).add(98, 'days');;
+            const then = moment(timeTillDate).add(98, 'days');
             const now = moment();
             
             const countdown = moment.duration(then.diff(now));

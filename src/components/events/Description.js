@@ -1,9 +1,17 @@
 import React, {Component} from "react";
 import PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
 import DescriptionModal from "./DescriptionModal";
 import { connect } from 'react-redux';
+import { registerEvent } from '../../actions/individualEvent';
+import { createMessage } from '../../actions/messages';
 class Description extends Component {
-    state = {};
+    constructor(props) {
+        super(props);
+    }
+    state = {
+        hidden: "hidden"
+    };
 
     static propTypes = {
         shortDescription: PropTypes.string,
@@ -14,12 +22,43 @@ class Description extends Component {
         maxTeam: PropTypes.number,
         details: PropTypes.string,
         ruleList: PropTypes.string,
-        coordinators: PropTypes.array
+        coordinators: PropTypes.array,
+        registerEvent: PropTypes.func.isRequired,
+        createMessage: PropTypes.func.isRequired,
+        isAuthenticated: PropTypes.bool,
+        user: PropTypes.object
     };
+    onRegister = (e) => {
+         e.preventDefault();
+         if(!this.props.isAuthenticated) {
+            this.props.createMessage({ loginRedirect: 'Please login first!' });
+            this.props.history.push("/login");
+         }
+         else {
+             const details = {
+                 eventID: this.props.eventID,
+                 username: this.props.user.username
+             }
+             console.log(details);
+             this.props.registerEvent(details);
+
+         }
+
+    }
+    componentWillMount() {
+        var that = this;
+		setTimeout(function() {
+			that.show();
+		}, that.props.wait);
+    }
+    show() {
+		this.setState({hidden : ""});
+	}
 
     render() {
         const{name, locations, dateTime, prize, minTeam, maxTeam, details, shortDescription, ruleList, coordinators} = this.props;
         return (
+            <div className={this.state.hidden}>
             <div className="container-fluid" id="services">
                 <div className="row">
                     <div className="col-xl-12">
@@ -47,9 +86,14 @@ class Description extends Component {
                                 modalRequired={false}/>
                         </div>
                     </div>
-                    <div className="col-md-4 col-sm-12 text-center">
+                    <div className="col-md-4 col-sm-12 text-center registerblock">
                         <div className="single_mid">
                             {/*<img src={notes} alt=""/>*/}
+                            
+                            <button type="submit" onClick={this.onRegister} className="btn btn-slide" tabIndex="3">Register
+                            </button>
+                            
+                            
                         </div>
                     </div>
                     <div className="col-md-4 col-sm-12">
@@ -72,12 +116,19 @@ class Description extends Component {
                     </div>
                 </div>
             </div>
+              <div className="container" id={"footer"}>
+                 <p className="txt-railway">- Event Coordinators -</p>
+                 {/* <br /> */}
+           
+              </div>
+            </div>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-   event: state.individualEvent.event
+   user: state.auth.user,
+   isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps)(Description);
+export default withRouter(connect(mapStateToProps,{registerEvent,createMessage})(Description));

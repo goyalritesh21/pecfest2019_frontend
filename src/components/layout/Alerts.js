@@ -20,9 +20,10 @@ export class Alerts extends Component {
         }
 
         if (message !== prevProps.message) {
-            if (message.deleteLead) alert.success(message.deleteLead);
-            if (message.addLead) alert.success(message.addLead);
+            if (message.registerEventSuccess) alert.success(message.registerEventSuccess);
+            // if (message.addLead) alert.success(message.addLead);
             if (message.passwordsNotMatch) alert.error(message.passwordsNotMatch);
+            if(message.loginRedirect) alert.error(message.loginRedirect);
             if(message.updateErrorMessage) alert.error(message.updateErrorMessage);
         }
 

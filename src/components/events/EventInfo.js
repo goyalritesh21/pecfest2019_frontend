@@ -5,7 +5,7 @@ import { loadEvent, clearEvent } from "../../actions/individualEvent";
 import { connect } from 'react-redux';
 import Countdown from "./CountDownTimer";
 import Description from "./Description";
-import Footer from "./Footer";
+// import Footer from "./Footer";
 import Loader from "../common/Loader";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
@@ -51,7 +51,7 @@ class EventInfo extends Component {
         }
         return (
             <ReactCSSTransitionGroup
-                     transitionName="example"
+                     transitionName="eventinfo"
                      transitionAppear={true}
                      transitionAppearTimeout={800}
                      transitionEnter={false}
@@ -66,16 +66,15 @@ class EventInfo extends Component {
                 </div>
                 <div className="card-body">
                     <div className="form">
-                    <div style={{height:"120px",width:"100%"}}>
-                        <Countdown timeTillDate={event.dateTime}  />
-                        </div>
                     
-                        <Description {...event} />
-                        
+                    <div style={{height:"120px",width:"100%"}}>
+                         <Countdown timeTillDate={event.dateTime}  />
                     </div>
-                    <div className="card-footer">
-                          <Footer name={event.name} coordinators={event.coordinators} />
+                    
+                        <Description {...event} wait={900}/>
+                        {/* <Footer name={event.name} coordinators={event.coordinators} /> */}
                     </div>
+                    
                 </div>
                
             </div>

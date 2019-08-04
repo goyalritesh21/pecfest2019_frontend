@@ -477,3 +477,14 @@ ul {
   color: white;
   transform: translate(-50%, 0%);
 }
+
+
+// transition
+.typecateg-appear {
+  opacity: 0.01;
+}
+
+.typecateg-appear.typecateg-appear-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
+}
