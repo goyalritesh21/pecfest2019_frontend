@@ -1,9 +1,3 @@
-body {
-
-  overflow: hidden;
-
-}
-
 /*BASIC*/
 
 body {
@@ -13,7 +7,10 @@ body {
 }
 
 #page-wrap {
+
   scroll-behavior: smooth;
+
+  overflow-y: hidden;
 }
 
 .templatemo-flexbox {
@@ -133,11 +130,12 @@ body {
 .image {
   width: 80%;
   height: 80%;
+  padding-right: 5em;
 }
 
 .bg__first {
 
-  background: black;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
   /*background: url(
     'components/megashows/images/fifth-bg.jpg'
     );*/
@@ -155,7 +153,7 @@ body {
 
 .bg__second {
 
-  background: black;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
   /*background-image: url(
 
     components/megashows/images/second-bg.jpg
@@ -176,7 +174,7 @@ body {
 
 .bg__third {
 
-  background: black;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
   /*background-image: url(
 
     components/megashows/images/third-bg.jpg
@@ -198,7 +196,7 @@ body {
 
 .bg__fourth {
 
-  background: black;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
   /*background-image: url(
 
     components/megashows/images/fourth-bg.jpg
@@ -218,7 +216,7 @@ body {
 
 .bg__fifth {
 
-  background: black;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
   /*background-image: url(
 
     components/megashows/images/fifth-bg.jpg
@@ -261,6 +259,8 @@ body {
   width: 100%;
 
   text-align: center;
+
+  z-index: 1;
 }
 
 
@@ -315,36 +315,6 @@ body {
 
 }
 
-/*RESPONSIVE*/
-@media (max-width: 480px) {
-
-  /*.arrow {
-
-    bottom: 20px;
-
-  }*/
-
-}
-
-@media (max-height: 600px) {
-
-  .bg__third, .bg__fourth {
-
-    min-height: 600px;
-
-  }
-
-}
-
-@media (max-height: 500px) {
-
-  .bg__first {
-
-    min-height: 520px;
-
-  }
-
-}
 
 .typewriter h1{
   color: #fff;

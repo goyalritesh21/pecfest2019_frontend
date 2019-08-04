@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 
 class Megashows extends Component {
-  startAnimation(sectionID) {
+	constructor(props) {
+		super(props);
+		this.scrollToOffset.bind(this);
+	}
+
+  startAnimation = (sectionID) => {
         let className = "bg__" + sectionID;
         let element = document.getElementsByClassName(className)[0];
         element.style.webkitAnimation = 'none';
@@ -16,15 +21,22 @@ class Megashows extends Component {
         }, 10);
     }
 
-  handleClick(finalPos, section, e) {
-  	console.log(finalPos);
+  scrollToOffset = (finalPos, section, e) => {
+  	// console.log(finalPos);
     document.getElementById('page-wrap').scrollTo(0, finalPos.offsetTop);
     this.startAnimation(section);
   }
 
+  changeScrollss = () => { 
+    let style = document.body.style.overflow 
+    document.body.style.overflow = (style === 'hidden') ? 'auto':'hidden'
+} 
+
+
 	render () {
 		return (
       <div id="megashow-main" className="parallax">
+      <script> {window.onwheel = function(){ return false; }}	</script>
         <div className="bg__first run-animate" ref={(div) => {this.firstSection = div}}>
         <div className="arrow-up text-center" style={{visibility: 'hidden'}}>
             <a className="scroll-top btn btn-dark" data-id="first-section"><i className="fa fa-angle-up"></i></a>
@@ -42,7 +54,7 @@ class Megashows extends Component {
           </div>
         
         <div className="arrow text-center">
-          <a href="#/megashows" onClick = {this.handleClick.bind(this, this.refs.secondSection, 'second')} className="scroll-link btn btn-dark">
+          <a href="#" onClick = {() => this.scrollToOffset(this.secondSection, 'second')} className="scroll-link btn btn-dark">
           <i className="fa fa-angle-down"></i>
           </a>
         </div>
@@ -50,7 +62,7 @@ class Megashows extends Component {
 
       <div className="bg__second run-animate" ref = {(div) => {this.secondSection = div}}>
         <div className="arrow-up text-center">
-          <a href="#/megashows" onClick = {this.handleClick.bind(this, this.firstSection, 'first')} className="scroll-link btn btn-dark">
+          <a href="#" onClick = {() => this.scrollToOffset(this.firstSection, 'first')} className="scroll-link btn btn-dark">
      	     <i className="fa fa-angle-up"></i>
           </a>
          </div>
@@ -66,7 +78,7 @@ class Megashows extends Component {
           </div>
         </div>
         <div className="arrow text-center">
-          <a href="#/megashows" onClick = {this.handleClick.bind(this, this.thirdSection, 'third')} className="scroll-link btn btn-dark">
+          <a href="#" onClick = {() => this.scrollToOffset(this.thirdSection, 'third')} className="scroll-link btn btn-dark">
           <i className="fa fa-angle-down"></i>
           </a>
         </div>
@@ -74,7 +86,7 @@ class Megashows extends Component {
 
       <div className="bg__third run-animate" ref={(div)=> {this.thirdSection = div}}>
         <div className="arrow-up text-center">
-          <a href="#/megashows" onClick={this.handleClick.bind(this, this.secondSection, 'second')} className="scroll-link btn btn-dark">
+          <a href="#" onClick={() => this.scrollToOffset(this.secondSection, 'second')} className="scroll-link btn btn-dark">
             <i className="fa fa-angle-up"></i>
           </a>
         </div>
@@ -90,7 +102,7 @@ class Megashows extends Component {
             </div> 
         </div>
         <div className="arrow text-center">
-          <a href="#/megashows" onClick = {this.handleClick.bind(this, this.fourthSection, 'fourth')} className="scroll-link btn btn-dark">
+          <a href="#" onClick = {() => this.scrollToOffset(this.fourthSection, 'fourth')} className="scroll-link btn btn-dark">
             <i className="fa fa-angle-down"></i>
           </a>
         </div>
@@ -98,7 +110,7 @@ class Megashows extends Component {
 
       <div className="bg__fourth run-animate" ref={(div) => {this.fourthSection = div}}>
         <div className="arrow-up text-center">
-          <a href="#/megashows" onClick = {this.handleClick.bind(this, this.thirdSection, 'third')} className="scroll-link btn btn-dark">
+          <a href="#" onClick = {() => this.scrollToOffset(this.thirdSection, 'third')} className="scroll-link btn btn-dark">
             <i className="fa fa-angle-up"></i>
           </a>
         </div>
@@ -114,7 +126,7 @@ class Megashows extends Component {
             </div> 
           </div>
           <div className="arrow text-center">
-          <a href="#/megashows" onClick = {this.handleClick.bind(this, this.fifthSection, 'fifth')} className="scroll-link btn btn-dark">
+          <a href="#" onClick = {() => this.scrollToOffset(this.fifthSection, 'fifth')} className="scroll-link btn btn-dark">
             <i className="fa fa-angle-down"></i>
           </a>
           </div>
@@ -122,7 +134,7 @@ class Megashows extends Component {
 
       <div className="bg__fifth run-animate" ref = {(div) => {this.fifthSection = div}}>
         <div className="arrow-up text-center">
-          <a href="#/megashows" onClick = {this.handleClick.bind(this, this.fourthSection, 'fourth')} className="scroll-link btn btn-dark">
+          <a href="#" onClick = {() => this.scrollToOffset(this.fourthSection, 'fourth')} className="scroll-link btn btn-dark">
             <i className="fa fa-angle-up"></i>
           </a>
         </div>
@@ -138,7 +150,7 @@ class Megashows extends Component {
             </div> 
         </div>
         <div className="arrow text-center" style={{visibility:'hidden'}}>
-          <a href="#/megashows" onClick = {this.handleClick.bind(this, this.fifthSection, 'fifth')} className="scroll-link btn btn-dark">
+          <a href="#" onClick = {() => this.scrollToOffset(this.fifthSection, 'fifth')} className="scroll-link btn btn-dark">
             <i className="fa fa-angle-up"></i>
           </a>
         </div>
