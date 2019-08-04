@@ -1,100 +1,142 @@
-import React, { Component } from "react";
-import { PropTypes } from "prop-types";
+import React from 'react';
+import moment from 'moment';
 
-class CountDownTimer extends Component {
-  static propTypes = {
-    startDate: PropTypes.instanceOf(Date)
-  };
+class Countdown extends React.Component {
+    state = {
+        days: undefined,
+        hours: undefined,
+        minutes: undefined,
+        seconds: undefined
+    };
 
-  constructor(props) {
-    super(props);
-    this.state = { days: 0, hours: 0, minutes: 0, seconds: 0 };
-    this.startTimer = this.startTimer.bind(this);
-  }
+    componentDidMount() {
+        this.interval = setInterval(() => {
+            const { timeTillDate } = this.props;
+            console.log(timeTillDate);
+            const then = moment(timeTillDate).add(98, 'days');;
+            const now = moment();
+            
+            const countdown = moment.duration(then.diff(now));
+            const days = Math.floor(countdown.asDays());
+            countdown.subtract(moment.duration(days, 'days'));
+            const hours = countdown.hours();
+            countdown.subtract(moment.duration(hours, 'hours'));
+            const minutes = countdown.minutes();
+            countdown.subtract(moment.duration(minutes, 'minutes'));
+            const seconds = countdown.seconds();
+            console.log(timeTillDate,days,hours, then, now);
+            
+            this.setState({ days, hours, minutes, seconds });
+        }, 1000);
+    }
 
-  startTimer(milliSeconds) {
-    var leftTime = milliSeconds - new Date().getTime();
-    if (milliSeconds < 0) clearInterval(this.timer);
-    var days = Math.floor(leftTime / (24 * 60 * 60 * 1000));
-    var hours = Math.floor(
-      (leftTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    var minutes = Math.floor((leftTime % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((leftTime % (1000 * 60)) / 1000);
-    this.setState({ days, hours, minutes, seconds });
-  }
+    componentWillUnmount() {
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
+    }
 
-  componentDidMount() {
-    this.timer = setInterval(() => {
-      this.startTimer(this.props.startDate.getTime());
-    }, 1000);
-  }
+    render() {
+        const { days, hours, minutes, seconds } = this.state;
 
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
+        // Mapping the date values to radius values
+        const daysRadius = mapNumber(days, 100, 0, 0, 360);
+        const hoursRadius = mapNumber(hours, 24, 0, 0, 360);
+        const minutesRadius = mapNumber(minutes, 60, 0, 0, 360);
+        const secondsRadius = mapNumber(seconds, 60, 0, 0, 360);
 
-  render() {
-    let { days, hours, minutes, seconds } = this.state;
-    return (
-      <div className="row">
-        <div className="col-sm-3">
-          <button className="btn btn-info">Coming After :</button>
-        </div>
-        <div className="col-sm-6 table-responsive">
-          <table className="table table-sm">
-            <tbody className="text-white">
-              <tr>
-                <td style={{ padding: "8px" }}>
-                  <span
-                    style={{ padding: "5px" }}
-                    className="rounded-circle h3 bg-warning"
-                  >
-                    {days}
-                  </span>
-                </td>
-                <td style={{ padding: "8px" }}>
-                  <span
-                    style={{ padding: "5px" }}
-                    className="rounded-circle h3 bg-danger"
-                  >
-                    {hours}
-                  </span>
-                </td>
-                <td style={{ padding: "8px" }}>
-                  <span
-                    style={{ padding: "5px" }}
-                    className="rounded-circle h3 bg-info"
-                  >
-                    {minutes}
-                  </span>
-                </td>
-                <td style={{ padding: "8px" }}>
-                  <span
-                    style={{ padding: "5px" }}
-                    className="rounded-circle h3 bg-success"
-                  >
-                    {seconds}
-                  </span>
-                </td>
-              </tr>
-              <tr>
-                <td>days</td>
-                <td>hours</td>
-                <td>minutes</td>
-                <td>seconds</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="col-sm-3">
-          <button type="button" className="btn-lg btn-danger rounded-rounded">
-            Register Here
-          </button>
-        </div>
-      </div>
-    );
-  }
+        if (days < 0) {
+            return (
+              <div>
+                 <h2>Currently going on!</h2>
+              </div>
+            );
+        }
+
+        return (
+            <div>
+                <div className="countdown-wrapper">
+                    {days>=0 &&(
+                        <div className="countdown-item">
+                            <SVGCircle radius={daysRadius} stroke="#32CD32" />
+                            {days}
+                            <span style={{color:"#ffffff"}}>days</span>
+                        </div>
+                    )}
+                    {hours>=0 && (
+                        <div className="countdown-item">
+                            <SVGCircle radius={hoursRadius} stroke="#87CEEB" />
+                            {hours}
+                            <span style={{color:"#ffffff"}}>hours</span>
+                        </div>
+                    )}
+                    {minutes>=0 && (
+                        <div className="countdown-item">
+                            <SVGCircle radius={minutesRadius} stroke="#4B0082	" />
+                            {minutes}
+                            <span style={{color:"#ffffff"}}>minutes</span>
+                        </div>
+                    )}
+                    {seconds>=0 && (
+                        <div className="countdown-item">
+                            <SVGCircle radius={secondsRadius} stroke="#FFA500" />
+                            {seconds}
+                            <span style={{color:"#ffffff"}}>seconds</span>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+    }
+}
+export default Countdown;
+const SVGCircle = ({ radius,stroke }) => (
+    <svg className="countdown-svg">
+        <path
+            fill="none"
+            stroke={stroke}
+            strokeWidth="4"
+            d={describeArc(50, 50, 48, 0, radius)}
+        />
+    </svg>
+);
+
+
+function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+    var angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
+
+    return {
+        x: centerX + radius * Math.cos(angleInRadians),
+        y: centerY + radius * Math.sin(angleInRadians)
+    };
 }
 
-export default CountDownTimer;
+function describeArc(x, y, radius, startAngle, endAngle) {
+    var start = polarToCartesian(x, y, radius, endAngle);
+    var end = polarToCartesian(x, y, radius, startAngle);
+
+    var largeArcFlag = endAngle - startAngle <= 180 ? '0' : '1';
+
+    var d = [
+        'M',
+        start.x,
+        start.y,
+        'A',
+        radius,
+        radius,
+        0,
+        largeArcFlag,
+        0,
+        end.x,
+        end.y
+    ].join(' ');
+
+    return d;
+}
+
+
+function mapNumber(number, in_min, in_max, out_min, out_max) {
+    return (
+        ((number - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
+    );
+}

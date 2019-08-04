@@ -8,6 +8,8 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import { categoryDict } from "../../data/events";
 import { Link } from 'react-router-dom';
 import Loader from "../common/Loader";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 const Profile = '../../images/profile.jpg';
 const Profile1 = '../../images/profile1.jpg';
 const Techback = '../../images/techback.jpg';
@@ -108,7 +110,12 @@ class Types extends Component {
             return (<Loader />);
         }
         return (
-            <div>
+            <ReactCSSTransitionGroup
+                     transitionName="example"
+                     transitionAppear={true}
+                     transitionAppearTimeout={800}
+                     transitionEnter={false}
+                     transitionLeave={false}>
                 <div className="sidebar-menu hidden-xs hidden-sm">
                     <div className="top-section">
                         <div className="profile-image">
@@ -194,7 +201,7 @@ class Types extends Component {
                         null
                     )}
             </div>
-            </div>
+            </ReactCSSTransitionGroup>
         );
     }
 }

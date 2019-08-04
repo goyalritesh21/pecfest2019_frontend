@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 import {Modal, Button} from 'react-bootstrap';
 
 const MyModal = (props) => (
+    // console.log(props.content);
     <Modal
         {...props}
         size="lg"
@@ -15,9 +16,12 @@ const MyModal = (props) => (
         </Modal.Header>
         <Modal.Body>
             {/*<h4>Centered Modal</h4>*/}
-            <p>
-                {props.content}
-            </p>
+            {props.content.split("\n").map((i,key) => {
+            return <p key={key}>
+            {i}
+        </p>
+        })}
+            
         </Modal.Body>
         <Modal.Footer>
             <Button onClick={props.onHide}>Close</Button>

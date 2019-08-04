@@ -14,11 +14,13 @@ body {
 .card-header {
   padding: 0;
   background: transparent;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 
 .card-footer {
   background: transparent;
+  padding: 0;
+  // height: 100%;
 }
 
 .item {
@@ -26,4 +28,33 @@ body {
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
   color: #eee;
+  overflow: auto;
+}
+
+
+/////////////////
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 0.5s ease-in;
 }
