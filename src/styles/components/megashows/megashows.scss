@@ -1,0 +1,371 @@
+body {
+
+  overflow: hidden;
+
+}
+
+/*BASIC*/
+
+body {
+
+  overflow-x: hidden;
+
+}
+
+#page-wrap {
+  scroll-behavior: smooth;
+}
+
+.templatemo-flexbox {
+
+  display: -webkit-box;
+
+  display: -webkit-flex;
+
+  display: -ms-flexbox;
+
+  display: flex;
+
+  -webkit-box-align: center;
+
+  -webkit-align-items: center;
+
+      -ms-flex-align: center;
+
+          align-items: center;
+
+  height: 100%;
+
+}
+
+
+
+
+
+/*PARALLAX*/
+
+
+
+[class*="bg__"] {
+
+  height: 100vh;
+
+
+
+  position: relative;
+
+  /* fix background */
+
+  background-attachment: fixed;
+
+
+
+  /* center it */
+
+  background-position: center center;
+
+
+
+  /* Scale it nicely to the element */
+
+  background-size: cover;
+
+
+  /* just make it look a bit better ;) */
+
+  &:nth-child(2n) {
+
+    box-shadow: inset 0 0 1em #111;
+
+  }
+
+}
+
+
+.run-animate {
+
+  -webkit-animation: loadTheImageEeasily 1s linear 1, blur 2s linear 1;
+  -moz-animation: loadTheImageEeasily 1s linear 1, blur 2s linear 1;
+}
+
+.run-animate image{
+  visibility: hidden;
+  -webkit-animation: typing-up 1s ease 1 forwards;
+  -moz-animation: typing-up 1s ease 1 forwards;
+}
+
+@keyframes loadTheImageEeasily {
+  0%{
+    opacity: 0;
+  }
+  25%{
+    opacity: 0.25;
+  }
+  50%{
+    opacity: 0.50;
+  }
+  75%{
+    opacity: 0.75;
+  }
+  100%{
+    opacity: 1.0;
+  }
+}
+
+@keyframes blur {
+  0%{
+    filter: blur(8px);
+  }
+  25%{
+    filter: blur(4px);
+  }
+  50%{
+    filter: blur(2px);
+  }
+  75%{
+    filter: blur(1px);
+  }
+  100%{
+    filter: blur(0px);
+  }
+}
+
+.image {
+  width: 80%;
+  height: 80%;
+}
+
+.bg__first {
+
+  background: black;
+  /*background: url(
+    'components/megashows/images/fifth-bg.jpg'
+    );*/
+}
+
+
+.container {
+
+  height: 100vh;
+
+  min-height: 440px;
+
+}
+
+
+.bg__second {
+
+  background: black;
+  /*background-image: url(
+
+    components/megashows/images/second-bg.jpg
+
+  );*/
+
+}
+
+
+.bg__second .container {
+
+  height: 100vh;
+
+  min-height: 440px;
+
+}
+
+
+.bg__third {
+
+  background: black;
+  /*background-image: url(
+
+    components/megashows/images/third-bg.jpg
+
+  );*/
+
+}
+
+
+.bg__third .container {
+
+  height: 100vh;
+
+  min-height: 440px;
+
+}
+
+
+
+.bg__fourth {
+
+  background: black;
+  /*background-image: url(
+
+    components/megashows/images/fourth-bg.jpg
+
+  );*/
+
+}
+
+.bg__fourth .container {
+
+  height: 100vh;
+
+  min-height: 440px;
+
+}
+
+
+.bg__fifth {
+
+  background: black;
+  /*background-image: url(
+
+    components/megashows/images/fifth-bg.jpg
+
+  );*/
+
+}
+
+.bg__fifth .container {
+
+  height: 100vh;
+
+  min-height: 440px;
+
+}
+
+/*SECTIONS*/
+
+.arrow {
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: 1em;
+
+  width: 100%;
+
+  text-align: center;
+
+}
+
+.arrow-up {
+  position: absolute;
+
+  left: 0;
+
+  top: 1em;
+
+  width: 100%;
+
+  text-align: center;
+}
+
+
+.arrow i, .arrow-up i {
+
+  font-size: 22px;
+
+  color: #fff;
+
+  width: 30px;
+
+  height: 30px;
+
+  line-height: 28px;
+
+  display: inline-block;
+
+  text-align: center;
+
+  border: 1px solid #fff;
+
+  border-radius: 50%;
+
+}
+
+
+
+.arrow i:hover, .arrow-up i:hover {
+
+  -webkit-transition: all 0.3s ease 0s;
+
+          transition: all 0.3s ease 0s;
+
+}
+
+.arrow:active .btn {
+
+  box-shadow: none;
+
+}
+
+.templatemo-position-relatives {
+
+  position: relative;
+
+}
+
+
+.templatemo-center {
+
+  text-align: center;
+
+}
+
+/*RESPONSIVE*/
+@media (max-width: 480px) {
+
+  /*.arrow {
+
+    bottom: 20px;
+
+  }*/
+
+}
+
+@media (max-height: 600px) {
+
+  .bg__third, .bg__fourth {
+
+    min-height: 600px;
+
+  }
+
+}
+
+@media (max-height: 500px) {
+
+  .bg__first {
+
+    min-height: 520px;
+
+  }
+
+}
+
+.typewriter h1{
+  color: #fff;
+  font-family: monospace;
+  overflow: hidden;
+  visibility: hidden;
+  border-right: .15em solid transparent;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  text-align: left;
+  animation: 
+    typing 2s ease 1.5s forwards;
+}
+
+@keyframes typing {
+  from { width: 0; visibility: visible; border-color: orange; }
+  to { width: 100%; visibility: visible; border-color: orange }
+}
+
+@keyframes typing-up {
+  from { line-height: 0; visibility: visible;  }
+  to { line-height: 100%; visibility: visible; }
+}
