@@ -1,7 +1,8 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import DescriptionModal from "./DescriptionModal";
 import { connect } from 'react-redux';
+import moment from 'moment';
 class Description extends Component {
     state = {};
 
@@ -18,7 +19,7 @@ class Description extends Component {
     };
 
     render() {
-        const{name, locations, dateTime, prize, minTeam, maxTeam, details, shortDescription, ruleList, coordinators} = this.props;
+        const { name, locations, dateTime, prize, minTeam, maxTeam, details, shortDescription, ruleList, coordinators } = this.props;
         return (
             <div className="container-fluid" id="services">
                 <div className="row">
@@ -37,14 +38,14 @@ class Description extends Component {
                                 modalRequired={true}
                                 content={shortDescription}
                                 modalHeading={"Details"}
-                                modalContent={details}/>
+                                modalContent={details} />
                         </div>
                         <div className="single_service service_right">
-                           <h4>Venue</h4>
+                            <h4>Venue</h4>
                             <DescriptionModal
                                 contentId="venue"
-                                content={[["Location", locations], ["Day", dateTime]]}
-                                modalRequired={false}/>
+                                content={[["Location", locations], ["Day", moment(dateTime).format("hh:mm a,  DD-MMM-YYYY")]]}
+                                modalRequired={false} />
                         </div>
                     </div>
                     <div className="col-md-4 col-sm-12 text-center">
@@ -54,20 +55,20 @@ class Description extends Component {
                     </div>
                     <div className="col-md-4 col-sm-12">
                         <div className="single_service service_left">
-                             <h4>Rules</h4>
+                            <h4>Rules</h4>
                             <DescriptionModal
                                 contentId="rules"
                                 content={[["Minimum Team Size", minTeam], ["Maximum Team Size", maxTeam]]}
                                 modalRequired={true}
                                 modalHeading={"Rules"}
-                                modalContent={ruleList}/>
+                                modalContent={ruleList} />
                         </div>
                         <div className="single_service service_left">
                             <h4>Prizes</h4>
                             <DescriptionModal
                                 contentId="prizes"
                                 content={prize}
-                                modalRequired={false}/>
+                                modalRequired={false} />
                         </div>
                     </div>
                 </div>
@@ -77,7 +78,7 @@ class Description extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   event: state.individualEvent.event
+    event: state.individualEvent.event
 });
 
 export default connect(mapStateToProps)(Description);
