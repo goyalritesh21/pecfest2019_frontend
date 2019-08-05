@@ -33,6 +33,10 @@ body {
 
   height: 100%;
 
+  flex-wrap: wrap-reverse;
+
+  justify-content: center;
+
 }
 
 
@@ -130,7 +134,7 @@ body {
 .image {
   width: 80%;
   height: 80%;
-  padding-right: 5em;
+  flex-shrink: 1;
 }
 
 .bg__first {
@@ -315,8 +319,7 @@ body {
 
 }
 
-
-.typewriter h1{
+.typewriter p, .typewriter h1{
   color: #fff;
   font-family: monospace;
   overflow: hidden;
@@ -338,4 +341,23 @@ body {
 @keyframes typing-up {
   from { line-height: 0; visibility: visible;  }
   to { line-height: 100%; visibility: visible; }
+}
+
+@media (max-width:425px) {
+  
+
+.typewriter h1, .typewriter p{
+
+  font-size: 1.5em;
+}
+
+}
+
+@media (max-width:768px) {
+
+.typewriter {
+  position: absolute;
+  bottom: 5em;
+}
+
 }

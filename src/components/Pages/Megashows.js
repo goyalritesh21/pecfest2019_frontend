@@ -45,7 +45,7 @@ class Megashows extends Component {
           <div className="container">
             <div className="templatemo-flexbox">              
               <div className="typewriter-first typewriter">
-                <h1>Groov<br />
+                <h1>Groovz<br />
                 Day 1, Main Arena</h1>
               </div>
               <img  className ="image" src={require(`../megashows/images/first-bg.jpg`)} alt="Groovz"/>
