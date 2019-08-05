@@ -9,7 +9,7 @@ const About = lazy(() => import('../components/Pages/About'));
 const Events = lazy(() => import('../components/Pages/Events'));
 const LoginPage = lazy(() => import('../components/Pages/LoginPage'));
 const RegisterPage = lazy(() => import('../components/Pages/RegisterPage'));
-const Megashows = lazy(() => import('../components/Pages/Megashows'));
+const MegaShows = lazy(() => import('../components/Pages/MegaShows'));
 const IndividualEvent = lazy(() => import("../components/events/EventInfo"));
 const Types = lazy(() => import("../components/events/TypesCategories"));
 const ExtraDetails = lazy(() => import("../components/accounts/ExtraDetails"));
@@ -29,7 +29,7 @@ const AppRouter = ({ location }) => {
                             <Route exact path={"/"} component={Home} />
                             <Route exact path={"/sponsors"} component={Sponsors} />
                             <Route exact path={"/about"} component={About} />
-                            <Route exact path={"/megashows"} component={Megashows} />
+                            <Route exact path={"/megashows"} component={MegaShows} />
                             <Route exact path={"/events"} component={Events} />
                             <Route exact path={"/login"} render={props => <LoginPage {...props} />} />
                             <Route exact path={"/register"} component={RegisterPage} />

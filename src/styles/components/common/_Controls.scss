@@ -1,0 +1,46 @@
+.controls {
+  display: flex;
+  bottom: 0;
+  width: 100%;
+  padding: 1em;
+  z-index: 100;
+}
+
+.ControlButton {
+  background: transparent;
+  color: rgba(255, 255, 255, 1);
+  border: none;
+  cursor: pointer;
+  transition: all 300ms;
+}
+
+.controls-next, .controls-prev {
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  z-index: 1;
+}
+
+.controls-next {
+  right: 1em;
+}
+
+.controls-prev {
+  left: 1em;
+}
+
+.Controls-nextButton, .Controls-prevButton {
+  width: 2em;
+  height: 2em;
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+}
+
+.Controls-nextButton {
+  transform: rotateZ(135deg);
+}
+.Controls-prevButton {
+  transform: rotateZ(-45deg);
+}

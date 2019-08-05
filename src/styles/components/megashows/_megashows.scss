@@ -1,0 +1,88 @@
+.MegaShow {
+  height: 200vh;
+  width: 200vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 1s;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.MegaShow-cover {
+  height: 100vh;
+}
+
+.MegaShow-heading {
+  color: white;
+  word-wrap: break-word;
+  text-transform: uppercase;
+  font-size: 3em;
+  margin: 0;
+}
+
+.MegaShow-fieldset {
+  border: 10px solid rgba(255, 255, 255, 0.7);
+  height: 50vh;
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  padding: 1em;
+}
+
+.MegaShow-location {
+  color: white;
+}
+
+.Darker {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: normal;
+}
+
+.MegaShow-locationHeading {
+  font-size: 2em;
+  text-transform: uppercase;
+  color: white;
+  margin: 0;
+}
+
+.MegaShow-innerDiv > button.RegisterButton {
+  background: transparent;
+  font-family: inherit;
+  color: white;
+  padding: 0;
+  border: none;
+  text-decoration: underline;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.MegaShow-titleline {
+  color: white;
+  font-weight: 700;
+}
+
+.posterUrl {
+  color: white;
+  font-weight: 700;
+  text-decoration: underline;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 768px) {
+  .MegaShow {
+    filter: none;
+  }
+
+  .MegaShow-heading {
+    font-size: 2em;
+  }
+
+  .MegaShow-loactionHeading {
+    font-size: 1em;
+  }
+
+  .MegaShow-fieldset {
+    width: 60vw;
+  }
+}
