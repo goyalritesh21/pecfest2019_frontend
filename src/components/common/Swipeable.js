@@ -64,8 +64,7 @@ export default class Swipeable extends Component {
 
     render() {
         return (
-            <div {...this.props}
-                 onTouchStart={this.handleTouchStart}
+            <div onTouchStart={this.handleTouchStart}
                  onTouchEnd={this.handleTouchEnd}
                  onTouchMove={this.handleTouchMove}
                  onKeyPress={this.handleKeyUp}

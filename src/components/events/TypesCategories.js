@@ -134,9 +134,9 @@ class Types extends Component {
                         <ul className="navigation">
                             {categories.length > 0 && categories.map(([id, name]) => (
                                 <li key={id}>
-                                    <a onClick={() => this.loadCategoryEvents(id)}>
+                                    <div onClick={() => this.loadCategoryEvents(id)}>
                                         <i className="fa fa-paperclip" /> {name.charAt(0).toUpperCase() + name.slice(1)}
-                                    </a>
+                                    </div>
                                 </li>
                             ))
                             }

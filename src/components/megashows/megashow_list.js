@@ -1,4 +1,4 @@
-import GroovImage from "./images/first-bg.jpg";
+import GroovzImage from "./images/first-bg.jpg";
 import StarNightImage from "./images/second-bg.jpg";
 import DJNightImage from "./images/third-bg.jpg";
 import BhangraThequeImage from "./images/fourth-bg.jpg";
@@ -9,7 +9,7 @@ export default [
         title: 'Groovz',
         titleLine: 'Bollywood Dance',
         venue: 'Day 1, Main Arena',
-        coverPhoto: GroovImage
+        coverPhoto: GroovzImage
     },
     {
         title: 'Star Night',

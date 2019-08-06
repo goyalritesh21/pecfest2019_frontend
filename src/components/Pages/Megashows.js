@@ -42,13 +42,13 @@ class MegaShows extends Component {
             <TransitionMotion willEnter={this.willEnter}
                               willLeave={this.willLeave}
                               defaultStyles={[{
-                                  key: activeIndex,
+                                  key: activeIndex.toString(),
                                   style: {
                                       x: -100
                                   }
                               }]}
                               styles={[{
-                                  key: activeIndex,
+                                  key: activeIndex.toString(),
                                   style: {
                                       x: spring(0)
                                   }

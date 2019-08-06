@@ -1,6 +1,6 @@
 import React from "react";
 
-export default (props) => {
+const Controls = (props) => {
     const {onNext, onPrev} = props;
     return (
         <div className="controls">
@@ -12,4 +12,6 @@ export default (props) => {
             </div>
         </div>
     )
-}
+};
+
+export default Controls;

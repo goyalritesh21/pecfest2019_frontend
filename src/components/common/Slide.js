@@ -1,7 +1,7 @@
 import React from "react";
 import Controls from "./Controls"
 
-export default (props) => {
+const Slide = (props) => {
     const { onNext, onPrev, children } = props;
     return (
         <div className="MegaShowSlide">
@@ -9,4 +9,6 @@ export default (props) => {
             {children}
         </div>
     )
-}
+};
+
+export default Slide;
