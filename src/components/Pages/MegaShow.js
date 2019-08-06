@@ -93,7 +93,7 @@ class MegaShow extends Component {
 
         this.backgroundImage = this.createCover();
         const imageObject = new THREE.CSS3DObject(this.backgroundImage);
-        imageObject.position.set(-width / 2, -height / 2, 300);
+        imageObject.position.set(-width / 2, -height / 2, 500);
 
         this.scene.add(imageObject);
 
