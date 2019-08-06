@@ -1,8 +1,7 @@
-import React, {Component, Fragment} from "react";
-import {Modal, Button} from 'react-bootstrap';
+import React, { Component, Fragment } from "react";
+import { Modal, Button } from 'react-bootstrap';
 
 const MyModal = (props) => (
-    // console.log(props.content);
     <Modal
         {...props}
         size="lg"
@@ -16,12 +15,12 @@ const MyModal = (props) => (
         </Modal.Header>
         <Modal.Body>
             {/*<h4>Centered Modal</h4>*/}
-            {props.content.split("\n").map((i,key) => {
-            return <p key={key}>
-            {i}
-        </p>
-        })}
-            
+            {props.content.split("\n").map((i, key) => {
+                return <p key={key}>
+                    {i}
+                </p>
+            })}
+
         </Modal.Body>
         <Modal.Footer>
             <Button onClick={props.onHide}>Close</Button>
@@ -36,28 +35,27 @@ class DescriptionModal extends Component {
     };
 
     modalClose = () => {
-        this.setState((prevState) => ({modalShow: !prevState.modalShow}))
+        this.setState((prevState) => ({ modalShow: !prevState.modalShow }))
     };
 
     render() {
-        const {content, modalHeading, modalContent, modalRequired, contentId} = this.props;
-        console.log(content);
+        const { content, modalHeading, modalContent, modalRequired, contentId } = this.props;
         return (
             <Fragment>
-                    {(contentId === "rules" || contentId==="venue") ? (<ul>
-                        {
-                            content.map(([name, value], index)=>(
-                                <li key={index}><label>{name}:</label> {value}</li>
-                            ))
-                        }
-                    </ul>) : (<p>{content}</p>)
+                {(contentId === "rules" || contentId === "venue") ? (<ul>
+                    {
+                        content.map(([name, value], index) => (
+                            <li key={index}><label>{name}:</label> {value}</li>
+                        ))
                     }
-                { modalRequired && <label
-                        className={"modal-link"}
-                        onClick={() => {
-                            this.setState(() => ({modalShow: true}))
-                        }}>
-                        Know More...
+                </ul>) : (<p>{content}</p>)
+                }
+                {modalRequired && <label
+                    className={"modal-link"}
+                    onClick={() => {
+                        this.setState(() => ({ modalShow: true }))
+                    }}>
+                    Know More...
                     </label>}
 
                 {modalRequired && <MyModal

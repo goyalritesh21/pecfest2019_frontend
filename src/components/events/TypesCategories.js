@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -22,17 +22,17 @@ const Workback = '../../images/workback.jpg';
 // const messagesEndRef = useRef(null);
 
 
- 
+
 class Types extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            name: this.props.category,
+            img: null,
+            imgback: null,
+            categories: []
+        };
     }
-    state = {
-        name: this.props.category,
-        img: null,
-        imgback: null,
-        categories: []
-    };
 
     static propTypes = {
         category: PropTypes.string,
@@ -43,9 +43,9 @@ class Types extends Component {
         events: PropTypes.array.isRequired,
         clearEvents: PropTypes.func.isRequired
     };
-    
-    
-    
+
+
+
     componentDidMount() {
         const { category } = this.props.match.params;
         if (category) {
@@ -56,24 +56,24 @@ class Types extends Component {
         this.props.setCategory(category);
         this.props.loadCategories(categoryDict[category].toLowerCase());
         this.getImage();
-        
+
         // var len = this.props.events.length - 1;
-    const node = ReactDOM.findDOMNode(this['_div']);
-    if (node) {
-      node.scrollIntoView();
-    }
-        
+        const node = ReactDOM.findDOMNode(this['_div']);
+        if (node) {
+            node.scrollIntoView();
+        }
+
     }
     componentDidUpdate() {
         // Scroll as new elements come along
         // var len = this.props.events.length - 1;
         const node = ReactDOM.findDOMNode(this['_div']);
         if (node) {
-          node.scrollIntoView();
+            node.scrollIntoView();
         }
-      }
-    
-    
+    }
+
+
     componentWillUnmount() {
         this.props.clearEvents();
     }
@@ -81,7 +81,7 @@ class Types extends Component {
     loadCategoryEvents = (id) => {
         const subCategory = this.state.name + id;
         this.props.loadEvents(subCategory);
-        
+
     };
     getImage = () => {
         let { category } = this.state;
@@ -111,11 +111,11 @@ class Types extends Component {
         }
         return (
             <ReactCSSTransitionGroup
-                     transitionName="typecateg"
-                     transitionAppear={true}
-                     transitionAppearTimeout={800}
-                     transitionEnter={false}
-                     transitionLeave={false}>
+                transitionName="typecateg"
+                transitionAppear={true}
+                transitionAppearTimeout={800}
+                transitionEnter={false}
+                transitionLeave={false}>
                 <div className="sidebar-menu hidden-xs hidden-sm">
                     <div className="top-section">
                         <div className="profile-image">
@@ -158,49 +158,49 @@ class Types extends Component {
                     </div>
                 </section>
                 <div>
-                {events.length > 0 ? (
-                    <section id="events-section" ref={(ref) => this['_div'] = ref}>
+                    {events.length > 0 ? (
+                        <section id="events-section" ref={(ref) => this['_div'] = ref}>
 
-                        <div className="container">
-                            <div>
-                                <h2 className="headline-section wow jackInTheBox">EVENTS</h2>
+                            <div className="container">
+                                <div>
+                                    <h2 className="headline-section wow jackInTheBox">EVENTS</h2>
 
-                                <div className="events">
-                                    {events.map(({ id, eventID, name }) => (
+                                    <div className="events">
+                                        {events.map(({ id, eventID, name }) => (
 
-                                        <div key={id} data-wow-duration="1s" className="event">
-                                            <Link to={`/event/${eventID}`}>
-                                                <div className="card">
-                                                    <div className="card-item card-front">
-                                                        <img src="./img/events/techno_buzz_comp.jpg" alt={name} />
-                                                        <div className="headText">
-                                                            <p>{name}</p>
+                                            <div key={id} data-wow-duration="1s" className="event">
+                                                <Link to={`/event/${eventID}`}>
+                                                    <div className="card">
+                                                        <div className="card-item card-front">
+                                                            <img src="./img/events/techno_buzz_comp.jpg" alt={name} />
+                                                            <div className="headText">
+                                                                <p>{name}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div className="card-item card-back">
+                                                            <img src="./img/events/techno_buzz_comp.jpg" alt={name} />
+                                                            <div className="eventName">
+                                                                <p>{name}</p>
+                                                            </div>
+                                                            <div className="headText">
+                                                                <p>Know More</p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div className="card-item card-back">
-                                                        <img src="./img/events/techno_buzz_comp.jpg" alt={name} />
-                                                        <div className="eventName">
-                                                            <p>{name}</p>
-                                                        </div>
-                                                        <div className="headText">
-                                                            <p>Know More</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </Link>
-                                        </div>
+                                                </Link>
+                                            </div>
 
-                                    ))
-                                    }
+                                        ))
+                                        }
 
 
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </section>) : (
-                        null
-                    )}
-            </div>
+                        </section>) : (
+                            null
+                        )}
+                </div>
             </ReactCSSTransitionGroup>
         );
     }

@@ -21,10 +21,10 @@ class EventInfo extends Component {
     };
 
     componentDidMount() {
-    //     const node = ReactDOM.findDOMNode(this['_div']);
-    // if (node) {
-    //   node.scrollIntoView();
-    // }
+        //     const node = ReactDOM.findDOMNode(this['_div']);
+        // if (node) {
+        //   node.scrollIntoView();
+        // }
         const { eventId } = this.props.match.params;
         this.props.loadEvent(eventId);
     }
@@ -34,9 +34,9 @@ class EventInfo extends Component {
         // cosol
         const node = ReactDOM.findDOMNode(this['_div']);
         if (node) {
-          node.scrollIntoView();
+            node.scrollIntoView();
         }
-      }
+    }
 
     componentWillUnmount() {
         // this.props.clearEvent();
@@ -45,39 +45,38 @@ class EventInfo extends Component {
     render() {
 
         const { event } = this.props;
-        console.log(event);
         if (!event) {
             return (<Loader />);
         }
         return (
             <ReactCSSTransitionGroup
-                     transitionName="eventinfo"
-                     transitionAppear={true}
-                     transitionAppearTimeout={800}
-                     transitionEnter={false}
-                     transitionLeave={false}>
-                         
-            <div className="text-center item" ref={(ref) => this['_div'] = ref}>
-                <div className="card-header">
-                    <h3
-                        className="card-title display1">
-                        {event && event.name}
-                    </h3>
-                </div>
-                <div className="card-body">
-                    <div className="form">
-                    
-                    <div style={{height:"120px",width:"100%"}}>
-                         <Countdown timeTillDate={event.dateTime}  />
+                transitionName="eventinfo"
+                transitionAppear={true}
+                transitionAppearTimeout={800}
+                transitionEnter={false}
+                transitionLeave={false}>
+
+                <div className="text-center item" ref={(ref) => this['_div'] = ref}>
+                    <div className="card-header">
+                        <h3
+                            className="card-title display1">
+                            {event && event.name}
+                        </h3>
                     </div>
-                    
-                        <Description {...event} wait={900}/>
-                        {/* <Footer name={event.name} coordinators={event.coordinators} /> */}
+                    <div className="card-body">
+                        <div className="form">
+
+                            <div style={{ height: "120px", width: "100%" }}>
+                                <Countdown timeTillDate={event.dateTime} />
+                            </div>
+
+                            <Description {...event} wait={900} />
+                            {/* <Footer name={event.name} coordinators={event.coordinators} /> */}
+                        </div>
+
                     </div>
-                    
+
                 </div>
-               
-            </div>
             </ReactCSSTransitionGroup>
         );
     }

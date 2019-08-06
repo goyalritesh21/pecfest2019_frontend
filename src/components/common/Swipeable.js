@@ -27,7 +27,6 @@ export default class Swipeable extends Component {
     };
 
     handleTouchEnd = event => {
-        const touches = event.touches;
         const threshold = this.props.threshold || 50;
         if (this.props.onSwipe) {
             const diffX = this.state.startX - this.state.currentX;

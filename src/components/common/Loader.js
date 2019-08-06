@@ -3,7 +3,7 @@ import loader from '../../images/Loader.gif';
 
 const Loader = () => {
     return (
-        <img className={"img-fluid rounded-circle vertical-center"} src={loader}/>
+        <img className={"img-fluid rounded-circle vertical-center"} src={loader} alt={"Loading..."}/>
     );
 };
 

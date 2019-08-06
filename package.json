@@ -5,6 +5,7 @@
   "description": "This is official App for PECFEST 2019 Frontend",
   "author": "Ritesh Goyal",
   "license": "ISC",
+  "homepage": "https://goyalritesh21.github.io",
   "proxy": "http://127.0.0.1:8000/",
   "dependencies": {
     "animejs": "^3.1.0",
@@ -47,7 +48,9 @@
     "start": "set PORT=8800 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -63,5 +66,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.0"
   }
 }

@@ -31,7 +31,7 @@ class Header extends Component {
 
 
     render() {
-        const {isAuthenticated, user} = this.props.auth;
+        const {isAuthenticated/*##TODO##, user*/} = this.props.auth;
         return (
             <Fragment>
                 <div className={"open-wrapper"}>
