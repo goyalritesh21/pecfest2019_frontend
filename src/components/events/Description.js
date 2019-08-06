@@ -40,7 +40,6 @@ class Description extends Component {
                 eventID: this.props.eventID,
                 username: this.props.user.username
             }
-            console.log(details);
             this.props.registerEvent(details);
 
         }
