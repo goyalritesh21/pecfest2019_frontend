@@ -43,21 +43,22 @@ class Category extends Component {
         return (
             <div className={"col-md-3 category-link"} style={{ cursor: 'pointer' }} >
                 {/* This div is for {this.props.category} Category. */}
-                <Link to={`/events/${id}`}>
-                    <MDBCol md="4">
-                        <MDBCard className="mb-2">
-                            <MDBCardImage className="img-fluid" src={img} />
-                            <MDBCardBody>
-                                <MDBCardTitle>{category}</MDBCardTitle>
-                                <MDBCardText>
-                                    Some quick example text to build on the card title and
-                                    make up the bulk of the card's content.
-                                </MDBCardText>
-                                <MDBBtn color="primary">View Events</MDBBtn>
-                            </MDBCardBody>
-                        </MDBCard>
-                    </MDBCol>
-                </Link>
+                <MDBCol md="4">
+                    <MDBCard className="mb-2 bgnone">
+                        <MDBCardImage className="img-fluid img-transparent" src={img} />
+                        <MDBCardBody className="mdbcardbody">
+                        <br />
+                            <MDBCardTitle>{category}</MDBCardTitle>
+                            <MDBCardText>
+                                Some quick example text to build on the card title and
+                                make up the bulk of the card's content.
+                            </MDBCardText>
+                            <Link to={`/events/${id}`}>
+                            <MDBBtn className="button button--aylen button--border-thick button--inverted button--text-upper button--size-s menu--viola ">View Events</MDBBtn>
+                            </Link>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
             </div>
         )
             ;

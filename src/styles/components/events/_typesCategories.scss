@@ -339,6 +339,7 @@ ul {
   perspective: 1500px;
   -webkit-perspective: 1500px;
   -moz-perspective: 1500px;
+  background-color: none;
 }
 
 .card .card-item {
@@ -487,4 +488,85 @@ ul {
 .typecateg-appear.typecateg-appear-active {
   opacity: 1;
   transition: opacity 0.5s ease-in;
+}
+
+/* Aylen */
+.button.button--aylen {
+  background: #fff;
+  color: #37474f;
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+}
+.button--aylen.button--inverted {
+  background: none;
+  color: #fff;
+}
+.button--aylen::before,
+.button--aylen::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 100%;
+  left: 0;
+  z-index: -1;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+  transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
+}
+.button--aylen::before {
+  background: #7986cb;
+}
+.button--aylen::after {
+  background: #3f51b5;
+}
+.button--aylen:hover {
+  color: #fff;
+}
+.button--aylen:hover::before,
+.button--aylen:hover::after {
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+.button--aylen:hover::after {
+  -webkit-transition-delay: 0.175s;
+  transition-delay: 0.175s;
+}
+
+.button--border-thick {
+  border: 2px solid;
+}
+
+.button--aylen.button--inverted {
+  background: none;
+  color: #fff;
+}
+
+.button--text-upper {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.button--size-s {
+  font-size: 14px;
+}
+.button--size-m {
+  font-size: 16px;
+}
+.button--size-l {
+  font-size: 18px;
+}
+
+.mdbcardbody {
+  color: white;
+  background : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+}
+
+.bgnone {
+  background: none;
+}
+
+.img-transparent {
+  opacity: 0.7;
 }
