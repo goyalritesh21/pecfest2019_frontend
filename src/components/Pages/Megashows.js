@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { spring, TransitionMotion } from 'react-motion';
+import React, {Component} from 'react';
+import {spring, TransitionMotion} from 'react-motion';
 import MegaShow from './MegaShow';
-import Swipeable from '../common/Swipeable'
-import Slide from '../common/Slide'
+import Swipeable from '../../components/common/Swipeable'
+import Slide from '../../components/common/Slide'
 import megaShowList from '../megashows/megashow_list'
 
 class MegaShows extends Component {
@@ -17,13 +17,13 @@ class MegaShows extends Component {
 
     handlePrev = () => {
         this.setState((state, props) => {
-            return { activeIndex: (megaShowList.length + state.activeIndex - 1) % megaShowList.length };
+            return {activeIndex: (megaShowList.length + state.activeIndex - 1) % megaShowList.length};
         });
     };
 
     handleNext = () => {
         this.setState((state, props) => {
-            return { activeIndex: (state.activeIndex + 1) % megaShowList.length };
+            return {activeIndex: (state.activeIndex + 1) % megaShowList.length};
         });
     };
 
@@ -36,34 +36,34 @@ class MegaShows extends Component {
     };
 
     render() {
-        const { activeIndex } = this.state;
+        const {activeIndex} = this.state;
 
         return (
             <TransitionMotion willEnter={this.willEnter}
-                willLeave={this.willLeave}
-                defaultStyles={[{
-                    key: activeIndex,
-                    style: {
-                        x: -100
-                    }
-                }]}
-                styles={[{
-                    key: activeIndex,
-                    style: {
-                        x: spring(0)
-                    }
-                }]}>
+                              willLeave={this.willLeave}
+                              defaultStyles={[{
+                                  key: activeIndex,
+                                  style: {
+                                      x: -100
+                                  }
+                              }]}
+                              styles={[{
+                                  key: activeIndex,
+                                  style: {
+                                      x: spring(0)
+                                  }
+                              }]}>
                 {styles => (
                     <Swipeable className="MegaShows"
-                        onSwipe={this.handleSwipe}>
+                               onSwipe={this.handleSwipe}>
                         {
                             styles.map(style => (
                                 <Slide key={style.key}
-                                    style={style.style}
-                                    onNext={this.handleNext}
-                                    onPrev={this.handlePrev}
-                                    current={parseInt(style.key)}>
-                                    <MegaShow show={megaShowList[activeIndex]} />
+                                       style={style.style}
+                                       onNext={this.handleNext}
+                                       onPrev={this.handlePrev}
+                                       current={parseInt(style.key)}>
+                                    <MegaShow show={megaShowList[activeIndex]}/>
                                 </Slide>
                             ))
                         }
