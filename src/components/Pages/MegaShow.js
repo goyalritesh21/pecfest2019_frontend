@@ -71,7 +71,10 @@ class MegaShow extends Component {
 
     componentDidMount() {
         this._mounted = true;
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 5000);
+        const width = this.wrapperRef.clientWidth;
+        const height = this.wrapperRef.clientHeight;
+
+        this.camera = new THREE.PerspectiveCamera(75, width / height, 1, 5000);
         this.camera.position.set(0, 0, 700);
         this.scene = new THREE.Scene();
 
@@ -90,7 +93,7 @@ class MegaShow extends Component {
 
         this.backgroundImage = this.createCover();
         const imageObject = new THREE.CSS3DObject(this.backgroundImage);
-        imageObject.position.set(window.innerWidth / 5, 0, 200);
+        imageObject.position.set(-width / 2, -height / 2, 300);
 
         this.scene.add(imageObject);
 
