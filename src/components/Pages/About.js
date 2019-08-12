@@ -4,7 +4,6 @@ import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDB
 import Sukh from '../../images/sukhwinder.jpg';
 import Farhan from '../../images/Farhan.jpg';
 import Amit from '../../images/Amit.jpg';
-import Pecfest from '../../images/pecfest.jpg';
 import Pecmap from '../../images/pecmap.jpg';
 import islandHula from '../../images/island_hula.gif';
 
@@ -31,7 +30,7 @@ class About extends Component {
 
                                     <MDBMask overlay="black-light" />
                                 </MDBView>
-                                <MDBCarouselCaption style={{ backgroundImage: `url(${Pecfest})`, height: '589px' }}>
+                                <MDBCarouselCaption>
                                     {/* //   <img src={Pecfest} style={{width:'150px',filter:'brightness(200%)'}}></img> */}
                                     <h2 className={"title1"}>
                                         PECFEST 2019

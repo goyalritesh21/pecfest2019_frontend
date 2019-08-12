@@ -25,13 +25,23 @@
     // padding-top: 60px;
     height: 100%;
 }
-.img-fluid {
+.img-flu {
     height: 300px;
+    width: 100%;
 }
 .carousel-indicators {
     display: none;
 }
-
+@media screen and (max-width: 992px) {
+    .categoriesScroll {
+     overflow: auto;
+    }
+    .category-link {
+        // margin-bottom: 10px;
+        display: block;
+        width: 100%;
+    }
+  }
 
 
 // count down timer styling

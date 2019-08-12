@@ -45,7 +45,7 @@ class Category extends Component {
                 {/* This div is for {this.props.category} Category. */}
                 <MDBCol md="4">
                     <MDBCard className="mb-2 bgnone">
-                        <MDBCardImage className="img-fluid img-transparent" src={img} />
+                        <MDBCardImage className="img-flu img-transparent" src={img} />
                         <MDBCardBody className="mdbcardbody">
                         <br />
                             <MDBCardTitle>{category}</MDBCardTitle>

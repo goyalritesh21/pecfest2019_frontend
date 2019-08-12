@@ -561,10 +561,19 @@ ul {
 .mdbcardbody {
   color: white;
   background : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+  padding: 1.25rem;
+}
+
+@media screen and (max-width: 992px) {
+  .mdbcardbody {
+    height: auto !important;
+  }  
+
 }
 
 .bgnone {
   background: none;
+  margin-bottom: 0 !important;
 }
 
 .img-transparent {
