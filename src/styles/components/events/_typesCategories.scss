@@ -161,12 +161,12 @@ h3.profile-title {
   overflow-y: hidden;
 }
 
-@media screen and (max-width: 1290px) {
-  .sidebar-menu {
-    overflow-y: scroll;
-    width: 30%;
-  }
-}
+// @media screen and (max-width: 1290px) {
+//   .sidebar-menu {
+//     overflow-y: scroll;
+//     width: 30%;
+//   }
+// }
 
 .navigation {
   padding-left: 0;
@@ -178,17 +178,37 @@ h3.profile-title {
 
 }
 
-@media screen and (max-width: 1290px) {
-  .main-content,
-  .banner-bg {
-    width: 70%;
-  }
-}
+// @media screen and (max-width: 1290px) {
+//   .main-content,
+//   .banner-bg {
+//     width: 70%;
+//   }
+// }
 
 @media screen and (max-width: 992px) {
   .main-content,
   .banner-bg {
     width: 100%;
+  }
+
+  .sidebar-menu {
+    float: none;
+    width: 100% !important;
+    position: relative;
+  }
+  #landing-section {
+    float: none;
+    width: 100% !important;
+  }
+  #events-section {
+    width: 100% !important;
+  }
+  .event {
+    height: 20vw !important;
+    width: 38% !important;
+  }
+  .card .card-front .headText p {
+    font-size: 12px !important;
   }
 }
 

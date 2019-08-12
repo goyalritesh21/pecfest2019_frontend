@@ -8,7 +8,7 @@ class Events extends Component {
 
     render() {
         return (
-            <div className={"row overlay-2"}>
+            <div className={"row overlay-2 categoriesScroll"}>
                 {
                     categories.map(({ id, name }, index) => (
                         <Category key={index} category={name} id={id} />
