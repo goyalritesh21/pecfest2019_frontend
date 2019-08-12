@@ -7,41 +7,33 @@ import Amit from '../../images/Amit.jpg';
 import Pecmap from '../../images/pecmap.jpg';
 import islandHula from '../../images/island_hula.gif';
 
-class About extends Component {
-    render() {
-        return (
+import Fluid from './Fluid';
 
+class About extends Component {
+    
+    render() {
+        
+        return (
+              
             <div className={"row overlay-2"}>
-                <div className={"indicators"} style={{ backgroundImage: `url(${Pecmap})`, backgroundSize: '100% 100%' }}>
+                <div className={"indicators"} >
+                   <Fluid />
+                      
                 </div>
                 <div className={"aboutus"}>
                     {/* <MDBContainer className={"aboutus"}> */}
+                    
                     <MDBCarousel
                         activeItem={1}
-                        length={3}
+                        length={2}
                         showControls={true}
                         showIndicators={true}
                         className="z-depth-1"
                         onHoverStop={true}
                     >
                         <MDBCarouselInner>
+                            
                             <MDBCarouselItem itemId="1">
-                                <MDBView className="d-block w-100">
-
-                                    <MDBMask overlay="black-light" />
-                                </MDBView>
-                                <MDBCarouselCaption>
-                                    {/* //   <img src={Pecfest} style={{width:'150px',filter:'brightness(200%)'}}></img> */}
-                                    <h2 className={"title1"}>
-                                        PECFEST 2019
-                        </h2>
-                                    <p style={{ fontSize: '20px' }}>The symbol of warm hospitality, unmeasured enthusiasm and vibrant colours of Punjab - PECFest, is known to sweep you off your feet, every single time. An undeniably unforgettable experience, it is the most anticipated event of the year.
-                         </p>
-                                    <h4 className={"date"}>18th - 20th OCTOBER, 2019</h4>
-                                    {/* <p>First text</p> */}
-                                </MDBCarouselCaption>
-                            </MDBCarouselItem>
-                            <MDBCarouselItem itemId="2">
                                 <MDBView className="d-block w-101">
 
                                     <MDBMask overlay="black-strong" />
@@ -89,7 +81,7 @@ class About extends Component {
 
                                 </MDBCarouselCaption>
                             </MDBCarouselItem>
-                            <MDBCarouselItem itemId="3">
+                            <MDBCarouselItem itemId="2">
                                 <MDBView className="d-block w-100">
 
                                     <MDBMask overlay="black-light" />
@@ -157,6 +149,7 @@ class About extends Component {
             </div>
         );
     }
+
 }
 
 export default About;
