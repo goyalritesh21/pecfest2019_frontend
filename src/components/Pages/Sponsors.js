@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import Fluid from './Fluid';
 
 class Sponsors extends Component {
     render() {
         return (
-            <h1>
-                This is sponsors page.
-            </h1>
+           <div>
+               <Fluid title="Sponsor's Page"/>
+               </div>
         );
     }
 }

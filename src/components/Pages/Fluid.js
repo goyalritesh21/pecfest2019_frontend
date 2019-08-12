@@ -13,6 +13,9 @@ const defaultConfig = {
 };
 
 export default class Fluid extends Component {
+    constructor(props) {
+        super(props);
+    }
   state = {
     config: {
       ...defaultConfig
@@ -59,11 +62,11 @@ export default class Fluid extends Component {
               textShadow: "2px 2px 8px rgba(0, 0, 0, 0.5)"
             }}
           >
-            PECFEST 2019
+            {this.props.title}
           </h1>
-          <p style={{ fontSize: '20px' }}>The symbol of warm hospitality, unmeasured enthusiasm and vibrant colours of Punjab - PECFest, is known to sweep you off your feet, every single time. An undeniably unforgettable experience, it is the most anticipated event of the year.
+          <p style={{ fontSize: '20px' }}>{this.props.text}
           </p>
-          <h4 className={"date"}>8th - 10th NOVEMBER, 2019</h4>
+          <h4 className={"date"}>{this.props.date}</h4>
         </div>
 
         
