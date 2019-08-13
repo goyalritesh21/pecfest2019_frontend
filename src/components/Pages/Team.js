@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Ritesh from "../../images/DevTeam/Ritesh.jpg";
-
+import anime from 'animejs';
 export default class Team extends Component {
 
     componentDidMount() {
@@ -16,6 +16,15 @@ export default class Team extends Component {
             let txt = i.innerHTML;
             i.innerHTML = "<a href='tel:+91" + txt + "' title='+91-" + txt + "'>+91-" + txt + "</a>";
         }
+        const timeline = anime.timeline();
+        timeline.add({
+            targets: '.Team-Header, .designation, .col, .name, .email, .phone',
+            translateY: [100, 0],
+            opacity: [0, 1],
+            duration: 1000,
+            easing: 'easeOutExpo',
+            delay: (el, i, l) => i * 200
+        });
 
         this.restore = document.body.style.overflow;
         document.body.style.overflow = 'auto';
