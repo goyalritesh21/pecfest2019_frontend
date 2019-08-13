@@ -43,6 +43,7 @@ class Category extends Component {
         return (
             <div className={"col-md-3 category-link"}>
                 {/* This div is for {this.props.category} Category. */}
+                {/*style={{ cursor: 'pointer' }}*/}
                 <MDBCol md="4">
                     <MDBCard className="mb-2 bgnone">
                         <MDBCardImage className="img-flu img-transparent" src={img} />
