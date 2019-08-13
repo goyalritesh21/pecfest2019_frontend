@@ -9,7 +9,7 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL, UPDATE_SUCCESS, UPDATE_FAIL,URL
+    REGISTER_FAIL, UPDATE_SUCCESS, UPDATE_FAIL, URL
 } from './types';
 
 export const loadUser = () => (dispatch, getState) => {
@@ -40,7 +40,7 @@ export const login = (username, password) => dispatch => {
 
     axios.post(`${URL}/api/auth/login`, body, config)
         .then(res => {
-            console.log(res.data);
+            // console.log(res.data);
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data

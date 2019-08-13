@@ -17,6 +17,10 @@
   left: 50%;
 }
 
+.button--aylen.button--inverted{
+  cursor: pointer;
+}
+
 @media screen and (max-width: 992px) {
   .responsive-header .main-navigation {
     margin-top: 10px;
@@ -107,29 +111,17 @@ h3.profile-title {
   display: block;
 }
 
-.main-navigation li a {
+.navigation-item {
   cursor: pointer;
-  padding: 15px 40px;
+  padding: 8px 40px;
   display: block;
   color: white;
   font-size: 14px;
 }
 
-.main-navigation li a i {
-  margin-right: 15px;
-  font-size: 24px;
-}
-
-.main-navigation li a:hover {
-  background: #5b6878;
-}
-
-.main-navigation li a.active {
-  background: #495461;
-}
-
-.main-navigation li a.active:hover {
-  background: #495461;
+.navigation-item:hover{
+  color: rgba(255,255,255,0.8);
+  text-decoration: underline;
 }
 
 @media screen and (max-width: 992px) {

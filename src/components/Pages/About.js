@@ -4,25 +4,24 @@ import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDB
 import Sukh from '../../images/sukhwinder.jpg';
 import Farhan from '../../images/Farhan.jpg';
 import Amit from '../../images/Amit.jpg';
-import Pecmap from '../../images/pecmap.jpg';
 import islandHula from '../../images/island_hula.gif';
 
 import Fluid from './Fluid';
 
 class About extends Component {
-    
+
     render() {
-        
+
         return (
-              
+
             <div className={"row overlay-2"}>
                 <div className={"indicators"} >
-                   <Fluid title="PECFEST 2019" text="The symbol of warm hospitality, unmeasured enthusiasm and vibrant colours of Punjab - PECFest, is known to sweep you off your feet, every single time. An undeniably unforgettable experience, it is the most anticipated event of the year." date="8th - 10th NOVEMBER, 2019"/>
-                      
+                    <Fluid title="PECFEST 2019" text="The symbol of warm hospitality, unmeasured enthusiasm and vibrant colours of Punjab - PECFest, is known to sweep you off your feet, every single time. An undeniably unforgettable experience, it is the most anticipated event of the year." date="8th - 10th NOVEMBER, 2019" />
+
                 </div>
                 <div className={"aboutus"}>
                     {/* <MDBContainer className={"aboutus"}> */}
-                    
+
                     <MDBCarousel
                         activeItem={1}
                         length={2}
@@ -32,10 +31,10 @@ class About extends Component {
                         onHoverStop={true}
                     >
                         <MDBCarouselInner>
-                            
+
                             <MDBCarouselItem itemId="1">
                                 <MDBView className="d-block w-101">
-                                   
+
                                     <MDBMask overlay="black-strong" />
                                 </MDBView>
                                 <MDBCarouselCaption>

@@ -41,20 +41,20 @@ class Category extends Component {
         const { img } = this.state;
         const { category, id } = this.props;
         return (
-            <div className={"col-md-3 category-link"} style={{ cursor: 'pointer' }} >
+            <div className={"col-md-3 category-link"}>
                 {/* This div is for {this.props.category} Category. */}
                 <MDBCol md="4">
                     <MDBCard className="mb-2 bgnone">
                         <MDBCardImage className="img-flu img-transparent" src={img} />
                         <MDBCardBody className="mdbcardbody">
-                        <br />
+                            <br />
                             <MDBCardTitle>{category}</MDBCardTitle>
                             <MDBCardText>
                                 Some quick example text to build on the card title and
                                 make up the bulk of the card's content.
                             </MDBCardText>
-                            <Link to={`/events/${id}`}>
-                            <MDBBtn className="button button--aylen button--border-thick button--inverted button--text-upper button--size-s menu--viola ">View Events</MDBBtn>
+                            <Link to={`/events/${id}`} style={{ cursor: 'pointer' }}>
+                                <MDBBtn className="button button--aylen button--border-thick button--inverted button--text-upper button--size-s menu--viola ">View Events</MDBBtn>
                             </Link>
                         </MDBCardBody>
                     </MDBCard>

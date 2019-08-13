@@ -65,10 +65,6 @@ export class Login extends Component {
                                     <label htmlFor="username">Username</label>
                                     <div className="input-outer">
                                         <input
-                                            type="hidden"
-                                            name="username"
-                                        />
-                                        <input
                                             type="text"
                                             className="form-control input"
                                             name={randUserId}
@@ -84,10 +80,6 @@ export class Login extends Component {
                                 <div className="form-group">
                                     <label>Password</label>
                                     <div className="input-outer">
-                                        <input
-                                            type="hidden"
-                                            name="password"
-                                        />
                                         <input
                                             type="password"
                                             className="form-control input"

@@ -14,7 +14,8 @@ const IndividualEvent = lazy(() => import("../components/events/EventInfo"));
 const Types = lazy(() => import("../components/events/TypesCategories"));
 const ExtraDetails = lazy(() => import("../components/accounts/ExtraDetails"));
 const NotFound = lazy(() => import("../components/common/NotFound"));
-
+const Team = lazy(() => import('../components/Pages/Team'));
+const DevTeam = lazy(() => import('../components/Pages/DevTeam'));
 const AppRouter = ({ location }) => {
     return (
         <div id={"page-wrap"} style={{ width: "100%", height: "100%", position: "fixed", top: "0", left: "0" }}>
@@ -33,6 +34,8 @@ const AppRouter = ({ location }) => {
                             <Route exact path={"/events"} component={Events} />
                             <Route exact path={"/login"} render={props => <LoginPage {...props} />} />
                             <Route exact path={"/register"} component={RegisterPage} />
+                            <Route exact path={"/team"} component={Team} />
+                            <Route exact path={"/devteam"} component={DevTeam} />
                             <Route exact path={"/events/:category"} component={Types} />
                             <Route exact path={"/event/:eventId"} component={IndividualEvent} />
                             <PrivateRoute exact path={"/update"} component={ExtraDetails} />

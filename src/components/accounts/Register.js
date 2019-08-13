@@ -80,11 +80,6 @@ export class Register extends Component {
                             <label>Username</label>
                             <div className="input-outer">
                                 <input
-                                    type="hidden"
-                                    name="username"
-                                    value={username}
-                                />
-                                <input
                                     type="text"
                                     className="form-control input"
                                     name={randUserId}
@@ -93,17 +88,13 @@ export class Register extends Component {
                                     id={randUserId}
                                     tabIndex="1"
                                     spellCheck="false"
+                                    autoComplete="new-username"
                                 />
                             </div>
                         </div>
                         <div className="form-group">
                             <label>Email</label>
                             <div className="input-outer">
-                                <input
-                                    type="hidden"
-                                    name="email"
-                                    value={email}
-                                />
                                 <input
                                     type="email"
                                     className="form-control input"
@@ -112,17 +103,13 @@ export class Register extends Component {
                                     value={email}
                                     tabIndex="2"
                                     spellCheck="false"
+                                    autoComplete="new-email"
                                 />
                             </div>
                         </div>
                         <div className="form-group">
                             <label>Password</label>
                             <div className="input-outer">
-                                <input
-                                    type="hidden"
-                                    name="password"
-                                    value={password}
-                                />
                                 <input
                                     type="password"
                                     className="form-control input"
@@ -131,17 +118,13 @@ export class Register extends Component {
                                     value={password}
                                     tabIndex="3"
                                     spellCheck="false"
+                                    autoComplete="new-password"
                                 />
                             </div>
                         </div>
                         <div className="form-group">
                             <label>Confirm Password</label>
                             <div className="input-outer">
-                                <input
-                                    type="hidden"
-                                    name="password2"
-                                    value={password2}
-                                />
                                 <input
                                     type="password"
                                     className="form-control input"
@@ -150,6 +133,7 @@ export class Register extends Component {
                                     value={password2}
                                     tabIndex="4"
                                     spellCheck="false"
+                                    autoComplete="new-password2"
                                 />
                             </div>
                         </div>
