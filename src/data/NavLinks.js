@@ -12,8 +12,8 @@ export const NavLinks = [
         to: 'megashows'
     },
     {
-        name: 'About',
-        to: 'about'
+        name: 'Past',
+        to: 'past'
     },
     {
         name: 'Sponsors',

@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import PrivateRoute from "../components/common/PrivateRoute";
 import Loader from '../components/common/Loader';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Past from "../components/Pages/Past";
 const Home = lazy(() => import('../components/Pages/Home'));
 const Sponsors = lazy(() => import('../components/Pages/Sponsors'));
 const About = lazy(() => import('../components/Pages/About'));
@@ -36,6 +37,7 @@ const AppRouter = ({ location }) => {
                             <Route exact path={"/register"} component={RegisterPage} />
                             <Route exact path={"/team"} component={Team} />
                             <Route exact path={"/devteam"} component={DevTeam} />
+                            <Route exact path={"/past"} component={Past} />
                             <Route exact path={"/events/:category"} component={Types} />
                             <Route exact path={"/event/:eventId"} component={IndividualEvent} />
                             <PrivateRoute exact path={"/update"} component={ExtraDetails} />

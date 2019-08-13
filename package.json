@@ -37,6 +37,7 @@
     "react-router-redux": "^4.0.8",
     "react-scripts": "3.0.1",
     "react-transition-group": "^4.2.2",
+    "react-youtube": "^7.9.0",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",

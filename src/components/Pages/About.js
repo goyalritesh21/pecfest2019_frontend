@@ -1,6 +1,12 @@
-import React, { Component } from 'react';
-import { MDBCarousel, MDBCarouselCaption, MDBCarouselInner, MDBCarouselItem, MDBView, MDBMask/*##TO DO##, MDBContainer*/ } from
-    "mdbreact";
+import React, {Component} from 'react';
+import {
+    MDBCarousel,
+    MDBCarouselCaption,
+    MDBCarouselInner,
+    MDBCarouselItem,
+    MDBView,
+    MDBMask/*##TO DO##, MDBContainer*/
+} from "mdbreact";
 import Sukh from '../../images/sukhwinder.jpg';
 import Farhan from '../../images/Farhan.jpg';
 import Amit from '../../images/Amit.jpg';
@@ -15,8 +21,10 @@ class About extends Component {
         return (
 
             <div className={"row overlay-2"}>
-                <div className={"indicators"} >
-                    <Fluid title="PECFEST 2019" text="The symbol of warm hospitality, unmeasured enthusiasm and vibrant colours of Punjab - PECFest, is known to sweep you off your feet, every single time. An undeniably unforgettable experience, it is the most anticipated event of the year." date="8th - 10th NOVEMBER, 2019" />
+                <div className={"indicators"}>
+                    <Fluid title="PECFEST 2019"
+                           text="The symbol of warm hospitality, unmeasured enthusiasm and vibrant colours of Punjab - PECFest, is known to sweep you off your feet, every single time. An undeniably unforgettable experience, it is the most anticipated event of the year."
+                           date="8th - 10th NOVEMBER, 2019"/>
 
                 </div>
                 <div className={"aboutus"}>
@@ -35,7 +43,7 @@ class About extends Component {
                             <MDBCarouselItem itemId="1">
                                 <MDBView className="d-block w-101">
 
-                                    <MDBMask overlay="black-strong" />
+                                    <MDBMask overlay="black-strong"/>
                                 </MDBView>
                                 <MDBCarouselCaption>
                                     <h2 className={"title"}>STAR NIGHT</h2>
@@ -45,7 +53,10 @@ class About extends Component {
                                             <div className="col-md-12">
                                                 <div className="main-timeline5">
                                                     <div className="timeline">
-                                                        <div className="timeline-icon"><span className="year" style={{ backgroundImage: `url(${Sukh})`, backgroundPosition: '50% 30%' }}>2018</span></div>
+                                                        <div className="timeline-icon"><span className="year" style={{
+                                                            backgroundImage: `url(${Sukh})`,
+                                                            backgroundPosition: '50% 30%'
+                                                        }}>2018</span></div>
                                                         <div className="timeline-content">
                                                             <h3 className="title">Sukhwinder Singh</h3>
                                                             {/* <p className="description">
@@ -54,7 +65,11 @@ class About extends Component {
                                                         </div>
                                                     </div>
                                                     <div className="timeline">
-                                                        <div className="timeline-icon"><span className="year" style={{ backgroundImage: `url(${Farhan})`, backgroundPosition: '50% 40%', backgroundSize: '300px 200px' }}>2017</span></div>
+                                                        <div className="timeline-icon"><span className="year" style={{
+                                                            backgroundImage: `url(${Farhan})`,
+                                                            backgroundPosition: '50% 40%',
+                                                            backgroundSize: '300px 200px'
+                                                        }}>2017</span></div>
                                                         <div className="timeline-content">
                                                             <h3 className="title">Farhan Akhtar</h3>
                                                             {/* <p className="description">
@@ -63,7 +78,11 @@ class About extends Component {
                                                         </div>
                                                     </div>
                                                     <div className="timeline">
-                                                        <div className="timeline-icon"><span className="year" style={{ backgroundImage: `url(${Amit})`, backgroundPosition: '40% 40%', backgroundSize: '300px 200px' }}>2016</span></div>
+                                                        <div className="timeline-icon"><span className="year" style={{
+                                                            backgroundImage: `url(${Amit})`,
+                                                            backgroundPosition: '40% 40%',
+                                                            backgroundSize: '300px 200px'
+                                                        }}>2016</span></div>
                                                         <div className="timeline-content">
                                                             <h3 className="title">Amit Trivedi</h3>
                                                             {/* <p className="description">
@@ -77,25 +96,24 @@ class About extends Component {
                                     </div>
 
 
-
                                 </MDBCarouselCaption>
                             </MDBCarouselItem>
                             <MDBCarouselItem itemId="2">
                                 <MDBView className="d-block w-100">
 
-                                    <MDBMask overlay="black-light" />
+                                    <MDBMask overlay="black-light"/>
                                 </MDBView>
                                 <MDBCarouselCaption>
                                     <h2 className={"title"}>STATISTICS</h2>
                                     {/* //   <img src={Pecfest} style={{width:'150px',filter:'brightness(200%)'}}></img> */}
-                                    <div className="row" id="ads" >
+                                    <div className="row" id="ads">
 
-                                        <div className="col-md-12" >
+                                        <div className="col-md-12">
 
                                             <div className="card-image">
                                                 <span className="card-notify-badge">Because Its Good To Feel</span>
                                                 <span className="card-notify-year">2019</span>
-                                                <img className="img-fluid" src={`${islandHula}`} alt="Island_Hula" />
+                                                <img className="img-fluid" src={`${islandHula}`} alt="Island_Hula"/>
                                             </div>
                                             <div className="card-image-overlay m-auto">
                                                 <div className="counter">
