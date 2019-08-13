@@ -9,7 +9,7 @@ const About = lazy(() => import('../components/Pages/About'));
 const Events = lazy(() => import('../components/Pages/Events'));
 const LoginPage = lazy(() => import('../components/Pages/LoginPage'));
 const RegisterPage = lazy(() => import('../components/Pages/RegisterPage'));
-const MegaShows = lazy(() => import('../components/Pages/Megashows'));
+const MegaShows = lazy(() => import('../components/Pages/MegaShows'));
 const IndividualEvent = lazy(() => import("../components/events/EventInfo"));
 const Types = lazy(() => import("../components/events/TypesCategories"));
 const ExtraDetails = lazy(() => import("../components/accounts/ExtraDetails"));
