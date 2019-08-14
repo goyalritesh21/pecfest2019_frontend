@@ -41,7 +41,7 @@ class EventInfo extends Component {
     }
 
     componentWillUnmount() {
-        // this.props.clearEvent();
+        this.props.clearEvent();
     }
 
     render() {

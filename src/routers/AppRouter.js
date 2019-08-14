@@ -20,32 +20,24 @@ const DevTeam = lazy(() => import('../components/Pages/DevTeam'));
 const AppRouter = ({ location }) => {
     return (
         <div id={"page-wrap"} style={{ width: "100%", height: "100%", position: "fixed", top: "0", left: "0" }}>
-            <TransitionGroup>
-                <CSSTransition
-                    key={location.key}
-                    timeout={{ enter: 0, exit: 0 }}
-                    classNames={"fade"}
-                >
-                    <Suspense fallback={<Loader />}>
-                        <Switch location={location}>
-                            <Route exact path={"/"} component={Home} />
-                            <Route exact path={"/sponsors"} component={Sponsors} />
-                            <Route exact path={"/about"} component={About} />
-                            <Route exact path={"/megashows"} component={MegaShows} />
-                            <Route exact path={"/events"} component={Events} />
-                            <Route exact path={"/login"} render={props => <LoginPage {...props} />} />
-                            <Route exact path={"/register"} component={RegisterPage} />
-                            <Route exact path={"/team"} component={Team} />
-                            <Route exact path={"/devteam"} component={DevTeam} />
-                            <Route exact path={"/past"} component={Past} />
-                            <Route exact path={"/events/:category"} component={Types} />
-                            <Route exact path={"/event/:eventId"} component={IndividualEvent} />
-                            <PrivateRoute exact path={"/update"} component={ExtraDetails} />
-                            <Route component={NotFound} />
-                        </Switch>
-                    </Suspense>
-                </CSSTransition>
-            </TransitionGroup>
+            <Suspense fallback={<Loader />}>
+                <Switch location={location}>
+                    <Route exact path={"/"} component={Home} />
+                    <Route exact path={"/sponsors"} component={Sponsors} />
+                    <Route exact path={"/about"} component={About} />
+                    <Route exact path={"/megashows"} component={MegaShows} />
+                    <Route exact path={"/events"} component={Events} />
+                    <Route exact path={"/login"} render={props => <LoginPage {...props} />} />
+                    <Route exact path={"/register"} component={RegisterPage} />
+                    <Route exact path={"/team"} component={Team} />
+                    <Route exact path={"/devteam"} component={DevTeam} />
+                    <Route exact path={"/past"} component={Past} />
+                    <Route exact path={"/events/:category"} component={Types} />
+                    <Route exact path={"/event/:eventId"} component={IndividualEvent} />
+                    <PrivateRoute exact path={"/update"} component={ExtraDetails} />
+                    <Route component={NotFound} />
+                </Switch>
+            </Suspense>
         </div>
 
     );

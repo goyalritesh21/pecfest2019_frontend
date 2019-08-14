@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { update } from '../../actions/auth';
 import { createMessage } from '../../actions/messages';
 import Loader from '../common/Loader';
+import anime from 'animejs';
 class ExtraDetails extends Component {
     state = {
         firstName: undefined,
@@ -23,6 +24,18 @@ class ExtraDetails extends Component {
         user: PropTypes.object,
         isLoading: PropTypes.bool.isRequired
     };
+
+    componentDidMount() {
+        const timeline = anime.timeline();
+        timeline.add({
+            targets: '.main, .form-group',
+            translateY: [100, 0],
+            opacity: [0, 1],
+            duration: 1000,
+            easing: 'easeOutElastic',
+            delay: (el, i, l) => i * 200
+        });
+    }
 
     onChange = e => {
         const key = e.target.name;

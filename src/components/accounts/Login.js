@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 import Loader from "../common/Loader";
+import anime from 'animejs';
 export class Login extends Component {
     constructor() {
         super();
@@ -19,6 +20,18 @@ export class Login extends Component {
         user: PropTypes.object,
         isLoading: PropTypes.bool.isRequired
     };
+
+    componentDidMount() {
+        const timeline = anime.timeline();
+        timeline.add({
+            targets: '.main, .form-group, #register',
+            translateY: [100, 0],
+            opacity: [0, 1],
+            duration: 1000,
+            easing: 'easeOutElastic',
+            delay: (el, i, l) => i * 200
+        });
+    }
 
     onChange = e => {
         const key = e.target.name;
@@ -100,7 +113,7 @@ export class Login extends Component {
                                     <button type="submit" className="btn btn-slide" tabIndex="3">Login
                                     </button>
                                 </div>
-                                <p>
+                                <p id={"register"}>
                                     Don't have an account? <Link to="/register">Register</Link>
                                 </p>
                             </form>

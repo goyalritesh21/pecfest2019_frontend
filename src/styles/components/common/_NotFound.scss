@@ -24,6 +24,16 @@
   letter-spacing: 15px;
 }
 
+@media (max-width: 400px) {
+  ._404 {
+    font-size: 150px;
+    height: 180px;
+  }
+  .c {
+    width: 100%;
+  }
+}
+
 ._1 {
   text-align: center;
   display: block;
@@ -185,7 +195,7 @@ hr {
   -o-animation: moveclouds 20s linear infinite;
 }
 
-@-webkit-keyframes moveclouds {
+@keyframes moveclouds {
   0% {
     margin-left: 1000px;
   }

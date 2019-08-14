@@ -24,3 +24,4 @@ export const SET_EVENT = "SET_EVENT";
 export const CLEAR_EVENTS = "CLEAR_EVENTS";
 export const CLEAR_EVENT = "CLEAR_EVENT";
 export const CATEGORIES_LOADED = "CATEGORIES_LOADED";
+export const CHECK_REGISTER = "CHECK_REGISTER";

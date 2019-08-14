@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { register } from '../../actions/auth';
 import { createMessage } from '../../actions/messages';
 import Loader from "../common/Loader";
+import anime from 'animejs';
 export class Register extends Component {
     state = {
         username: '',
@@ -20,6 +21,18 @@ export class Register extends Component {
         user: PropTypes.object,
         isLoading: PropTypes.bool.isRequired
     };
+
+    componentDidMount() {
+        const timeline = anime.timeline();
+        timeline.add({
+            targets: '.main, .form-group, #login',
+            translateY: [100, 0],
+            opacity: [0, 1],
+            duration: 1000,
+            easing: 'easeOutElastic',
+            delay: (el, i, l) => i * 200
+        });
+    }
 
     onChange = e => {
         const key = e.target.name;
@@ -157,7 +170,7 @@ export class Register extends Component {
                                 Register
                                 </button>
                         </div>
-                        <p>
+                        <p id={"login"}>
                             Already have an account? <Link to="/login">Login</Link>
                         </p>
                     </form>

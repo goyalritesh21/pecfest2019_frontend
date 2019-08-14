@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { returnErrors, createMessage } from './messages';
+import { createMessage } from './messages';
 
 import {
     USER_LOADED,
@@ -22,7 +22,6 @@ export const loadUser = () => (dispatch, getState) => {
                 payload: res.data
             });
         }).catch(err => {
-            dispatch(createMessage({ loadUserFail: "User Loading Failed" }));
             dispatch({
                 type: AUTH_ERROR
             });

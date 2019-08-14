@@ -4,11 +4,11 @@ import {
     EVENT_LOADING,
     EVENT_REGISTER_SUCCESS,
     EVENT_REGISTER_FAIL,
-    SET_EVENT, CLEAR_EVENT
+    SET_EVENT, CLEAR_EVENT, CHECK_REGISTER
 } from "../actions/types";
 
 const initialState = {
-    eventLoading : false,
+    eventLoading: false,
     event: null,
     registered: false
 };
@@ -51,6 +51,11 @@ export default (state = initialState, action) => {
                 ...state,
                 registered: false,
                 eventLoading: false
+            };
+        case CHECK_REGISTER:
+            return {
+                ...state,
+                registered: action.payload
             };
         default:
             return state;

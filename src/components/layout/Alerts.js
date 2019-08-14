@@ -22,7 +22,6 @@ export class Alerts extends Component {
         if (message !== prevProps.message) {
             if (message.registerEventSuccess) alert.success(message.registerEventSuccess);
             if (message.registerEventFail) alert.error(message.registerEventFail);
-            if (message.loadUserFail) alert.error(message.loadUserFail);
             if (message.loginFail) alert.error(message.loginFail);
             if (message.registerFail) alert.error(message.registerFail);
             if (message.updateFail) alert.error(message.updateFail);
