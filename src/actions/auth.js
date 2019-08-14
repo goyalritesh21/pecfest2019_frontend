@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { returnErrors } from './messages';
+import { returnErrors, createMessage } from './messages';
 
 import {
     USER_LOADED,
@@ -22,7 +22,7 @@ export const loadUser = () => (dispatch, getState) => {
                 payload: res.data
             });
         }).catch(err => {
-            dispatch(returnErrors("User Loading Failed", 400));
+            dispatch(createMessage({ loadUserFail: "User Loading Failed" }));
             dispatch({
                 type: AUTH_ERROR
             });
@@ -46,7 +46,7 @@ export const login = (username, password) => dispatch => {
                 payload: res.data
             });
         }).catch(err => {
-            dispatch(returnErrors("USer login failed", 400));
+            dispatch(createMessage({ loginFail: "USer login failed" }));
             dispatch({
                 type: LOGIN_FAIL
             });
@@ -69,7 +69,7 @@ export const register = ({ username, email, password }) => dispatch => {
                 payload: res.data
             });
         }).catch(err => {
-            dispatch(returnErrors("User registration failed", 400));
+            dispatch(createMessage({ registerFail: "User registration failed" }));
             dispatch({
                 type: REGISTER_FAIL
             });
@@ -98,7 +98,7 @@ export const update = ({ firstName, lastName, contactNumber, accommodation, coll
                 payload: res.data
             });
         }).catch(err => {
-            dispatch(returnErrors("User update failed", 400));
+            dispatch(createMessage({ updateFail: "User update failed" }));
             dispatch({
                 type: UPDATE_FAIL
             });
@@ -113,7 +113,7 @@ export const logout = () => (dispatch, getState) => {
                 type: LOGOUT_SUCCESS
             });
         }).catch(err => {
-            dispatch(returnErrors("User Logout failed", 400));
+            dispatch(createMessage({ logoutFail: "User Logout failed" }));
         })
 };
 

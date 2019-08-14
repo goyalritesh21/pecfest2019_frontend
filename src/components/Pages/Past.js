@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import '../../styles/components/common/_video.scss'
 import YouTube from 'react-youtube';
 
@@ -33,7 +33,7 @@ class Past extends Component {
 
     _onEnd = (event) => {
         this.setState((state, props) => {
-            return {selectedVideo: (state.selectedVideo + 1) % pecfestVideos.length};
+            return { selectedVideo: (state.selectedVideo + 1) % pecfestVideos.length };
         });
 
         event.target.playVideo();
@@ -44,7 +44,7 @@ class Past extends Component {
     };
 
     render() {
-        const {selectedVideo} = this.state;
+        const { selectedVideo } = this.state;
 
         const videoOptions = {
             playerVars: { // https://developers.google.com/youtube/player_parameters

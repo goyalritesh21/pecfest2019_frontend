@@ -43,7 +43,7 @@ export class Login extends Component {
         if (isAuthenticated) {
             if (user !== null && !user.participant.firstTimer) {
 
-                return <Redirect to="/" />
+                return <Redirect to="/events" />
             }
             else {
                 return <Redirect to="/update" />
@@ -74,6 +74,7 @@ export class Login extends Component {
                                             id={randUserId}
                                             spellCheck="false"
                                             autoComplete="new-username"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -90,6 +91,7 @@ export class Login extends Component {
                                             id={randPassId}
                                             autoComplete="new-password"
                                             spellCheck="false"
+                                            required
                                         />
                                     </div>
                                 </div>

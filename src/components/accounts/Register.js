@@ -41,13 +41,24 @@ export class Register extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         const { username, email, password, password2 } = this.state;
+        let errors = [];
+        if (username.length < 2) {
+            errors.push("Invalid username");
+        }
+        if (password.length < 8 || password2.length < 8) {
+            errors.push("Password should be atleast 8 characters long!");
+        }
         if (password !== password2) {
-            this.props.createMessage({ passwordsNotMatch: 'Passwords do not match.' })
+            errors.push("Passwords do not match");
         }
-        else {
-            const user = { username: username.toLowerCase(), email, password };
-            this.props.register(user);
+        if (errors.length > 0) {
+            const updateErrorMessage = errors.join("\n");
+            this.props.createMessage({ updateErrorMessage });
+            return;
         }
+        const user = { username: username.toLowerCase(), email, password };
+        this.props.register(user);
+
 
     };
 
@@ -89,6 +100,7 @@ export class Register extends Component {
                                     tabIndex="1"
                                     spellCheck="false"
                                     autoComplete="new-username"
+                                    required
                                 />
                             </div>
                         </div>
@@ -104,6 +116,7 @@ export class Register extends Component {
                                     tabIndex="2"
                                     spellCheck="false"
                                     autoComplete="new-email"
+                                    required
                                 />
                             </div>
                         </div>
@@ -119,6 +132,7 @@ export class Register extends Component {
                                     tabIndex="3"
                                     spellCheck="false"
                                     autoComplete="new-password"
+                                    required
                                 />
                             </div>
                         </div>
@@ -134,6 +148,7 @@ export class Register extends Component {
                                     tabIndex="4"
                                     spellCheck="false"
                                     autoComplete="new-password2"
+                                    required
                                 />
                             </div>
                         </div>

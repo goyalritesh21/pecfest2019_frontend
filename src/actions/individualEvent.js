@@ -45,7 +45,7 @@ export const registerEvent = ({ eventID, username }) => (dispatch, getState) => 
             dispatch(createMessage({ registerEventSuccess: "Registered Successfully!" }));
         })
         .catch(error => {
-            dispatch(returnErrors(error.response.data, error.response.status));
+            dispatch(createMessage({ registerEventFail: "Registration Failed! Please try again!" }));
             dispatch({
                 type: EVENT_REGISTER_FAIL
             });

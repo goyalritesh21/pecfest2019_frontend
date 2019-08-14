@@ -9,7 +9,7 @@ import { categoryDict } from "../../data/events";
 import { Link } from 'react-router-dom';
 import Loader from "../common/Loader";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
+import anime from "animejs";
 const Profile = '../../images/profile.jpg';
 const Profile1 = '../../images/profile1.jpg';
 const Techback = '../../images/techback.jpg';
@@ -56,7 +56,15 @@ class Types extends Component {
         this.props.setCategory(category);
         this.props.loadCategories(categoryDict[category].toLowerCase());
         this.getImage();
-
+        const timeline = anime.timeline();
+        timeline.add({
+            targets: '.profile-image, .profile-title, .navigation-item',
+            translateY: [100, 0],
+            opacity: [0, 1],
+            duration: 1000,
+            easing: 'easeOutExpo',
+            delay: (el, i, l) => i * 200
+        });
         // var len = this.props.events.length - 1;
         const node = ReactDOM.findDOMNode(this['_div']);
         if (node) {

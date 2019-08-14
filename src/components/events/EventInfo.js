@@ -8,7 +8,7 @@ import Description from "./Description";
 // import Footer from "./Footer";
 import Loader from "../common/Loader";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
+import anime from 'animejs';
 class EventInfo extends Component {
     state = {
         event: null
@@ -21,17 +21,19 @@ class EventInfo extends Component {
     };
 
     componentDidMount() {
-        //     const node = ReactDOM.findDOMNode(this['_div']);
-        // if (node) {
-        //   node.scrollIntoView();
-        // }
         const { eventId } = this.props.match.params;
         this.props.loadEvent(eventId);
+        const timeline = anime.timeline();
+        timeline.add({
+            targets: '#header, #services, .row, #footer, #countdown, .countdown-item',
+            translateY: [100, 0],
+            opacity: [0, 1],
+            duration: 1000,
+            easing: 'easeOutExpo',
+            delay: (el, i, l) => i * 200
+        });
     }
     componentDidUpdate() {
-        // Scroll as new elements come along
-        // var len = this.props.events.length - 1;
-        // cosol
         const node = ReactDOM.findDOMNode(this['_div']);
         if (node) {
             node.scrollIntoView();
@@ -55,9 +57,8 @@ class EventInfo extends Component {
                 transitionAppearTimeout={800}
                 transitionEnter={false}
                 transitionLeave={false}>
-
                 <div className="text-center item" ref={(ref) => this['_div'] = ref}>
-                    <div className="card-header">
+                    <div className="card-header" id={"header"}>
                         <h3
                             className="card-title display1">
                             {event && event.name}
@@ -66,7 +67,7 @@ class EventInfo extends Component {
                     <div className="card-body">
                         <div className="form">
 
-                            <div style={{ height: "120px", width: "100%" }}>
+                            <div id={"countdown"} style={{ height: "120px", width: "100%" }}>
                                 <Countdown timeTillDate={event.dateTime} />
                             </div>
 
