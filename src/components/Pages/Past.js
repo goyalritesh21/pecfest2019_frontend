@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../../styles/components/common/_video.scss'
 import YouTube from 'react-youtube';
+import Controls from "../common/Controls";
 
 const pecfestVideos = [
     {
@@ -57,6 +58,17 @@ class Past extends Component {
 
         return (
             <div>
+                <Controls
+                    onNext={() => {
+                        this.setState((state, props) => {
+                            return {selectedVideo: (state.selectedVideo + 1) % pecfestVideos.length};
+                        });
+                    }}
+                    onPrev={() => {
+                        this.setState((state, props) => {
+                            return {selectedVideo: (pecfestVideos.length + state.selectedVideo - 1) % pecfestVideos.length};
+                        });
+                    }}/>
                 <div className="video-background">
                     <div className="video-foreground">
                         <YouTube
