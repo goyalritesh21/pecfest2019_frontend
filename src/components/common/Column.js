@@ -18,6 +18,10 @@ class Column extends Component {
                 width: 0,
                 height: 0,
             },
+            translationVals: {
+                tx: 0,
+                ty: 0,
+            },
             isAnimating: false,
         };
     }
@@ -49,6 +53,14 @@ class Column extends Component {
             } else {
                 this._startCloseAnimation();
             }
+        }
+
+        if (!_.isEqual(prevState.translationVals, this.state.translationVals)) {
+            TweenMax.set(this.columnRef.current, {
+                x: this.state.translationVals.tx,
+                y: this.state.translationVals.ty,
+                rotation: 0.01
+            });
         }
     }
 
@@ -95,29 +107,27 @@ class Column extends Component {
     };
 
     tilt = () => {
-        const {windowSize, mousePos} = this.state;
+        const {windowSize, mousePos, translationVals} = this.state;
         const {activeTilt, column} = this.props;
-
-        const translationVals = {
-            tx: 0,
-            ty: 0
-        };
 
         const randX = getRandomFloat(5, 20);
         const rY1 = column.isBottom ? getRandomFloat(10, 30) : getRandomFloat(30, 80);
         const rY2 = column.isBottom ? getRandomFloat(30, 80) : getRandomFloat(10, 30);
 
         if (activeTilt.columns) {
-            translationVals.tx = lerp(translationVals.tx, lineEq(-randX, randX, windowSize.width, 0, mousePos.x), 0.03);
-            translationVals.ty = lerp(translationVals.ty, lineEq(column.isBottom ? -rY1 : rY2, column.isBottom ? rY2 : -rY1, windowSize.height, 0, mousePos.y), 0.03);
-            TweenMax.set(this.columnRef.current, {
-                x: translationVals.tx,
-                y: translationVals.ty,
-                rotation: 0.01
+            this.setState({
+                translationVals: {
+                    tx: lerp(translationVals.tx, lineEq(-randX, randX, windowSize.width, 0, mousePos.x), 0.03),
+                    ty: lerp(translationVals.ty, lineEq(column.isBottom ? -rY1 : rY2, column.isBottom ? rY2 : -rY1, windowSize.height, 0, mousePos.y), 0.03)
+                }
             });
         } else {
-            translationVals.tx = 0;
-            translationVals.ty = 0;
+            this.setState({
+                translationVals: {
+                    tx: 0,
+                    ty: 0
+                }
+            });
         }
     };
 
