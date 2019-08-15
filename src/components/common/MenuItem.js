@@ -217,14 +217,14 @@ class MenuItem extends Component {
 
         return (
             <div ref={this.itemRef}
+                 className="menu__item hover"
                  onMouseMove={this._onMouseMove}
                  onMouseOver={this._onMouseOver}
                  onMouseOut={this._onMouseOut}
                  onMouseLeave={this._onMouseOut}
-                 onClick={() => onItemSelect(item)}
-                 className="menu__item">
+                 onClick={() => onItemSelect(item)}>
                 <Charming letters={item.title} render={(letters) => (
-                    <div ref={this.lettersRef}>{letters}</div>
+                    <div className="hover" ref={this.lettersRef}>{letters}</div>
                 )}/>
             </div>
         );

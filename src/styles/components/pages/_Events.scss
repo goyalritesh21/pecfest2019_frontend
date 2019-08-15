@@ -240,7 +240,7 @@ main {
   align-items: center;
 }
 
-.js main {
+main {
   overflow: hidden;
 }
 
@@ -249,7 +249,7 @@ main {
 }
 
 /* Page Loader */
-.js .loading::before {
+.loading::before {
   content: '';
   position: fixed;
   z-index: 100000;
@@ -260,7 +260,7 @@ main {
   background: var(--color-bg);
 }
 
-.js .loading::after {
+.loading::after {
   content: '';
   position: fixed;
   z-index: 100000;
@@ -430,13 +430,13 @@ a:focus {
   position: relative;
 }
 
-.js .item {
+.item {
   grid-area: 1 / 1 / 2 / 2;
   opacity: 0;
   pointer-events: none;
 }
 
-.js .item--current {
+.item--current {
   opacity: 1;
   pointer-events: auto;
 }

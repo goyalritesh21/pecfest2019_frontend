@@ -22,13 +22,17 @@ class Cursor extends Component {
         window.addEventListener('click', this._onClick);
 
         window.addEventListener('mouseover', (e) => {
-            if (e.target instanceof HTMLAnchorElement) {
+            if (e.target.classList.contains('hover') ||
+                e.target instanceof HTMLAnchorElement ||
+                e.target instanceof HTMLButtonElement) {
                 this._onMouseOver();
             }
         });
 
         window.addEventListener('mouseout', (e) => {
-            if (e.target instanceof HTMLAnchorElement) {
+            if (e.target.classList.contains('hover') ||
+                e.target instanceof HTMLAnchorElement ||
+                e.target instanceof HTMLButtonElement) {
                 this._onMouseOut();
             }
         });

@@ -19,6 +19,7 @@ class ContentItem extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (!_.isEqual(prevProps.selectedItem, this.props.selectedItem)) {
+            console.log('selectedItem = ', this.props.selectedItem);
             this.setState({isAnimating: true});
         }
 
@@ -92,8 +93,11 @@ class ContentItem extends Component {
                          backgroundImage: `url(${item.coverImage})`,
                      }}/>
                 <div className="item__content">
-                    <div className="item__content-back"
-                         onClick={onBackPress}>back
+                    <div className="item__content-back hover"
+                         onClick={() => {
+                             this._startCloseAnimation();
+                             onBackPress();
+                         }}>back
                     </div>
                     <h2 className="item__content-title"
                         ref={this.contentTitleRef}>
