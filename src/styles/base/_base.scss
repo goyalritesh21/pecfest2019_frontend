@@ -8,10 +8,11 @@ body {
   width: 100%;
   margin: 0;
   background-color: #172228;
-  scrollbar-width: none
 }
 
-::-webkit-scrollbar { width: 0 !important }
+::-webkit-scrollbar {
+  width: 0 !important
+}
 
 .overlay-2 {
   height: 100%;

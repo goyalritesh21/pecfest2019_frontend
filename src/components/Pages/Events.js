@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import '../../styles/components/pages/_Events.scss';
-import Cursor from "../common/Cursor";
 import Menu from "../common/Menu";
 import ContentItem from "../common/ContentItem";
 import _ from "lodash";
@@ -141,7 +140,6 @@ class Events extends Component {
         this.dummyItem = 0;
 
         this.contentFirstRef = React.createRef();
-        this.contentSecondRef = React.createRef();
         this.contentMoveRef = React.createRef();
         this.columnWrapperRef = React.createRef();
 
@@ -156,6 +154,7 @@ class Events extends Component {
             },
             selectedItem: -1,
             isAnimating: false,
+            isActive: false
         };
     }
 
@@ -240,6 +239,7 @@ class Events extends Component {
                 columns: false,
                 letters: false,
             },
+            isActive: true,
         })
     };
 
@@ -251,22 +251,22 @@ class Events extends Component {
                 columns: true,
                 letters: true,
             },
+            isActive: false,
         })
     };
 
     render() {
-        const {selectedItem, activeTilt} = this.state;
+        const {selectedItem, activeTilt, isActive} = this.state;
 
         this.dummyItem = selectedItem < 0 ? this.dummyItem : selectedItem;
 
         return (
             <div className="events-main">
-                <div className="content content--second"
-                     ref={this.contentSecondRef}>
-                    {<ContentItem item={eventItems[this.dummyItem]}
-                                  selectedItem={this.dummyItem}
-                                  onBackPress={this.closeItem}/>
-                    }
+                <div className="content content--second">
+                    <ContentItem item={eventItems[this.dummyItem]}
+                                 selectedItem={this.dummyItem}
+                                 isActive={isActive}
+                                 onBackPress={this.closeItem}/>
                 </div>
                 <div className="content content--first"
                      ref={this.contentFirstRef}>
@@ -286,8 +286,7 @@ class Events extends Component {
                               activeTilt={activeTilt}
                               onItemSelect={this.openItem}/>
                     </div>
-                    </div>
-                <Cursor/>
+                </div>
             </div>
         );
     }

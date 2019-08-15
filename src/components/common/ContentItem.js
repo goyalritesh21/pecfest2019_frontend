@@ -18,8 +18,13 @@ class ContentItem extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (!_.isEqual(prevProps.selectedItem, this.props.selectedItem)) {
-            console.log('selectedItem = ', this.props.selectedItem);
+        if (!_.isEqual(prevProps.selectedItem, this.props.selectedItem) &&
+            _.isEqual(this.props.selectedItem, this.props.item.id)) {
+            this.setState({isAnimating: true});
+        }
+
+        if (!_.isEqual(prevProps.isActive, this.props.isActive) &&
+            _.isEqual(this.props.isActive, true)) {
             this.setState({isAnimating: true});
         }
 
@@ -64,13 +69,17 @@ class ContentItem extends Component {
 
     _startCloseAnimation = () => {
         console.log('ContentItem : _startCloseAnimation');
+        const {onBackPress} = this.props;
 
         const duration = 1;
 
         const titleLettersDOM = this.contentTitleRef.current.querySelectorAll('span');
 
         new TimelineMax({
-            onComplete: () => this.setState({isAnimating: false}),
+            onComplete: () => {
+                this.setState({isAnimating: false});
+                onBackPress();
+            },
         }).staggerTo(titleLettersDOM, duration * 0.6, {
             ease: new Ease(BezierEasing(0.775, 0.05, 0.87, 0.465)),
             cycle: {
@@ -82,7 +91,7 @@ class ContentItem extends Component {
     };
 
     render() {
-        const {item, selectedItem, onBackPress} = this.props;
+        const {item, selectedItem} = this.props;
 
         const articleClassName = _.isEqual(selectedItem, item.id) ? "item item--current" : "item";
 
@@ -96,7 +105,6 @@ class ContentItem extends Component {
                     <div className="item__content-back hover"
                          onClick={() => {
                              this._startCloseAnimation();
-                             onBackPress();
                          }}>back
                     </div>
                     <h2 className="item__content-title"
