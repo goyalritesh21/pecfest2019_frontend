@@ -260,35 +260,33 @@ class Events extends Component {
         this.dummyItem = selectedItem < 0 ? this.dummyItem : selectedItem;
 
         return (
-            <div>
-                <main>
-                    <div className="content content--second"
-                         ref={this.contentSecondRef}>
-                        {<ContentItem item={eventItems[this.dummyItem]}
-                                      selectedItem={this.dummyItem}
-                                      onBackPress={this.closeItem}/>
-                        }
-                    </div>
-                    <div className="content content--first"
-                         ref={this.contentFirstRef}>
-                        <div className="content__move"
-                             ref={this.contentMoveRef}>
-                            <div className="columns"
-                                 ref={this.columnWrapperRef}>
-                                {imageColumns.map(column => (
-                                    <Column column={column}
-                                            key={column.id}
-                                            selectedItem={selectedItem}
-                                            activeTilt={activeTilt}/>
-                                ))}
-                            </div>
-                            <Menu items={eventItems}
-                                  selectedItem={selectedItem}
-                                  activeTilt={activeTilt}
-                                  onItemSelect={this.openItem}/>
+            <div className="events-main">
+                <div className="content content--second"
+                     ref={this.contentSecondRef}>
+                    {<ContentItem item={eventItems[this.dummyItem]}
+                                  selectedItem={this.dummyItem}
+                                  onBackPress={this.closeItem}/>
+                    }
+                </div>
+                <div className="content content--first"
+                     ref={this.contentFirstRef}>
+                    <div className="content__move"
+                         ref={this.contentMoveRef}>
+                        <div className="columns"
+                             ref={this.columnWrapperRef}>
+                            {imageColumns.map(column => (
+                                <Column column={column}
+                                        key={column.id}
+                                        selectedItem={selectedItem}
+                                        activeTilt={activeTilt}/>
+                            ))}
                         </div>
+                        <Menu items={eventItems}
+                              selectedItem={selectedItem}
+                              activeTilt={activeTilt}
+                              onItemSelect={this.openItem}/>
                     </div>
-                </main>
+                    </div>
                 <Cursor/>
             </div>
         );
