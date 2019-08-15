@@ -40,10 +40,6 @@ class Past extends Component {
         event.target.playVideo();
     };
 
-    _onStateChange = (event) => {
-        console.log(event);
-    };
-
     render() {
         const { selectedVideo } = this.state;
 
@@ -77,7 +73,6 @@ class Past extends Component {
                             className="video-iframe"
                             onReady={this._onReady}
                             onEnd={this._onEnd}
-                            onStateChange={this._onStateChange}
                         />
                     </div>
                 </div>
