@@ -1,11 +1,11 @@
-.section-title p {
+.Event-Description-section-title p {
   font-size: 30px;
   font-family: ZCOOL KuaiLe, serif;
   margin-bottom: 0px;
   color: mediumvioletred;
 }
 
-.section-title h4 {
+.Event-Description-section-title h4 {
   font-size: 40px;
   text-transform: capitalize;
   position: relative;
@@ -13,7 +13,7 @@
   padding-bottom: 25px;
 }
 
-.section-title h4::before {
+.Event-Description-section-title h4::before {
   width: 80px;
   height: 1.5px;
   bottom: 0;
@@ -21,14 +21,14 @@
   margin-left: -40px;
 }
 
-.section-title h4::before,
-.section-title h4::after {
+.Event-Description-section-title h4::before,
+.Event-Description-section-title h4::after {
   position: absolute;
   content: "";
   background-color: #ff5e18;
 }
 
-.section-title h4::after {
+.Event-Description-section-title h4::after {
   width: 40px;
   height: 1.5px;
   bottom: -5px;
@@ -36,49 +36,49 @@
   margin-left: -20px;
 }
 
-.single_service.service_right {
+.Event-Description-single_service.service_right {
   padding-right: 0;
   padding-left: 0;
   text-align: justify-all;
 }
 
-.single_service.service_left {
+.Event-Description-single_service.service_left {
   padding-left: 0;
   padding-right: 0;
   text-align: justify-all;
 }
 
-.single_service.service_right img {
+.Event-Description-single_service.service_right img {
   right: 0;
   left: auto;
   margin-top: 0;
 }
 
-.single_service:nth-child(1),
-.single_service:nth-child(2) {
+.Event-Description-single_service:nth-child(1),
+.Event-Description-single_service:nth-child(2) {
   border-bottom: 1px dashed #333;
   padding-bottom: 15px;
 }
 
-.single_service img {
+.Event-Description-single_service img {
   max-width: 45px;
   position: absolute;
   left: 0;
   top: 0;
 }
 
-.single_service {
+.Event-Description-single_service {
   position: relative;
   padding-left: 70px;
   margin-bottom: 35px;
 }
-.single_mid {
+.Event-Description-single_mid {
   margin-top: 50%;
 }
-.registerblock {
+.Event-Description-register-block {
   height: 300px;
   
 }
-.hidden {
+.Event-Description-hidden {
 	display: none;
 }

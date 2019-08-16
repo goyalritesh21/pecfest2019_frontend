@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Footer from '../layout/Footer';
-import BackgroundImage from "../../images/sides.png"
+import Footer from '../../layout/Footer';
+import BackgroundImage from "../../../images/sides.png"
 
 class Home extends Component {
 

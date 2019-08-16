@@ -11,7 +11,7 @@ class Countdown extends React.Component {
 
     componentDidMount() {
         this.interval = setInterval(() => {
-            const { timeTillDate } = this.props;
+            const {timeTillDate} = this.props;
             const then = moment(timeTillDate).add(98, 'days');
             const now = moment();
 
@@ -24,7 +24,7 @@ class Countdown extends React.Component {
             countdown.subtract(moment.duration(minutes, 'minutes'));
             const seconds = countdown.seconds();
 
-            this.setState({ days, hours, minutes, seconds });
+            this.setState({days, hours, minutes, seconds});
         }, 1000);
     }
 
@@ -35,7 +35,7 @@ class Countdown extends React.Component {
     }
 
     render() {
-        const { days, hours, minutes, seconds } = this.state;
+        const {days, hours, minutes, seconds} = this.state;
 
         // Mapping the date values to radius values
         const daysRadius = mapNumber(days, 100, 0, 0, 360);
@@ -56,30 +56,30 @@ class Countdown extends React.Component {
                 <div className="countdown-wrapper">
                     {days >= 0 && (
                         <div className="countdown-item">
-                            <SVGCircle radius={daysRadius} stroke="#32CD32" />
+                            <SVGCircle radius={daysRadius} stroke="#32CD32"/>
                             {days}
-                            <span style={{ color: "#ffffff" }}>days</span>
+                            <span style={{color: "#ffffff"}}>days</span>
                         </div>
                     )}
                     {hours >= 0 && (
                         <div className="countdown-item">
-                            <SVGCircle radius={hoursRadius} stroke="#87CEEB" />
+                            <SVGCircle radius={hoursRadius} stroke="#87CEEB"/>
                             {hours}
-                            <span style={{ color: "#ffffff" }}>hours</span>
+                            <span style={{color: "#ffffff"}}>hours</span>
                         </div>
                     )}
                     {minutes >= 0 && (
                         <div className="countdown-item">
-                            <SVGCircle radius={minutesRadius} stroke="#4B0082	" />
+                            <SVGCircle radius={minutesRadius} stroke="#4B0082	"/>
                             {minutes}
-                            <span style={{ color: "#ffffff" }}>minutes</span>
+                            <span style={{color: "#ffffff"}}>minutes</span>
                         </div>
                     )}
                     {seconds >= 0 && (
                         <div className="countdown-item">
-                            <SVGCircle radius={secondsRadius} stroke="#FFA500" />
+                            <SVGCircle radius={secondsRadius} stroke="#FFA500"/>
                             {seconds}
-                            <span style={{ color: "#ffffff" }}>seconds</span>
+                            <span style={{color: "#ffffff"}}>seconds</span>
                         </div>
                     )}
                 </div>
@@ -87,8 +87,9 @@ class Countdown extends React.Component {
         );
     }
 }
+
 export default Countdown;
-const SVGCircle = ({ radius, stroke }) => (
+const SVGCircle = ({radius, stroke}) => (
     <svg className="countdown-svg">
         <path
             fill="none"

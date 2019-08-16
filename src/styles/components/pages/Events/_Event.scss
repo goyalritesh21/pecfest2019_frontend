@@ -4,26 +4,25 @@ body {
   margin: 0;
 }
 
-.display1 {
+.Event-display {
   font-family: ZCOOL KuaiLe, "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-shadow: 4px 4px 4px #aaa;
   font-size: 60px;
   color: #ff0066;
 }
 
-.card-header {
+.Event-card__header {
   padding: 0;
   background: transparent;
   margin-top: 20px;
 }
 
-.card-footer {
+.Event-card__footer {
   background: transparent;
   padding: 0;
-  // height: 100%;
 }
 
-.item {
+.Event-item {
   height: 100vh;
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
@@ -31,14 +30,11 @@ body {
   overflow: auto;
 }
 
-
-/////////////////
-
-.eventinfo-appear {
+.Event-appear {
   opacity: 0.01;
 }
 
-.eventinfo-appear.eventinfo-appear-active {
+.Event-appear .Event-appear-active {
   opacity: 1;
   transition: opacity 0.9s ease-in;
 }

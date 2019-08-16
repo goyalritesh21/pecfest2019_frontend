@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import anime from 'animejs';
-import DevCard from '../../components/Team/DevCard';
-import {DevTeam} from '../../data/DevTeam';
+import DevCard from '../../Team/DevCard';
+import {DevTeam} from '../../../data/DevTeam';
 
 export default class Team extends Component {
     componentWillUnmount() {

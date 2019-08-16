@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Ritesh from "../../images/DevTeam/Ritesh.jpg";
+import Ritesh from "../../../images/DevTeam/Ritesh.jpg";
 import anime from 'animejs';
 
 export default class Team extends Component {

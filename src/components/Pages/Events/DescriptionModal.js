@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from "react";
-import { Modal, Button } from 'react-bootstrap';
+import React, {Component, Fragment} from "react";
+import {Button, Modal} from 'react-bootstrap';
 
 const MyModal = (props) => (
     <Modal
@@ -35,11 +35,11 @@ class DescriptionModal extends Component {
     };
 
     modalClose = () => {
-        this.setState((prevState) => ({ modalShow: !prevState.modalShow }))
+        this.setState((prevState) => ({modalShow: !prevState.modalShow}))
     };
 
     render() {
-        const { content, modalHeading, modalContent, modalRequired, contentId } = this.props;
+        const {content, modalHeading, modalContent, modalRequired, contentId} = this.props;
         return (
             <Fragment>
                 {(contentId === "rules" || contentId === "venue") ? (<ul>
@@ -51,12 +51,12 @@ class DescriptionModal extends Component {
                 </ul>) : (<p>{content}</p>)
                 }
                 {modalRequired && <label
-                    className={"modal-link"}
+                    className={"Event-DescriptionModal-modal-link"}
                     onClick={() => {
-                        this.setState(() => ({ modalShow: true }))
+                        this.setState(() => ({modalShow: true}))
                     }}>
                     Know More...
-                    </label>}
+                </label>}
 
                 {modalRequired && <MyModal
                     show={this.state.modalShow}

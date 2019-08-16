@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import CountDownTimer from "./CountDownTimer";
+import CountDownTimer from "../../common/CountDownTimer";
 
 class EventShow extends Component {
     state = {};

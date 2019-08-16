@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {spring, TransitionMotion} from 'react-motion';
 import MegaShow from './MegaShow';
-import Swipeable from '../common/Swipeable'
-import Slide from '../common/Slide'
-import megaShowList from '../megashows/megashow_list'
+import Swipeable from '../../common/Swipeable'
+import Slide from '../../common/Slide'
+import megaShowList from '../../megashows/megashow_list'
 
 class MegaShows extends Component {
     constructor(props) {

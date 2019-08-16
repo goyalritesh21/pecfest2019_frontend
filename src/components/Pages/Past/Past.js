@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../../styles/components/common/_Video.scss'
+import '../../../styles/components/common/_Video.scss'
 import YouTube from 'react-youtube';
-import Controls from "../common/Controls";
+import Controls from "../../common/Controls";
 
 const pecfestVideos = [
     {
