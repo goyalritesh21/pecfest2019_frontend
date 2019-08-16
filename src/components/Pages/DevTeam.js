@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
 import anime from 'animejs';
 import DevCard from '../../components/Team/DevCard';
-import { DevTeam } from '../../data/DevTeam';
+import {DevTeam} from '../../data/DevTeam';
+
 export default class Team extends Component {
     componentWillUnmount() {
         document.body.style.overflow = this.restore;
@@ -24,15 +24,15 @@ export default class Team extends Component {
 
     render() {
         return (
-            <div className="Team">
-                <div className="Header">
+            <div className="DevTeam-Team">
+                <div className="DevTeam-Header">
                     <h1>Team behind PECFEST website</h1>
-                    <div className="DevDivider" />
+                    <div className="DevTeam-DevDivider"/>
                 </div>
-                <div className="DevApp">
-                    {
-                        DevTeam.map(member => <DevCard member={member} key={member.id} />)
-                    }
+                <div className="DevTeam-DevApp">
+                    {DevTeam.map(member => (
+                        <DevCard member={member} key={member.id}/>
+                    ))}
                 </div>
 
             </div>

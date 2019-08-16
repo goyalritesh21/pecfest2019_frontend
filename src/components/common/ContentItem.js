@@ -93,28 +93,28 @@ class ContentItem extends Component {
     render() {
         const {item, selectedItem} = this.props;
 
-        const articleClassName = _.isEqual(selectedItem, item.id) ? "item item--current" : "item";
+        const articleClassName = _.isEqual(selectedItem, item.id) ? "Events-item Events-item--current" : "Events-item";
 
         return (
             <article className={articleClassName}>
-                <div className="item__img"
+                <div className="Events-item__img"
                      style={{
                          backgroundImage: `url(${item.coverImage})`,
                      }}/>
-                <div className="item__content">
-                    <div className="item__content-back hover"
+                <div className="Events-item__content">
+                    <div className="Events-item__content-back hover"
                          onClick={() => {
                              this._startCloseAnimation();
                          }}>back
                     </div>
-                    <h2 className="item__content-title"
+                    <h2 className="Events-item__content-title"
                         ref={this.contentTitleRef}>
                         <Charming letters={item.title} render={(letters) => (
                             <div ref={this.lettersRef}>{letters}</div>
                         )}/>
                     </h2>
-                    <h3 className="item__content-subtitle">{item.subtitle}</h3>
-                    <div className="item__content-text">
+                    <h3 className="Events-item__content-subtitle">{item.subtitle}</h3>
+                    <div className="Events-item__content-text">
                         {item.content.map((para, index) => {
                             return <p key={index}>{para}</p>
                         })}

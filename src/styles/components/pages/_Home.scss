@@ -1,7 +1,7 @@
 /* Main styles */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
 
-.text {
+.Home-text {
   fill: none;
   stroke-width: 2;
   stroke-linejoin: round;
@@ -11,31 +11,31 @@
   animation: stroke 6s infinite linear;
 }
 
-.text:nth-child(5n + 1) {
+.Home-text:nth-child(5n + 1) {
   stroke: #F2385A;
   -webkit-animation-delay: -1.2s;
   animation-delay: -1.2s;
 }
 
-.text:nth-child(5n + 2) {
+.Home-text:nth-child(5n + 2) {
   stroke: #F5A503;
   -webkit-animation-delay: -2.4s;
   animation-delay: -2.4s;
 }
 
-.text:nth-child(5n + 3) {
+.Home-text:nth-child(5n + 3) {
   stroke: #E9F1DF;
   -webkit-animation-delay: -3.6s;
   animation-delay: -3.6s;
 }
 
-.text:nth-child(5n + 4) {
+.Home-text:nth-child(5n + 4) {
   stroke: #56D9CD;
   -webkit-animation-delay: -4.8s;
   animation-delay: -4.8s;
 }
 
-.text:nth-child(5n + 5) {
+.Home-text:nth-child(5n + 5) {
   stroke: #3AA1BF;
   -webkit-animation-delay: -6s;
   animation-delay: -6s;
@@ -54,7 +54,7 @@
 }
 
 @media (max-device-width: 400px) {
-  #pecfestTitle {
+  .Home-title {
     font: 85px Open Sans, Impact !important;
     margin: 0;
     position: absolute;

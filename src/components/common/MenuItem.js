@@ -217,7 +217,7 @@ class MenuItem extends Component {
 
         return (
             <div ref={this.itemRef}
-                 className="menu__item hover"
+                 className="Events-menu__item hover"
                  onMouseMove={this._onMouseMove}
                  onMouseOver={this._onMouseOver}
                  onMouseOut={this._onMouseOut}

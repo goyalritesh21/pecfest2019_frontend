@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../../styles/components/common/_video.scss'
+import '../../styles/components/common/_Video.scss'
 import YouTube from 'react-youtube';
 import Controls from "../common/Controls";
 

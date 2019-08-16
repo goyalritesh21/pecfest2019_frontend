@@ -22,26 +22,26 @@
     box-shadow: rgba(0, 0, 0, 0.66) 0 5px 10px 0;
 }
 
-.card_inner {
+.Team-card_inner {
     height: 100%;
     position: relative;
     color: #181a18;
 }
 
-.name {
+.Team-name {
     font-size: 1.1em;
     margin-bottom: 0px;
     margin-top: auto;
 }
 
-.designation {
+.Team-designation {
     font-size: 1.5rem;
     text-align: center;
     margin-top: auto;
     margin-bottom: 0px;
 }
 
-.card_content_bottom {
+.Team-card_content_bottom {
     position: absolute;
     bottom: 0px;
     text-align: right;
@@ -53,41 +53,41 @@
     border-bottom-right-radius: 3px;
 }
 
-.email {
+.Team-email {
     font-style: italic;
     font-size: 14px;
     color: #181a18;
 }
 
-.email a {
+.Team-email a {
     color: #181a18;
 }
 
-.phone {
+.Team-phone {
     font-style: italic;
     font-size: 15px;
 }
 
-.phone a {
+.Team-phone a {
     color: #181a18;
 }
 
-.phone a:hover {
+.Team-phone a:hover {
     color: #181a18;
 }
 
-.email a:hover {
+.Team-email a:hover {
     color: #181a18;
 }
 
-.heading {
+.Team-heading {
     color: rgba(255, 255, 255, 0.8);
     width: 100%;
     box-sizing: border-box;
     margin-top: 50px;
 }
 
-.col {
+.Team-col {
     flex: 1;
 }
 

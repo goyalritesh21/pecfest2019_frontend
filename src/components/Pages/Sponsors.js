@@ -4,9 +4,9 @@ import Fluid from './Fluid';
 class Sponsors extends Component {
     render() {
         return (
-           <div>
-               <Fluid title="Sponsor's Page"/>
-               </div>
+            <div>
+                <Fluid title="Sponsor's Page"/>
+            </div>
         );
     }
 }

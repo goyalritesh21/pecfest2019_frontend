@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../../styles/components/pages/_Events.scss';
 import Menu from "../common/Menu";
 import ContentItem from "../common/ContentItem";
 import _ from "lodash";
@@ -261,18 +260,18 @@ class Events extends Component {
         this.dummyItem = selectedItem < 0 ? this.dummyItem : selectedItem;
 
         return (
-            <div className="events-main">
-                <div className="content content--second">
+            <div className="Events-main">
+                <div className="Events-content Events-content--second">
                     <ContentItem item={eventItems[this.dummyItem]}
                                  selectedItem={this.dummyItem}
                                  isActive={isActive}
                                  onBackPress={this.closeItem}/>
                 </div>
-                <div className="content content--first"
+                <div className="Events-content Events-content--first"
                      ref={this.contentFirstRef}>
-                    <div className="content__move"
+                    <div className="Events-content__move"
                          ref={this.contentMoveRef}>
-                        <div className="columns"
+                        <div className="Events-columns"
                              ref={this.columnWrapperRef}>
                             {imageColumns.map(column => (
                                 <Column column={column}

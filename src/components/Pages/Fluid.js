@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import FluidAnimation from "react-fluid-animation";
 import random from "random";
 
@@ -24,7 +24,7 @@ export default class Fluid extends Component {
     }
 
     render() {
-        const { config } = this.state;
+        const {config} = this.state;
 
         return (
             <div
@@ -32,7 +32,7 @@ export default class Fluid extends Component {
                     height: "100vh"
                 }}
             >
-                <FluidAnimation config={config} animationRef={this._animationRef} />
+                <FluidAnimation config={config} animationRef={this._animationRef}/>
 
                 <div
                     style={{
@@ -61,7 +61,7 @@ export default class Fluid extends Component {
                     >
                         {this.props.title}
                     </h1>
-                    <p style={{ fontSize: '20px' }}>{this.props.text}
+                    <p style={{fontSize: '20px'}}>{this.props.text}
                     </p>
                     <h4 className={"date"}>{this.props.date}</h4>
                 </div>
@@ -77,7 +77,7 @@ export default class Fluid extends Component {
     };
 
     _onUpdate = config => {
-        this.setState({ config });
+        this.setState({config});
     };
 
     _onClickRandomSplats = () => {
@@ -85,7 +85,7 @@ export default class Fluid extends Component {
     };
 
     _onReset = () => {
-        this.setState({ config: { ...defaultConfig } });
+        this.setState({config: {...defaultConfig}});
     };
 
     _reset() {

@@ -12,7 +12,7 @@ class Menu extends Component {
         const {items, activeTilt, selectedItem, onItemSelect} = this.props;
 
         return (
-            <nav className="menu"
+            <nav className="Events-menu"
                  ref={this.menuRef}>
                 {items.map(item => (
                     <MenuItem key={item.id}

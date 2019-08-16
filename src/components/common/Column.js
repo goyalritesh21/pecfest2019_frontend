@@ -148,13 +148,13 @@ class Column extends Component {
     render() {
         const {column} = this.props;
 
-        const columnClassName = column.isBottom ? "column column--bottom" : "column";
+        const columnClassName = column.isBottom ? "Events-column Events-column--bottom" : "Events-column";
 
         return (
             <div className={columnClassName}
                  ref={this.columnRef}>
                 {column.images.map((image, index) => (
-                    <div className="column__img"
+                    <div className="Events-column__img"
                          key={index}
                          style={{backgroundImage: `url(${image})`}}/>
                 ))}

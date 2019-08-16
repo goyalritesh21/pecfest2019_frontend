@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import { withRouter, Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, {Component} from 'react'
+import {Link, Redirect, withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { login } from '../../actions/auth';
+import {login} from '../../actions/auth';
 import Loader from "../common/Loader";
 import anime from 'animejs';
+
 export class Login extends Component {
     constructor() {
         super();
@@ -37,42 +38,40 @@ export class Login extends Component {
         const key = e.target.name;
         const val = e.target.value;
         if (key === 'username2019') {
-            this.setState(() => ({ username: val.toUpperCase() }));
-        }
-        else {
-            this.setState(() => ({ password: val }));
+            this.setState(() => ({username: val.toUpperCase()}));
+        } else {
+            this.setState(() => ({password: val}));
         }
 
     };
 
     onSubmit = e => {
         e.preventDefault();
-        const { username, password } = this.state;
+        const {username, password} = this.state;
         this.props.login(username.toLowerCase(), password);
     };
 
     render() {
-        const { isAuthenticated, user, isLoading } = this.props;
+        const {isAuthenticated, user, isLoading} = this.props;
         if (isAuthenticated) {
             if (user !== null && !user.participant.firstTimer) {
 
-                return <Redirect to="/events" />
-            }
-            else {
-                return <Redirect to="/update" />
+                return <Redirect to="/events"/>
+            } else {
+                return <Redirect to="/update"/>
             }
         }
-        const { username, password } = this.state;
+        const {username, password} = this.state;
         const randUserId = "username2019";
         const randPassId = "password2019";
 
         return (
             <div>
-                {isLoading ? <Loader /> : (
+                {isLoading ? <Loader/> : (
                     <div className="col-md-6 m-auto upper-padding">
                         <div className="mt-5 main">
                             <h2 className="text-center">Login</h2>
-                            <br />
+                            <br/>
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <label htmlFor="username">Username</label>
@@ -108,7 +107,7 @@ export class Login extends Component {
                                         />
                                     </div>
                                 </div>
-                                <br />
+                                <br/>
                                 <div className="form-group">
                                     <button type="submit" className="btn btn-slide" tabIndex="3">Login
                                     </button>
@@ -131,4 +130,4 @@ const mapStateToProps = state => ({
     isLoading: state.auth.isLoading
 });
 
-export default withRouter(connect(mapStateToProps, { login })(Login));
+export default withRouter(connect(mapStateToProps, {login})(Login));

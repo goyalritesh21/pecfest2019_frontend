@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Ritesh from "../../images/DevTeam/Ritesh.jpg";
 import anime from 'animejs';
+
 export default class Team extends Component {
 
     componentDidMount() {
@@ -42,31 +43,31 @@ export default class Team extends Component {
                 <div className="Team-header">
                     <h1>Team</h1>
                 </div>
-                <div className="row heading">
-                    <div className="col">
-                        <div className="designation">Convenor</div>
-                        <div className="Team-card" style={{ backgroundImage: `url(${Ritesh})` }}>
-                            <div className="card_inner">
-                                <div className="pad"></div>
-                                <div className="card_content_top"></div>
-                                <div className="card_content_bottom">
-                                    <div className="name">Ritesh Goyal</div>
-                                    <div className="email">ritesh.goyal@pecfest.in</div>
-                                    <div className="phone">9888019027</div>
+                <div className="row Team-heading">
+                    <div className="Team-col">
+                        <div className="Team-designation">Convenor</div>
+                        <div className="Team-card" style={{backgroundImage: `url(${Ritesh})`}}>
+                            <div className="Team-card_inner">
+                                <div className="Team-pad"/>
+                                <div className="Team-card_content_top"/>
+                                <div className="Team-card_content_bottom">
+                                    <div className="Team-name">Ritesh Goyal</div>
+                                    <div className="Team-email">ritesh.goyal@pecfest.in</div>
+                                    <div className="Team-phone">9888019027</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="col">
-                        <div className="designation">Convenor</div>
-                        <div className="Team-card" style={{ backgroundImage: `url(${Ritesh})` }}>
-                            <div className="card_inner">
-                                <div className="pad"></div>
-                                <div className="card_content_top"></div>
-                                <div className="card_content_bottom">
-                                    <div className="name">Ritesh Goyal</div>
-                                    <div className="email">ritesh.goyal@pecfest.in</div>
-                                    <div className="phone">9888019027</div>
+                    <div className="Team-col">
+                        <div className="Team-designation">Convenor</div>
+                        <div className="Team-card" style={{backgroundImage: `url(${Ritesh})`}}>
+                            <div className="Team-card_inner">
+                                <div className="Team-pad"/>
+                                <div className="Team-card_content_top"/>
+                                <div className="Team-card_content_bottom">
+                                    <div className="Team-name">Ritesh Goyal</div>
+                                    <div className="Team-email">ritesh.goyal@pecfest.in</div>
+                                    <div className="Team-phone">9888019027</div>
                                 </div>
                             </div>
                         </div>
