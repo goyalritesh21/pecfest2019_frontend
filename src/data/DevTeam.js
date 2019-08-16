@@ -1,10 +1,10 @@
-import Ritesh from "../images/DevTeam/Ritesh.jpg";
+import RiteshImage from "../images/DevTeam/Ritesh.jpg";
 
 export const DevTeam = [
     {
         id: 1,
         name: "Ritesh Goyal",
-        photo: Ritesh,
+        photo: RiteshImage,
         work: "Frontend and Middleware"
     },
     {
