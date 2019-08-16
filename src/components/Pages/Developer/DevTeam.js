@@ -11,7 +11,7 @@ export default class Team extends Component {
     componentDidMount() {
         const timeline = anime.timeline();
         timeline.add({
-            targets: '.Header, .Divider, .Divider small, .ProfileCard, .ProfileCard-photo, .ProfileCard-details',
+            targets: '.DevTeam-Header, .DevTeam-Divider, .DevTeam-Divider DevTeam-small, .DevTeam-ProfileCard, .DevTeam-ProfileCard-photo, .DevTeam-ProfileCard-details',
             translateY: [100, 0],
             opacity: [0, 1],
             duration: 1000,

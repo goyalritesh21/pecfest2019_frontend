@@ -3,7 +3,7 @@ import {spring, TransitionMotion} from 'react-motion';
 import MegaShow from './MegaShow';
 import Swipeable from '../../common/Swipeable'
 import Slide from '../../common/Slide'
-import megaShowList from '../../megashows/megashow_list'
+import megaShowList from '../../../data/MegaShows'
 
 class MegaShows extends Component {
     constructor(props) {

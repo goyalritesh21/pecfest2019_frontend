@@ -1,8 +1,8 @@
-import GroovzImage from "./images/first-bg.jpg";
-import StarNightImage from "./images/second-bg.jpg";
-import DJNightImage from "./images/third-bg.jpg";
-import BhangraThequeImage from "./images/fourth-bg.jpg";
-import GlitteratiImage from "./images/fifth-bg.jpg";
+import GroovzImage from "../assets/images/MegaShows/first-bg.jpg";
+import StarNightImage from "../assets/images/MegaShows/second-bg.jpg";
+import DJNightImage from "../assets/images/MegaShows/third-bg.jpg";
+import BhangraThequeImage from "../assets/images/MegaShows/fourth-bg.jpg";
+import GlitteratiImage from "../assets/images/MegaShows/fifth-bg.jpg";
 
 export default [
     {

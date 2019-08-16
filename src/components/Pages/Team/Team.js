@@ -19,7 +19,7 @@ export default class Team extends Component {
         }
         const timeline = anime.timeline();
         timeline.add({
-            targets: '.Team-Header, .designation, .col, .name, .email, .phone',
+            targets: '.Team-Header, .Team-designation, .Team-col, .Team-name, .Team-email, .Team-phone',
             translateY: [100, 0],
             opacity: [0, 1],
             duration: 1000,

@@ -5,10 +5,10 @@ const Controls = (props) => {
     return (
         <div className="controls">
             <div className="controls-next">
-                <div onClick={onNext} className="ControlButton Controls-nextButton"/>
+                <div onClick={onNext} className="ControlButton Controls-nextButton hover"/>
             </div>
             <div className="controls-prev">
-                <div onClick={onPrev} className="ControlButton Controls-prevButton"/>
+                <div onClick={onPrev} className="ControlButton Controls-prevButton hover"/>
             </div>
         </div>
     )
