@@ -54,14 +54,9 @@
 }
 
 @media (max-device-width: 400px) {
-  .Home-title {
-    font: 85px Open Sans, Impact !important;
-    margin: 0;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    -ms-transform: translate(-50%, -100%);
-    transform: translate(-50%, -100%);
+  .Home-text {
+    font: 90px Open Sans, Impact !important;
+    margin-top: 80px;
   }
 }
 

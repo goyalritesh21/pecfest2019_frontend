@@ -7,15 +7,15 @@ class Footer extends Component {
         return (
             <Fragment>
                 <div className={"flex-center social-networks bounce"}>
-                    <a href={"https://www.youtube.com/watch?v=BWMzcA-nBQU"} target={"_blank"}>
+                    <a href={"https://www.youtube.com/watch?v=BWMzcA-nBQU"} target={"_blank"} className={"my-youtube"}>
                         <FontAwesomeIcon icon={faYoutube}
                                          size="3x"/>
                     </a>
-                    <a href={"https://www.facebook.com/pecfestofficial/"} target={"_blank"}>
+                    <a href={"https://www.facebook.com/pecfestofficial/"} target={"_blank"} className={"my-facebook"}>
                         <FontAwesomeIcon icon={faFacebookSquare}
                                          size="3x"/>
                     </a>
-                    <a href={"https://www.instagram.com/pec.pecfest/"} target={"_blank"}>
+                    <a href={"https://www.instagram.com/pec.pecfest/"} target={"_blank"} className={"my-instagram"}>
                         <FontAwesomeIcon icon={faInstagram}
                                          size="3x"/>
                     </a>
