@@ -8,6 +8,7 @@ import Description from "./Description";
 import Loader from "../../common/Loader";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import anime from 'animejs';
+import BackgroundImage from "../../../images/sides.png";
 
 class Event extends Component {
     state = {
@@ -21,6 +22,7 @@ class Event extends Component {
     };
 
     componentDidMount() {
+        document.body.style.backgroundImage = `url(${BackgroundImage})`;
         const {eventId} = this.props.match.params;
         this.props.loadEvent(eventId);
         const timeline = anime.timeline();

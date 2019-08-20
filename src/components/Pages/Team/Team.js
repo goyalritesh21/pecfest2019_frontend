@@ -11,7 +11,6 @@ export default class Team extends Component {
         for (let i of em) {
             let txt = i.innerHTML;
             i.innerHTML = "<a href='mailto:" + txt + "' title='" + txt + "'>" + txt + "</a>";
-            // console.log(i.innerHTML);
         }
         for (let i of phone) {
             let txt = i.innerHTML;
@@ -72,7 +71,6 @@ export default class Team extends Component {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         )

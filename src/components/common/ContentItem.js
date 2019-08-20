@@ -1,38 +1,23 @@
 import React, {Component} from 'react';
 import Charming from 'react-charming';
-import _ from "lodash";
-import PropTypes from 'prop-types';
 import {getRandomFloat} from "../../utils/MathUtils";
 import {Ease, Expo, TimelineMax} from "gsap";
-import BezierEasing from "bezier-easing"
+import BezierEasing from "bezier-easing";
+import _ from "lodash";
+import {ANIMATION_STATE} from "../../utils/Utils";
 
 class ContentItem extends Component {
     constructor(props) {
         super(props);
 
         this.contentTitleRef = React.createRef();
-
-        this.state = {
-            isAnimating: false,
-        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (!_.isEqual(prevProps.selectedItem, this.props.selectedItem) &&
-            _.isEqual(this.props.selectedItem, this.props.item.id)) {
-            this.setState({isAnimating: true});
-        }
-
-        if (!_.isEqual(prevProps.isActive, this.props.isActive) &&
-            _.isEqual(this.props.isActive, true)) {
-            this.setState({isAnimating: true});
-        }
-
-        if (!_.isEqual(prevState.isAnimating, this.state.isAnimating) &&
-            this.state.isAnimating === true) {
-            if (this.props.selectedItem >= 0) {
+        if (!_.isEqual(prevProps.animationState, this.props.animationState)) {
+            if (_.isEqual(this.props.animationState, ANIMATION_STATE['OPEN'])) {
                 this._startOpenAnimation();
-            } else {
+            } else if (_.isEqual(this.props.animationState, ANIMATION_STATE['OPEN'])) {
                 this._startCloseAnimation();
             }
         }
@@ -41,6 +26,8 @@ class ContentItem extends Component {
     _startOpenAnimation = () => {
         console.log('ContentItem : _startOpenAnimation');
 
+        const {onAnimationComplete} = this.props;
+
         const duration = 1.2;
         const columnsStagger = 0;
         const columnsTotal = 4;
@@ -48,7 +35,9 @@ class ContentItem extends Component {
         const titleLettersDOM = this.contentTitleRef.current.querySelectorAll('span');
 
         new TimelineMax({
-            onComplete: () => this.setState({isAnimating: false}),
+            onComplete: () => {
+                onAnimationComplete(ANIMATION_STATE['OPEN']);
+            },
         })  // Animate the content item title letters
             .set(titleLettersDOM, {
                 opacity: 0
@@ -69,7 +58,7 @@ class ContentItem extends Component {
 
     _startCloseAnimation = () => {
         console.log('ContentItem : _startCloseAnimation');
-        const {onBackPress} = this.props;
+        const {onBackPress, onAnimationComplete} = this.props;
 
         const duration = 1;
 
@@ -77,7 +66,7 @@ class ContentItem extends Component {
 
         new TimelineMax({
             onComplete: () => {
-                this.setState({isAnimating: false});
+                onAnimationComplete(ANIMATION_STATE['OPEN']);
                 onBackPress();
             },
         }).staggerTo(titleLettersDOM, duration * 0.6, {
@@ -91,12 +80,10 @@ class ContentItem extends Component {
     };
 
     render() {
-        const {item, selectedItem} = this.props;
-
-        const articleClassName = _.isEqual(selectedItem, item.id) ? "Events-item Events-item--current" : "Events-item";
+        const {item} = this.props;
 
         return (
-            <article className={articleClassName}>
+            <article className="Events-item Events-item--current">
                 <div className="Events-item__img"
                      style={{
                          backgroundImage: `url(${item.coverImage})`,
@@ -124,9 +111,5 @@ class ContentItem extends Component {
         );
     }
 }
-
-ContentItem.propTypes = {
-    selectedItem: PropTypes.number.isRequired,
-};
 
 export default ContentItem;

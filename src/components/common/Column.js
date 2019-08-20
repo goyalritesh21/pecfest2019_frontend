@@ -4,7 +4,7 @@ import {Ease, Sine, TimelineMax, TweenMax} from "gsap";
 import ReactAnimationFrame from "react-animation-frame";
 import BezierEasing from "bezier-easing";
 import _ from "lodash";
-import PropTypes from "prop-types";
+import {ANIMATION_STATE} from "../../utils/Utils";
 
 class Column extends Component {
     constructor(props) {
@@ -22,7 +22,6 @@ class Column extends Component {
                 tx: 0,
                 ty: 0,
             },
-            isAnimating: false,
         };
     }
 
@@ -42,15 +41,10 @@ class Column extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (!_.isEqual(prevProps.selectedItem, this.props.selectedItem)) {
-            this.setState({isAnimating: true});
-        }
-
-        if (!_.isEqual(prevState.isAnimating, this.state.isAnimating) &&
-            this.state.isAnimating === true) {
-            if (this.props.selectedItem >= 0) {
+        if (!_.isEqual(prevProps.animationState, this.props.animationState)) {
+            if (_.isEqual(this.props.animationState, ANIMATION_STATE['OPEN'])) {
                 this._startOpenAnimation();
-            } else {
+            } else if (_.isEqual(this.props.animationState, ANIMATION_STATE['CLOSE'])) {
                 this._startCloseAnimation();
             }
         }
@@ -72,7 +66,7 @@ class Column extends Component {
         console.log('Column : _startOpenAnimation');
 
         const {windowSize} = this.state;
-        const {column} = this.props;
+        const {column, onAnimationComplete} = this.props;
 
         const duration = 1.2;
         const ease = new Ease(BezierEasing(1, 0, 0.735, 0.775));
@@ -80,7 +74,9 @@ class Column extends Component {
         const rect = this.columnRef.current.getBoundingClientRect();
 
         new TimelineMax({
-            onComplete: () => this.setState({isAnimating: false}),
+            onComplete: () => {
+                onAnimationComplete(ANIMATION_STATE['OPEN']);
+            },
         }).to(this.columnRef.current, duration, {
             ease: ease,
             y: column.isBottom ? rect.height + windowSize.height * .2 : -1 * rect.height - windowSize.height * .2,
@@ -91,12 +87,16 @@ class Column extends Component {
     _startCloseAnimation = () => {
         console.log('Column : _startCloseAnimation');
 
+        const {onAnimationComplete} = this.props;
+
         const duration = 1;
         const ease = Sine.easeOut;
 
         // Animate columns in
         new TimelineMax({
-            onComplete: () => this.setState({isAnimating: false}),
+            onComplete: () => {
+                onAnimationComplete(ANIMATION_STATE['CLOSE']);
+            },
         }).to(this.columnRef.current, duration, {
             ease: ease,
             y: 0,
@@ -162,9 +162,5 @@ class Column extends Component {
         );
     }
 }
-
-Column.propTypes = {
-    selectedItem: PropTypes.number.isRequired,
-};
 
 export default ReactAnimationFrame(Column);

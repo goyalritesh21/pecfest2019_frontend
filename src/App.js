@@ -9,6 +9,7 @@ import Header from './components/layout/Header';
 import AppRouter from './routers/AppRouter';
 import Alerts from './components/layout/Alerts';
 import { Provider as AlertProvider } from "react-alert";
+import history from "./utils/history";
 
 const alertOptions = {
     timeout: 4000,
@@ -25,7 +26,7 @@ class App extends Component {
         return (
             <Provider store={store}>
                 <AlertProvider template={AlertTemplate} {...alertOptions}>
-                    <Router>
+                    <Router history={history}>
                         <Background />
                         <div className={"overlay-2"}>
                             <Header />

@@ -6,6 +6,7 @@ import _ from "lodash";
 import ReactAnimationFrame from "react-animation-frame";
 import BezierEasing from "bezier-easing";
 import PropTypes from 'prop-types';
+import {ANIMATION_STATE} from "../../utils/Utils";
 
 class MenuItem extends Component {
     constructor(props) {
@@ -18,7 +19,6 @@ class MenuItem extends Component {
         this.state = {
             mousePos: {x: 0, y: 0},
             direction: 'down',
-            isAnimating: false
         };
     }
 
@@ -51,17 +51,10 @@ class MenuItem extends Component {
             })
         }
 
-        if (!_.isEqual(prevProps.selectedItem, this.props.selectedItem)) {
-            this.setState({
-                isAnimating: true
-            });
-        }
-
-        if (!_.isEqual(prevState.isAnimating, this.state.isAnimating) &&
-            this.state.isAnimating === true) {
-            if (this.props.selectedItem >= 0) {
+        if (!_.isEqual(prevProps.animationState, this.props.animationState)) {
+            if (_.isEqual(this.props.animationState, ANIMATION_STATE['OPEN'])) {
                 this._startOpenAnimation();
-            } else {
+            } else if (_.isEqual(this.props.animationState, ANIMATION_STATE['CLOSE'])) {
                 this._startCloseAnimation();
             }
         }
@@ -99,16 +92,18 @@ class MenuItem extends Component {
     _startOpenAnimation = () => {
         console.log('MenuItem : _startOpenAnimation');
 
-        const {selectedItem, item} = this.props;
+        const {isSelected, onAnimationComplete} = this.props;
 
         const duration = 1.2;
         const ease = new Ease(BezierEasing(1, 0, 0.735, 0.775));
 
         const lettersDOM = this.lettersRef.current.querySelectorAll('span');
 
-        if (_.isEqual(selectedItem, item.id)) {
+        if (_.isEqual(isSelected, true)) {
             new TimelineMax({
-                onComplete: () => this.setState({isAnimating: false}),
+                onComplete: () => {
+                    onAnimationComplete();
+                },
             }).staggerTo(lettersDOM, duration * .7, {
                 ease: ease,
                 cycle: {
@@ -119,7 +114,9 @@ class MenuItem extends Component {
             }, -0.01, 0)
         } else {
             new TimelineMax({
-                onComplete: () => this.setState({isAnimating: false}),
+                onComplete: () => {
+                    onAnimationComplete();
+                },
             }).to(this.itemRef.current, duration * .5, {
                 ease: ease,
                 opacity: 0
@@ -130,6 +127,8 @@ class MenuItem extends Component {
     _startCloseAnimation = () => {
         console.log('Events : _startCloseAnimation');
 
+        const {onAnimationComplete} = this.props;
+
         const duration = 1;
         const ease = Sine.easeOut;
 
@@ -137,7 +136,9 @@ class MenuItem extends Component {
 
         // Animate menu items in
         new TimelineMax({
-            onComplete: () => this.setState({isAnimating: false}),
+            onComplete: () => {
+                onAnimationComplete();
+            },
         })
             .to(lettersDOM, duration * .6, {
                 ease: Power4.easeOut,
@@ -232,7 +233,6 @@ class MenuItem extends Component {
 }
 
 MenuItem.propTypes = {
-    selectedItem: PropTypes.number.isRequired,
     onItemSelect: PropTypes.func.isRequired,
 };
 

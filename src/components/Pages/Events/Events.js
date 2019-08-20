@@ -2,141 +2,15 @@ import React, {Component} from 'react';
 import Menu from "../../common/Menu";
 import ContentItem from "../../common/ContentItem";
 import _ from "lodash";
-import Image1 from "../../../assets/images/Events/1.jpg"
-import Image2 from "../../../assets/images/Events/2.jpg"
-import Image3 from "../../../assets/images/Events/3.jpg"
-import Image4 from "../../../assets/images/Events/4.jpg"
-import Image5 from "../../../assets/images/Events/5.jpg"
-import Image6 from "../../../assets/images/Events/6.jpg"
-import Image7 from "../../../assets/images/Events/7.jpg"
-import Image8 from "../../../assets/images/Events/8.jpg"
-import Image9 from "../../../assets/images/Events/9.jpg"
-import Image10 from "../../../assets/images/Events/10.jpg"
-import Image11 from "../../../assets/images/Events/11.jpg"
-import Image12 from "../../../assets/images/Events/12.jpg"
-import Image13 from "../../../assets/images/Events/13.jpg"
-import Image14 from "../../../assets/images/Events/14.jpg"
-import Image15 from "../../../assets/images/Events/15.jpg"
 import {Ease, Expo, Sine, TimelineMax} from "gsap";
 import BezierEasing from "bezier-easing";
 import Column from "../../common/Column";
-
-const eventItems = [
-    {
-        id: 0,
-        title: 'Technical',
-        subtitle: 'Fashion artisans at work',
-        content: [
-            "Now, when anything attracted his attention he always asked what it meant; and his mother, or more frequently Uncle Maxim, would explain to him the nature of the objects or of the creatures that caused these various sounds.",
-            "His mother’s explanations, more lively and graphic, impressed the boy with greater force; but sometimes this impression would be too painful.",
-            "Upon the features of the young woman, herself suffering, could be read the expression of her inmost feelings, and in her eyes a silent protest or a look of pain, as she strove to convey to the child an idea of form and color."
-        ],
-        coverImage: Image3
-    },
-    {
-        id: 1,
-        title: 'Cultural',
-        subtitle: 'Contemporary makeup art',
-        content: [
-            "Thus blindness proved no drawback to systematic physical development, while its influence over the moral nature of the child was reduced to its minimum. He was tall for his age and well built; his face was somewhat pale, his features fine and expressive.",
-            "His dark hair enhanced the pallid hue of his complexion, while his eyes—large, dark, and almost motionless—gave him a peculiar aspect that at once attracted attention.",
-            "A slight wrinkle between his eye-brows, a habit of inclining his head slightly forward, and the expression of sadness that[93] sometimes overcast his handsome face — these were the outward tokens of his blindness."
-        ],
-        coverImage: Image15
-    },
-    {
-        id: 2,
-        title: 'Lectures',
-        subtitle: 'Adventures in Moscow',
-        content: [
-            "The impressions received through the channels of sound outweighed all others in their influence over the life of the blind boy; his ideas shaped themselves according to sounds, his sense of hearing became the centre of his mental activity.",
-            "The enchanting melodies of the songs he heard conveyed to him a true sense of the words, coloring them with sadness or joy according to the lights and shades of the melody.",
-            "He quickly learned all his mother taught him on the piano, and yet he still loved Joachim’s pipe."
-        ],
-        coverImage: Image8
-    },
-    {
-        id: 3,
-        title: 'Workshops',
-        subtitle: 'Vogue Paris',
-        content: [
-            "Thus the boy’s day was filled; he could not complain of the lack of new impressions.",
-            "He seemed to be living as full a life as any child could possibly live; in fact he really seemed unconscious of his blindness.",
-            "Nevertheless, a certain premature sadness was still perceptible in his character, which Maxim ascribed to the fact that he had never mingled with other children, and endeavored to atone for this omission."
-        ],
-        coverImage: Image4
-    }
-];
-
-const imageColumns = [
-    {
-        id: 0,
-        isBottom: false,
-        images: [
-            Image2,
-            Image6,
-            Image13,
-            Image14,
-            Image5,
-            Image6,
-            Image7,
-            Image8,
-            Image9
-        ]
-    },
-    {
-        id: 1,
-        isBottom: true,
-        images: [
-            Image3,
-            Image11,
-            Image1,
-            Image15,
-            Image14,
-            Image13,
-            Image12,
-            Image3,
-            Image15
-        ]
-    },
-    {
-        id: 2,
-        isBottom: false,
-        images: [
-            Image7,
-            Image4,
-            Image9,
-            Image11,
-            Image5,
-            Image3,
-            Image2,
-            Image1,
-            Image5,
-            Image14
-        ]
-    },
-    {
-        id: 3,
-        isBottom: true,
-        images: [
-            Image1,
-            Image2,
-            Image3,
-            Image7,
-            Image4,
-            Image6,
-            Image5,
-            Image8,
-            Image10,
-        ]
-    }
-];
+import {categories, imageColumns} from "../../../data/Events";
+import {addQuery, ANIMATION_STATE, removeQuery} from "../../../utils/Utils";
 
 class Events extends Component {
     constructor(props) {
         super(props);
-
-        this.dummyItem = 0;
 
         this.contentFirstRef = React.createRef();
         this.contentMoveRef = React.createRef();
@@ -151,9 +25,13 @@ class Events extends Component {
                 columns: true,
                 letters: true,
             },
-            selectedItem: -1,
-            isAnimating: false,
-            isActive: false
+            animationState: {
+                event: ANIMATION_STATE['NO_OPS'],
+                columns: ANIMATION_STATE['NO_OPS'],
+                menu: ANIMATION_STATE['NO_OPS'],
+                content: ANIMATION_STATE['NO_OPS'],
+            },
+            selectedItem: null
         };
     }
 
@@ -162,11 +40,14 @@ class Events extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (!_.isEqual(prevState.isAnimating, this.state.isAnimating) &&
-            this.state.isAnimating) {
-            if (this.state.selectedItem >= 0) {
+        if (!_.isEqual(prevState.animationState, this.state.animationState)) {
+            console.log(prevState.animationState, this.state.animationState);
+        }
+
+        if (!_.isEqual(prevState.animationState.event, this.state.animationState.event)) {
+            if (_.isEqual(this.state.animationState.event, ANIMATION_STATE['OPEN'])) {
                 this._startOpenAnimation();
-            } else {
+            } else if (_.isEqual(this.state.animationState.event, ANIMATION_STATE['CLOSE'])) {
                 this._startCloseAnimation();
             }
         }
@@ -182,7 +63,14 @@ class Events extends Component {
         const columnsTotal = 4;
 
         new TimelineMax({
-            onComplete: () => this.setState({isAnimating: false}),
+            onComplete: () => this.setState((state) => ({
+                animationState: {
+                    event: ANIMATION_STATE['NO_OPS'],
+                    columns: state.animationState.columns,
+                    menu: state.animationState.menu,
+                    content: state.animationState.content,
+                }
+            })),
         })  // Animate columns out
             .to(this.columnWrapperRef.current, duration, {
                 ease: ease,
@@ -207,7 +95,14 @@ class Events extends Component {
         const ease = Sine.easeOut;
 
         new TimelineMax({
-            onComplete: () => this.setState({isAnimating: false}),
+            onComplete: () => this.setState((state) => ({
+                animationState: {
+                    event: ANIMATION_STATE['NO_OPS'],
+                    columns: state.animationState.columns,
+                    menu: state.animationState.menu,
+                    content: state.animationState.content,
+                }
+            })),
         })  // Animate content.first and contentMove (unreveal effect: both move in different directions)
             .to([this.contentFirstRef.current, this.contentMoveRef.current], duration * 0.6, {
                 ease: new Ease(BezierEasing(0.775, 0.05, 0.87, 0.465)),
@@ -231,42 +126,93 @@ class Events extends Component {
     };
 
     openItem = (item) => {
+        addQuery(this.props, {category: item.id});
+
         this.setState({
-            selectedItem: item.id,
-            isAnimating: true,
             activeTilt: {
                 columns: false,
                 letters: false,
             },
-            isActive: true,
-        })
+            animationState: {
+                event: ANIMATION_STATE['OPEN'],
+                columns: ANIMATION_STATE['OPEN'],
+                menu: ANIMATION_STATE['OPEN'],
+                content: ANIMATION_STATE['OPEN'],
+            },
+            selectedItem: item
+        });
     };
 
     closeItem = () => {
+        removeQuery(this.props, 'category');
+
         this.setState({
-            selectedItem: -1,
-            isAnimating: true,
             activeTilt: {
                 columns: true,
                 letters: true,
             },
-            isActive: false,
-        })
+            animationState: {
+                event: ANIMATION_STATE['CLOSE'],
+                columns: ANIMATION_STATE['CLOSE'],
+                menu: ANIMATION_STATE['CLOSE'],
+                content: ANIMATION_STATE['CLOSE'],
+            },
+        });
+    };
+
+    renderMenu = () => {
+        const {activeTilt} = this.state;
+
+        return (
+            <Menu items={categories}
+                  activeTilt={activeTilt}
+                  animationState={this.state.animationState.menu}
+                  onAnimationComplete={animationState => {
+                      this.setState((state) => ({
+                          animationState: {
+                              event: state.animationState.event,
+                              columns: state.animationState.columns,
+                              menu: ANIMATION_STATE['NO_OPS'],
+                              content: state.animationState.content,
+                          }
+                      }));
+                  }}
+                  onItemSelect={this.openItem}/>
+        );
+    };
+
+    renderContent = () => {
+        const {animationState, selectedItem} = this.state;
+
+        if (_.isEmpty(selectedItem)) {
+            return [];
+        }
+
+        return (
+            <div className="Events-content Events-content--second">
+                <ContentItem item={selectedItem}
+                             animationState={animationState.content}
+                             onAnimationComplete={animationState => {
+                                 this.setState((state) => ({
+                                     animationState: {
+                                         event: state.animationState.event,
+                                         columns: state.animationState.columns,
+                                         menu: ANIMATION_STATE['NO_OPS'],
+                                         content: state.animationState.content,
+                                     }
+                                 }));
+                             }}
+                             onBackPress={this.closeItem}/>
+            </div>
+        );
     };
 
     render() {
-        const {selectedItem, activeTilt, isActive} = this.state;
-
-        this.dummyItem = selectedItem < 0 ? this.dummyItem : selectedItem;
+        const {activeTilt, animationState} = this.state;
 
         return (
             <div className="Events-main">
-                <div className="Events-content Events-content--second">
-                    <ContentItem item={eventItems[this.dummyItem]}
-                                 selectedItem={this.dummyItem}
-                                 isActive={isActive}
-                                 onBackPress={this.closeItem}/>
-                </div>
+                {this.renderContent()}
                 <div className="Events-content Events-content--first"
                      ref={this.contentFirstRef}>
                     <div className="Events-content__move"
@@ -276,14 +222,21 @@ class Events extends Component {
                             {imageColumns.map(column => (
                                 <Column column={column}
                                         key={column.id}
-                                        selectedItem={selectedItem}
+                                        animationState={animationState.columns}
+                                        onAnimationComplete={animationState => {
+                                            this.setState((state) => ({
+                                                animationState: {
+                                                    event: state.animationState.event,
+                                                    columns: ANIMATION_STATE['NO_OPS'],
+                                                    menu: state.animationState.menu,
+                                                    content: state.animationState.content,
+                                                }
+                                            }));
+                                        }}
                                         activeTilt={activeTilt}/>
                             ))}
                         </div>
-                        <Menu items={eventItems}
-                              selectedItem={selectedItem}
-                              activeTilt={activeTilt}
-                              onItemSelect={this.openItem}/>
+                        {this.renderMenu()}
                     </div>
                 </div>
             </div>

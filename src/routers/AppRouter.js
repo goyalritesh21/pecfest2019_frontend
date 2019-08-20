@@ -4,6 +4,7 @@ import PrivateRoute from "../components/common/PrivateRoute";
 import Loader from '../components/common/Loader';
 import Past from "../components/Pages/Past/Past";
 import Cursor from "../components/common/Cursor";
+import {extractSearchParams} from "../utils/Utils";
 
 const Home = lazy(() => import('../components/Pages/Home/Home'));
 const Sponsors = lazy(() => import('../components/Pages/Sponser/Sponsors'));
@@ -23,18 +24,26 @@ const AppRouter = ({location}) => {
         <div className="Base-page__wrapper">
             <Suspense fallback={<Loader/>}>
                 <Switch location={location}>
-                    <Route exact path={"/"} component={Home}/>
-                    <Route exact path={"/sponsors"} component={Sponsors}/>
-                    <Route exact path={"/megashows"} component={MegaShows}/>
-                    <Route exact path={"/events"} component={Events}/>
-                    <Route exact path={"/login"} render={props => <LoginPage {...props} />}/>
-                    <Route exact path={"/register"} component={RegisterPage}/>
-                    <Route exact path={"/team"} component={Team}/>
-                    <Route exact path={"/devteam"} component={DevTeam}/>
-                    <Route exact path={"/past"} component={Past}/>
-                    <Route exact path={"/event/:eventId"} component={IndividualEvent}/>
-                    <PrivateRoute exact path={"/update"} component={ExtraDetails}/>
-                    <Route component={NotFound}/>
+                    <Route exact path={"/"} render={props => <Home {...props} {...extractSearchParams(props)} />}/>
+                    <Route exact path={"/sponsors"}
+                           render={props => <Sponsors {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/megashows"}
+                           render={props => <MegaShows {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/events"}
+                           render={props => <Events {...props} {...extractSearchParams(props)} />}/>
+                    <Route exact path={"/login"}
+                           render={props => <LoginPage {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/register"}
+                           render={props => <RegisterPage {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/team"} render={props => <Team {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/devteam"}
+                           render={props => <DevTeam {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/past"} render={props => <Past {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/event/:eventId"}
+                           render={props => <IndividualEvent {...props} {...extractSearchParams(props)}/>}/>
+                    <PrivateRoute exact path={"/update"}
+                                  render={props => <ExtraDetails {...props} {...extractSearchParams(props)}/>}/>
+                    <Route render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                 </Switch>
             </Suspense>
             <Cursor/>
