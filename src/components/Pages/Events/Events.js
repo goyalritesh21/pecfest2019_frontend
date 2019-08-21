@@ -40,10 +40,6 @@ class Events extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (!_.isEqual(prevState.animationState, this.state.animationState)) {
-            console.log(prevState.animationState, this.state.animationState);
-        }
-
         if (!_.isEqual(prevState.animationState.event, this.state.animationState.event)) {
             if (_.isEqual(this.state.animationState.event, ANIMATION_STATE['OPEN'])) {
                 this._startOpenAnimation();

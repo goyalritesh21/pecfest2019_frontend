@@ -1,16 +1,22 @@
 import React, {Component} from 'react';
-import Charming from 'react-charming';
 import {getRandomFloat} from "../../utils/MathUtils";
 import {Ease, Expo, TimelineMax} from "gsap";
 import BezierEasing from "bezier-easing";
 import _ from "lodash";
 import {ANIMATION_STATE} from "../../utils/Utils";
+import {categoryEvent} from "../../data/Events";
+import EventCategory from "../Pages/Events/EventCategory";
+import Charming from "react-charming";
 
 class ContentItem extends Component {
     constructor(props) {
         super(props);
 
         this.contentTitleRef = React.createRef();
+
+        this.state = {
+            selectedCategory: 0,
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -81,6 +87,40 @@ class ContentItem extends Component {
 
     render() {
         const {item} = this.props;
+        // const {selectedCategory} = this.state;
+        //
+        // const categories = Object.keys(categoryEvent[item.title]);
+        //
+        // return (
+        //     <div className="eventsinfo-main">
+        //         <div className=" demo-4 loading">
+        //             <div className="grid">
+        //                 {categories.map((category, key) =>
+        //                     <EventCategory
+        //                         onClick={() => {
+        //                             this.setState({
+        //                                 selectedCategory: key,
+        //                             })
+        //                         }}
+        //                         key={key}
+        //                         name={category}
+        //                         isSelected={_.isEqual(selectedCategory, key)}
+        //                     />
+        //                 )}
+        //             </div>
+        //             <nav className="menu menu--adsila">
+        //                 {categoryEvent[item.title][categories[selectedCategory]].map((event, key) =>
+        //                     <div className="menu__item" to="#">
+        //                         <span className="menu__item-name" id={key}>{event}</span>
+        //                         <span className="menu__item-label">A brief description of the event</span>
+        //                     </div>
+        //                 )}
+        //             </nav>
+        //         </div>
+        //     </div>
+        // );
+
+        // return <Event eventId={1}/>
 
         return (
             <article className="Events-item Events-item--current">

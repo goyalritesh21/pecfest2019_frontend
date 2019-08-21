@@ -61,6 +61,21 @@ export const categories = [
     }
 ];
 
+export const categoryEvent = {
+    'Technical': {
+        "aerospace": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet"],
+        "coding": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War"],
+        "robotics": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
+        "drama": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
+        "dance": ["CoDecode", "Ultimate Coding Showdown", "Code Relay"],
+        "quizzes": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum"],
+        "solartech": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"]
+    },
+    'Cultural': {},
+    'Lectures': {},
+    'Workshops': {}
+};
+
 export const events = [
     {
         id: 0,

@@ -9,6 +9,7 @@ import Loader from "../../common/Loader";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import anime from 'animejs';
 import BackgroundImage from "../../../images/sides.png";
+import _ from "lodash";
 
 class Event extends Component {
     state = {
@@ -23,8 +24,11 @@ class Event extends Component {
 
     componentDidMount() {
         document.body.style.backgroundImage = `url(${BackgroundImage})`;
-        const {eventId} = this.props.match.params;
-        this.props.loadEvent(eventId);
+
+        if (_.isEmpty(this.props.event)) {
+            this._fetchEvent(this.props.eventId);
+        }
+
         const timeline = anime.timeline();
         timeline.add({
             targets: '#header, #services, .row, #footer, #countdown, .countdown-item',
@@ -36,7 +40,11 @@ class Event extends Component {
         });
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (!_.isEqual(prevProps.eventId, this.props.eventId)) {
+            this._fetchEvent(this.props.eventId);
+        }
+
         const node = ReactDOM.findDOMNode(this['_div']);
         if (node) {
             node.scrollIntoView();
@@ -46,6 +54,10 @@ class Event extends Component {
     componentWillUnmount() {
         this.props.clearEvent();
     }
+
+    _fetchEvent = id => {
+        this.props.loadEvent(id);
+    };
 
     render() {
 
