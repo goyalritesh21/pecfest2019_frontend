@@ -155,10 +155,12 @@ class ContentItem extends Component {
                             <div>{letters}</div>
                         )}/>
                     </h2>
-                    <h3 className="Events-item__content-subtitle">{item.subtitle}</h3>
-                    <div className="Events-item__content-text">
-                        {item.content.map((para, index) => {
-                            return <p key={index}>{para}</p>
+                    <div className="menu menu--adsila">
+                    {/*console.log(categoryEvent[item.title][categories[selectedCategory]])*/}
+                        {categoryEvent[item.title][categories[selectedCategory]].map((event, index) => {
+                            return <a className="menu__item" to="#">
+                                      <span className="menu__item-name" id={index}>{event}</span>
+                                    </a>
                         })}
                     </div>
                 </div>
