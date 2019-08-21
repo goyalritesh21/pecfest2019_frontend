@@ -63,17 +63,41 @@ export const categories = [
 
 export const categoryEvent = {
     'Technical': {
-        "aerospace": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet"],
-        "coding": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War"],
-        "robotics": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
-        "drama": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
-        "dance": ["CoDecode", "Ultimate Coding Showdown", "Code Relay"],
-        "quizzes": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum"],
-        "solartech": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"]
+        "Aerospace": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Coding": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War"],
+        "Robotics": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Drama": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Dance": ["CoDecode", "Ultimate Coding Showdown", "Code Relay"],
+        "Quizzes": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum"],
+        "Solartech": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"]
     },
-    'Cultural': {},
-    'Lectures': {},
-    'Workshops': {}
+    'Cultural': {
+        "Aerospace": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Coding": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War"],
+        "Robotics": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Drama": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Dance": ["CoDecode", "Ultimate Coding Showdown", "Code Relay"],
+        "Quizzes": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum"],
+        "Solartech": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"]
+    },
+    'Lectures': {
+        "Aerospace": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Coding": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War"],
+        "Robotics": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Drama": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Dance": ["CoDecode", "Ultimate Coding Showdown", "Code Relay"],
+        "Quizzes": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum"],
+        "Solartech": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"]
+    },
+    'Workshops': {
+        "Aerospace": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Coding": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War"],
+        "Robotics": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Drama": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"],
+        "Dance": ["CoDecode", "Ultimate Coding Showdown", "Code Relay"],
+        "Quizzes": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum"],
+        "Solartech": ["CoDecode", "Ultimate Coding Showdown", "Code Relay", "Code Mania", "Robo Rush", "Robo War", "Lorem Ipsum", "Dolor Sit Amet", "Lorem Ipsum", "Dolor Sit Amet"]
+    }
 };
 
 export const events = [

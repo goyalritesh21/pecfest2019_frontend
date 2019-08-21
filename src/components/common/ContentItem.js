@@ -5,8 +5,9 @@ import BezierEasing from "bezier-easing";
 import _ from "lodash";
 import {ANIMATION_STATE} from "../../utils/Utils";
 import {categoryEvent} from "../../data/Events";
-import EventCategory from "../Pages/Events/EventCategory";
 import Charming from "react-charming";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 class ContentItem extends Component {
     constructor(props) {
@@ -85,59 +86,73 @@ class ContentItem extends Component {
         }, 0.01, 0)
     };
 
+    renderTitleBar = (title) => {
+        return (
+            <div className="Events-item__content-titlebar hover"
+                 onClick={() => {
+                     this._startCloseAnimation();
+                 }}>
+                <div className="Events-item__content-back hover"
+                     style={{
+                         margin: "auto 12px"
+                     }}>
+                    <FontAwesomeIcon icon={faArrowLeft} size="3x" className={"hover"}/>
+                </div>
+                <h2 className="Events-item__content-title hover"
+                    style={{color: "white"}}
+                    ref={this.contentTitleRef}>
+                    <Charming letters={title} render={(letters) => (
+                        <div ref={this.lettersRef}>{letters}</div>
+                    )}/>
+                </h2>
+            </div>
+        );
+    };
+
+    renderCategories = (categories) => {
+        const {selectedCategory} = this.state;
+        const selectedStyle = {fontSize: "3em"};
+
+        return (
+            <div className="Events-item__category Events-item__category-column hover">
+                {categories.map((category, key) =>
+                    <div key={key}
+                         className={"hover"}
+                         onClick={() => {
+                             this.setState({selectedCategory: key});
+                         }}>
+                        <h2 className="Events-item__content-title Events-item__category-title"
+                            style={_.isEqual(selectedCategory, key) ? selectedStyle : {}}>
+                            <Charming letters={category} render={(letters) => (
+                                <div className="hover">{letters}</div>
+                            )}/>
+                        </h2>
+                    </div>
+                )}
+            </div>
+        );
+    };
+
     render() {
         const {item} = this.props;
-        // const {selectedCategory} = this.state;
-        //
-        // const categories = Object.keys(categoryEvent[item.title]);
-        //
-        // return (
-        //     <div className="eventsinfo-main">
-        //         <div className=" demo-4 loading">
-        //             <div className="grid">
-        //                 {categories.map((category, key) =>
-        //                     <EventCategory
-        //                         onClick={() => {
-        //                             this.setState({
-        //                                 selectedCategory: key,
-        //                             })
-        //                         }}
-        //                         key={key}
-        //                         name={category}
-        //                         isSelected={_.isEqual(selectedCategory, key)}
-        //                     />
-        //                 )}
-        //             </div>
-        //             <nav className="menu menu--adsila">
-        //                 {categoryEvent[item.title][categories[selectedCategory]].map((event, key) =>
-        //                     <div className="menu__item" to="#">
-        //                         <span className="menu__item-name" id={key}>{event}</span>
-        //                         <span className="menu__item-label">A brief description of the event</span>
-        //                     </div>
-        //                 )}
-        //             </nav>
-        //         </div>
-        //     </div>
-        // );
+        const {selectedCategory} = this.state;
 
-        // return <Event eventId={1}/>
+        const categories = Object.keys(categoryEvent[item.title]);
 
         return (
             <article className="Events-item Events-item--current">
                 <div className="Events-item__img"
                      style={{
                          backgroundImage: `url(${item.coverImage})`,
-                     }}/>
+                     }}>
+                    {this.renderTitleBar(item.title)}
+                    {this.renderCategories(categories)}
+                </div>
                 <div className="Events-item__content">
-                    <div className="Events-item__content-back hover"
-                         onClick={() => {
-                             this._startCloseAnimation();
-                         }}>back
-                    </div>
-                    <h2 className="Events-item__content-title"
+                    <h2 className="Events-item__content-title hover"
                         ref={this.contentTitleRef}>
-                        <Charming letters={item.title} render={(letters) => (
-                            <div ref={this.lettersRef}>{letters}</div>
+                        <Charming letters={categories[selectedCategory]} render={(letters) => (
+                            <div>{letters}</div>
                         )}/>
                     </h2>
                     <h3 className="Events-item__content-subtitle">{item.subtitle}</h3>

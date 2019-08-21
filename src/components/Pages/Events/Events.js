@@ -37,6 +37,9 @@ class Events extends Component {
 
     componentDidMount() {
         this.calcWindowSize();
+
+        const {category} = this.props;
+        this.openItem(categories[category]);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
