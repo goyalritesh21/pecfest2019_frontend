@@ -292,6 +292,8 @@ a:focus {
 .Events-item__category-column {
   -webkit-flex-direction: column;
   flex-direction: column;
+  height: 240px;
+  overflow: scroll;
 }
 
 .Events-item__category-title {
