@@ -149,19 +149,17 @@ class ContentItem extends Component {
                     {this.renderCategories(categories)}
                 </div>
                 <div className="Events-item__content">
-                    <h2 className="Events-item__content-title hover"
-                        ref={this.contentTitleRef}>
+                    <h2 className="Events-item__content-title hover">
                         <Charming letters={categories[selectedCategory]} render={(letters) => (
                             <div>{letters}</div>
                         )}/>
                     </h2>
                     <div className="menu menu--adsila">
-                    {/*console.log(categoryEvent[item.title][categories[selectedCategory]])*/}
-                        {categoryEvent[item.title][categories[selectedCategory]].map((event, index) => {
-                            return <a className="menu__item" to="#">
-                                      <span className="menu__item-name" id={index}>{event}</span>
-                                    </a>
-                        })}
+                        {categoryEvent[item.title][categories[selectedCategory]].map((event, index) => (
+                            <div className="menu__item">
+                                <span className="menu__item-name" id={index}>{event}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </article>
