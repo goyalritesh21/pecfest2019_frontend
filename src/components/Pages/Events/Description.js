@@ -147,7 +147,7 @@ class Description extends Component {
 const mapStateToProps = (state) => ({
     user: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated,
-    registered: state.individualEvent.registered
+    registered: state.event.registered
 });
 
 export default withRouter(connect(mapStateToProps, {registerEvent, createMessage, checkRegistered})(Description));
