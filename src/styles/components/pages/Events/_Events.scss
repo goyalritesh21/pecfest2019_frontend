@@ -195,7 +195,19 @@ a:focus {
   pointer-events: none;
 }
 
-.Events-item__content-titlebar {
+.Events-item__titlebar-icon {
+  font-size: 2rem;
+}
+
+.Events-item__titlebar-title {
+  font-size: 1.8rem;
+  white-space: nowrap;
+  margin: 0;
+  line-height: 1.2;
+  pointer-events: none;
+}
+
+.Events-item__titlebar {
   display: flex;
   align-items: flex-start;
   margin: auto 8px;
@@ -232,6 +244,10 @@ a:focus {
   top: calc(100% + 3rem);
 }
 
+.Events-item__titlebar-back {
+  cursor: pointer;
+}
+
 .Events-item__content-back {
   cursor: pointer;
 }
@@ -260,6 +276,14 @@ a:focus {
     flex-direction: column;
     align-items: flex-start;
     overflow: visible;
+  }
+
+  .Events-item__titlebar-icon {
+    font-size: 3rem;
+  }
+
+  .Events-item__titlebar-title {
+    font-size: 3vw;
   }
 
   .Events-item__content-title {

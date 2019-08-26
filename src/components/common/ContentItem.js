@@ -92,15 +92,15 @@ class ContentItem extends Component {
         const {selectedCategory} = this.state;
 
         return (
-            <div className="Events-item__content-titlebar hover">
-                <div className="Events-item__content-back hover"
+            <div className="Events-item__titlebar hover">
+                <div className="Events-item__titlebar-back hover"
                      style={{margin: "auto 12px"}}
                      onClick={() => {
                          this._startCloseAnimation();
                      }}>
-                    <FontAwesomeIcon icon={faArrowLeft} size="3x" className={"hover"}/>
+                    <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon hover"/>
                 </div>
-                <h3 className="Events-item__content-title hover"
+                <h3 className="Events-item__titlebar-title hover"
                     style={{color: "white"}}
                     ref={this.contentTitleRef}>
                     <Charming letters={item.title} render={(letters) => (
@@ -108,13 +108,12 @@ class ContentItem extends Component {
                     )}/>
                 </h3>
                 {selectedCategory >= 0 && (
-                    <div className="Events-item__content-back"
-                         style={{margin: "auto 12px"}}>
-                        <FontAwesomeIcon icon={faChevronRight} size="3x"/>
+                    <div style={{margin: "auto 12px"}}>
+                        <FontAwesomeIcon icon={faChevronRight} className="Events-item__titlebar-icon"/>
                     </div>
                 )}
                 {selectedCategory >= 0 && (
-                    <h3 className="Events-item__content-title hover"
+                    <h3 className="Events-item__titlebar-title hover"
                         style={{color: "white"}}>
                         <Charming letters={categories[selectedCategory]} render={(letters) => (
                             <div>{letters}</div>
