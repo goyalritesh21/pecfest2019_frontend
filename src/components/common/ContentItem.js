@@ -117,6 +117,18 @@ class ContentItem extends Component {
                         )}/>
                     </h3>
                 </div>
+                <a onClick = {() => {
+                        this.setState({selectedCategory:null})
+                    }}>
+                <h3 className="Events-item__content-title hover"
+                    style={{color: "white"}}
+                    ref={this.contentTitleRef}>
+                    <Charming letters={item.title} render={(letters) => (
+                        <div ref={this.lettersRef}>{letters}</div>
+                    )}/>
+                </h3>
+                </a>
+                
                 {selectedCategory >= 0 && (
                     <div style={{margin: "auto 12px"}}>
                         <FontAwesomeIcon icon={faChevronRight} className="Events-item__titlebar-icon"/>
@@ -140,7 +152,7 @@ class ContentItem extends Component {
 
         return (
             <div className="Events-item__category Events-item__category-column hover">
-                {categories.map((category, key) =>
+                { _.isEqual(selectedCategory, null) ? (categories.map((category, key) =>
                     <div key={key}
                          className={"hover"}
                          onClick={() => {
@@ -153,6 +165,14 @@ class ContentItem extends Component {
                             )}/>
                         </h2>
                     </div>
+                )) : (
+                <div className="menu menu--adsila">
+                    {categoryEvent[item.title][categories[selectedCategory]].map((event, index) => (
+                        <div className="menu__item">
+                            <span className="menu__item-name" id={index}>{event}</span>
+                        </div>
+                    ))}
+                </div>
                 )}
             </div>
         );

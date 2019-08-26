@@ -355,7 +355,7 @@ a:focus {
   padding: 0.5em 0;
   transition: color 0.5s;
   transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
-  display: block;
+  display: inline-block;
   text-align: center;
   color: white;
 }
