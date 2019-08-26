@@ -7,7 +7,7 @@ import {ANIMATION_STATE} from "../../utils/Utils";
 import {categoryEvent} from "../../data/Events";
 import Charming from "react-charming";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
+import {faArrowLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
 class ContentItem extends Component {
     constructor(props) {
@@ -86,25 +86,41 @@ class ContentItem extends Component {
         }, 0.01, 0)
     };
 
-    renderTitleBar = (title) => {
+    renderTitleBar = () => {
+        const {item} = this.props;
+        const categories = Object.keys(categoryEvent[item.title]);
+        const {selectedCategory} = this.state;
+
         return (
-            <div className="Events-item__content-titlebar hover"
-                 onClick={() => {
-                     this._startCloseAnimation();
-                 }}>
+            <div className="Events-item__content-titlebar hover">
                 <div className="Events-item__content-back hover"
-                     style={{
-                         margin: "auto 12px"
+                     style={{margin: "auto 12px"}}
+                     onClick={() => {
+                         this._startCloseAnimation();
                      }}>
                     <FontAwesomeIcon icon={faArrowLeft} size="3x" className={"hover"}/>
                 </div>
-                <h2 className="Events-item__content-title hover"
+                <h3 className="Events-item__content-title hover"
                     style={{color: "white"}}
                     ref={this.contentTitleRef}>
-                    <Charming letters={title} render={(letters) => (
+                    <Charming letters={item.title} render={(letters) => (
                         <div ref={this.lettersRef}>{letters}</div>
                     )}/>
-                </h2>
+                </h3>
+                {selectedCategory >= 0 && (
+                    <div className="Events-item__content-back"
+                         style={{margin: "auto 12px"}}>
+                        <FontAwesomeIcon icon={faChevronRight} size="3x"/>
+                    </div>
+                )}
+                {selectedCategory >= 0 && (
+                    <h3 className="Events-item__content-title hover"
+                        style={{color: "white"}}>
+                        <Charming letters={categories[selectedCategory]} render={(letters) => (
+                            <div>{letters}</div>
+                        )}/>
+                    </h3>
+                )}
             </div>
         );
     };
@@ -127,14 +143,6 @@ class ContentItem extends Component {
                                 <div className="hover">{letters}</div>
                             )}/>
                         </h2>
-                        <div className="menu menu--adsila"
-                        style={_.isEqual(selectedCategory, key) ? {display:'block'} : {display:'none'} }>
-                            {categoryEvent[item.title][categories[selectedCategory]].map((event, index) => (
-                                <div className="menu__item">
-                                    <span className="menu__item-name" id={index}>{event}</span>
-                                </div>
-                            ))}
-                        </div>
                     </div>
                 )}
             </div>
@@ -153,7 +161,7 @@ class ContentItem extends Component {
                      style={{
                          backgroundImage: `url(${item.coverImage})`,
                      }}>
-                    {this.renderTitleBar(item.title)}
+                    {this.renderTitleBar()}
                     {this.renderCategories(categories, item)}
                 </div>
                 <div className="Events-item__content">
