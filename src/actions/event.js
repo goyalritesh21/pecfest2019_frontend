@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { returnErrors, createMessage } from "./messages";
+import {returnErrors, createMessage} from "./messages";
 
 import {
     EVENT_LOADED,
@@ -8,15 +8,14 @@ import {
     EVENT_REGISTER_SUCCESS,
     EVENT_REGISTER_FAIL, SET_EVENT, CLEAR_EVENT, URL, CHECK_REGISTER
 } from "./types";
-import { tokenConfig } from "./auth";
-// import { create } from 'jss';
+import {tokenConfig} from "./auth";
 
 export const clearEvent = () => (dispatch) => {
-    dispatch({ type: CLEAR_EVENT });
+    dispatch({type: CLEAR_EVENT});
 };
 
 export const loadEvent = (eventId) => (dispatch) => {
-    dispatch({ type: EVENT_LOADING });
+    dispatch({type: EVENT_LOADING});
     axios.get(`${URL}/api/events/${eventId}`)
         .then(res => {
             dispatch({
@@ -32,26 +31,25 @@ export const loadEvent = (eventId) => (dispatch) => {
         })
 };
 
-export const registerEvent = ({ eventID, username }) => (dispatch, getState) => {
-    dispatch({ type: EVENT_LOADING });
-    const body = JSON.stringify({ eventID, username });
+export const registerEvent = ({eventID, username}) => (dispatch, getState) => {
+    dispatch({type: EVENT_LOADING});
+    const body = JSON.stringify({eventID, username});
     console.log(body);
     axios.post(`${URL}/api/events/register`, body, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: EVENT_REGISTER_SUCCESS
             });
-            dispatch(createMessage({ registerEventSuccess: "Registered Successfully!" }));
+            dispatch(createMessage({registerEventSuccess: "Registered Successfully!"}));
         })
         .catch(error => {
             if (error.response.status === 302) {
                 dispatch({
                     type: EVENT_REGISTER_SUCCESS
                 });
-                dispatch(createMessage({ registerEventFail: "Already Registered!" }));
-            }
-            else {
-                dispatch(createMessage({ registerEventFail: "Event Registration failed!" }));
+                dispatch(createMessage({registerEventFail: "Already Registered!"}));
+            } else {
+                dispatch(createMessage({registerEventFail: "Event Registration failed!"}));
                 dispatch({
                     type: EVENT_REGISTER_FAIL
                 });
@@ -59,9 +57,9 @@ export const registerEvent = ({ eventID, username }) => (dispatch, getState) => 
         });
 };
 
-export const checkRegistered = ({ eventID, username }) => (dispatch, getState) => {
-    dispatch({ type: EVENT_LOADING });
-    const body = JSON.stringify({ eventID, username });
+export const checkRegistered = ({eventID, username}) => (dispatch, getState) => {
+    dispatch({type: EVENT_LOADING});
+    const body = JSON.stringify({eventID, username});
     console.log(body);
     axios.post(`${URL}/api/events/checkRegistered`, body, tokenConfig(getState))
         .then(res => {

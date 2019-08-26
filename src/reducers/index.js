@@ -3,11 +3,11 @@ import errors from './errors';
 import messages from './messages';
 import auth from './auth';
 import events from './events';
-import individualEvent from './individualEvent';
+import event from './event';
 export default combineReducers({
     errors,
     messages,
     auth,
     events,
-    individualEvent
+    event
 });

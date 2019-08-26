@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import ReactDOM from 'react-dom';
 import PropTypes from "prop-types";
-import {clearEvent, loadEvent} from "../../../actions/individualEvent";
+import {clearEvent, loadEvent} from "../../../actions/event";
 import {connect} from 'react-redux';
 import Countdown from "../../common/CountDownTimer";
 import Description from "./Description";
@@ -25,8 +25,9 @@ class Event extends Component {
     componentDidMount() {
         document.body.style.backgroundImage = `url(${BackgroundImage})`;
 
-        if (_.isEmpty(this.props.event)) {
-            this._fetchEvent(this.props.eventId);
+        const {eventId} = this.props.match.params;
+        if (!_.isEmpty(eventId)) {
+            this._fetchEvent(eventId);
         }
 
         const timeline = anime.timeline();
@@ -41,8 +42,8 @@ class Event extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (!_.isEqual(prevProps.eventId, this.props.eventId)) {
-            this._fetchEvent(this.props.eventId);
+        if (!_.isEqual(prevProps.match.params.eventId, this.props.match.params.eventId)) {
+            this._fetchEvent(this.props.match.params.eventId);
         }
 
         const node = ReactDOM.findDOMNode(this['_div']);
@@ -97,7 +98,7 @@ class Event extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    event: state.individualEvent.event
+    event: state.event.event
 });
 
 export default connect(mapStateToProps, {loadEvent, clearEvent})(Event);

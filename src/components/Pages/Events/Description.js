@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 import DescriptionModal from "./DescriptionModal";
 import {connect} from 'react-redux';
-import {checkRegistered, registerEvent} from '../../../actions/individualEvent';
+import {checkRegistered, registerEvent} from '../../../actions/event';
 import {createMessage} from '../../../actions/messages';
 import moment from 'moment';
 

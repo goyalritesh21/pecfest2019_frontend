@@ -1,4 +1,4 @@
-export const URL = "http://127.0.0.1:8000";
+export const URL = `http://127.0.0.1:8000`;
 export const GET_ERRORS = "GET_ERRORS";
 export const CREATE_MESSAGE = "CREATE_MESSAGE";
 export const USER_LOADING = "USER_LOADING";

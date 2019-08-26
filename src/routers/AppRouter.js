@@ -12,7 +12,7 @@ const Events = lazy(() => import('../components/Pages/Events/Events'));
 const LoginPage = lazy(() => import('../components/Pages/Auth/LoginPage'));
 const RegisterPage = lazy(() => import('../components/Pages/Auth/RegisterPage'));
 const MegaShows = lazy(() => import('../components/Pages/MegaShows/MegaShows'));
-const IndividualEvent = lazy(() => import("../components/Pages/Events/Event"));
+const Event = lazy(() => import("../components/Pages/Events/Event"));
 const ExtraDetails = lazy(() => import("../components/accounts/ExtraDetails"));
 const NotFound = lazy(() => import("../components/common/NotFound"));
 const Team = lazy(() => import('../components/Pages/Team/Team'));
@@ -40,7 +40,7 @@ const AppRouter = ({location}) => {
                            render={props => <DevTeam {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/past"} render={props => <Past {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/event/:eventId"}
-                           render={props => <IndividualEvent {...props} {...extractSearchParams(props)}/>}/>
+                           render={props => <Event {...props} {...extractSearchParams(props)}/>}/>
                     <PrivateRoute exact path={"/update"}
                                   render={props => <ExtraDetails {...props} {...extractSearchParams(props)}/>}/>
                     <Route render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
