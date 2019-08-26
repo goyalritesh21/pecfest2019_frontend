@@ -205,6 +205,14 @@ a:focus {
   margin: 0;
   line-height: 1.2;
   pointer-events: none;
+  color: white;
+}
+
+.Events-item__titlebar-title span {
+  display: inline-block;
+  white-space: pre;
+  pointer-events: none;
+  will-change: transform;
 }
 
 .Events-item__titlebar {

@@ -16,7 +16,7 @@ class ContentItem extends Component {
         this.contentTitleRef = React.createRef();
 
         this.state = {
-            selectedCategory: 0,
+            selectedCategory: -1,
         }
     }
 
@@ -30,22 +30,15 @@ class ContentItem extends Component {
         }
     }
 
-    _startOpenAnimation = () => {
-        console.log('ContentItem : _startOpenAnimation');
-
-        const {onAnimationComplete} = this.props;
-
+    animateCharmingEnter = (ref, onComplete) => {
         const duration = 1.2;
         const columnsStagger = 0;
         const columnsTotal = 4;
 
-        const titleLettersDOM = this.contentTitleRef.current.querySelectorAll('span');
+        const titleLettersDOM = ref.current.querySelectorAll('span');
 
-        new TimelineMax({
-            onComplete: () => {
-                onAnimationComplete(ANIMATION_STATE['OPEN']);
-            },
-        })  // Animate the content item title letters
+        new TimelineMax({onComplete})
+        // Animate the content item title letters
             .set(titleLettersDOM, {
                 opacity: 0
             }, duration + duration * columnsStagger * columnsTotal)
@@ -63,20 +56,12 @@ class ContentItem extends Component {
             }, -0.01, duration + duration * columnsStagger * columnsTotal);
     };
 
-    _startCloseAnimation = () => {
-        console.log('ContentItem : _startCloseAnimation');
-        const {onBackPress, onAnimationComplete} = this.props;
-
+    animateCharmingExit = (ref, onComplete) => {
         const duration = 1;
 
         const titleLettersDOM = this.contentTitleRef.current.querySelectorAll('span');
 
-        new TimelineMax({
-            onComplete: () => {
-                onAnimationComplete(ANIMATION_STATE['OPEN']);
-                onBackPress();
-            },
-        }).staggerTo(titleLettersDOM, duration * 0.6, {
+        new TimelineMax({onComplete}).staggerTo(titleLettersDOM, duration * 0.6, {
             ease: new Ease(BezierEasing(0.775, 0.05, 0.87, 0.465)),
             cycle: {
                 y: (i, _) => i % 2 === 0 ? getRandomFloat(-35, -15) : getRandomFloat(15, 35),
@@ -84,6 +69,26 @@ class ContentItem extends Component {
             },
             opacity: 0
         }, 0.01, 0)
+    };
+
+    _startOpenAnimation = () => {
+        console.log('ContentItem : _startOpenAnimation');
+
+        const {onAnimationComplete} = this.props;
+
+        this.animateCharmingEnter(this.contentTitleRef, () => {
+            onAnimationComplete(ANIMATION_STATE['OPEN']);
+        });
+    };
+
+    _startCloseAnimation = () => {
+        console.log('ContentItem : _startCloseAnimation');
+        const {onBackPress, onAnimationComplete} = this.props;
+
+        this.animateCharmingExit(this.contentTitleRef, () => {
+            onAnimationComplete(ANIMATION_STATE['OPEN']);
+            onBackPress();
+        });
     };
 
     renderTitleBar = () => {
@@ -96,17 +101,22 @@ class ContentItem extends Component {
                 <div className="Events-item__titlebar-back hover"
                      style={{margin: "auto 12px"}}
                      onClick={() => {
+                         this.setState({selectedCategory: -1});
                          this._startCloseAnimation();
                      }}>
                     <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon hover"/>
                 </div>
-                <h3 className="Events-item__titlebar-title hover"
-                    style={{color: "white"}}
-                    ref={this.contentTitleRef}>
-                    <Charming letters={item.title} render={(letters) => (
-                        <div ref={this.lettersRef}>{letters}</div>
-                    )}/>
-                </h3>
+                <div onClick={() => {
+                    this.setState({selectedCategory: -1});
+                }}>
+                    <h3 className="Events-item__titlebar-title hover"
+                        style={{color: "white"}}
+                        ref={this.contentTitleRef}>
+                        <Charming letters={item.title} render={(letters) => (
+                            <div ref={this.lettersRef}>{letters}</div>
+                        )}/>
+                    </h3>
+                </div>
                 {selectedCategory >= 0 && (
                     <div style={{margin: "auto 12px"}}>
                         <FontAwesomeIcon icon={faChevronRight} className="Events-item__titlebar-icon"/>
@@ -148,10 +158,24 @@ class ContentItem extends Component {
         );
     };
 
-    render() {
+    renderContent = () => {
         const {item} = this.props;
+
         const {selectedCategory} = this.state;
 
+        const categories = Object.keys(categoryEvent[item.title]);
+
+        return (
+            <h2 className="Events-item__content-title hover">
+                <Charming letters={categories[selectedCategory]} render={(letters) => (
+                    <div>{letters}</div>
+                )}/>
+            </h2>
+        )
+    };
+
+    render() {
+        const {item} = this.props;
         const categories = Object.keys(categoryEvent[item.title]);
 
         return (
@@ -164,11 +188,7 @@ class ContentItem extends Component {
                     {this.renderCategories(categories, item)}
                 </div>
                 <div className="Events-item__content">
-                    <h2 className="Events-item__content-title hover">
-                        <Charming letters={categories[selectedCategory]} render={(letters) => (
-                            <div>{letters}</div>
-                        )}/>
-                    </h2>
+                    {this.renderContent()}
                 </div>
             </article>
         );
