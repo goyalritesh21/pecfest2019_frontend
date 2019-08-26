@@ -103,37 +103,35 @@ class Countdown extends React.Component {
         }
 
         return (
-            <div>
-                <div className="countdown-wrapper">
-                    {days >= 0 && (
-                        <div className="countdown-item">
-                            <SVGCircle radius={daysRadius} stroke="#32CD32"/>
-                            {days}
-                            <span style={{color: "#ffffff"}}>days</span>
-                        </div>
-                    )}
-                    {hours >= 0 && (
-                        <div className="countdown-item">
-                            <SVGCircle radius={hoursRadius} stroke="#87CEEB"/>
-                            {hours}
-                            <span style={{color: "#ffffff"}}>hours</span>
-                        </div>
-                    )}
-                    {minutes >= 0 && (
-                        <div className="countdown-item">
-                            <SVGCircle radius={minutesRadius} stroke="#4B0082	"/>
-                            {minutes}
-                            <span style={{color: "#ffffff"}}>minutes</span>
-                        </div>
-                    )}
-                    {seconds >= 0 && (
-                        <div className="countdown-item">
-                            <SVGCircle radius={secondsRadius} stroke="#FFA500"/>
-                            {seconds}
-                            <span style={{color: "#ffffff"}}>seconds</span>
-                        </div>
-                    )}
-                </div>
+            <div className="countdown-wrapper">
+                {days >= 0 && (
+                    <div className="countdown-item">
+                        <SVGCircle radius={daysRadius} stroke="#32CD32"/>
+                        {days}
+                        <span style={{color: "#ffffff"}}>days</span>
+                    </div>
+                )}
+                {hours >= 0 && (
+                    <div className="countdown-item">
+                        <SVGCircle radius={hoursRadius} stroke="#87CEEB"/>
+                        {hours}
+                        <span style={{color: "#ffffff"}}>hours</span>
+                    </div>
+                )}
+                {minutes >= 0 && (
+                    <div className="countdown-item">
+                        <SVGCircle radius={minutesRadius} stroke="#4B0082	"/>
+                        {minutes}
+                        <span style={{color: "#ffffff"}}>minutes</span>
+                    </div>
+                )}
+                {seconds >= 0 && (
+                    <div className="countdown-item">
+                        <SVGCircle radius={secondsRadius} stroke="#FFA500"/>
+                        {seconds}
+                        <span style={{color: "#ffffff"}}>seconds</span>
+                    </div>
+                )}
             </div>
         );
     }

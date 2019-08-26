@@ -5,10 +5,12 @@ import BezierEasing from "bezier-easing";
 import * as PropTypes from 'prop-types';
 import _ from "lodash";
 import {addQuery, ANIMATION_STATE, removeQuery} from "../../utils/Utils";
-import {categoryEvent} from "../../data/Events";
+import {categoryEvent, events} from "../../data/Events";
 import Charming from "react-charming";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import Countdown from "./CountDownTimer";
+import moment from "moment";
 
 class ContentItem extends Component {
     constructor(props) {
@@ -107,20 +109,20 @@ class ContentItem extends Component {
         const {selectedCategory} = this.state;
 
         return (
-            <div className="Events-item__titlebar hover">
-                <div className="Events-item__titlebar-back hover"
-                     onClick={() => {
-                         removeQuery(this.props, 'subcategory');
-                         removeQuery(this.props, 'event');
-                         this._startCloseAnimation();
-                     }}>
-                    <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon hover"/>
-                </div>
+            <div className="Events-item__titlebar">
+                <a className="Events-item__titlebar-back"
+                   onClick={() => {
+                       removeQuery(this.props, 'subcategory');
+                       removeQuery(this.props, 'event');
+                       this._startCloseAnimation();
+                   }}>
+                    <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon"/>
+                </a>
                 <a onClick={() => {
                     removeQuery(this.props, 'subcategory');
                     removeQuery(this.props, 'event');
                 }}>
-                    <h3 className="Events-item__titlebar-title hover"
+                    <h3 className="Events-item__titlebar-title"
                         ref={this.contentTitleRef}>
                         <Charming letters={item.title} render={(letters) => (
                             <div ref={this.lettersRef}>{letters}</div>
@@ -137,7 +139,7 @@ class ContentItem extends Component {
                     <a onClick={() => {
                         removeQuery(this.props, 'event');
                     }}>
-                        <h3 className="Events-item__titlebar-title hover">
+                        <h3 className="Events-item__titlebar-title">
                             <Charming letters={categories[selectedCategory]} render={(letters) => (
                                 <div>{letters}</div>
                             )}/>
@@ -199,7 +201,7 @@ class ContentItem extends Component {
         const {item} = this.props;
 
         return (
-            <h2 className="Events-item__content-title hover">
+            <h2 className="Events-item__content-title">
                 <Charming letters={item.title} render={(letters) => (
                     <div>{letters}</div>
                 )}/>
@@ -213,7 +215,7 @@ class ContentItem extends Component {
         const {selectedCategory} = this.state;
 
         return (
-            <h2 className="Events-item__content-title hover">
+            <h2 className="Events-item__content-title">
                 <Charming letters={categories[selectedCategory]} render={(letters) => (
                     <div>{letters}</div>
                 )}/>
@@ -225,15 +227,47 @@ class ContentItem extends Component {
         const {item} = this.props;
         const categories = Object.keys(categoryEvent[item.title]);
         const {selectedCategory, selectedEvent} = this.state;
+        const event = events[selectedEvent];
 
         const subcategory = categories[selectedCategory];
 
         return (
-            <h2 className="Events-item__content-title hover">
-                <Charming letters={categoryEvent[item.title][subcategory][selectedEvent]} render={(letters) => (
-                    <div>{letters}</div>
-                )}/>
-            </h2>
+            <div style={{width: "100%"}}>
+                <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
+                    <h2 className="Events-item__titlebar-title">
+                        <Charming letters={categoryEvent[item.title][subcategory][selectedEvent]} render={(letters) => (
+                            <div>{letters}</div>
+                        )}/>
+                    </h2>
+                </div>
+                <div className="container-fluid">
+                    <div className="row" style={{justifyContent: "center"}}>
+                        <Countdown timeTillDate={event.dateTime}/>
+                    </div>
+                    <div className="Events-item__content-row row">
+                        <h4>Description</h4>
+                        <p>{event.shortDescription}</p>
+                        <a>Know More...</a>
+                    </div>
+                    <div className="Events-item__content-row row">
+                        <h4>Rules</h4>
+                        <ul style={{listStyleType: "circle"}}>
+                            {event.rules.map((rule, index) => (
+                                <li key={index}>{rule}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className="Events-item__content-row row">
+                        <h4>Venue</h4>
+                        <label>Location:</label> {event.locations}
+                        <label>Day:</label> {moment(event.dateTime).format()}
+                    </div>
+                    <div className="Events-item__content-row row">
+                        <h4>Prizes</h4>
+                        <p>{event.prize}</p>
+                    </div>
+                </div>
+            </div>
         )
     };
 

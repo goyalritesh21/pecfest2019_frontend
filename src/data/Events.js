@@ -105,6 +105,7 @@ export const events = [
         id: 0,
         title: 'Bhangra Theque',
         subtitle: '',
+        dateTime: "2019-07-02T21:43:22.627411+05:30",
         locations: 'Yet to be decided',
         prize: '',
         minTeam: 6,

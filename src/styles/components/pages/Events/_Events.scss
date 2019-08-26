@@ -182,7 +182,6 @@ a:focus {
 }
 
 .Events-item__content {
-  padding: 2rem;
   height: calc(100vh - 300px);
   overflow: auto;
 }
@@ -219,7 +218,7 @@ a:focus {
   display: flex;
   align-items: flex-start;
   margin: auto 8px;
-  padding: 12px 8px 8px 8px;
+  padding: 3vh 0;
 }
 
 .Events-menu__item span,
@@ -279,12 +278,19 @@ a:focus {
   }
 
   .Events-item__content {
-    padding: 15vh 12vw 0 8vw;
     height: 100%;
+    width: 55%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     overflow: visible;
+  }
+
+  .Events-item__content-row {
+    margin: 1rem 2rem;
+    padding: 1rem 2rem;
+    border: 1px dashed #333;
+    text-align: start;
   }
 
   .Events-item__titlebar-icon {
