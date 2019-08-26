@@ -188,7 +188,7 @@ a:focus {
 }
 
 .Events-item__content-title {
-  font-size: 2.5rem;
+  font-size: 1.8rem;
   white-space: nowrap;
   margin: 0;
   line-height: 1.2;
@@ -254,6 +254,7 @@ a:focus {
 
 .Events-item__titlebar-back {
   cursor: pointer;
+  margin: auto 12px;
 }
 
 .Events-item__content-back {
@@ -295,7 +296,7 @@ a:focus {
   }
 
   .Events-item__content-title {
-    font-size: 5vw;
+    font-size: 3vw;
   }
 
   .Events-item__content-subtitle {
@@ -347,6 +348,10 @@ a:focus {
   color: white;
 }
 
+.menu__item {
+  color: white;
+}
+
 .menu--adsila .menu__item-name {
   position: relative;
   z-index: 2;
@@ -357,6 +362,7 @@ a:focus {
   transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
   display: inline-block;
   text-align: center;
+  font-size: 1.8rem;
   color: white;
 }
 

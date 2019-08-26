@@ -18,6 +18,7 @@ class ContentItem extends Component {
 
         this.state = {
             selectedCategory: _.isEmpty(props.subcategory) ? -1 : props.subcategory,
+            selectedEvent: _.isEmpty(props.event) ? -1 : props.event,
         }
     }
 
@@ -32,6 +33,10 @@ class ContentItem extends Component {
 
         if (!_.isEqual(prevProps.subcategory, this.props.subcategory)) {
             this.setState({selectedCategory: _.has(this.props, 'subcategory') ? this.props.subcategory : -1});
+        }
+
+        if (!_.isEqual(prevProps.event, this.props.event)) {
+            this.setState({selectedEvent: _.has(this.props, 'event') ? this.props.event : -1});
         }
     }
 
@@ -104,91 +109,108 @@ class ContentItem extends Component {
         return (
             <div className="Events-item__titlebar hover">
                 <div className="Events-item__titlebar-back hover"
-                     style={{margin: "auto 12px"}}
                      onClick={() => {
                          removeQuery(this.props, 'subcategory');
+                         removeQuery(this.props, 'event');
                          this._startCloseAnimation();
                      }}>
                     <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon hover"/>
                 </div>
-                <div onClick={() => {
-                    this.setState({selectedCategory: -1});
+                <a onClick={() => {
+                    removeQuery(this.props, 'subcategory');
+                    removeQuery(this.props, 'event');
                 }}>
                     <h3 className="Events-item__titlebar-title hover"
-                        style={{color: "white"}}
                         ref={this.contentTitleRef}>
                         <Charming letters={item.title} render={(letters) => (
                             <div ref={this.lettersRef}>{letters}</div>
                         )}/>
                     </h3>
-                </div>
-                <a onClick = {() => {
-                        this.setState({selectedCategory:null})
-                    }}>
-                <h3 className="Events-item__content-title hover"
-                    style={{color: "white"}}
-                    ref={this.contentTitleRef}>
-                    <Charming letters={item.title} render={(letters) => (
-                        <div ref={this.lettersRef}>{letters}</div>
-                    )}/>
-                </h3>
                 </a>
-                
+
                 {selectedCategory >= 0 && (
                     <div style={{margin: "auto 12px"}}>
                         <FontAwesomeIcon icon={faChevronRight} className="Events-item__titlebar-icon"/>
                     </div>
                 )}
                 {selectedCategory >= 0 && (
-                    <h3 className="Events-item__titlebar-title hover"
-                        style={{color: "white"}}>
-                        <Charming letters={categories[selectedCategory]} render={(letters) => (
-                            <div>{letters}</div>
-                        )}/>
-                    </h3>
+                    <a onClick={() => {
+                        removeQuery(this.props, 'event');
+                    }}>
+                        <h3 className="Events-item__titlebar-title hover">
+                            <Charming letters={categories[selectedCategory]} render={(letters) => (
+                                <div>{letters}</div>
+                            )}/>
+                        </h3>
+                    </a>
                 )}
             </div>
         );
     };
 
-    renderCategories = (categories, item) => {
+    renderEvents = () => {
+        const {item} = this.props;
         const {selectedCategory} = this.state;
-        const selectedStyle = {fontSize: "3em"};
+        const categories = Object.keys(categoryEvent[item.title]);
+        const events = categoryEvent[item.title][categories[selectedCategory]];
 
         return (
-            <div className="Events-item__category Events-item__category-column hover">
-                { _.isEqual(selectedCategory, null) ? (categories.map((category, key) =>
-                    <div key={key}
-                         className={"hover"}
+            <div className="menu menu--adsila">
+                {events.map((event, key) => (
+                    <div className="menu__item"
                          onClick={() => {
-                             addQuery(this.props, {subcategory: key});
+                             addQuery(this.props, {event: key})
                          }}>
-                        <h2 className="Events-item__content-title Events-item__category-title"
-                            style={_.isEqual(selectedCategory, key) ? selectedStyle : {}}>
-                            <Charming letters={category} render={(letters) => (
-                                <div className="hover">{letters}</div>
-                            )}/>
-                        </h2>
+                        <a className="menu__item-name" key={key}>{event}</a>
                     </div>
-                )) : (
-                <div className="menu menu--adsila">
-                    {categoryEvent[item.title][categories[selectedCategory]].map((event, index) => (
-                        <div className="menu__item">
-                            <span className="menu__item-name" id={index}>{event}</span>
-                        </div>
-                    ))}
-                </div>
-                )}
+                ))}
             </div>
         );
     };
 
-    renderContent = () => {
+    renderSubCategories = () => {
+        const {item} = this.props;
+        const categories = Object.keys(categoryEvent[item.title]);
+
+        return (
+            <div className="menu menu--adsila">
+                {categories.map((category, key) => (
+                    <div className="menu__item"
+                         onClick={() => {
+                             addQuery(this.props, {subcategory: key})
+                         }}>
+                        <a className="menu__item-name" key={key}>{category}</a>
+                    </div>
+                ))}
+            </div>
+        );
+    };
+
+    renderCategories = () => {
+        const {selectedCategory} = this.state;
+        if (!_.isEmpty(selectedCategory)) {
+            return this.renderEvents();
+        }
+
+        return this.renderSubCategories();
+    };
+
+    renderMainContent = () => {
         const {item} = this.props;
 
-        const {selectedCategory} = this.state;
+        return (
+            <h2 className="Events-item__content-title hover">
+                <Charming letters={item.title} render={(letters) => (
+                    <div>{letters}</div>
+                )}/>
+            </h2>
+        )
+    };
 
+    renderCategoryContent = () => {
+        const {item} = this.props;
         const categories = Object.keys(categoryEvent[item.title]);
+        const {selectedCategory} = this.state;
 
         return (
             <h2 className="Events-item__content-title hover">
@@ -199,9 +221,36 @@ class ContentItem extends Component {
         )
     };
 
-    render() {
+    renderEventContent = () => {
         const {item} = this.props;
         const categories = Object.keys(categoryEvent[item.title]);
+        const {selectedCategory, selectedEvent} = this.state;
+
+        const subcategory = categories[selectedCategory];
+
+        return (
+            <h2 className="Events-item__content-title hover">
+                <Charming letters={categoryEvent[item.title][subcategory][selectedEvent]} render={(letters) => (
+                    <div>{letters}</div>
+                )}/>
+            </h2>
+        )
+    };
+
+    renderContent = () => {
+        const {selectedCategory, selectedEvent} = this.state;
+
+        if (!_.isEmpty(selectedEvent)) {
+            return this.renderEventContent();
+        } else if (!_.isEmpty(selectedCategory)) {
+            return this.renderCategoryContent();
+        }
+
+        return this.renderMainContent();
+    };
+
+    render() {
+        const {item} = this.props;
 
         return (
             <article className="Events-item Events-item--current">
@@ -210,7 +259,7 @@ class ContentItem extends Component {
                          backgroundImage: `url(${item.coverImage})`,
                      }}>
                     {this.renderTitleBar()}
-                    {this.renderCategories(categories, item)}
+                    {this.renderCategories()}
                 </div>
                 <div className="Events-item__content">
                     {this.renderContent()}
@@ -223,6 +272,7 @@ class ContentItem extends Component {
 ContentItem.protoTypes = {
     category: PropTypes.number.isRequired,
     subcategory: PropTypes.number,
+    event: PropTypes.number,
 };
 
 export default ContentItem;
