@@ -109,7 +109,7 @@ class ContentItem extends Component {
         );
     };
 
-    renderCategories = (categories) => {
+    renderCategories = (categories, item) => {
         const {selectedCategory} = this.state;
         const selectedStyle = {fontSize: "3em"};
 
@@ -127,6 +127,14 @@ class ContentItem extends Component {
                                 <div className="hover">{letters}</div>
                             )}/>
                         </h2>
+                        <div className="menu menu--adsila"
+                        style={_.isEqual(selectedCategory, key) ? {display:'block'} : {display:'none'} }>
+                            {categoryEvent[item.title][categories[selectedCategory]].map((event, index) => (
+                                <div className="menu__item">
+                                    <span className="menu__item-name" id={index}>{event}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>
@@ -146,7 +154,7 @@ class ContentItem extends Component {
                          backgroundImage: `url(${item.coverImage})`,
                      }}>
                     {this.renderTitleBar(item.title)}
-                    {this.renderCategories(categories)}
+                    {this.renderCategories(categories, item)}
                 </div>
                 <div className="Events-item__content">
                     <h2 className="Events-item__content-title hover">
@@ -154,13 +162,6 @@ class ContentItem extends Component {
                             <div>{letters}</div>
                         )}/>
                     </h2>
-                    <div className="menu menu--adsila">
-                        {categoryEvent[item.title][categories[selectedCategory]].map((event, index) => (
-                            <div className="menu__item">
-                                <span className="menu__item-name" id={index}>{event}</span>
-                            </div>
-                        ))}
-                    </div>
                 </div>
             </article>
         );

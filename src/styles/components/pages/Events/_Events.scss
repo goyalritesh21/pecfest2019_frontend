@@ -291,7 +291,7 @@ a:focus {
 .Events-item__category-column {
   -webkit-flex-direction: column;
   flex-direction: column;
-  height: 240px;
+  height: 100%;
   overflow: scroll;
 }
 
@@ -323,7 +323,8 @@ a:focus {
   transition: color 0.5s;
   transition-timing-function: cubic-bezier(0.2,1,0.3,1);
   display: block;
-  text-align: left;
+  text-align: center;
+  color: white;
 }
 
 .menu--adsila .menu__item-name::before {
@@ -410,7 +411,7 @@ a:focus {
 
 @media screen and (max-width: 50em) {
   .menu--adsila .menu__item {
-    margin: 0 0 2em;
+    margin: 0 0;
   }
   .menu--adsila .menu__item-label {
     display: block;
@@ -430,4 +431,11 @@ a:focus {
 ::-webkit-scrollbar {
     width: 12px;
     color: black;
+}
+
+@media(max-width:850px) {
+  .Events-item__category-column {
+  height: 240px;
+}
+
 }
