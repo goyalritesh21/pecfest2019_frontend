@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {getRandomFloat} from "../../utils/MathUtils";
 import {Ease, Expo, TimelineMax} from "gsap";
 import BezierEasing from "bezier-easing";
+import * as PropTypes from 'prop-types';
 import _ from "lodash";
-import {ANIMATION_STATE} from "../../utils/Utils";
+import {addQuery, ANIMATION_STATE, removeQuery} from "../../utils/Utils";
 import {categoryEvent} from "../../data/Events";
 import Charming from "react-charming";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -16,7 +17,7 @@ class ContentItem extends Component {
         this.contentTitleRef = React.createRef();
 
         this.state = {
-            selectedCategory: -1,
+            selectedCategory: _.isEmpty(props.subcategory) ? -1 : props.subcategory,
         }
     }
 
@@ -27,6 +28,10 @@ class ContentItem extends Component {
             } else if (_.isEqual(this.props.animationState, ANIMATION_STATE['OPEN'])) {
                 this._startCloseAnimation();
             }
+        }
+
+        if (!_.isEqual(prevProps.subcategory, this.props.subcategory)) {
+            this.setState({selectedCategory: _.has(this.props, 'subcategory') ? this.props.subcategory : -1});
         }
     }
 
@@ -101,7 +106,7 @@ class ContentItem extends Component {
                 <div className="Events-item__titlebar-back hover"
                      style={{margin: "auto 12px"}}
                      onClick={() => {
-                         this.setState({selectedCategory: -1});
+                         removeQuery(this.props, 'subcategory');
                          this._startCloseAnimation();
                      }}>
                     <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon hover"/>
@@ -156,7 +161,7 @@ class ContentItem extends Component {
                     <div key={key}
                          className={"hover"}
                          onClick={() => {
-                             this.setState({selectedCategory: key});
+                             addQuery(this.props, {subcategory: key});
                          }}>
                         <h2 className="Events-item__content-title Events-item__category-title"
                             style={_.isEqual(selectedCategory, key) ? selectedStyle : {}}>
@@ -214,5 +219,10 @@ class ContentItem extends Component {
         );
     }
 }
+
+ContentItem.protoTypes = {
+    category: PropTypes.number.isRequired,
+    subcategory: PropTypes.number,
+};
 
 export default ContentItem;

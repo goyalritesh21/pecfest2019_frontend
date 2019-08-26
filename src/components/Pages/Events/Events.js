@@ -193,6 +193,7 @@ class Events extends Component {
         return (
             <div className="Events-content Events-content--second">
                 <ContentItem item={selectedItem}
+                             {...this.props}
                              animationState={animationState.content}
                              onAnimationComplete={animationState => {
                                  this.setState((state) => ({
