@@ -159,7 +159,7 @@ class ContentItem extends Component {
         const events = categoryEvent[item.title][categories[selectedCategory]];
 
         return (
-            <div className="menu menu--adsila">
+            <div className="menu menu--adsila" style={{height: 'calc(100vh - 100px)'}}>
                 {events.map((event, key) => (
                     <div className="menu__item"
                          onClick={() => {
@@ -293,6 +293,7 @@ class ContentItem extends Component {
                 <div className="Events-item__img"
                      style={{
                          backgroundImage: `url(${item.coverImage})`,
+                         overflow: 'hidden'
                      }}>
                     {this.renderTitleBar()}
                     {this.renderCategories()}
