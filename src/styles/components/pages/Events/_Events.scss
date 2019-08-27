@@ -41,6 +41,7 @@ img {
   font-family: fieldwork-hum, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-y: hidden;
 }
 
 .cursor {
@@ -386,7 +387,10 @@ a:focus {
   transition: transform 0.5s;
   transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 }
-
+.container-fluid {
+  
+  overflow: scroll;
+}
 .menu--adsila .menu__item-label {
   position: relative;
   visibility: hidden;

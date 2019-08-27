@@ -21,8 +21,10 @@ class ContentItem extends Component {
         this.state = {
             selectedCategory: _.isEmpty(props.subcategory) ? -1 : props.subcategory,
             selectedEvent: _.isEmpty(props.event) ? -1 : props.event,
+            
         }
     }
+    
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (!_.isEqual(prevProps.animationState, this.props.animationState)) {
@@ -240,7 +242,7 @@ class ContentItem extends Component {
                         )}/>
                     </h2>
                 </div>
-                <div className="container-fluid">
+                <div className="container-fluid"  style={{height:'calc(100vh - 80px)'}}>
                     <div className="row" style={{justifyContent: "center"}}>
                         <Countdown timeTillDate={event.dateTime}/>
                     </div>
