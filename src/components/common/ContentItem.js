@@ -21,6 +21,9 @@ class ContentItem extends Component {
         this.state = {
             selectedCategory: _.isEmpty(props.subcategory) ? -1 : props.subcategory,
             selectedEvent: _.isEmpty(props.event) ? -1 : props.event,
+            knowMore: {
+                description: false,
+            }
         }
     }
 
@@ -207,12 +210,18 @@ class ContentItem extends Component {
         const {item} = this.props;
 
         return (
-            <h2 className="Events-item__content-title">
-                <Charming letters={item.title} render={(letters) => (
-                    <div>{letters}</div>
-                )}/>
-            </h2>
-        )
+            <div style={{width: "100%"}}>
+                <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
+                    <h2 className="Events-item__titlebar-title">
+                        <Charming letters={item.title} render={(letters) => (
+                            <div>{letters}</div>
+                        )}/>
+                    </h2>
+                </div>
+                <div className="container-fluid">
+                </div>
+            </div>
+        );
     };
 
     renderCategoryContent = () => {
@@ -221,18 +230,24 @@ class ContentItem extends Component {
         const {selectedCategory} = this.state;
 
         return (
-            <h2 className="Events-item__content-title">
-                <Charming letters={categories[selectedCategory]} render={(letters) => (
-                    <div>{letters}</div>
-                )}/>
-            </h2>
-        )
+            <div style={{width: "100%"}}>
+                <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
+                    <h2 className="Events-item__titlebar-title">
+                        <Charming letters={categories[selectedCategory]} render={(letters) => (
+                            <div>{letters}</div>
+                        )}/>
+                    </h2>
+                </div>
+                <div className="container-fluid">
+                </div>
+            </div>
+        );
     };
 
     renderEventContent = () => {
         const {item} = this.props;
         const categories = Object.keys(categoryEvent[item.title]);
-        const {selectedCategory, selectedEvent} = this.state;
+        const {selectedCategory, selectedEvent, knowMore} = this.state;
         const event = events[selectedEvent];
 
         const subcategory = categories[selectedCategory];
@@ -253,27 +268,46 @@ class ContentItem extends Component {
                     <div className="Events-item__content-container container-fluid">
                         <div className="Events-item__content-row row">
                             <h4>Description</h4>
-                            <p>{event.shortDescription}</p>
-                            <a>Know More...</a>
+                            <div>
+                                {knowMore.description ?
+                                    event.description.map((text, index) => (
+                                        <p key={index}>{text}</p>
+                                    )) :
+                                    <p>{event.shortDescription}</p>}
+                                <a onClick={() => {
+                                    this.setState({
+                                        knowMore: {
+                                            ...knowMore,
+                                            description: !knowMore.description
+                                        }
+                                    });
+                                }}>{knowMore.description ? "Know Less..." : "Know More..."}</a>
+                            </div>
                         </div>
                         <div className="Events-item__content-row row">
                             <h4>Rules</h4>
-                            <ul style={{listStyleType: "circle"}}>
-                                {event.rules.map((rule, index) => (
-                                    <li key={index}>{rule}</li>
-                                ))}
-                            </ul>
+                            <div>
+                                <ul style={{listStyleType: "circle"}}>
+                                    {event.rules.map((rule, index) => (
+                                        <li key={index}>{rule}</li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
                         <div className="Events-item__content-row row">
                             <h4>Venue</h4>
-                            <ul>
-                                <li><label>Location:</label> {event.locations}</li>
-                                <li><label>Day:</label> {moment(event.dateTime).format()}</li>
-                            </ul>
+                            <div>
+                                <ul>
+                                    <li><label>Location:</label> {event.locations}</li>
+                                    <li><label>Day:</label> {moment(event.dateTime).format()}</li>
+                                </ul>
+                            </div>
                         </div>
                         <div className="Events-item__content-row row">
                             <h4>Prizes</h4>
-                            <p>{event.prize}</p>
+                            <div>
+                                <p>{event.prize}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

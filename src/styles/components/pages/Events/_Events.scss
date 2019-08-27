@@ -263,6 +263,13 @@ a:focus {
   cursor: pointer;
 }
 
+.Events-item__content-row {
+  margin: 1rem 0;
+  padding: 1rem 2rem;
+  border: 1px dashed #333;
+  text-align: start;
+}
+
 @media screen and (min-width: 53em) {
   .Events-menu__item {
     font-size: 13vh;
