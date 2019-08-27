@@ -154,9 +154,10 @@ class ContentItem extends Component {
 
     renderEvents = () => {
         const {item} = this.props;
-        const {selectedCategory} = this.state;
+        const {selectedCategory, selectedEvent} = this.state;
         const categories = Object.keys(categoryEvent[item.title]);
         const events = categoryEvent[item.title][categories[selectedCategory]];
+        const selectedEventStyle = {backgroundColor: '#000', paddingLeft: '0.5em', paddingRight: '0.5em'}
 
         return (
             <div className="menu menu--adsila" style={{height: 'calc(100vh - 100px)'}}>
@@ -165,7 +166,12 @@ class ContentItem extends Component {
                          onClick={() => {
                              addQuery(this.props, {event: key})
                          }}>
-                        <a className="menu__item-name" key={key}>{event}</a>
+                        <a 
+                        className="menu__item-name"
+                        key={key}
+                        style = {_.isEqual(selectedEvent, key.toString()) ? selectedEventStyle : {}}>
+                        {event}
+                        </a>
                     </div>
                 ))}
             </div>
