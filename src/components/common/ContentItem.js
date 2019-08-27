@@ -21,10 +21,8 @@ class ContentItem extends Component {
         this.state = {
             selectedCategory: _.isEmpty(props.subcategory) ? -1 : props.subcategory,
             selectedEvent: _.isEmpty(props.event) ? -1 : props.event,
-            
         }
     }
-    
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (!_.isEqual(prevProps.animationState, this.props.animationState)) {
@@ -160,17 +158,17 @@ class ContentItem extends Component {
         const selectedEventStyle = {backgroundColor: '#000', paddingLeft: '0.5em', paddingRight: '0.5em'}
 
         return (
-            <div className="menu menu--adsila" style={{height: 'calc(100vh - 100px)'}}>
+            <div className="container-fluid menu menu--adsila" style={{height: 'calc(100vh - 100px)'}}>
                 {events.map((event, key) => (
-                    <div className="menu__item"
+                    <div className="row menu__item"
                          onClick={() => {
                              addQuery(this.props, {event: key})
                          }}>
-                        <a 
-                        className="menu__item-name"
-                        key={key}
-                        style = {_.isEqual(selectedEvent, key.toString()) ? selectedEventStyle : {}}>
-                        {event}
+                        <a
+                            className="menu__item-name"
+                            key={key}
+                            style={_.isEqual(selectedEvent, key.toString()) ? selectedEventStyle : {}}>
+                            {event}
                         </a>
                     </div>
                 ))}
@@ -183,7 +181,7 @@ class ContentItem extends Component {
         const categories = Object.keys(categoryEvent[item.title]);
 
         return (
-            <div className="menu menu--adsila">
+            <div className="container-fluid menu menu--adsila">
                 {categories.map((category, key) => (
                     <div className="menu__item"
                          onClick={() => {
@@ -248,31 +246,35 @@ class ContentItem extends Component {
                         )}/>
                     </h2>
                 </div>
-                <div className="container-fluid"  style={{height:'calc(100vh - 80px)'}}>
+                <div className="container-fluid">
                     <div className="row" style={{justifyContent: "center"}}>
                         <Countdown timeTillDate={event.dateTime}/>
                     </div>
-                    <div className="Events-item__content-row row">
-                        <h4>Description</h4>
-                        <p>{event.shortDescription}</p>
-                        <a>Know More...</a>
-                    </div>
-                    <div className="Events-item__content-row row">
-                        <h4>Rules</h4>
-                        <ul style={{listStyleType: "circle"}}>
-                            {event.rules.map((rule, index) => (
-                                <li key={index}>{rule}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div className="Events-item__content-row row">
-                        <h4>Venue</h4>
-                        <label>Location:</label> {event.locations}
-                        <label>Day:</label> {moment(event.dateTime).format()}
-                    </div>
-                    <div className="Events-item__content-row row">
-                        <h4>Prizes</h4>
-                        <p>{event.prize}</p>
+                    <div className="Events-item__content-container container-fluid">
+                        <div className="Events-item__content-row row">
+                            <h4>Description</h4>
+                            <p>{event.shortDescription}</p>
+                            <a>Know More...</a>
+                        </div>
+                        <div className="Events-item__content-row row">
+                            <h4>Rules</h4>
+                            <ul style={{listStyleType: "circle"}}>
+                                {event.rules.map((rule, index) => (
+                                    <li key={index}>{rule}</li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="Events-item__content-row row">
+                            <h4>Venue</h4>
+                            <ul>
+                                <li><label>Location:</label> {event.locations}</li>
+                                <li><label>Day:</label> {moment(event.dateTime).format()}</li>
+                            </ul>
+                        </div>
+                        <div className="Events-item__content-row row">
+                            <h4>Prizes</h4>
+                            <p>{event.prize}</p>
+                        </div>
                     </div>
                 </div>
             </div>

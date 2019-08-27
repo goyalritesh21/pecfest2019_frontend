@@ -12,6 +12,7 @@ a:focus {
 a:active,
 a:hover {
   outline: 0;
+  cursor: pointer;
 }
 
 img {
@@ -166,6 +167,7 @@ a:focus {
   grid-area: 1 / 1 / 2 / 2;
   opacity: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .Events-item--current {
@@ -287,6 +289,13 @@ a:focus {
     overflow: visible;
   }
 
+  .Events-item__content-container {
+    margin: 1.2rem 0 2rem 0;
+    height: calc(100vh - 240px);
+    overflow: scroll;
+    padding: 0;
+  }
+
   .Events-item__content-row {
     margin: 1rem 2rem;
     padding: 1rem 2rem;
@@ -357,6 +366,7 @@ a:focus {
 
 .menu__item {
   color: white;
+  justify-content: center;
 }
 
 .menu--adsila .menu__item-name {
