@@ -128,10 +128,10 @@ class Countdown extends React.Component {
     const { days, hours, minutes, seconds } = this.state;
 
     // Mapping the date values to radius values
-    const daysRadius = mapNumber(days, 100, 0, 0, 360);
-    const hoursRadius = mapNumber(hours, 24, 0, 0, 360);
-    const minutesRadius = mapNumber(minutes, 60, 0, 0, 360);
-    const secondsRadius = mapNumber(seconds, 60, 0, 0, 360);
+    const daysRadius = mapNumber(100 - days, 100, 0, 0, 360);
+    const hoursRadius = mapNumber(24 - hours, 24, 0, 0, 360);
+    const minutesRadius = mapNumber(60 - minutes, 60, 0, 0, 360);
+    const secondsRadius = mapNumber(60 - seconds, 60, 0, 0, 360);
 
     if (days < 0) {
       return (
