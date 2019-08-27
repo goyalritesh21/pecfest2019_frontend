@@ -19,7 +19,7 @@ const SVGCircle = ({radius, stroke, view}) => {
             fill="none"
             stroke={stroke}
             strokeWidth="2"
-            d={describeArc(33, 33, 30, 0, radius)}
+            d={describeArc(32, 32, 30, 0, radius)}
         />
     </svg>
     }
