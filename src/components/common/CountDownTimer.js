@@ -1,8 +1,10 @@
 import React from 'react';
 import moment from 'moment';
+import {withGetScreen} from 'react-getscreen'
 
-const SVGCircle = ({radius, stroke}) => (
-    <svg className="countdown-svg">
+const SVGCircle = ({radius, stroke, view}) => {
+    if(view == '1'){
+    return <svg className="countdown-svg">
         <path
             fill="none"
             stroke={stroke}
@@ -10,7 +12,18 @@ const SVGCircle = ({radius, stroke}) => (
             d={describeArc(50, 50, 48, 0, radius)}
         />
     </svg>
-);
+    }
+    else {
+        return <svg className="countdown-svg">
+        <path
+            fill="none"
+            stroke={stroke}
+            strokeWidth="2"
+            d={describeArc(33, 33, 30, 0, radius)}
+        />
+    </svg>
+    }
+};
 
 
 function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
@@ -86,8 +99,11 @@ class Countdown extends React.Component {
     }
 
     render() {
+        var view = 1;
+        if (this.props.isMobile())
+           view = 0;
         const {days, hours, minutes, seconds} = this.state;
-
+        
         // Mapping the date values to radius values
         const daysRadius = mapNumber(days, 100, 0, 0, 360);
         const hoursRadius = mapNumber(hours, 24, 0, 0, 360);
@@ -106,30 +122,30 @@ class Countdown extends React.Component {
             <div className="countdown-wrapper">
                 {days >= 0 && (
                     <div className="countdown-item">
-                        <SVGCircle radius={daysRadius} stroke="#32CD32"/>
+                        <SVGCircle radius={daysRadius} stroke="#32CD32"  view={view}/>
                         {days}
-                        <span style={{color: "#ffffff"}}>days</span>
+                        <span className={"subTextCount"} style={{color: "#ffffff"}}>days</span>
                     </div>
                 )}
                 {hours >= 0 && (
                     <div className="countdown-item">
-                        <SVGCircle radius={hoursRadius} stroke="#87CEEB"/>
+                        <SVGCircle radius={hoursRadius} stroke="#87CEEB" view={view}/>
                         {hours}
-                        <span style={{color: "#ffffff"}}>hours</span>
+                        <span className={"subTextCount"} style={{color: "#ffffff"}}>hours</span>
                     </div>
                 )}
                 {minutes >= 0 && (
                     <div className="countdown-item">
-                        <SVGCircle radius={minutesRadius} stroke="#4B0082	"/>
+                        <SVGCircle radius={minutesRadius} stroke="#4B0082" view={view}/>
                         {minutes}
-                        <span style={{color: "#ffffff"}}>minutes</span>
+                        <span className={"subTextCount"} style={{color: "#ffffff"}}>minutes</span>
                     </div>
                 )}
                 {seconds >= 0 && (
                     <div className="countdown-item">
-                        <SVGCircle radius={secondsRadius} stroke="#FFA500"/>
+                        <SVGCircle radius={secondsRadius} stroke="#FFA500" view={view}/>
                         {seconds}
-                        <span style={{color: "#ffffff"}}>seconds</span>
+                        <span className={"subTextCount"} style={{color: "#ffffff"}}>seconds</span>
                     </div>
                 )}
             </div>
@@ -137,4 +153,4 @@ class Countdown extends React.Component {
     }
 }
 
-export default Countdown;
+export default withGetScreen(Countdown);

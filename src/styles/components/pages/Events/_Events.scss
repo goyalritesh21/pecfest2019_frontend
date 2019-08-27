@@ -504,3 +504,9 @@ a:focus {
     height: 240px;
   }
 }
+
+@media(max-width: 850px) {
+  .menu--adsila {
+    height: 230px !important;
+  }
+}
