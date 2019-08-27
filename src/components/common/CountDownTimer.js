@@ -1,7 +1,7 @@
-import React from "react";
-import moment from "moment";
-import * as PropTypes from "prop-types";
-import { withGetScreen } from "react-getscreen";
+import React from 'react';
+import moment from 'moment';
+import * as PropTypes from 'prop-types';
+import {withGetScreen} from 'react-getscreen'
 
 const SVGCircle = ({ radius, stroke, view }) => {
   if (view == "1") {
@@ -68,59 +68,59 @@ function mapNumber(number, in_min, in_max, out_min, out_max) {
 }
 
 class Countdown extends React.Component {
-  constructor(props) {
-    super(props);
-    const dateTime = this._getDateTime();
-    this.state = {
-      days: dateTime.days,
-      hours: dateTime.hours,
-      minutes: dateTime.minutes,
-      seconds: dateTime.seconds
-    };
-  }
-  static propTypes = {
-    timeTillDate: PropTypes.object.isRequired
-  };
+    constructor(props) {
+        super(props);
 
-  componentDidMount() {
-    this.interval = setInterval(() => {
-      const dateTime = this._getDateTime();
-      this.setState(() => ({
-        days: dateTime.days,
-        hours: dateTime.hours,
-        minutes: dateTime.minutes,
-        seconds: dateTime.seconds
-      }));
-    }, 1000);
-  }
+        const dateTime = this._getDateTime(props.timeTillDate);
 
-  _getDateTime() {
-    const { timeTillDate } = this.props;
-    const then = moment(timeTillDate).add(98, "days");
-    const now = moment();
-
-    const countdown = moment.duration(then.diff(now));
-    const days = Math.floor(countdown.asDays());
-    countdown.subtract(moment.duration(days, "days"));
-    const hours = countdown.hours();
-    countdown.subtract(moment.duration(hours, "hours"));
-    const minutes = countdown.minutes();
-    countdown.subtract(moment.duration(minutes, "minutes"));
-    const seconds = countdown.seconds();
-    const dateTime = {
-      days: days,
-      hours: hours,
-      minutes: minutes,
-      seconds: seconds
-    };
-    return dateTime;
-  }
-
-  componentWillUnmount() {
-    if (this.interval) {
-      clearInterval(this.interval);
+        this.state = {
+            days: dateTime.days,
+            hours: dateTime.hours,
+            minutes: dateTime.minutes,
+            seconds: dateTime.seconds,
+        };
     }
-  }
+
+    componentDidMount() {
+        this.interval = setInterval(() => {
+            const {timeTillDate} = this.props;
+            const dateTime = this._getDateTime(timeTillDate);
+
+            this.setState({
+                days: dateTime.days,
+                hours: dateTime.hours,
+                minutes: dateTime.minutes,
+                seconds: dateTime.seconds,
+            });
+        }, 1000);
+    }
+
+    componentWillUnmount() {
+        if (this.interval) {
+            clearInterval(this.interval);
+        }
+    }
+
+    _getDateTime = (timeTillDate) => {
+        const then = moment(timeTillDate).add(98, 'days');
+        const now = moment();
+
+        const countdown = moment.duration(then.diff(now));
+        const days = Math.floor(countdown.asDays());
+        countdown.subtract(moment.duration(days, 'days'));
+        const hours = countdown.hours();
+        countdown.subtract(moment.duration(hours, 'hours'));
+        const minutes = countdown.minutes();
+        countdown.subtract(moment.duration(minutes, 'minutes'));
+        const seconds = countdown.seconds();
+
+        return {
+            days: days,
+            hours: hours,
+            minutes: minutes,
+            seconds: seconds,
+        }
+    };
 
   render() {
     var view = 1;
@@ -183,5 +183,9 @@ class Countdown extends React.Component {
     );
   }
 }
+
+Countdown.propTypes = {
+    timeTillDate: PropTypes.object.isRequired,
+};
 
 export default withGetScreen(Countdown);
