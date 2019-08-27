@@ -404,6 +404,19 @@ a:focus {
   transition: transform 0.5s;
   transition-timing-function: cubic-bezier(0.2, 1, 0.3, 1);
 }
+
+.menu__item-name__visible {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  opacity: 0.3;  
+}
+
+
 .container-fluid {
   
   overflow: scroll;

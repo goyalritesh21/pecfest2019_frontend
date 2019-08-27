@@ -158,7 +158,8 @@ class ContentItem extends Component {
         const {selectedCategory, selectedEvent} = this.state;
         const categories = Object.keys(categoryEvent[item.title]);
         const events = categoryEvent[item.title][categories[selectedCategory]];
-        const selectedEventStyle = {backgroundColor: '#000', paddingLeft: '0.5em', paddingRight: '0.5em'}
+        const color = selectedEvent % 2 == 0 ? '#fe628e' : '#6265fe';
+        const selectedEventStyle = {position: 'relative', color: color};
 
         return (
             <div className="container-fluid menu menu--adsila" style={{height: 'calc(100vh - 100px)'}}>
@@ -172,6 +173,14 @@ class ContentItem extends Component {
                             key={key}
                             style={_.isEqual(selectedEvent, key.toString()) ? selectedEventStyle : {}}>
                             {event}
+                        
+                            {_.isEqual(selectedEvent, key.toString()) ? 
+                                <div 
+                                className="menu__item-name__visible"
+                                style = {{backgroundColor: color}}/> : 
+                                () => {return;}
+                            }
+                        
                         </a>
                     </div>
                 ))}
