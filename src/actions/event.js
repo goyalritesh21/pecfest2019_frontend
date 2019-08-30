@@ -1,14 +1,19 @@
 import axios from 'axios';
-import {returnErrors, createMessage} from "./messages";
+import {createMessage, returnErrors} from "./messages";
 
 import {
+    CHECK_REGISTER,
+    CLEAR_EVENT,
+    EVENT_ERROR,
     EVENT_LOADED,
     EVENT_LOADING,
-    EVENT_ERROR,
+    EVENT_REGISTER_FAIL,
     EVENT_REGISTER_SUCCESS,
-    EVENT_REGISTER_FAIL, SET_EVENT, CLEAR_EVENT, URL, CHECK_REGISTER
+    SET_EVENT
 } from "./types";
 import {tokenConfig} from "./auth";
+
+import {URL} from '../api/endpoints'
 
 export const clearEvent = () => (dispatch) => {
     dispatch({type: CLEAR_EVENT});

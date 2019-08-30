@@ -7,6 +7,9 @@ import BezierEasing from "bezier-easing";
 import Column from "../../common/Column";
 import {categories, imageColumns} from "../../../data/Events";
 import {addQuery, ANIMATION_STATE, removeQuery} from "../../../utils/Utils";
+import {connect} from "react-redux";
+import {fetchEvent, fetchEvents} from "../../../actions/events";
+import * as PropTypes from 'prop-types';
 
 class Events extends Component {
     constructor(props) {
@@ -43,6 +46,8 @@ class Events extends Component {
         if (!_.isEmpty(category)) {
             this.openItem(categories[category]);
         }
+
+        this.props.fetchEvents();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -247,4 +252,15 @@ class Events extends Component {
     }
 }
 
-export default Events;
+const mapStateToProps = state => ({
+    eventCategories: state.events.eventCategories,
+    eventTypes: state.events.eventTypes,
+    events: state.events.events,
+});
+
+Events.propTypes = {
+    fetchEvent: PropTypes.func.isRequired,
+    fetchEvents: PropTypes.func.isRequired,
+};
+
+export default connect(mapStateToProps, {fetchEvent, fetchEvents})(Events);
