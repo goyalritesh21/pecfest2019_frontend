@@ -66,3 +66,45 @@ svg {
   margin: 0;
 
 }
+
+.flexButtons {
+  display: flex;
+  
+  position: absolute;
+  bottom: 150px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  // justify-content: space-around;
+  
+  
+}
+
+
+:root {
+	
+	--primary: #78FFCD;
+	--solid: #fff;
+	--btn1-w: 10em;
+	--dot-w: calc(var(--btn1-w)*.2);
+	--tr-X: calc(var(--btn1-w) - var(--dot-w));
+}
+* {box-sizing: border-box;}
+*:before, *:after {box-sizing: border-box;}
+
+
+
+.btn1 {
+	position: relative;
+	margin: 0 auto;
+	width: var(--btn1-w);
+	color: var(--primary);
+	border: .15em solid var(--primary);
+	border-radius: 5em;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 1.3em;
+	line-height: 2em;
+	cursor: pointer;	
+}
+
