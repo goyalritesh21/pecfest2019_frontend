@@ -5,10 +5,10 @@ import _ from "lodash";
 import {Ease, Expo, Sine, TimelineMax} from "gsap";
 import BezierEasing from "bezier-easing";
 import Column from "../../common/Column";
-import {categories, imageColumns} from "../../../data/Events";
+import {imageColumns} from "../../../data/Events";
 import {addQuery, ANIMATION_STATE, removeQuery} from "../../../utils/Utils";
 import {connect} from "react-redux";
-import {fetchEvent, fetchEvents} from "../../../actions/events";
+import {fetchEvent, fetchEventCategories, fetchEvents, fetchEventTypes} from "../../../actions/events";
 import * as PropTypes from 'prop-types';
 
 class Events extends Component {
@@ -33,21 +33,18 @@ class Events extends Component {
                 columns: ANIMATION_STATE['NO_OPS'],
                 menu: ANIMATION_STATE['NO_OPS'],
                 content: ANIMATION_STATE['NO_OPS'],
-            },
-            selectedItem: null
+            }
         };
     }
 
     componentDidMount() {
         this.calcWindowSize();
 
-        const {category} = this.props;
+        this._initState();
 
-        if (!_.isEmpty(category)) {
-            this.openItem(categories[category]);
-        }
-
-        this.props.fetchEvents();
+        this._fetchEventCategories();
+        this._fetchEventTypes();
+        this._fetchEvents();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -58,11 +55,36 @@ class Events extends Component {
                 this._startCloseAnimation();
             }
         }
+
+        if (!_.isEqual(prevProps.eventCategories, this.props.eventCategories)) {
+            this._initState();
+        }
     }
 
-    _startOpenAnimation = () => {
-        console.log('Events : _startOpenAnimation');
+    _initState = () => {
+        const {eventCategory, eventCategories} = this.props;
+        if (!_.isEmpty(eventCategory) && !_.isEmpty(eventCategories)) {
+            const item = _.find(eventCategories, {id: parseInt(eventCategory)});
+            console.log(eventCategories, eventCategory, item);
+            if (!_.isEmpty(item)) {
+                this.openItem(item);
+            }
+        }
+    };
 
+    _fetchEventCategories = () => {
+        this.props.fetchEventCategories();
+    };
+
+    _fetchEventTypes = () => {
+        this.props.fetchEventTypes();
+    };
+
+    _fetchEvents = () => {
+        this.props.fetchEvents();
+    };
+
+    _startOpenAnimation = () => {
         const duration = 1.2;
         const ease = new Ease(BezierEasing(1, 0, 0.735, 0.775));
         const columnsStagger = 0;
@@ -96,8 +118,6 @@ class Events extends Component {
     };
 
     _startCloseAnimation = () => {
-        console.log('Events : _startCloseAnimation');
-
         const duration = 1;
         const ease = Sine.easeOut;
 
@@ -132,8 +152,8 @@ class Events extends Component {
         });
     };
 
-    openItem = (item) => {
-        addQuery(this.props, {category: item.id});
+    openItem = (eventCategory) => {
+        addQuery(this.props, {eventCategory: eventCategory.id});
 
         this.setState({
             activeTilt: {
@@ -146,12 +166,12 @@ class Events extends Component {
                 menu: ANIMATION_STATE['OPEN'],
                 content: ANIMATION_STATE['OPEN'],
             },
-            selectedItem: item
+            selectedEventCategory: eventCategory.id
         });
     };
 
     closeItem = () => {
-        removeQuery(this.props, 'category');
+        removeQuery(this.props, 'eventCategory');
 
         this.setState({
             activeTilt: {
@@ -168,10 +188,11 @@ class Events extends Component {
     };
 
     renderMenu = () => {
+        const {eventCategories} = this.props;
         const {activeTilt} = this.state;
 
         return (
-            <Menu items={categories}
+            <Menu items={eventCategories}
                   activeTilt={activeTilt}
                   animationState={this.state.animationState.menu}
                   onAnimationComplete={animationState => {
@@ -189,16 +210,21 @@ class Events extends Component {
     };
 
     renderContent = () => {
-        const {animationState, selectedItem} = this.state;
+        const {eventCategories, eventTypes, events, eventCategory, eventType, event} = this.props;
+        const {animationState} = this.state;
 
-        if (_.isEmpty(selectedItem)) {
+        if (_.isEmpty(eventCategory) || _.isEmpty(eventCategories) || _.isEmpty(eventTypes)) {
             return [];
         }
 
         return (
             <div className="Events-content Events-content--second">
-                <ContentItem item={selectedItem}
-                             {...this.props}
+                <ContentItem eventCategory={eventCategory}
+                             eventType={eventType}
+                             event={event}
+                             eventCategories={eventCategories}
+                             eventTypes={eventTypes}
+                             events={events}
                              animationState={animationState.content}
                              onAnimationComplete={animationState => {
                                  this.setState((state) => ({
@@ -259,8 +285,18 @@ const mapStateToProps = state => ({
 });
 
 Events.propTypes = {
+    eventCategory: PropTypes.number,
+    eventType: PropTypes.number,
+    event: PropTypes.number,
     fetchEvent: PropTypes.func.isRequired,
     fetchEvents: PropTypes.func.isRequired,
+    fetchEventCategories: PropTypes.func.isRequired,
+    fetchEventTypes: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps, {fetchEvent, fetchEvents})(Events);
+export default connect(mapStateToProps, {
+    fetchEvent,
+    fetchEvents,
+    fetchEventCategories,
+    fetchEventTypes
+})(Events);

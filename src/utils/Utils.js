@@ -1,4 +1,4 @@
-import queryString from 'query-string'
+import * as queryString from 'query-string'
 
 export function extractSearchParams(props) {
     return queryString.parse(props.history.location.search);

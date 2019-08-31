@@ -14,14 +14,20 @@ import {
     FETCH_EVENTS_FAIL,
     FETCH_EVENTS_SUCCESS
 } from "../actions/types";
-import {GET_EVENT_CATEGORY_ENDPOINT, GET_EVENT_TYPE_ENDPOINT, GET_EVENTS_ENDPOINT} from "../api/endpoints";
+import {GET_EVENT_CATEGORIES_ENDPOINT, GET_EVENT_TYPES_ENDPOINT, GET_EVENTS_ENDPOINT} from "../api/endpoints";
 import {takeLatest} from "@redux-saga/core/effects";
+import _ from 'lodash';
+import * as queryString from 'query-string'
 
 
 export function* fetchEvents(action) {
     try {
+        const searchQuery = queryString.stringify(action.data);
+        const URL = `${GET_EVENTS_ENDPOINT}${_.isEmpty(searchQuery) ? "" : "/" + searchQuery.toString()}`;
+
+        console.log(URL);
         const response = yield call(() => {
-            return axios.get(GET_EVENTS_ENDPOINT);
+            return axios.get(URL);
         });
 
         yield put({
@@ -58,8 +64,11 @@ export function* fetchEvent(action) {
 
 export function* fetchEventCategories(action) {
     try {
+        const searchQuery = queryString.stringify(action.data);
+        const URL = `${GET_EVENT_CATEGORIES_ENDPOINT}${_.isEmpty(searchQuery) ? "" : "/" + searchQuery.toString()}`;
+        console.log(URL);
         const response = yield call(() => {
-            return axios.get(GET_EVENT_CATEGORY_ENDPOINT);
+            return axios.get(URL);
         });
 
         yield put({
@@ -76,8 +85,12 @@ export function* fetchEventCategories(action) {
 
 export function* fetchEventTypes(action) {
     try {
+        const searchQuery = queryString.stringify(action.data);
+        const URL = `${GET_EVENT_TYPES_ENDPOINT}${_.isEmpty(searchQuery) ? "" : "/" + searchQuery.toString()}`;
+
+        console.log(URL);
         const response = yield call(() => {
-            return axios.get(GET_EVENT_TYPE_ENDPOINT);
+            return axios.get(URL);
         });
 
         yield put({

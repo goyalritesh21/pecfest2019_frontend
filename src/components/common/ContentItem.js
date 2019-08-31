@@ -19,8 +19,6 @@ class ContentItem extends Component {
         this.contentTitleRef = React.createRef();
 
         this.state = {
-            selectedCategory: _.isEmpty(props.subcategory) ? -1 : props.subcategory,
-            selectedEvent: _.isEmpty(props.event) ? -1 : props.event,
             knowMore: {
                 description: false,
             }
@@ -34,14 +32,6 @@ class ContentItem extends Component {
             } else if (_.isEqual(this.props.animationState, ANIMATION_STATE['OPEN'])) {
                 this._startCloseAnimation();
             }
-        }
-
-        if (!_.isEqual(prevProps.subcategory, this.props.subcategory)) {
-            this.setState({selectedCategory: _.has(this.props, 'subcategory') ? this.props.subcategory : -1});
-        }
-
-        if (!_.isEqual(prevProps.event, this.props.event)) {
-            this.setState({selectedEvent: _.has(this.props, 'event') ? this.props.event : -1});
         }
     }
 
@@ -107,43 +97,50 @@ class ContentItem extends Component {
     };
 
     renderTitleBar = () => {
-        const {item} = this.props;
-        const categories = Object.keys(categoryEvent[item.title]);
-        const {selectedCategory} = this.state;
+        const {eventCategory, eventType, eventCategories, eventTypes} = this.props;
+
+        const selectedEventCategory = _.find(eventCategories, item => {
+            return _.isEqual(item.id, parseInt(eventCategory));
+        });
+
+        const selectedEventType = _.find(eventTypes, item => {
+            return _.isEqual(item.id, parseInt(eventType));
+        });
 
         return (
             <div className="Events-item__titlebar">
                 <a className="Events-item__titlebar-back"
                    onClick={() => {
-                       removeQuery(this.props, 'subcategory');
+                       removeQuery(this.props, 'eventType');
                        removeQuery(this.props, 'event');
                        this._startCloseAnimation();
                    }}>
                     <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon"/>
                 </a>
-                <a onClick={() => {
-                    removeQuery(this.props, 'subcategory');
-                    removeQuery(this.props, 'event');
-                }}>
-                    <h3 className="Events-item__titlebar-title"
-                        ref={this.contentTitleRef}>
-                        <Charming letters={item.title} render={(letters) => (
-                            <div ref={this.lettersRef}>{letters}</div>
-                        )}/>
-                    </h3>
-                </a>
-
-                {selectedCategory >= 0 && (
+                {!_.isEmpty(selectedEventCategory) && (
+                    <a onClick={() => {
+                        removeQuery(this.props, 'eventType');
+                        removeQuery(this.props, 'event');
+                    }}>
+                        <h3 className="Events-item__titlebar-title"
+                            ref={this.contentTitleRef}>
+                            <Charming letters={selectedEventCategory.name} render={(letters) => (
+                                <div ref={this.lettersRef}>{letters}</div>
+                            )}/>
+                        </h3>
+                    </a>
+                )}
+                {!_.isEmpty(selectedEventType) && (
                     <div style={{margin: "auto 12px"}}>
                         <FontAwesomeIcon icon={faChevronRight} className="Events-item__titlebar-icon"/>
                     </div>
                 )}
-                {selectedCategory >= 0 && (
+                {!_.isEmpty(selectedEventType) && (
                     <a onClick={() => {
                         removeQuery(this.props, 'event');
                     }}>
                         <h3 className="Events-item__titlebar-title">
-                            <Charming letters={categories[selectedCategory]} render={(letters) => (
+                            <Charming letters={selectedEventType.name} render={(letters) => (
                                 <div>{letters}</div>
                             )}/>
                         </h3>
@@ -154,33 +151,33 @@ class ContentItem extends Component {
     };
 
     renderEvents = () => {
-        const {item} = this.props;
-        const {selectedCategory, selectedEvent} = this.state;
-        const categories = Object.keys(categoryEvent[item.title]);
-        const events = categoryEvent[item.title][categories[selectedCategory]];
-        const color = selectedEvent % 2 == 0 ? '#fe628e' : '#6265fe';
+        const {event, eventType, events} = this.props;
+
+        const filteredEvents = _.filter(events, item => {
+            return _.isEmpty(item.eventType.id, eventType.id)
+        });
+
+        const color = event % 2 === 0 ? '#fe628e' : '#6265fe';
         const selectedEventStyle = {position: 'relative', color: color};
 
         return (
             <div className="container-fluid menu menu--adsila" style={{height: 'calc(100vh - 100px)'}}>
-                {events.map((event, key) => (
+                {filteredEvents.map(item => (
                     <div className="row menu__item"
+                         key={item.id}
                          onClick={() => {
-                             addQuery(this.props, {event: key})
+                             addQuery(this.props, {event: item.id})
                          }}>
                         <a
                             className="menu__item-name"
-                            key={key}
-                            style={_.isEqual(selectedEvent, key.toString()) ? selectedEventStyle : {}}>
-                            {event}
-                        
-                            {_.isEqual(selectedEvent, key.toString()) ? 
-                                <div 
-                                className="menu__item-name__visible"
-                                style = {{backgroundColor: color}}/> : 
-                                () => {return;}
+                            style={_.isEqual(event, item.id) ? selectedEventStyle : {}}>
+                            {event.name}
+                            {_.isEqual(event, item.id) ?
+                                <div
+                                    className="menu__item-name__visible"
+                                    style={{backgroundColor: color}}/> :
+                                []
                             }
-                        
                         </a>
                     </div>
                 ))}
@@ -188,41 +185,57 @@ class ContentItem extends Component {
         );
     };
 
-    renderSubCategories = () => {
-        const {item} = this.props;
-        const categories = Object.keys(categoryEvent[item.title]);
+    renderEventTypes = () => {
+        const {eventCategory, eventTypes} = this.props;
+
+        console.log(eventCategory, eventTypes);
+
+        const filteredEventTypes = _.filter(eventTypes, item => {
+            return _.isEqual(item.eventCategory.id, parseInt(eventCategory));
+        });
+
+        console.log(filteredEventTypes);
 
         return (
             <div className="container-fluid menu menu--adsila">
-                {categories.map((category, key) => (
+                {filteredEventTypes.map(item => (
                     <div className="menu__item"
                          onClick={() => {
-                             addQuery(this.props, {subcategory: key})
+                             addQuery(this.props, {eventType: item.id})
                          }}>
-                        <a className="menu__item-name" key={key}>{category}</a>
+                        <a className="menu__item-name" key={item.id}>{item.name}</a>
                     </div>
                 ))}
             </div>
         );
     };
 
-    renderCategories = () => {
-        const {selectedCategory} = this.state;
-        if (!_.isEmpty(selectedCategory)) {
+    renderSideBar = () => {
+        const {eventType} = this.props;
+
+        if (!_.isEmpty(eventType)) {
             return this.renderEvents();
         }
 
-        return this.renderSubCategories();
+        return this.renderEventTypes();
     };
 
     renderMainContent = () => {
-        const {item} = this.props;
+        const {eventCategory, eventCategories} = this.props;
+
+        const selectedEventCategory = _.find(eventCategories, item => {
+            return _.isEqual(item.id, parseInt(eventCategory));
+        });
+
+        if (!_.isEmpty(selectedEventCategory)) {
+            return [];
+        }
 
         return (
             <div style={{width: "100%"}}>
                 <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
                     <h2 className="Events-item__titlebar-title">
-                        <Charming letters={item.title} render={(letters) => (
+                        <Charming letters={selectedEventCategory.name} render={(letters) => (
                             <div>{letters}</div>
                         )}/>
                     </h2>
@@ -233,7 +246,7 @@ class ContentItem extends Component {
         );
     };
 
-    renderCategoryContent = () => {
+    renderEventTypeContent = () => {
         const {item} = this.props;
         const categories = Object.keys(categoryEvent[item.title]);
         const {selectedCategory} = this.state;
@@ -254,8 +267,11 @@ class ContentItem extends Component {
     };
 
     renderEventContent = () => {
-        const {item} = this.props;
-        const categories = Object.keys(categoryEvent[item.title]);
+        const {item, eventTypes} = this.props;
+        const categories = _.filter(eventTypes, type => {
+            return _.isEqual(eventTypes.category, item.url);
+        });
+
         const {selectedCategory, selectedEvent, knowMore} = this.state;
         const event = events[selectedEvent];
 
@@ -325,29 +341,29 @@ class ContentItem extends Component {
     };
 
     renderContent = () => {
-        const {selectedCategory, selectedEvent} = this.state;
+        const {eventCategory, eventType, event, eventCategories, eventTypes, events} = this.props;
 
-        if (!_.isEmpty(selectedEvent)) {
+        if (!_.isEmpty(event)) {
             return this.renderEventContent();
-        } else if (!_.isEmpty(selectedCategory)) {
-            return this.renderCategoryContent();
+        } else if (!_.isEmpty(eventType)) {
+            return this.renderEventTypeContent();
         }
 
         return this.renderMainContent();
     };
 
     render() {
-        const {item} = this.props;
+        const {eventCategory} = this.props;
 
         return (
             <article className="Events-item Events-item--current">
                 <div className="Events-item__img"
                      style={{
-                         backgroundImage: `url(${item.coverImage})`,
+                         backgroundImage: `url(${eventCategory.coverImage})`,
                          overflow: 'hidden'
                      }}>
                     {this.renderTitleBar()}
-                    {this.renderCategories()}
+                    {this.renderSideBar()}
                 </div>
                 <div className="Events-item__content">
                     {this.renderContent()}
@@ -358,9 +374,13 @@ class ContentItem extends Component {
 }
 
 ContentItem.protoTypes = {
-    category: PropTypes.number.isRequired,
-    subcategory: PropTypes.number,
+    eventCategory: PropTypes.number,
+    eventType: PropTypes.number,
     event: PropTypes.number,
+
+    eventCategories: PropTypes.array.isRequired,
+    eventTypes: PropTypes.array.isRequired,
+    events: PropTypes.array.isRequired,
 };
 
 export default ContentItem;

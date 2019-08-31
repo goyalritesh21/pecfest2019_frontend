@@ -13,7 +13,7 @@ import {
 } from "./types";
 import {tokenConfig} from "./auth";
 
-import {URL} from '../api/endpoints'
+import {BACKEND_URL} from '../api/endpoints'
 
 export const clearEvent = () => (dispatch) => {
     dispatch({type: CLEAR_EVENT});
@@ -21,7 +21,7 @@ export const clearEvent = () => (dispatch) => {
 
 export const loadEvent = (eventId) => (dispatch) => {
     dispatch({type: EVENT_LOADING});
-    axios.get(`${URL}/api/events/${eventId}`)
+    axios.get(`${BACKEND_URL}/api/events/${eventId}`)
         .then(res => {
             dispatch({
                 type: EVENT_LOADED,
@@ -40,7 +40,7 @@ export const registerEvent = ({eventID, username}) => (dispatch, getState) => {
     dispatch({type: EVENT_LOADING});
     const body = JSON.stringify({eventID, username});
     console.log(body);
-    axios.post(`${URL}/api/events/register`, body, tokenConfig(getState))
+    axios.post(`${BACKEND_URL}/api/events/register`, body, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: EVENT_REGISTER_SUCCESS
@@ -66,7 +66,7 @@ export const checkRegistered = ({eventID, username}) => (dispatch, getState) => 
     dispatch({type: EVENT_LOADING});
     const body = JSON.stringify({eventID, username});
     console.log(body);
-    axios.post(`${URL}/api/events/checkRegistered`, body, tokenConfig(getState))
+    axios.post(`${BACKEND_URL}/api/events/checkRegistered`, body, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: CHECK_REGISTER,

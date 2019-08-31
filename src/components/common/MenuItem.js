@@ -224,7 +224,7 @@ class MenuItem extends Component {
                  onMouseOut={this._onMouseOut}
                  onMouseLeave={this._onMouseOut}
                  onClick={() => onItemSelect(item)}>
-                <Charming letters={item.title} render={(letters) => (
+                <Charming letters={item.name} render={(letters) => (
                     <div className="hover" ref={this.lettersRef}>{letters}</div>
                 )}/>
             </div>
