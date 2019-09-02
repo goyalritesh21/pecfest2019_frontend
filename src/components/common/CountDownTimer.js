@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import {withGetScreen} from 'react-getscreen'
 
 const SVGCircle = ({radius, stroke, view}) => {
-    if (view === "1") {
+    if (view === 1) {
         return (
             <svg className="countdown-svg">
                 <path
