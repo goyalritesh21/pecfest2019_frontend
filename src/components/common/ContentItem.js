@@ -4,8 +4,7 @@ import {Ease, Expo, TimelineMax} from "gsap";
 import BezierEasing from "bezier-easing";
 import * as PropTypes from 'prop-types';
 import _ from "lodash";
-import {addQuery, ANIMATION_STATE, removeQuery} from "../../utils/Utils";
-import {categoryEvent, events} from "../../data/Events";
+import {ANIMATION_STATE} from "../../utils/Utils";
 import Charming from "react-charming";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
@@ -111,16 +110,14 @@ class ContentItem extends Component {
             <div className="Events-item__titlebar">
                 <a className="Events-item__titlebar-back"
                    onClick={() => {
-                       removeQuery(this.props, 'eventType');
-                       removeQuery(this.props, 'event');
+                       this.props.onBackPress();
                        this._startCloseAnimation();
                    }}>
                     <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon"/>
                 </a>
                 {!_.isEmpty(selectedEventCategory) && (
                     <a onClick={() => {
-                        removeQuery(this.props, 'eventType');
-                        removeQuery(this.props, 'event');
+                        this.props.onSelectEventCategory();
                     }}>
                         <h3 className="Events-item__titlebar-title"
                             ref={this.contentTitleRef}>
@@ -137,7 +134,7 @@ class ContentItem extends Component {
                 )}
                 {!_.isEmpty(selectedEventType) && (
                     <a onClick={() => {
-                        removeQuery(this.props, 'event');
+                        this.props.onSelectEventType();
                     }}>
                         <h3 className="Events-item__titlebar-title">
                             <Charming letters={selectedEventType.name} render={(letters) => (
@@ -154,7 +151,7 @@ class ContentItem extends Component {
         const {event, eventType, events} = this.props;
 
         const filteredEvents = _.filter(events, item => {
-            return _.isEmpty(item.eventType.id, eventType.id)
+            return _.isEqual(item.eventType.id, parseInt(eventType));
         });
 
         const color = event % 2 === 0 ? '#fe628e' : '#6265fe';
@@ -166,13 +163,13 @@ class ContentItem extends Component {
                     <div className="row menu__item"
                          key={item.id}
                          onClick={() => {
-                             addQuery(this.props, {event: item.id})
+                             this.props.onClickEvents(item);
                          }}>
                         <a
                             className="menu__item-name"
-                            style={_.isEqual(event, item.id) ? selectedEventStyle : {}}>
-                            {event.name}
-                            {_.isEqual(event, item.id) ?
+                            style={_.isEqual(item.id, parseInt(event)) ? selectedEventStyle : {}}>
+                            {item.name}
+                            {_.isEqual(item.id, parseInt(event)) ?
                                 <div
                                     className="menu__item-name__visible"
                                     style={{backgroundColor: color}}/> :
@@ -201,7 +198,7 @@ class ContentItem extends Component {
                 {filteredEventTypes.map(item => (
                     <div className="menu__item"
                          onClick={() => {
-                             addQuery(this.props, {eventType: item.id})
+                             this.props.onClickEventType(item);
                          }}>
                         <a className="menu__item-name" key={item.id}>{item.name}</a>
                     </div>
@@ -222,6 +219,10 @@ class ContentItem extends Component {
 
     renderMainContent = () => {
         const {eventCategory, eventCategories} = this.props;
+
+        if (_.isEmpty(eventCategories)) {
+            return [];
+        }
 
         const selectedEventCategory = _.find(eventCategories, item => {
             return _.isEqual(item.id, parseInt(eventCategory));
@@ -247,15 +248,21 @@ class ContentItem extends Component {
     };
 
     renderEventTypeContent = () => {
-        const {item} = this.props;
-        const categories = Object.keys(categoryEvent[item.title]);
-        const {selectedCategory} = this.state;
+        const {eventType, eventTypes} = this.props;
+
+        if (_.isEmpty(eventTypes)) {
+            return [];
+        }
+
+        const selectedEventType = _.find(eventTypes, item => {
+            return _.isEqual(item.id, parseInt(eventType));
+        });
 
         return (
             <div style={{width: "100%"}}>
                 <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
                     <h2 className="Events-item__titlebar-title">
-                        <Charming letters={categories[selectedCategory]} render={(letters) => (
+                        <Charming letters={selectedEventType.name} render={(letters) => (
                             <div>{letters}</div>
                         )}/>
                     </h2>
@@ -267,38 +274,39 @@ class ContentItem extends Component {
     };
 
     renderEventContent = () => {
-        const {item, eventTypes} = this.props;
-        const categories = _.filter(eventTypes, type => {
-            return _.isEqual(eventTypes.category, item.url);
+        const {event, events} = this.props;
+        const {knowMore} = this.state;
+
+        if (_.isEmpty(events)) {
+            return [];
+        }
+
+        const selectedEvent = _.find(events, item => {
+            return _.isEqual(item.id, parseInt(event));
         });
-
-        const {selectedCategory, selectedEvent, knowMore} = this.state;
-        const event = events[selectedEvent];
-
-        const subcategory = categories[selectedCategory];
 
         return (
             <div style={{width: "100%"}}>
                 <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
                     <h2 className="Events-item__titlebar-title">
-                        <Charming letters={categoryEvent[item.title][subcategory][selectedEvent]} render={(letters) => (
+                        <Charming letters={selectedEvent.name} render={(letters) => (
                             <div>{letters}</div>
                         )}/>
                     </h2>
                 </div>
                 <div className="container-fluid">
                     <div className="row" style={{justifyContent: "center"}}>
-                        <Countdown timeTillDate={event.dateTime}/>
+                        <Countdown timeTillDate={selectedEvent.dateTime}/>
                     </div>
                     <div className="Events-item__content-container container-fluid">
                         <div className="Events-item__content-row row">
                             <h4>Description</h4>
                             <div>
                                 {knowMore.description ?
-                                    event.description.map((text, index) => (
+                                    selectedEvent.details.split("/n").map((text, index) => (
                                         <p key={index}>{text}</p>
                                     )) :
-                                    <p>{event.shortDescription}</p>}
+                                    <p>{selectedEvent.shortDescription}</p>}
                                 <a onClick={() => {
                                     this.setState({
                                         knowMore: {
@@ -313,7 +321,7 @@ class ContentItem extends Component {
                             <h4>Rules</h4>
                             <div>
                                 <ul style={{listStyleType: "circle"}}>
-                                    {event.rules.map((rule, index) => (
+                                    {selectedEvent.ruleList.split("/n").map((rule, index) => (
                                         <li key={index}>{rule}</li>
                                     ))}
                                 </ul>
@@ -323,15 +331,15 @@ class ContentItem extends Component {
                             <h4>Venue</h4>
                             <div>
                                 <ul>
-                                    <li><label>Location:</label> {event.locations}</li>
-                                    <li><label>Day:</label> {moment(event.dateTime).format()}</li>
+                                    <li><label>Location:</label> {selectedEvent.locations}</li>
+                                    <li><label>Day:</label> {moment(selectedEvent.dateTime).format()}</li>
                                 </ul>
                             </div>
                         </div>
                         <div className="Events-item__content-row row">
                             <h4>Prizes</h4>
                             <div>
-                                <p>{event.prize}</p>
+                                <p>{selectedEvent.prize}</p>
                             </div>
                         </div>
                     </div>
@@ -341,7 +349,7 @@ class ContentItem extends Component {
     };
 
     renderContent = () => {
-        const {eventCategory, eventType, event, eventCategories, eventTypes, events} = this.props;
+        const {eventType, event} = this.props;
 
         if (!_.isEmpty(event)) {
             return this.renderEventContent();
@@ -381,6 +389,14 @@ ContentItem.protoTypes = {
     eventCategories: PropTypes.array.isRequired,
     eventTypes: PropTypes.array.isRequired,
     events: PropTypes.array.isRequired,
+
+    onBackPress: PropTypes.func.isRequired,
+
+    onSelectEventCategory: PropTypes.func.isRequired,
+    onSelectEventType: PropTypes.func.isRequired,
+
+    onClickEvents: PropTypes.func.isRequired,
+    onClickEventType: PropTypes.func.isRequired,
 };
 
 export default ContentItem;

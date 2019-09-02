@@ -225,6 +225,19 @@ class Events extends Component {
                              eventCategories={eventCategories}
                              eventTypes={eventTypes}
                              events={events}
+                             onSelectEventType={() => {
+                                 removeQuery(this.props, 'event');
+                             }}
+                             onSelectEventCategory={() => {
+                                 removeQuery(this.props, 'event');
+                                 removeQuery(this.props, 'eventType');
+                             }}
+                             onClickEvents={(event) => {
+                                 addQuery(this.props, {event: event.id})
+                             }}
+                             onClickEventType={(eventType) => {
+                                 addQuery(this.props, {eventType: eventType.id})
+                             }}
                              animationState={animationState.content}
                              onAnimationComplete={animationState => {
                                  this.setState((state) => ({
@@ -236,7 +249,12 @@ class Events extends Component {
                                      }
                                  }));
                              }}
-                             onBackPress={this.closeItem}/>
+                             onBackPress={() => {
+                                 removeQuery(this.props, 'event');
+                                 removeQuery(this.props, 'eventType');
+                                 removeQuery(this.props, 'eventCategory');
+                                 this.closeItem();
+                             }}/>
             </div>
         );
     };
