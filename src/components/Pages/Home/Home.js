@@ -4,6 +4,7 @@ import BackgroundImage from "../../../images/sides.png"
 import * as PropTypes from 'prop-types'
 import {connect} from "react-redux";
 import {fetchBrochure} from "../../../actions/home";
+import {withRouter} from 'react-router';
 import _ from 'lodash';
 
 class Home extends Component {
@@ -12,6 +13,10 @@ class Home extends Component {
         document.body.style.backgroundImage = `url(${BackgroundImage})`;
         this.props.fetchBrochure();
     }
+
+    _redirectToRegister = () => {
+        this.props.history.push("/register");
+    };
 
     render() {
         return (
@@ -38,13 +43,17 @@ class Home extends Component {
                     }}>
                         <span>Brochure</span>
                     </div>
-                    <div class="btn1">
-                        <span>Register</span>
 
-                    </div>
+                    {!this.props.isAuthenticated && (
+                        <div className="btn1" onClick={() => {
+                            this._redirectToRegister()
+                        }}>
+                            <span>Register</span>
+                        </div>
+                    )}
+
                     <div class="btn1">
                         <span>Ambassador</span>
-
                     </div>
 
                 </div>
@@ -56,15 +65,17 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
     brochures: state.home.brochures,
+    isAuthenticated: state.auth.isAuthenticated,
 });
 
 Home.propTypes = {
     brochures: PropTypes.array.isRequired,
+    isAuthenticated: PropTypes.bool.isRequired,
 
     fetchBrochure: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, {
+export default withRouter(connect(mapStateToProps, {
     fetchBrochure,
-})(Home);
+})(Home));
 ;
