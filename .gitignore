@@ -58,5 +58,5 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+# .env ## commenting this, as I am adding this file with this name to store the port
 .idea/
