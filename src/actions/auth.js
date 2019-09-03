@@ -51,7 +51,7 @@ export const login = (username, password) => dispatch => {
                 payload: res.data
             });
         }).catch(err => {
-        dispatch(createMessage({loginFail: "USer login failed"}));
+        dispatch(createMessage({loginFail: "User login failed"}));
         dispatch({
             type: LOGIN_FAIL
         });

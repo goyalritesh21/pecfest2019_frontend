@@ -7,7 +7,7 @@ import Cursor from "../components/common/Cursor";
 import {extractSearchParams} from "../utils/Utils";
 
 const Home = lazy(() => import('../components/Pages/Home/Home'));
-const Sponsors = lazy(() => import('../components/Pages/Sponser/Sponsors'));
+const Sponsors = lazy(() => import('../components/Pages/Sponsor/Sponsors'));
 const Events = lazy(() => import('../components/Pages/Events/Events'));
 const LoginPage = lazy(() => import('../components/Pages/Auth/LoginPage'));
 const RegisterPage = lazy(() => import('../components/Pages/Auth/RegisterPage'));

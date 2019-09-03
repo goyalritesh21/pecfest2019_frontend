@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import Footer from '../../layout/Footer';
 import BackgroundImage from "../../../images/sides.png"
+import * as PropTypes from 'prop-types'
+import {connect} from "react-redux";
+import {fetchBrochure} from "../../../actions/home";
+import _ from 'lodash';
 
 class Home extends Component {
 
     componentDidMount() {
         document.body.style.backgroundImage = `url(${BackgroundImage})`;
+        this.props.fetchBrochure();
     }
 
     render() {
@@ -25,9 +30,13 @@ class Home extends Component {
                 </svg>
 
                 <div className={"flexButtons"}>
-                    <div class="btn1 ">
+                    <div class="btn1" onClick={() => {
+                        if (!_.isEmpty(this.props.brochures)) {
+                            window.open(this.props.brochures[0].brochurePDF, '_blank');
+                            window.focus();
+                        }
+                    }}>
                         <span>Brochure</span>
-
                     </div>
                     <div class="btn1">
                         <span>Register</span>
@@ -45,4 +54,17 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+    brochures: state.home.brochures,
+});
+
+Home.propTypes = {
+    brochures: PropTypes.array.isRequired,
+
+    fetchBrochure: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps, {
+    fetchBrochure,
+})(Home);
+;
