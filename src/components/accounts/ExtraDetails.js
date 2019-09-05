@@ -108,9 +108,10 @@ class ExtraDetails extends Component {
 
     render() {
         const { firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender } = this.state;
-        const { user, isLoading } = this.props;
-        if (user !== null && !user.participant.firstTimer) {
-            return <Redirect to="/" />
+        const { user, isLoading, isAuthenticated } = this.props;
+        console.log(isAuthenticated);
+        if (!isAuthenticated) {
+            return <Redirect to="/login" />
         }
         if (isLoading) {
             return (<Loader />)

@@ -41,8 +41,8 @@ const AppRouter = ({location}) => {
                     <Route exact path={"/past"} render={props => <Past {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/event/:eventId"}
                            render={props => <Event {...props} {...extractSearchParams(props)}/>}/>
-                    <PrivateRoute exact path={"/update"}
-                                  render={props => <ExtraDetails {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/update"}
+                           render={props => <ExtraDetails {...props} {...extractSearchParams(props)}/>}/>
                     <Route render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                 </Switch>
             </Suspense>

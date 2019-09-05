@@ -55,15 +55,15 @@ export class Register extends Component {
         e.preventDefault();
         const {username, email, password, password2} = this.state;
         let errors = [];
-        if (username.length < 2) {
+        if (username.length < 4) {
             errors.push("Invalid username");
         }
-        if (!password.match(passwordPattern)) {
+        if (password.length < 8) {
             errors.push(
-                "Password must contain at least one number, one uppercase, lowercase letter, and at least 8 or more characters"
+                "Password must contain at least 8 or more characters"
             );
         }
-        if (password !== password2) {
+        if ( password !== password2) {
             errors.push("Passwords do not match");
         }
         if (errors.length > 0) {
