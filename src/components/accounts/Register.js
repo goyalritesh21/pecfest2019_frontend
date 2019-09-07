@@ -70,7 +70,7 @@ export class Register extends Component {
             return;
         }
         const user = {username: username.toLowerCase(), email, password};
-        this.props.register(user);
+        this.props.register(user, this.props.history);
     };
 
     render() {

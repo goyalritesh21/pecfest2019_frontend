@@ -41,8 +41,9 @@ class ExtraDetails extends Component {
         }
     }
 
-    _setState = ({first_name, last_name, contactNumber, accommodation, college, address, yearOfStudy, gender }) => {
-
+    _setState = ({first_name, last_name, participant }) => {
+        const {contactNumber, accommodation, college, address, yearOfStudy, gender} = participant;
+        console.log(typeof(accommodation), accommodation);
         this.setState(() => ({
             firstName: first_name,
             lastName: last_name,
@@ -51,7 +52,7 @@ class ExtraDetails extends Component {
             college: college,
             address: address,
             yearOfStudy: yearOfStudy,
-            gender: gender
+            gender: gender.toString()
         }));
     };
 
@@ -87,7 +88,7 @@ class ExtraDetails extends Component {
     };
 
     isValidNumber = (number) => {
-        return number.match(/^(0)?([5-9][0-9]{9})$/);
+        return number.toString().match(/^(0)?([5-9][0-9]{9})$/);
     };
 
     onSubmit = (e) => {
@@ -126,6 +127,7 @@ class ExtraDetails extends Component {
 
     render() {
         const { firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender } = this.state;
+        console.log(accommodation, typeof(accommodation));
         const { isLoading, isAuthenticated } = this.props;
         if (!isAuthenticated) {
             return <Redirect to="/login" />
@@ -271,8 +273,9 @@ class ExtraDetails extends Component {
                                 name="accommodation"
                                 onChange={this.onAccommodationChange}
                                 value={accommodation}
+                                checked={accommodation}
                                 tabIndex={"8"}
-                            />  Accommodation Required</label>
+                            />Accommodation Required</label>
 
                         </div>
                         <div className="form-group">
