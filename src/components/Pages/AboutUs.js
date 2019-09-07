@@ -18,7 +18,7 @@ class About extends Component {
             </header>
         </div>
         <div className={"item"} data-desktop-seq-no="2" data-mobile-seq-no="4">
-            <img src={img1} alt="Image" className="tm-img-left" />
+            <img className={"imgAbout"} src={img1} alt="Image" className="tm-img-left" />
         </div>
         <div className={"item tm-bg-secondary tm-text-white tm-block tm-block-wider tm-block-pad tm-block-left-2"} data-desktop-seq-no="3"
             data-mobile-seq-no="5">
@@ -27,11 +27,11 @@ class About extends Component {
             
         </div>
         <div className={"item"} data-desktop-seq-no="4" data-mobile-seq-no="8">
-            <img src={img1} alt="Image" className="tm-img-left" />
+            <img className={"imgAbout"} src={img1} alt="Image" className="tm-img-left" />
         </div>
        
         <div className={"item"} data-desktop-seq-no="6" data-mobile-seq-no="2">
-            <img src={img1} alt="Image" />
+            <img className={"imgAbout"} src={img1} alt="Image" />
         </div>
         <div className={"item tm-block-right"} data-desktop-seq-no="7" data-mobile-seq-no="3">
             <div className={"tm-block-right-inner tm-bg-primary-light tm-text-white tm-block tm-block-wider tm-block-pad"}>
@@ -49,7 +49,7 @@ class About extends Component {
         </div>
 
         <div className={"item"} data-desktop-seq-no="8" data-mobile-seq-no="6">
-            <img src={img1} alt="Image" />
+            <img className={"imgAbout"} src={img1} alt="Image" />
         </div>
 
         <div className={"item tm-bg-white tm-block tm-form-section"} data-desktop-seq-no="9" data-mobile-seq-no="7">
