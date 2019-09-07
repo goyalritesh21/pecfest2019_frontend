@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import loader from '../../images/Loader2.gif';
 import { TransitionMotion, spring } from 'react-motion';
 const styles = [{
-    key: 1,
+    key: "1",
     data: "",
     style: { opacity: spring(1) }
 }];
 
 const defaultStyles = [{
-    key: 1,
+    key: "1",
     data: "",
     style: { opacity: 0 }
-}]
+}];
 
 class Loader extends Component {
     willEnter = () => ({ opacity: 0 });

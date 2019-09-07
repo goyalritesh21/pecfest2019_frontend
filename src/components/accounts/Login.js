@@ -7,8 +7,6 @@ import {login} from "../../actions/auth";
 import Loader from "../common/Loader";
 import anime from "animejs";
 
-const passwordPattern = "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
-
 export class Login extends Component {
     constructor() {
         super();
@@ -51,17 +49,6 @@ export class Login extends Component {
     onSubmit = e => {
         e.preventDefault();
         const {username, password} = this.state;
-        // let errors = [];
-        // if (!password.match(passwordPattern)) {
-        //     errors.push(
-        //         "Password must contain at least one number, one uppercase, lowercase letter, and at least 8 or more characters"
-        //     );
-        // }
-        // if (errors.length > 0) {
-        //     const updateErrorMessage = errors.join("\n");
-        //     this.props.createMessage({updateErrorMessage});
-        //     return;
-        // }
         this.props.login(username.toLowerCase(), password);
     };
 

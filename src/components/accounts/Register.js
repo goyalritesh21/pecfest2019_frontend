@@ -7,8 +7,6 @@ import {createMessage} from "../../actions/messages";
 import Loader from "../common/Loader";
 import anime from "animejs";
 
-const passwordPattern = "(?=.*d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
-
 export class Register extends Component {
     state = {
         username: "",

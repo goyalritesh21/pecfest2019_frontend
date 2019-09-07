@@ -66,7 +66,6 @@ export function* fetchEventCategories(action) {
     try {
         const searchQuery = queryString.stringify(action.data);
         const URL = `${GET_EVENT_CATEGORIES_ENDPOINT}${_.isEmpty(searchQuery) ? "" : "/" + searchQuery.toString()}`;
-        console.log(URL);
         const response = yield call(() => {
             return axios.get(URL);
         });

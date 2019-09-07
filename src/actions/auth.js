@@ -50,8 +50,9 @@ export const login = (username, password) => dispatch => {
                 type: LOGIN_SUCCESS,
                 payload: res.data
             });
+            dispatch(createMessage({loginSuccess: "User login successful"}));
         }).catch(err => {
-        dispatch(createMessage({loginFail: "User login failed"}));
+        dispatch(createMessage({loginFail: "Incorrect Username/Password"}));
         dispatch({
             type: LOGIN_FAIL
         });
@@ -73,6 +74,7 @@ export const register = ({username, email, password}) => dispatch => {
                 type: REGISTER_SUCCESS,
                 payload: res.data
             });
+            dispatch(createMessage({registerSuccess: "User registered successfully"}));
         }).catch(err => {
         dispatch(createMessage({registerFail: "User registration failed"}));
         dispatch({
@@ -102,6 +104,7 @@ export const update = ({firstName, lastName, contactNumber, accommodation, colle
                 type: UPDATE_SUCCESS,
                 payload: res.data
             });
+            dispatch(createMessage({updateSuccess: "Details updated successfully"}));
         }).catch(err => {
         dispatch(createMessage({updateFail: "User update failed"}));
         dispatch({
@@ -117,6 +120,7 @@ export const logout = () => (dispatch, getState) => {
             dispatch({
                 type: LOGOUT_SUCCESS
             });
+            dispatch(createMessage({logoutSuccess: "User logout successful"}));
         }).catch(err => {
         dispatch(createMessage({logoutFail: "User Logout failed"}));
     })

@@ -35,7 +35,25 @@ class ExtraDetails extends Component {
             easing: 'easeOutElastic',
             delay: (el, i, l) => i * 200
         });
+        const {user} = this.props;
+        if(user !== null){
+            this._setState(user);
+        }
     }
+
+    _setState = ({first_name, last_name, contactNumber, accommodation, college, address, yearOfStudy, gender }) => {
+
+        this.setState(() => ({
+            firstName: first_name,
+            lastName: last_name,
+            contactNumber: contactNumber,
+            accommodation: accommodation,
+            college: college,
+            address: address,
+            yearOfStudy: yearOfStudy,
+            gender: gender
+        }));
+    };
 
     onChange = e => {
         const key = e.target.name;
@@ -108,13 +126,12 @@ class ExtraDetails extends Component {
 
     render() {
         const { firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender } = this.state;
-        const { user, isLoading, isAuthenticated } = this.props;
-        console.log(isAuthenticated);
+        const { isLoading, isAuthenticated } = this.props;
         if (!isAuthenticated) {
             return <Redirect to="/login" />
         }
         if (isLoading) {
-            return (<Loader />)
+            return (<Loader/>)
         }
         return (
             <div className="col-md-8 m-auto">
