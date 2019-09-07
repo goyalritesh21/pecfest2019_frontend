@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component,Fragment} from 'react';
 import Footer from '../../layout/Footer';
 import BackgroundImage from "../../../images/sides.png"
 import * as PropTypes from 'prop-types'
@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {fetchBrochure} from "../../../actions/home";
 import {withRouter} from 'react-router';
 import _ from 'lodash';
-
+import About from '.././AboutUs';
 class Home extends Component {
 
     componentDidMount() {
@@ -20,7 +20,8 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
+            <Fragment>
+            <div className={"homePage"}>
                 <svg className="Home-text" viewBox="0 0 600 150">
                     <symbol id="s-text">
                         <text textAnchor="middle" x={"50%"} y={"30%"} dy={".35em"}>
@@ -58,7 +59,12 @@ class Home extends Component {
 
                 </div>
                 <Footer/>
+                
             </div>
+            <section>
+                <About />
+                </section>
+            </Fragment>
         );
     }
 }
