@@ -66,62 +66,59 @@ export class Login extends Component {
         const randPassId = "password2019";
 
         return (
-            <div>
-                {isLoading ? (
-                    <Loader/>
-                ) : (
-                    <div className="col-md-6 m-auto upper-padding">
-                        <div className="mt-5 main">
-                            <h2 className="text-center">Login</h2>
-                            <br/>
-                            <form onSubmit={this.onSubmit}>
-                                <div className="form-group">
-                                    <label htmlFor="username">Username</label>
-                                    <div className="input-outer">
-                                        <input
-                                            type="text"
-                                            className="form-control input"
-                                            name={randUserId}
-                                            onChange={this.onChange}
-                                            value={username}
-                                            tabIndex="1"
-                                            id={randUserId}
-                                            spellCheck="false"
-                                            autoComplete="new-username"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <div className="form-group">
-                                    <label>Password</label>
-                                    <div className="input-outer">
-                                        <input
-                                            type="password"
-                                            className="form-control input"
-                                            name={randPassId}
-                                            onChange={this.onChange}
-                                            value={password}
-                                            tabIndex="2"
-                                            id={randPassId}
-                                            autoComplete="new-password"
-                                            spellCheck="false"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <br/>
-                                <div className="form-group">
-                                    <button type="submit" className="btn btn-slide" tabIndex="3">
-                                        Login
-                                    </button>
-                                </div>
-                                <p id={"register"}>
-                                    Don't have an account? <Link to="/register">Register</Link>
-                                </p>
-                            </form>
+            <div className="col-md-6 m-auto upper-padding">
+                <div className="mt-5 main">
+                    <h2 className="text-center">Login</h2>
+                    <br/>
+                    <form onSubmit={this.onSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="username">Username</label>
+                            <div className="input-outer">
+                                <input
+                                    type="text"
+                                    className="form-control input"
+                                    name={randUserId}
+                                    onChange={this.onChange}
+                                    value={username}
+                                    tabIndex="1"
+                                    id={randUserId}
+                                    spellCheck="false"
+                                    autoComplete="new-username"
+                                    required
+                                />
+                            </div>
                         </div>
-                    </div>
-                )}
+                        <div className="form-group">
+                            <label>Password</label>
+                            <div className="input-outer">
+                                <input
+                                    type="password"
+                                    className="form-control input"
+                                    name={randPassId}
+                                    onChange={this.onChange}
+                                    value={password}
+                                    tabIndex="2"
+                                    id={randPassId}
+                                    autoComplete="new-password"
+                                    spellCheck="false"
+                                    required
+                                />
+                            </div>
+                        </div>
+                        <br/>
+                        <div className="form-group">
+                            <button type="submit"
+                                    className="btn btn-slide"
+                                    tabIndex="3"
+                                    disabled={isLoading.login}>
+                                Login
+                            </button>
+                        </div>
+                        <p id={"register"}>
+                            Don't have an account? <Link to="/register">Register</Link>
+                        </p>
+                    </form>
+                </div>
             </div>
         );
     }
@@ -130,7 +127,7 @@ export class Login extends Component {
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
-    isLoading: state.auth.isLoading
+    isLoading: state.loaders.isLoading
 });
 
 export default withRouter(

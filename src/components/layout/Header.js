@@ -12,7 +12,8 @@ class Header extends Component {
     };
     static propTypes = {
         user: PropTypes.object.isRequired,
-        logout: PropTypes.func.isRequired
+        logout: PropTypes.func.isRequired,
+        isLoading: PropTypes.bool.isRequired
     };
 
     toggleButton = () => {
@@ -21,7 +22,10 @@ class Header extends Component {
 
     onLogout = () => {
         this.props.logout();
-        this.setState(({isActive}) => ({isActive: !isActive}))
+        if(!this.props.isLoading){
+            this.setState(({isActive}) => ({isActive: !isActive}));
+        }
+
     };
 
 
@@ -48,6 +52,7 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.auth.user
+    user: state.auth.user,
+    isLoading: state.loaders.logout
 });
 export default connect(mapStateToProps, {logout})(Header);

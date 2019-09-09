@@ -5,6 +5,7 @@ import auth from './auth';
 import home from './home';
 import events from './events';
 import event from './event';
+import loaders from './loaders';
 
 export default combineReducers({
     errors,
@@ -12,5 +13,6 @@ export default combineReducers({
     auth,
     home,
     events,
-    event
+    event,
+    loaders
 });

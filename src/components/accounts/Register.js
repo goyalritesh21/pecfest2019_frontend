@@ -82,9 +82,6 @@ export class Register extends Component {
                 return <Redirect to="/update"/>;
             }
         }
-        if (isLoading) {
-            return <Loader/>;
-        }
         const {username, email, password, password2} = this.state;
         const randUserId = "username2019";
         const randPassId = "password2019";
@@ -163,7 +160,10 @@ export class Register extends Component {
                             </div>
                         </div>
                         <div className="form-group">
-                            <button type="submit" className="btn btn-slide" tabIndex="5">
+                            <button type="submit"
+                                    className="btn btn-slide"
+                                    disabled={isLoading.register}
+                                    tabIndex="5">
                                 Register
                             </button>
                         </div>
@@ -180,7 +180,7 @@ export class Register extends Component {
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
-    isLoading: state.auth.isLoading
+    isLoading: state.loaders.isLoading
 });
 
 export default withRouter(

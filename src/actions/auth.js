@@ -10,8 +10,11 @@ import {
     REGISTER_SUCCESS,
     UPDATE_FAIL,
     UPDATE_SUCCESS,
+    LOADER_AUTH_USER,
     USER_LOADED,
-    USER_LOADING
+    LOADER_AUTH_REGISTER,
+    LOADER_AUTH_LOGIN,
+    LOADER_AUTH_LOGOUT, LOADER_AUTH_UPDATE
 } from './types';
 
 import {
@@ -19,7 +22,10 @@ import {
 } from '../api/endpoints'
 
 export const loadUser = () => (dispatch, getState) => {
-    dispatch({type: USER_LOADING});
+    dispatch({
+        type: LOADER_AUTH_USER,
+        payload: true
+    });
 
     axios.get(`${BACKEND_URL}/api/auth/user`, tokenConfig(getState))
         .then(res => {
@@ -27,11 +33,19 @@ export const loadUser = () => (dispatch, getState) => {
                 type: USER_LOADED,
                 payload: res.data
             });
+            dispatch({
+                type: LOADER_AUTH_USER,
+                payload: false
+            });
         }).catch(err => {
         dispatch({
             type: AUTH_ERROR
         });
-    })
+        dispatch({
+            type: LOADER_AUTH_USER,
+            payload: false
+        });
+    });
 };
 
 export const login = (username, password) => dispatch => {
@@ -40,7 +54,10 @@ export const login = (username, password) => dispatch => {
             'Content-Type': 'application/json'
         }
     };
-
+    dispatch({
+        type: LOADER_AUTH_LOGIN,
+        payload: true
+    });
     const body = JSON.stringify({username, password});
 
     axios.post(`${BACKEND_URL}/api/auth/login`, body, config)
@@ -51,10 +68,18 @@ export const login = (username, password) => dispatch => {
                 payload: res.data
             });
             dispatch(createMessage({loginSuccess: "User login successful"}));
+            dispatch({
+                type: LOADER_AUTH_LOGIN,
+                payload: false
+            });
         }).catch(err => {
         dispatch(createMessage({loginFail: "Incorrect Username/Password"}));
         dispatch({
             type: LOGIN_FAIL
+        });
+        dispatch({
+            type: LOADER_AUTH_LOGIN,
+            payload: false
         });
     })
 };
@@ -66,6 +91,11 @@ export const register = ({username, email, password}) => dispatch => {
         }
     };
 
+    dispatch({
+        type: LOADER_AUTH_REGISTER,
+        payload: true
+    });
+
     const body = JSON.stringify({username, email, password});
 
     axios.post(`${BACKEND_URL}/api/auth/register`, body, config)
@@ -75,16 +105,28 @@ export const register = ({username, email, password}) => dispatch => {
                 payload: res.data
             });
             dispatch(createMessage({registerSuccess: "User registered successfully"}));
+            dispatch({
+                type: LOADER_AUTH_REGISTER,
+                payload: false
+            });
         }).catch(err => {
         dispatch(createMessage({registerFail: "User registration failed"}));
         dispatch({
             type: REGISTER_FAIL
+        });
+        dispatch({
+            type: LOADER_AUTH_REGISTER,
+            payload: false
         });
     })
 };
 
 export const update = ({firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender, id, firstTimer}) => (dispatch, getState) => {
 
+    dispatch({
+        type: LOADER_AUTH_UPDATE,
+        payload: true
+    });
     const body = JSON.stringify({
         firstName,
         lastName,
@@ -105,24 +147,44 @@ export const update = ({firstName, lastName, contactNumber, accommodation, colle
                 payload: res.data
             });
             dispatch(createMessage({updateSuccess: "Details updated successfully"}));
+            dispatch({
+                type: LOADER_AUTH_UPDATE,
+                payload: false
+            });
         }).catch(err => {
         dispatch(createMessage({updateFail: "User update failed"}));
         dispatch({
             type: UPDATE_FAIL
+        });
+        dispatch({
+            type: LOADER_AUTH_UPDATE,
+            payload: false
         });
     })
 };
 
 export const logout = () => (dispatch, getState) => {
 
+    dispatch({
+        type: LOADER_AUTH_LOGOUT,
+        payload: true
+    });
     axios.post(`${BACKEND_URL}/api/auth/logout/`, null, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: LOGOUT_SUCCESS
             });
             dispatch(createMessage({logoutSuccess: "User logout successful"}));
+            dispatch({
+                type: LOADER_AUTH_LOGOUT,
+                payload: false
+            });
         }).catch(err => {
         dispatch(createMessage({logoutFail: "User Logout failed"}));
+        dispatch({
+            type: LOADER_AUTH_LOGOUT,
+            payload: false
+        });
     })
 };
 

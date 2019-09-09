@@ -132,9 +132,6 @@ class ExtraDetails extends Component {
         if (!isAuthenticated) {
             return <Redirect to="/login" />
         }
-        if (isLoading) {
-            return (<Loader/>)
-        }
         return (
             <div className="col-md-8 m-auto">
                 <div className="mt-5 main">
@@ -279,7 +276,10 @@ class ExtraDetails extends Component {
 
                         </div>
                         <div className="form-group">
-                            <button type="submit" className="btn btn-slide" tabIndex={"9"}>
+                            <button type="submit"
+                                    className="btn btn-slide"
+                                    disabled={isLoading.update}
+                                    tabIndex={"9"}>
                                 Update
                             </button>
                         </div>
@@ -293,7 +293,7 @@ class ExtraDetails extends Component {
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
-    isLoading: state.auth.isLoading
+    isLoading: state.loaders.isLoading
 });
 
 export default withRouter(connect(mapStateToProps, { update, createMessage })(ExtraDetails));
