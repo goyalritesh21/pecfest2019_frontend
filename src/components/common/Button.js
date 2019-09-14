@@ -1,8 +1,9 @@
 import React, {Component} from "react";
 import * as propTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {checkRegistered, registerEvent} from "../../actions/event";
 import {createMessage} from "../../actions/messages";
+
 class Button extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +13,7 @@ class Button extends Component {
     }
 
     componentDidMount() {
-        if(this.props.user !== null){
+        if (this.props.user !== null) {
             const {username} = this.props.user;
             const {eventID} = this.props;
             this.props.checkRegistered({eventID, username});
@@ -22,7 +23,7 @@ class Button extends Component {
 
     _onEventRegister = () => {
         // console.log("Clicked");
-        if(this.props.user === null){
+        if (this.props.user === null) {
             const loginToRegister = "Login to Register!";
             return this.props.createMessage({loginToRegister});
         }
@@ -30,7 +31,8 @@ class Button extends Component {
         const {eventID} = this.props;
         this.props.registerEvent({eventID, username});
     };
-    render(){
+
+    render() {
         // console.log(this.props);
         const {title} = this.props;
         return (
@@ -41,9 +43,9 @@ class Button extends Component {
                             disabled={this.state.disabled}
                             onClick={() => this._onEventRegister()}
                         >{this.state.disabled ? `${title}ed` : `${title}`}
-                            <span className="Coralwave1" />
-                            <span className="Coralwave2" />
-                            <span className="Coralwave3" />
+                            <span className="Coralwave1"/>
+                            <span className="Coralwave2"/>
+                            <span className="Coralwave3"/>
                         </button>
                     </div>
                 </div>
@@ -64,7 +66,7 @@ Button.propTypes = {
     user: propTypes.object,
 };
 
-const mapStateToProps = ( state ) => ({
+const mapStateToProps = (state) => ({
     registered: state.event.registered,
     checkRegistered: state.loaders.isLoading.checkRegistered,
     eventRegister: state.loaders.isLoading.eventRegister,

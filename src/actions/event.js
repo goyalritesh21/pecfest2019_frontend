@@ -43,7 +43,7 @@ export const registerEvent = ({eventID, username}) => (dispatch, getState) => {
     });
     const body = JSON.stringify({eventID, username});
     // console.log(`${BACKEND_URL}/api/events/register`);
-    axios.post(`${BACKEND_URL}/api/events/register/${eventID}`, body, tokenConfig(getState))
+    axios.post(`${BACKEND_URL}/events/${eventID}/register/`, body, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: EVENT_REGISTER_SUCCESS
