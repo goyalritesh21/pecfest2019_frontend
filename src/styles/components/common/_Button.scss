@@ -59,7 +59,7 @@
 .reg-btn {
   display: block;
 }
-button {
+.reg-btn button {
   cursor: pointer;
   overflow: visible;
   outline: none;
@@ -72,7 +72,7 @@ button {
   font-family: "Lato";
   font-size: 1.3em;
 }
-button a {
+.reg-btn button a {
   text-decoration: none;
 }
 @-moz-keyframes smallwave {
