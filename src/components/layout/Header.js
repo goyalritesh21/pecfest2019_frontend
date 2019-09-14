@@ -11,7 +11,7 @@ class Header extends Component {
         width: "100%"
     };
     static propTypes = {
-        user: PropTypes.object.isRequired,
+        user: PropTypes.object,
         logout: PropTypes.func.isRequired,
         isLoading: PropTypes.bool.isRequired
     };
@@ -53,6 +53,6 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
     user: state.auth.user,
-    isLoading: state.loaders.logout
+    isLoading: state.loaders.isLoading.logout
 });
 export default connect(mapStateToProps, {logout})(Header);

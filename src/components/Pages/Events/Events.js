@@ -65,7 +65,7 @@ class Events extends Component {
         const {eventCategory, eventCategories} = this.props;
         if (!_.isEmpty(eventCategory) && !_.isEmpty(eventCategories)) {
             const item = _.find(eventCategories, {id: parseInt(eventCategory)});
-            console.log(eventCategories, eventCategory, item);
+            // console.log(eventCategories, eventCategory, item);
             if (!_.isEmpty(item)) {
                 this.openItem(item);
             }

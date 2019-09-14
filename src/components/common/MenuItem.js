@@ -90,7 +90,6 @@ class MenuItem extends Component {
     };
 
     _startOpenAnimation = () => {
-        console.log('MenuItem : _startOpenAnimation');
 
         const {isSelected, onAnimationComplete} = this.props;
 

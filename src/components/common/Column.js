@@ -63,8 +63,6 @@ class Column extends Component {
     }
 
     _startOpenAnimation = () => {
-        console.log('Column : _startOpenAnimation');
-
         const {windowSize} = this.state;
         const {column, onAnimationComplete} = this.props;
 

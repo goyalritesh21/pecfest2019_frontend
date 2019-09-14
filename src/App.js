@@ -6,7 +6,7 @@ import Header from './components/layout/Header';
 import AppRouter from './routers/AppRouter';
 import Alerts from './components/layout/Alerts';
 import {Provider as AlertProvider} from "react-alert";
-import history from "./utils/history";
+// import history from "./utils/history";
 import {Provider} from 'react-redux'
 import store from "./store";
 import {loadUser} from "./actions/auth";

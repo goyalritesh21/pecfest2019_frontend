@@ -25,7 +25,7 @@ export function* fetchEvents(action) {
         const searchQuery = queryString.stringify(action.data);
         const URL = `${GET_EVENTS_ENDPOINT}${_.isEmpty(searchQuery) ? "" : "/" + searchQuery.toString()}`;
 
-        console.log(URL);
+        // console.log(URL);
         const response = yield call(() => {
             return axios.get(URL);
         });
@@ -87,7 +87,7 @@ export function* fetchEventTypes(action) {
         const searchQuery = queryString.stringify(action.data);
         const URL = `${GET_EVENT_TYPES_ENDPOINT}${_.isEmpty(searchQuery) ? "" : "/" + searchQuery.toString()}`;
 
-        console.log(URL);
+        // console.log(URL);
         const response = yield call(() => {
             return axios.get(URL);
         });

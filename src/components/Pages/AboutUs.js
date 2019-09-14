@@ -10,7 +10,7 @@ class About extends Component {
         <div className={"item tm-bg-white tm-block tm-block-left"} data-desktop-seq-no="1" data-mobile-seq-no="1">
             <p className={"tm-hero-text"}>&ldquo;className aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
                 himenaeos. Maecenas vel lacinia ipsum, nec fermentum diam. Nulla nec gravida odio, eget vestibulum urna.&rdquo;</p>
-            <header classNameName={"tm-block-brand"}>
+            <header className={"tm-block-brand"}>
                 <div className={"tm-bg-primary-dark tm-text-white tm-block-brand-inner"}>
                     
                     <h1 className={"tm-brand-name"}>PECFEST 19</h1>
@@ -18,7 +18,7 @@ class About extends Component {
             </header>
         </div>
         <div className={"item"} data-desktop-seq-no="2" data-mobile-seq-no="4">
-            <img className={"imgAbout"} src={img1} alt="Image" className="tm-img-left" />
+            <img className={"imgAbout tm-img-left"} src={img1} alt={"Image"} />
         </div>
         <div className={"item tm-bg-secondary tm-text-white tm-block tm-block-wider tm-block-pad tm-block-left-2"} data-desktop-seq-no="3"
             data-mobile-seq-no="5">
@@ -27,7 +27,7 @@ class About extends Component {
             
         </div>
         <div className={"item"} data-desktop-seq-no="4" data-mobile-seq-no="8">
-            <img className={"imgAbout"} src={img1} alt="Image" className="tm-img-left" />
+            <img className={"imgAbout tm-img-left"} src={img1} alt="Image" />
         </div>
        
         <div className={"item"} data-desktop-seq-no="6" data-mobile-seq-no="2">

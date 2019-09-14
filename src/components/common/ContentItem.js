@@ -77,7 +77,7 @@ class ContentItem extends Component {
     };
 
     _startOpenAnimation = () => {
-        console.log('ContentItem : _startOpenAnimation');
+        // console.log('ContentItem : _startOpenAnimation');
 
         const {onAnimationComplete} = this.props;
 
@@ -87,7 +87,7 @@ class ContentItem extends Component {
     };
 
     _startCloseAnimation = () => {
-        console.log('ContentItem : _startCloseAnimation');
+        // console.log('ContentItem : _startCloseAnimation');
         const {onBackPress, onAnimationComplete} = this.props;
 
         this.animateCharmingExit(this.contentTitleRef, () => {
@@ -186,13 +186,13 @@ class ContentItem extends Component {
     renderEventTypes = () => {
         const {eventCategory, eventTypes} = this.props;
 
-        console.log(eventCategory, eventTypes);
+        // console.log(eventCategory, eventTypes);
 
         const filteredEventTypes = _.filter(eventTypes, item => {
             return _.isEqual(item.eventCategory.id, parseInt(eventCategory));
         });
 
-        console.log(filteredEventTypes);
+        // console.log(filteredEventTypes);
 
         return (
             <div className="container-fluid menu menu--adsila">
@@ -298,7 +298,7 @@ class ContentItem extends Component {
                 </div>
                 <div className="container-fluid">
                     <Fragment>
-                        <Button title={"Register"}/>
+                        <Button title={"Register"} eventID={selectedEvent.id}/>
                     </Fragment>
                     <div className="row" style={{justifyContent: "center"}}>
                         <Countdown timeTillDate={selectedEvent.dateTime}/>

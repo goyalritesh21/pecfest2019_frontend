@@ -365,7 +365,8 @@ a:focus {
 .menu--adsila {
   font-family: 'Play', sans-serif;
   font-size: 1.45em;
-  overflow: auto;
+  overflow: scroll;
+  height: 100vh;
 }
 
 .menu--adsila a {
@@ -419,7 +420,7 @@ a:focus {
 
 
 .container-fluid {
-  
+  height: 100vh;
   overflow: scroll;
 }
 .menu--adsila .menu__item-label {
