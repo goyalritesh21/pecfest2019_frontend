@@ -81,12 +81,13 @@ export const checkRegistered = ({eventID, username}) => (dispatch, getState) => 
     dispatch({type: LOADER_EVENT_CHECK_REGISTERED, payload: true});
     const body = JSON.stringify({eventID, username});
     // console.log(body);
-    axios.get(`${BACKEND_URL}/api/events/register/${eventID}`, tokenConfig(getState))
+    axios.get(`${BACKEND_URL}/events/${eventID}/register/`, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: CHECK_REGISTER,
-                payload: res.data
+                payload: !res.data.response
             });
+            // console.log(eventID, username, res.data.response);
             dispatch({type: LOADER_EVENT_CHECK_REGISTERED, payload: false});
         })
         .catch(error => {

@@ -11,6 +11,7 @@
   transition: all 1s ease;
 }
 .reg-btn-bg.Ocean .reg-btn-group .Coral button span {
+  z-index: -10;
   position: absolute;
   content: '';
   top: 1.5em;
@@ -71,6 +72,13 @@
   text-transform: uppercase;
   font-family: "Lato";
   font-size: 1.3em;
+}
+
+.reg-btn button:disabled {
+  cursor: unset;
+  overflow: visible;
+  opacity: 0.3;
+  z-index: -15;
 }
 .reg-btn button a {
   text-decoration: none;

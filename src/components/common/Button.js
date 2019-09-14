@@ -3,22 +3,28 @@ import * as propTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {checkRegistered, registerEvent} from "../../actions/event";
 import {createMessage} from "../../actions/messages";
+import _ from "lodash";
 
 class Button extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            disabled: this.props.checkRegister || this.props.registered || this.props.eventRegister,
-        }
     }
 
     componentDidMount() {
-        if (this.props.user !== null) {
+        const {user, eventID} = this.props;
+        if (!_.isEmpty(user)) {
+            const {username} = user;
+            this.props.checkRegistered({eventID, username});
+        }
+        //
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(!_.isEqual(prevProps.eventID, this.props.eventID)){
             const {username} = this.props.user;
             const {eventID} = this.props;
             this.props.checkRegistered({eventID, username});
         }
-        //
     }
 
     _onEventRegister = () => {
@@ -34,15 +40,16 @@ class Button extends Component {
 
     render() {
         // console.log(this.props);
-        const {title} = this.props;
+        const {title, registered, checkRegister, eventRegister} = this.props;
+        const disabled = checkRegister || eventRegister || registered;
         return (
             <div className="reg-btn-bg Ocean">
                 <div className="reg-btn-group">
                     <div className="reg-btn Coral">
                         <button
-                            disabled={this.state.disabled}
+                            disabled={disabled}
                             onClick={() => this._onEventRegister()}
-                        >{this.state.disabled ? `${title}ed` : `${title}`}
+                        >{registered ? `${title}ed` : `${title}`}
                             <span className="Coralwave1"/>
                             <span className="Coralwave2"/>
                             <span className="Coralwave3"/>
