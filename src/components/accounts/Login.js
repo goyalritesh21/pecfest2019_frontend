@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {createMessage} from "../../actions/messages";
 import {login} from "../../actions/auth";
-import Loader from "../common/Loader";
 import anime from "animejs";
 
 export class Login extends Component {
@@ -72,7 +71,7 @@ export class Login extends Component {
                     <br/>
                     <form onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="username">PECFEST ID</label>
                             <div className="input-outer">
                                 <input
                                     type="text"

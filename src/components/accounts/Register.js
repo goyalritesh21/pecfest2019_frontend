@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import {register} from "../../actions/auth";
 import {createMessage} from "../../actions/messages";
-import Loader from "../common/Loader";
 import anime from "animejs";
 
 export class Register extends Component {
@@ -95,7 +94,7 @@ export class Register extends Component {
                     <br/>
                     <form autoComplete="off" onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <label>Username</label>
+                            <label>PECFEST ID</label>
                             <div className="input-outer">
                                 <input
                                     type="text"

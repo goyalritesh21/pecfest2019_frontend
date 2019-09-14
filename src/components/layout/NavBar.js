@@ -23,7 +23,7 @@ class Navbar extends Component {
     };
 
     render() {
-        const {isAuthenticated, user} = this.props.auth;
+        const {isAuthenticated /* TODO user*/} = this.props.auth;
         return (
             <ul className={"header-list"} style={{padding: 0}}>
                 {

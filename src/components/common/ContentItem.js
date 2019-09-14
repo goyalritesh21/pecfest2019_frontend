@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {getRandomFloat} from "../../utils/MathUtils";
 import {Ease, Expo, TimelineMax} from "gsap";
 import BezierEasing from "bezier-easing";
@@ -9,6 +9,7 @@ import Charming from "react-charming";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import Countdown from "./CountDownTimer";
+import Button from '../common/Button';
 import moment from "moment";
 
 class ContentItem extends Component {
@@ -293,8 +294,12 @@ class ContentItem extends Component {
                             <div>{letters}</div>
                         )}/>
                     </h2>
+
                 </div>
                 <div className="container-fluid">
+                    <Fragment>
+                        <Button title={"Register"}/>
+                    </Fragment>
                     <div className="row" style={{justifyContent: "center"}}>
                         <Countdown timeTillDate={selectedEvent.dateTime}/>
                     </div>
@@ -303,7 +308,7 @@ class ContentItem extends Component {
                             <h4>Description</h4>
                             <div>
                                 {knowMore.description ?
-                                    selectedEvent.details.split("/n").map((text, index) => (
+                                    selectedEvent.details.split("\n").map((text, index) => (
                                         <p key={index}>{text}</p>
                                     )) :
                                     <p>{selectedEvent.shortDescription}</p>}
@@ -317,16 +322,19 @@ class ContentItem extends Component {
                                 }}>{knowMore.description ? "Know Less..." : "Know More..."}</a>
                             </div>
                         </div>
-                        <div className="Events-item__content-row row">
-                            <h4>Rules</h4>
-                            <div>
-                                <ul style={{listStyleType: "circle"}}>
-                                    {selectedEvent.ruleList.split("/n").map((rule, index) => (
-                                        <li key={index}>{rule}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
+                        {selectedEvent.ruleList.length > 0 ?
+                            <div className="Events-item__content-row row">
+                                <h4>Rules</h4>
+                                <div>
+                                    <ul style={{listStyleType: "circle"}}>
+                                        {selectedEvent.ruleList.split("\n").map((rule, index) => (
+                                            <li key={index}>{rule}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div> :
+                            null
+                        }
                         <div className="Events-item__content-row row">
                             <h4>Venue</h4>
                             <div>

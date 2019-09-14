@@ -219,7 +219,8 @@ a:focus {
 
 .Events-item__titlebar {
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
+  justify-content: flex-start;
   margin: auto 8px;
   padding: 3vh 0;
 }
@@ -523,3 +524,5 @@ a:focus {
     height: 230px !important;
   }
 }
+
+

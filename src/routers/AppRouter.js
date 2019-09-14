@@ -1,6 +1,5 @@
 import React, {lazy, Suspense} from 'react';
 import {Route, Switch, withRouter} from 'react-router-dom';
-import PrivateRoute from "../components/common/PrivateRoute";
 import Loader from '../components/common/Loader';
 import Past from "../components/Pages/Past/Past";
 import Cursor from "../components/common/Cursor";

@@ -1,0 +1,133 @@
+
+@import url("https://fonts.googleapis.com/css?family=Lato:400,100,300,700,100italic,300italic,400italic,700italic,900,900italic");
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,700");
+.reg-btn-bg.Ocean .reg-btn-group .Coral button {
+  color: #fff;
+  overflow: hidden;
+  position: relative;
+  border-radius: 5px;
+  border: 5px solid #fff;
+  background: transparent;
+  transition: all 1s ease;
+}
+.reg-btn-bg.Ocean .reg-btn-group .Coral button span {
+  position: absolute;
+  content: '';
+  top: 1.5em;
+  left: 100%;
+  width: 13.5em;
+  height: 13.5em;
+  margin-left: -10em;
+  border-radius: 42.5%;
+  transform-origin: 50% 50%;
+  transition: all 1s ease, top 1.5s ease;
+}
+.reg-btn-bg.Ocean .reg-btn-group .Coral button .Coralwave1 {
+  background: #ffb733;
+  animation: smallwave 3s infinite linear;
+}
+.reg-btn-bg.Ocean .reg-btn-group .Coral button .Coralwave2 {
+  background: #f97890;
+  animation: smallwave 4s infinite linear;
+}
+.reg-btn-bg.Ocean .reg-btn-group .Coral button .Coralwave3 {
+  background: #4ab3e1;
+  animation: smallwave 5s infinite linear;
+}
+.reg-btn-bg.Ocean .reg-btn-group .Coral button:hover {
+  transition: all 1s ease;
+}
+.reg-btn-bg.Ocean .reg-btn-group .Coral button:hover span {
+  top: 0.5em;
+  transition: all 1s ease, top 1.5s ease;
+}
+.reg-btn-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+}
+@media screen and (max-width: 480px) {
+  .reg-btn-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.reg-btn {
+  display: block;
+}
+button {
+  cursor: pointer;
+  overflow: visible;
+  outline: none;
+  color: #fff;
+  position: relative;
+  letter-spacing: 0.1em;
+  font-weight: 800;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  text-transform: uppercase;
+  font-family: "Lato";
+  font-size: 1.3em;
+}
+button a {
+  text-decoration: none;
+}
+@-moz-keyframes smallwave {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: rotate(180deg) scale(0.95);
+    opacity: 0.25;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.8;
+  }
+}
+@-webkit-keyframes smallwave {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: rotate(180deg) scale(0.95);
+    opacity: 0.25;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.8;
+  }
+}
+@-o-keyframes smallwave {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: rotate(180deg) scale(0.95);
+    opacity: 0.25;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.8;
+  }
+}
+@keyframes smallwave {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: rotate(180deg) scale(0.95);
+    opacity: 0.25;
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    opacity: 0.8;
+  }
+}

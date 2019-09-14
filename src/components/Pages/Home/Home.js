@@ -16,7 +16,7 @@ class Home extends Component {
     }
 
     _redirectToRegister = () => {
-        this.props.history.push("/register");
+        this.props.history.push("/login");
     };
 
     render() {

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { update } from '../../actions/auth';
 import { createMessage } from '../../actions/messages';
-import Loader from '../common/Loader';
 import anime from 'animejs';
 class ExtraDetails extends Component {
     state = {
