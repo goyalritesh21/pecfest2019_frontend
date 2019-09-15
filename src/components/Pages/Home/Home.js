@@ -6,7 +6,8 @@ import {connect} from "react-redux";
 import {fetchBrochure} from "../../../actions/home";
 import {withRouter} from 'react-router';
 import _ from 'lodash';
-import About from '.././AboutUs';
+import About from './AboutUs';
+import TextBox from "../../common/TextBox";
 
 class Home extends Component {
 
@@ -23,18 +24,10 @@ class Home extends Component {
         return (
             <Fragment>
                 <div className={"homePage"}>
-                    <svg className="Home-text" viewBox="0 0 600 150">
-                        <symbol id="s-text">
-                            <text textAnchor="middle" x={"50%"} y={"30%"} dy={".35em"}>
-                                PECFEST' 19
-                            </text>
-                        </symbol>
-                        <use className="Home-text" xlinkHref="#s-text"/>
-                        <use className="Home-text" xlinkHref="#s-text"/>
-                        <use className="Home-text" xlinkHref="#s-text"/>
-                        <use className="Home-text" xlinkHref="#s-text"/>
-                        <use className="Home-text" xlinkHref="#s-text"/>
-                    </svg>
+                    <div style={{marginTop: "64px"}}>
+                        <TextBox text={"PECFEST'19"}/>
+                        <TextBox text={"8th - 10th November"}/>
+                    </div>
 
                     <div className={"flexButtons"}>
                         <div className={"btn1"}
