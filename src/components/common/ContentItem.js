@@ -369,13 +369,17 @@ class ContentItem extends Component {
     };
 
     render() {
-        const {eventCategory} = this.props;
+        const {eventCategory, eventCategories} = this.props;
+
+        const selectedEventCategory = _.find(eventCategories, item => {
+            return _.isEqual(item.id, parseInt(eventCategory));
+        });
 
         return (
             <article className="Events-item Events-item--current">
                 <div className="Events-item__img"
                      style={{
-                         backgroundImage: `url(${eventCategory.coverImage})`,
+                         backgroundImage: `url(${selectedEventCategory.coverImage})`,
                          overflow: 'hidden'
                      }}>
                     {this.renderTitleBar()}
