@@ -19,11 +19,11 @@ class TextBox extends Component {
                             {text}
                         </text>
                     </symbol>
-                    <use className="text-box" xlinkHref={"#" + this.id}/>
-                    <use className="text-box" xlinkHref={"#" + this.id}/>
-                    <use className="text-box" xlinkHref={"#" + this.id}/>
-                    <use className="text-box" xlinkHref={"#" + this.id}/>
-                    <use className="text-box" xlinkHref={"#" + this.id}/>
+                    <use className="text-box__text" xlinkHref={"#" + this.id}/>
+                    <use className="text-box__text" xlinkHref={"#" + this.id}/>
+                    <use className="text-box__text" xlinkHref={"#" + this.id}/>
+                    <use className="text-box__text" xlinkHref={"#" + this.id}/>
+                    <use className="text-box__text" xlinkHref={"#" + this.id}/>
                 </svg>
             </div>
         );
