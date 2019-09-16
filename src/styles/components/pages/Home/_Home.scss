@@ -115,7 +115,7 @@
 }
 
 .tm-block-right {
-  padding: 15px 0 20px 20px;
+  padding: 15px 0 20px 10px;
 }
 
 .tm-img-left {
@@ -148,9 +148,9 @@
   position: relative;
   right: 50px;
   padding: 70px 48px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  // display: -webkit-box;
+  // display: -ms-flexbox;
+  // display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -160,6 +160,7 @@
   margin: 0 40px 0;
   font-size: 2.5rem;
   font-weight: 400;
+  border-bottom: 2px;
 }
 
 .tm-bg-dark {
@@ -343,11 +344,18 @@ textarea {
   }
 }
 
+
 @media (max-width: 540px) {
   .tm-block-brand-inner {
     flex-direction: column;
     padding: 35px;
     right: 30px;
+  }
+  .tm-block-left-2 {
+    top: 0 !important;
+  }
+  .tm-block-right {
+    padding: 0 !important;
   }
 
   .tm-brand-name {
