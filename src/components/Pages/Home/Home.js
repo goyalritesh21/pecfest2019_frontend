@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import Footer from '../../layout/Footer';
-import BackgroundImage from "../../../images/sides.png"
 import * as PropTypes from 'prop-types'
 import {connect} from "react-redux";
 import {fetchBrochure} from "../../../actions/home";
@@ -8,11 +7,12 @@ import {withRouter} from 'react-router';
 import _ from 'lodash';
 import About from './AboutUs';
 import TextBox from "../../common/TextBox";
+import moment from "moment";
+import {getBackgroundImage} from "../../../utils/BackgroundUtils";
 
 class Home extends Component {
-
     componentDidMount() {
-        document.body.style.backgroundImage = `url(${BackgroundImage})`;
+        document.body.style.backgroundImage = `url(${getBackgroundImage(moment().hour())})`;
         this.props.fetchBrochure();
     }
 
