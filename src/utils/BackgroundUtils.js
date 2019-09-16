@@ -15,28 +15,40 @@ export function getBackgroundImage(hourOfDay) {
     console.log(hourOfDay);
     switch (hourOfDay) {
         case 0:
-            return BackgroundImage0;
         case 1:
-            return BackgroundImage1;
+            return BackgroundImage0;
         case 2:
-            return BackgroundImage2;
         case 3:
-            return BackgroundImage3;
+            return BackgroundImage1;
         case 4:
-            return BackgroundImage4;
         case 5:
-            return BackgroundImage5;
+            return BackgroundImage2;
         case 6:
-            return BackgroundImage6;
         case 7:
-            return BackgroundImage7;
+            return BackgroundImage3;
         case 8:
-            return BackgroundImage8;
         case 9:
-            return BackgroundImage9;
+            return BackgroundImage4;
         case 10:
-            return BackgroundImage10;
         case 11:
+            return BackgroundImage5;
+        case 12:
+        case 13:
+            return BackgroundImage6;
+        case 14:
+        case 15:
+            return BackgroundImage7;
+        case 16:
+        case 17:
+            return BackgroundImage8;
+        case 18:
+        case 19:
+            return BackgroundImage9;
+        case 20:
+        case 21:
+            return BackgroundImage10;
+        case 22:
+        case 23:
             return BackgroundImage11;
         default:
             return BackgroundImage6;
