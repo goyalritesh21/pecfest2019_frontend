@@ -1,4 +1,4 @@
-export const BACKEND_URL = `http://127.0.0.1:8000`;
+export const BACKEND_URL = (process.env.NODE_ENV === 'development') ? `http://127.0.0.1:8000` : `https://api.pecfest.in`;
 export const GET_EVENTS_ENDPOINT = `${BACKEND_URL}/api/event/`;
 export const GET_EVENT_CATEGORIES_ENDPOINT = `${BACKEND_URL}/api/event_category/`;
 export const GET_EVENT_TYPES_ENDPOINT = `${BACKEND_URL}/api/event_type/`;
