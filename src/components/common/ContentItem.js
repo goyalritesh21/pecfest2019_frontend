@@ -195,7 +195,7 @@ class ContentItem extends Component {
         // console.log(filteredEventTypes);
 
         return (
-            <div className="container-fluid menu menu--adsila">
+            <div className="menu menu--adsila" >
                 {filteredEventTypes.map(item => (
                     <div className="menu__item"
                          onClick={() => {
