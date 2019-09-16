@@ -83,7 +83,7 @@ class Column extends Component {
     };
 
     _startCloseAnimation = () => {
-        console.log('Column : _startCloseAnimation');
+        // console.log('Column : _startCloseAnimation');
 
         const {onAnimationComplete} = this.props;
 

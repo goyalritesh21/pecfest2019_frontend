@@ -124,7 +124,7 @@ class MenuItem extends Component {
     };
 
     _startCloseAnimation = () => {
-        console.log('Events : _startCloseAnimation');
+        // console.log('Events : _startCloseAnimation');
 
         const {onAnimationComplete} = this.props;
 
