@@ -35,8 +35,8 @@ img {
   --color-bg: #afb6bc;
   --color-link: #252528;
   --color-link-hover: #252528;
-  --color-menu-text: #252528;
-  --color-bg-move: #afb6bc;
+  --color-menu-text: #ffffff;
+  // --color-bg-move: #afb6bc;
   color: var(--color-text);
   background-color: var(--color-bg);
   font-family: fieldwork-hum, sans-serif;
@@ -113,7 +113,7 @@ a:focus {
 .Events-column__img {
   width: 100%;
   display: block;
-  opacity: 0.4;
+  opacity: 0.75;
   background-size: cover;
   background-position: 50% 50%;
   height: 25vw;
@@ -146,7 +146,7 @@ a:focus {
   line-height: 1.1;
   cursor: pointer;
   padding-bottom: 1rem;
-  -webkit-text-stroke: 2px var(--color-menu-text);
+  -webkit-text-stroke: 3.25px var(--color-menu-text);
   text-stroke: 2px var(--color-menu-text);
   -webkit-text-fill-color: transparent;
   text-fill-color: transparent;
