@@ -9,6 +9,8 @@ import About from './AboutUs';
 import TextBox from "../../common/TextBox";
 import moment from "moment";
 import {getBackgroundImage} from "../../../utils/BackgroundUtils";
+import backAboutus from "../../../assets/images/Aboutus/3.jpg";
+
 
 class Home extends Component {
     componentDidMount() {
@@ -61,7 +63,7 @@ class Home extends Component {
                     </div>
                     <Footer/>
                 </div>
-                <section>
+                <section style={{"backgroundColor":"#696969","backgroundImage":`url(${backAboutus})`,"backgroundRepeat":"no-repeat","backgroundSize":"cover"}}>
                     <About/>
                 </section>
             </Fragment>
