@@ -12,10 +12,10 @@
 }
 
 :root {
-  --primary: #78FFCD;
+  --primary: #78ffcd;
   --solid: #fff;
   --btn1-w: 10em;
-  --dot-w: calc(var(--btn1-w) * .2);
+  --dot-w: calc(var(--btn1-w) * 0.2);
   --tr-X: calc(var(--btn1-w) - var(--dot-w));
 }
 
@@ -23,17 +23,17 @@
   box-sizing: border-box;
 }
 
-*:before, *:after {
+*:before,
+*:after {
   box-sizing: border-box;
 }
-
 
 .btn1 {
   position: relative;
   margin: 0 auto;
   width: var(--btn1-w);
   color: var(--primary);
-  border: .15em solid var(--primary);
+  border: 0.15em solid var(--primary);
   border-radius: 5em;
   text-transform: uppercase;
   text-align: center;
@@ -46,7 +46,6 @@
   overflow: auto;
   height: 100vh;
 }
-
 
 // AboutUs styling
 .aboutUsLayout {
@@ -215,11 +214,11 @@
 }
 
 .tm-bg-primary-light {
-  background-color: #cc9999;
+  background-color: #3e78e6;
 }
 
 .tm-bg-primary-dark {
-  background-color: #996666;
+  background-color: #1a63d1;
 }
 
 .tm-bg-secondary {
@@ -343,7 +342,6 @@ textarea {
     max-width: 600px;
   }
 }
-
 
 @media (max-width: 540px) {
   .tm-block-brand-inner {
