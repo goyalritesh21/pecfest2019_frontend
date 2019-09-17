@@ -2,7 +2,7 @@
 
 .text-box {
   width: 100%;
-  height: 64px;
+  height: 40px;
   fill: none;
   stroke-width: 2;
   stroke-linejoin: round;
@@ -10,6 +10,22 @@
   stroke-dashoffset: 0;
   -webkit-animation: stroke 6s infinite linear;
   animation: stroke 6s infinite linear;
+  font: 32px Open Sans, Impact;
+  letter-spacing: 2px;
+}
+
+.text-box-large {
+  width: 100%;
+  height: 80px;
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-dasharray: 70;
+  stroke-dashoffset: 0;
+  -webkit-animation: stroke 6s infinite linear;
+  animation: stroke 6s infinite linear;
+  font: 72px Open Sans, Impact;
+  letter-spacing: 2px;
 }
 
 .text-box__text {
@@ -66,13 +82,17 @@
 
 @media only screen and (max-width: 550px) {
   .text-box {
-    font: 28px Open Sans, Impact;
-    height: 48px;
+    font: 20px Open Sans, Impact;
+    height: 40px;
+  }
+
+  .text-box-large {
+    font: 52px Open Sans, Impact;
+    height: 52px;
   }
 }
 
 svg {
-  font: 48px Open Sans, Impact;
   text-transform: uppercase;
   margin: 0;
 }

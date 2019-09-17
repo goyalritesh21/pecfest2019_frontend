@@ -10,6 +10,8 @@ import {addQuery, ANIMATION_STATE, removeQuery} from "../../../utils/Utils";
 import {connect} from "react-redux";
 import {fetchEvent, fetchEventCategories, fetchEvents, fetchEventTypes} from "../../../actions/events";
 import * as PropTypes from 'prop-types';
+import {getBackgroundImage} from "../../../utils/BackgroundUtils";
+import moment from "moment";
 
 class Events extends Component {
     constructor(props) {
@@ -38,6 +40,10 @@ class Events extends Component {
     }
 
     componentDidMount() {
+        document.body.style.backgroundImage = `url(${getBackgroundImage(
+            moment().hour()
+        )})`;
+
         this.calcWindowSize();
 
         this._initState();

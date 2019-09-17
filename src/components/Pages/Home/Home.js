@@ -28,7 +28,7 @@ class Home extends Component {
       <Fragment>
         <div className={"homePage"}>
           <div style={{ marginTop: "64px" }}>
-            <TextBox text={"PECFEST'19"} />
+            <TextBox text={"PECFEST'19"} large={true}/>
             <TextBox text={"8th - 10th November"} />
           </div>
 

@@ -9,11 +9,13 @@ class TextBox extends Component {
     }
 
     render() {
-        const {text} = this.props;
+        const {text, large} = this.props;
+
+        const textBoxClassName = large ? "text-box-large" : "text-box";
 
         return (
             <div>
-                <svg className="text-box">
+                <svg className={textBoxClassName}>
                     <symbol id={this.id}>
                         <text textAnchor="middle" x={"50%"} y={"50%"} dy={".35em"}>
                             {text}
