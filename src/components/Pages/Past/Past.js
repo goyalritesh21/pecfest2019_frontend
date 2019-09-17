@@ -1,18 +1,22 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import '../../../styles/components/common/_Video.scss'
 import YouTube from 'react-youtube';
 import Controls from "../../common/Controls";
+import TextBox from "../../common/TextBox";
 
 const pecfestVideos = [
     {
+        title: "PECFEST'18",
         year: '2018',
         videoId: 'BWMzcA-nBQU'
     },
     {
+        title: "PECFEST'17",
         year: '2017',
         videoId: '70xeFk-Fazw'
     },
     {
+        title: "PECFEST'16",
         year: '2016',
         videoId: 'kMotFEvb0xc'
     }
@@ -34,14 +38,14 @@ class Past extends Component {
 
     _onEnd = (event) => {
         this.setState((state, props) => {
-            return { selectedVideo: (state.selectedVideo + 1) % pecfestVideos.length };
+            return {selectedVideo: (state.selectedVideo + 1) % pecfestVideos.length};
         });
 
         event.target.playVideo();
     };
 
     render() {
-        const { selectedVideo } = this.state;
+        const {selectedVideo} = this.state;
 
         const videoOptions = {
             playerVars: { // https://developers.google.com/youtube/player_parameters
@@ -65,6 +69,12 @@ class Past extends Component {
                             return {selectedVideo: (pecfestVideos.length + state.selectedVideo - 1) % pecfestVideos.length};
                         });
                     }}/>
+                <div style={{
+                    marginTop: "32px",
+                    zIndex: 100,
+                }}>
+                    <TextBox text={pecfestVideos[selectedVideo].title} large={true}/>
+                </div>
                 <div className="video-background">
                     <div className="video-foreground">
                         <YouTube
