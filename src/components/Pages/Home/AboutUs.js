@@ -28,7 +28,7 @@ class About extends Component {
                   </p>
 
                   <p>
-                    <h3>Pecfest is best beaches</h3>
+                    <h3>The largest fest in North India</h3>
                   </p>
                 </div>
               </header>

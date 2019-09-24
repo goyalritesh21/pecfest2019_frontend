@@ -36,10 +36,8 @@ class Home extends Component {
             <div
               className={"btn1"}
               onClick={() => {
-                if (!_.isEmpty(this.props.brochures)) {
-                  window.open(this.props.brochures[0].brochurePDF, "_blank");
+                  window.open("http://api.pecfest.in/media/pdf/brochure/Brochure.pdf", "_blank");
                   window.focus();
-                }
               }}
             >
               <span>Brochure</span>
@@ -59,10 +57,8 @@ class Home extends Component {
             <div
               className={"btn1"}
               onClick={() => {
-                if (!_.isEmpty(this.props.brochures)) {
                   window.open("https://forms.gle/gWvUa4egFdfmzL4o8", "_blank");
                   window.focus();
-                }
               }}
             >
               <span>Ambassador</span>
