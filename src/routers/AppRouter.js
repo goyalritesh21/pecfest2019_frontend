@@ -25,18 +25,18 @@ const AppRouter = ({location}) => {
                 <Switch location={location}>
                     <Route exact path={"/"} render={props => <Home {...props} {...extractSearchParams(props)} />}/>
                     <Route exact path={"/sponsors"}
-                           render={props => <Sponsors {...props} {...extractSearchParams(props)}/>}/>
+                           render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/megashows"}
-                           render={props => <MegaShows {...props} {...extractSearchParams(props)}/>}/>
+                           render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/events"}
                            render={props => <Events {...props} {...extractSearchParams(props)} />}/>
                     <Route exact path={"/login"}
                            render={props => <LoginPage {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/register"}
                            render={props => <RegisterPage {...props} {...extractSearchParams(props)}/>}/>
-                    <Route exact path={"/team"} render={props => <Team {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/team"} render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/devteam"}
-                           render={props => <DevTeam {...props} {...extractSearchParams(props)}/>}/>
+                           render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/past"} render={props => <Past {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/event/:eventId"}
                            render={props => <Event {...props} {...extractSearchParams(props)}/>}/>

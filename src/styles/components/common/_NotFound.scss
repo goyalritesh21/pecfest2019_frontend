@@ -16,17 +16,17 @@
 }
 
 ._404 {
-  font-size: 220px;
+  font-size: 90px;
   position: relative;
   display: inline-block;
   z-index: 2;
-  height: 250px;
+  height: 130px;
   letter-spacing: 15px;
 }
 
 @media (max-width: 400px) {
   ._404 {
-    font-size: 150px;
+    font-size: 60px;
     height: 180px;
   }
   .c {

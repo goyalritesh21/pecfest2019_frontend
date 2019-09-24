@@ -26,7 +26,7 @@ class App extends Component {
             <Provider store={store}>
                 <AlertProvider template={AlertTemplate} {...alertOptions}>
                     <Router>
-                        {/*<Background/>*/}
+                        <Background/>
                         <div className={"overlay-2"}>
                             <Header/>
                             <Alerts/>
