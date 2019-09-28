@@ -4,7 +4,7 @@
   width: 100%;
   height: 40px;
   fill: none;
-  stroke-width: 2;
+  stroke-width: 0;
   stroke-linejoin: round;
   stroke-dasharray: 70;
   stroke-dashoffset: 0;
@@ -18,7 +18,7 @@
   width: 100%;
   height: 80px;
   fill: none;
-  stroke-width: 2;
+  stroke-width: 3;
   stroke-linejoin: round;
   stroke-dasharray: 70;
   stroke-dashoffset: 0;
@@ -30,9 +30,9 @@
 
 .text-box__text {
   fill: none;
-  stroke-width: 2;
+  stroke-width: 3;
   stroke-linejoin: round;
-  stroke-dasharray: 70;
+  stroke-dasharray: 70 330;
   stroke-dashoffset: 0;
   -webkit-animation: stroke 6s infinite linear;
   animation: stroke 6s infinite linear;
