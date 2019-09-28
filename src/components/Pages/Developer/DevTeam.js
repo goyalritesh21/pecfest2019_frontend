@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import anime from 'animejs';
 import DevCard from '../../common/DevCard';
 import {DevTeam} from '../../../data/DevTeam';
+import {getBackgroundImage} from "../../../utils/BackgroundUtils";
+import moment from "moment";
 
 export default class Team extends Component {
     componentWillUnmount() {
@@ -20,6 +22,9 @@ export default class Team extends Component {
         });
         this.restore = document.body.style.overflow;
         document.body.style.overflow = 'auto';
+        document.body.style.backgroundImage = `url(${getBackgroundImage(
+            moment().hour()
+        )})`;
     }
 
     render() {

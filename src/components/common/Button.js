@@ -6,9 +6,6 @@ import {createMessage} from "../../actions/messages";
 import _ from "lodash";
 
 class Button extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         const {user, eventID} = this.props;

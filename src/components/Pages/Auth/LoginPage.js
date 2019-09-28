@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import Login from '../../accounts/Login';
-import BackgroundImage from "../../../images/sides.png"
+import {getBackgroundImage} from "../../../utils/BackgroundUtils";
+import moment from "moment";
 
 class LoginPage extends Component {
     componentDidMount() {
-        document.body.style.backgroundImage = `url(${BackgroundImage})`;
+        document.body.style.backgroundImage = `url(${getBackgroundImage(
+            moment().hour()
+        )})`;
     }
     render() {
         return (

@@ -5,8 +5,6 @@ import PropTypes from "prop-types";
 import {createMessage} from "../../actions/messages";
 import {login} from "../../actions/auth";
 import anime from "animejs";
-import {getBackgroundImage} from "../../utils/BackgroundUtils";
-import moment from "moment";
 
 export class Login extends Component {
     constructor() {
@@ -35,9 +33,7 @@ export class Login extends Component {
             easing: "easeOutElastic",
             delay: (el, i, l) => i * 200
         });
-        document.body.style.backgroundImage = `url(${getBackgroundImage(
-            moment().hour()
-        )})`;
+
     }
 
     onChange = e => {

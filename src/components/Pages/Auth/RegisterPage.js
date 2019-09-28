@@ -1,10 +1,13 @@
 import React, {Component} from 'react';
 import Register from '../../accounts/Register';
-import BackgroundImage from "../../../images/sides.png"
+import {getBackgroundImage} from "../../../utils/BackgroundUtils";
+import moment from "moment";
 
 class RegisterPage extends Component {
     componentDidMount() {
-        document.body.style.backgroundImage = `url(${BackgroundImage})`;
+        document.body.style.backgroundImage = `url(${getBackgroundImage(
+            moment().hour()
+        )})`;
     }
 
     render() {

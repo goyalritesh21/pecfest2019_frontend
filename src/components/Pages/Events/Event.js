@@ -8,8 +8,9 @@ import Description from "./Description";
 import Loader from "../../common/Loader";
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import anime from 'animejs';
-import BackgroundImage from "../../../images/sides.png";
 import _ from "lodash";
+import {getBackgroundImage} from "../../../utils/BackgroundUtils";
+import moment from "moment";
 
 class Event extends Component {
     state = {
@@ -23,7 +24,9 @@ class Event extends Component {
     };
 
     componentDidMount() {
-        document.body.style.backgroundImage = `url(${BackgroundImage})`;
+        document.body.style.backgroundImage = `url(${getBackgroundImage(
+            moment().hour()
+        )})`;
 
         const {eventId} = this.props.match.params;
         if (!_.isEmpty(eventId)) {

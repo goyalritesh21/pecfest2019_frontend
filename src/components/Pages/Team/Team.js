@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Ritesh from "../../../images/DevTeam/Ritesh.jpg";
 import anime from 'animejs';
+import {getBackgroundImage} from "../../../utils/BackgroundUtils";
+import moment from "moment";
 
 export default class Team extends Component {
 
@@ -28,6 +30,9 @@ export default class Team extends Component {
 
         this.restore = document.body.style.overflow;
         document.body.style.overflow = 'auto';
+        document.body.style.backgroundImage = `url(${getBackgroundImage(
+            moment().hour()
+        )})`;
 
     }
 

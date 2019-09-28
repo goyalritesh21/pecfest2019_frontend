@@ -5,8 +5,6 @@ import PropTypes from "prop-types";
 import {register} from "../../actions/auth";
 import {createMessage} from "../../actions/messages";
 import anime from "animejs";
-import {getBackgroundImage} from "../../utils/BackgroundUtils";
-import moment from "moment";
 
 export class Register extends Component {
     state = {
@@ -25,9 +23,6 @@ export class Register extends Component {
     };
 
     componentDidMount() {
-        document.body.style.backgroundImage = `url(${getBackgroundImage(
-            moment().hour()
-        )})`;
         const timeline = anime.timeline();
         timeline.add({
             targets: ".main, .form-group, #login",

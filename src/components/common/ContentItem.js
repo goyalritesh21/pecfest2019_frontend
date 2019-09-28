@@ -11,7 +11,6 @@ import {faArrowLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import Countdown from "./CountDownTimer";
 import Button from '../common/Button';
 import moment from "moment";
-import {getBackgroundImage} from "../../utils/BackgroundUtils";
 
 class ContentItem extends Component {
     constructor(props) {
