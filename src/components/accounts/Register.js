@@ -57,7 +57,7 @@ export class Register extends Component {
         }
         if (password.length < 8) {
             errors.push(
-                "Password must contain at least 8 or more characters"
+                "Password must contain at least 8 characters"
             );
         }
         if ( password !== password2) {
@@ -94,7 +94,7 @@ export class Register extends Component {
                     <br/>
                     <form autoComplete="off" onSubmit={this.onSubmit}>
                         <div className="form-group">
-                            <label>PECFEST ID</label>
+                            <label>Username</label>
                             <div className="input-outer">
                                 <input
                                     type="text"
@@ -106,6 +106,7 @@ export class Register extends Component {
                                     tabIndex="1"
                                     spellCheck="false"
                                     autoComplete="new-username"
+                                    title={"This will also be your PECFEST ID"}
                                     required
                                 />
                             </div>
@@ -121,6 +122,7 @@ export class Register extends Component {
                                     value={email}
                                     tabIndex="2"
                                     spellCheck="false"
+                                    title={"Please enter valid email"}
                                     autoComplete="new-email"
                                     required
                                 />
@@ -137,6 +139,7 @@ export class Register extends Component {
                                     value={password}
                                     tabIndex="3"
                                     spellCheck="false"
+                                    title={"Password must be 8 characters long."}
                                     autoComplete="new-password"
                                     required
                                 />
@@ -153,6 +156,7 @@ export class Register extends Component {
                                     value={password2}
                                     tabIndex="4"
                                     spellCheck="false"
+                                    title={"Password must be 8 characters long."}
                                     autoComplete="new-password2"
                                     required
                                 />

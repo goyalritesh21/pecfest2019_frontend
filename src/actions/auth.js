@@ -104,7 +104,7 @@ export const register = ({username, email, password}) => dispatch => {
                 type: REGISTER_SUCCESS,
                 payload: res.data
             });
-            dispatch(createMessage({registerSuccess: "User registered successfully"}));
+            dispatch(createMessage({registerSuccess: "User registered successfully \nUsername will be your PECFEST ID."}));
             dispatch({
                 type: LOADER_AUTH_REGISTER,
                 payload: false
