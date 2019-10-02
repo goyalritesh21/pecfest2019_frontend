@@ -18,9 +18,11 @@ class Button extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(!_.isEqual(prevProps.eventID, this.props.eventID)){
-            const {username} = this.props.user;
-            const {eventID} = this.props;
-            this.props.checkRegistered({eventID, username});
+            if (!_.isEmpty(this.props.user)) {
+                const {username} = this.props.user;
+                const {eventID} = this.props;
+                this.props.checkRegistered({eventID, username});
+            }
         }
     }
 

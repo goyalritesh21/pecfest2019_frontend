@@ -195,7 +195,7 @@ class ContentItem extends Component {
         // console.log(filteredEventTypes);
 
         return (
-            <div className="menu menu--adsila" >
+            <div className="menu menu--adsila">
                 {filteredEventTypes.map(item => (
                     <div className="menu__item"
                          onClick={() => {
@@ -285,6 +285,7 @@ class ContentItem extends Component {
         const selectedEvent = _.find(events, item => {
             return _.isEqual(item.id, parseInt(event));
         });
+        // console.log(selectedEvent);
 
         return (
             <div style={{width: "100%"}}>
@@ -307,19 +308,21 @@ class ContentItem extends Component {
                         <div className="Events-item__content-row row">
                             <h4>Description</h4>
                             <div>
-                                {knowMore.description ?
-                                    selectedEvent.details.split("\n").map((text, index) => (
-                                        <p key={index}>{text}</p>
-                                    )) :
-                                    <p>{selectedEvent.shortDescription}</p>}
-                                <a onClick={() => {
-                                    this.setState({
-                                        knowMore: {
-                                            ...knowMore,
-                                            description: !knowMore.description
-                                        }
-                                    });
-                                }}>{knowMore.description ? "Know Less..." : "Know More..."}</a>
+                                <p>
+                                    {knowMore.description ?
+                                        selectedEvent.details.split("\n").map((text, index) => (
+                                            <p key={index}>{text}</p>
+                                        )) :
+                                        <p>{selectedEvent.shortDescription}</p>}
+                                    <a onClick={() => {
+                                        this.setState({
+                                            knowMore: {
+                                                ...knowMore,
+                                                description: !knowMore.description
+                                            }
+                                        });
+                                    }}>{knowMore.description ? "Know Less..." : "Know More..."}</a>
+                                </p>
                             </div>
                         </div>
                         {selectedEvent.ruleList.length > 0 ?
@@ -340,16 +343,35 @@ class ContentItem extends Component {
                             <div>
                                 <ul>
                                     <li><label>Location:</label> {selectedEvent.locations}</li>
-                                    <li><label>Day:</label> {moment(selectedEvent.dateTime).format()}</li>
+                                    <li><label>Day:</label> {moment(selectedEvent.dateTime).format("Do MMM YYYY")}</li>
+                                    <li><label>Time:</label> {moment(selectedEvent.dateTime).format("HH:MM a")}</li>
                                 </ul>
                             </div>
                         </div>
-                        <div className="Events-item__content-row row">
-                            <h4>Prizes</h4>
-                            <div>
-                                <p>{selectedEvent.prize}</p>
-                            </div>
-                        </div>
+                        {!_.isEmpty(selectedEvent.prize) ?
+                            <div className="Events-item__content-row row">
+                                <h4>Prizes</h4>
+                                <div>
+                                    <p>{selectedEvent.prize}</p>
+                                </div>
+                            </div> : null
+                        }
+                        {selectedEvent.coordinators.length > 0 ?
+                            <div className="Events-item__content-row row">
+                                <h4>Co-ordinators</h4>
+                                <div>
+                                    <ul style={{listStyleType: "circle"}}>{selectedEvent.coordinators.map((coordinator, index) => (
+                                        <li key={index}>
+                                            <label>Name:</label> {`${coordinator.first_name} ${coordinator.last_name}`}<br/>
+                                            <label>Contact:</label>
+                                            <a href={`tel:${coordinator.participant.contactNumber}`}>
+                                                {`${coordinator.participant.contactNumber}`}
+                                            </a>
+                                        </li>
+                                    ))}</ul>
+                                </div>
+                            </div> : null
+                        }
                     </div>
                 </div>
             </div>
