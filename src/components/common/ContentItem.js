@@ -335,6 +335,13 @@ class ContentItem extends Component {
                                         ))}
                                     </ul>
                                 </div>
+                                <br/>
+                                {selectedEvent.minTeam < selectedEvent.maxTeam ? <div>
+                                    <label>Minimum Team Size:</label> {selectedEvent.minTeam}
+                                    <br/>
+                                    <label>Maximum Team Size:</label> {selectedEvent.maxTeam}
+                                </div> : null
+                                }
                             </div> :
                             null
                         }
