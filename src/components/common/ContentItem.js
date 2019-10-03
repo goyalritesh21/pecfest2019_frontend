@@ -370,10 +370,14 @@ class ContentItem extends Component {
                                     <ul style={{listStyleType: "circle"}}>{selectedEvent.coordinators.map((coordinator, index) => (
                                         <li key={index}>
                                             <label>Name:</label> {`${coordinator.first_name} ${coordinator.last_name}`}<br/>
-                                            <label>Contact:</label>
-                                            <a href={`tel:${coordinator.participant.contactNumber}`}>
-                                                {`${coordinator.participant.contactNumber}`}
-                                            </a>
+                                            {!_.isEmpty(coordinator.participant) ?
+                                                <Fragment>
+                                                    <label>Contact:</label>
+                                                    <a href={`tel:${coordinator.participant.contactNumber}`}>
+                                                        {`${coordinator.participant.contactNumber}`}
+                                                    </a>
+                                                </Fragment> : null
+                                            }
                                         </li>
                                     ))}</ul>
                                 </div>
