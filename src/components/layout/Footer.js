@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faYoutube, faFacebookSquare, faInstagram} from '@fortawesome/free-brands-svg-icons'
+import {faChevronDown} from '@fortawesome/free-solid-svg-icons';
 
 class Footer extends Component {
     render() {
@@ -19,6 +20,12 @@ class Footer extends Component {
                         <FontAwesomeIcon icon={faInstagram}
                                          size="3x"/>
                     </a>
+                </div>
+                <div className={"flex-center"}>
+                    <FontAwesomeIcon icon={faChevronDown}
+                                     size={"3x"}
+                                     style={{color: "white"}}
+                    />
                 </div>
             </Fragment>
         );
