@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {createMessage} from './messages';
+import  _ from 'lodash';
 
 import {
     AUTH_ERROR,
@@ -109,16 +110,24 @@ export const register = ({username, email, password}) => dispatch => {
                 type: LOADER_AUTH_REGISTER,
                 payload: false
             });
-        }).catch(err => {
-        dispatch(createMessage({registerFail: "User registration failed"}));
-        dispatch({
-            type: REGISTER_FAIL
-        });
-        dispatch({
-            type: LOADER_AUTH_REGISTER,
-            payload: false
-        });
-    })
+        })
+        .catch(err => {
+            console.log(err.response);
+            if(!_.isEmpty(err.response.data) && err.response.data.username.length > 0){
+                const errorMessage = err.response.data.username.join('\n');
+                dispatch(createMessage({registerFail: errorMessage}));
+            }
+            else {
+                dispatch(createMessage({registerFail: "User registration failed"}));
+            }
+            dispatch({
+                type: REGISTER_FAIL
+            });
+            dispatch({
+                type: LOADER_AUTH_REGISTER,
+                payload: false
+            });
+        })
 };
 
 export const update = ({firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender, id, firstTimer}) => (dispatch, getState) => {
