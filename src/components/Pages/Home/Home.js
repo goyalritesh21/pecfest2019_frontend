@@ -24,8 +24,6 @@ class Home extends Component {
     _redirectToRegister = () => {
         this.props.history.push("/register");
     };
-
-<<<<<<< HEAD
     render() {
         return (
             <Fragment>
