@@ -31,6 +31,12 @@ class Home extends Component {
             <TextBox text={"8th - 10th November"} />
           </div>
 
+          <div className="theme">
+            A Tropical Extravaganza
+          </div>
+
+
+
           <div className={"flexButtons"}>
             <div
               className={"btn1"}
@@ -63,9 +69,14 @@ class Home extends Component {
               <span>Ambassador</span>
             </div>
           </div>
-          <Footer />
+          
+          <Footer onClick= {() => this.refs.aboutRef.scrollIntoView({
+            behavior: "smooth",
+            inline: "center"
+          })} />
+
         </div>
-        <section
+        <section ref="aboutRef" id="about"
           style={{
             backgroundColor: "#696969",
             backgroundImage: `url(${backAboutus})`,
@@ -73,7 +84,7 @@ class Home extends Component {
             backgroundSize: "cover"
           }}
         >
-          <About />
+          <About/>
         </section>
       </Fragment>
     );

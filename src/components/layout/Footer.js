@@ -21,10 +21,10 @@ class Footer extends Component {
                                          size="3x"/>
                     </a>
                 </div>
-                <div className={"flex-center"}>
+                <div className={"flex-center"} onClick={this.props.onClick}>
                     <FontAwesomeIcon icon={faChevronDown}
                                      size={"3x"}
-                                     style={{color: "white"}}
+                                     style={{color: "white", cursor: "pointer"}}
                     />
                 </div>
             </Fragment>
