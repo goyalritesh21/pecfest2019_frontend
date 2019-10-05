@@ -17,6 +17,12 @@
 	text-decoration: underline;
 }
 
+.forgot-password p{
+	color:white;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 @media screen and (max-width: 400px) {
 	.input {
 		font-size: 1.2em !important;
@@ -24,6 +30,12 @@
 }
 
 .main a:hover{
+	transition: all 0.5s ease;
+	color: var(--mainColor);
+	text-decoration: underline;
+}
+
+.forgot-password p:hover{
 	transition: all 0.5s ease;
 	color: var(--mainColor);
 	text-decoration: underline;

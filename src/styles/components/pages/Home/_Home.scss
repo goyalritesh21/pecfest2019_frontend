@@ -1,5 +1,6 @@
 /* Main styles */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap');
 
 .flexButtons {
   display: flex;
@@ -28,6 +29,16 @@
   box-sizing: border-box;
 }
 
+.theme {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: 'Kaushan Script', cursive;
+  color: white;
+}
+
 .btn1 {
   position: relative;
   margin: 0 auto;
@@ -40,6 +51,7 @@
   font-size: 1.3em;
   line-height: 2em;
   cursor: pointer;
+  transition: text-decoration 1s ease;
 }
 
 .homePage {
