@@ -113,6 +113,15 @@ export class Login extends Component {
                                     disabled={isLoading.login}>
                                 Login
                             </button>
+                            <br/>
+                            <div className={"forgot-password"}>
+                                <p onClick={() => {
+                                    window.open("https://admin.pecfest.in/admin/portal/password_reset/", "_blank");
+                                    window.focus();
+                                }}>
+                                Forgot Password?
+                            </p>
+                            </div>
                         </div>
                         <p id={"register"}>
                             Don't have an account? <Link to="/register">Register</Link>
