@@ -1,0 +1,48 @@
+body{
+	color: white;
+	background: url(h8.jpg) 50% 50%;
+	background-attachment: fixed;
+	background-size: cover;
+}
+.about__t{
+	margin-top: 30px;
+	font-family: 'Rock Salt', cursive;
+	font-size: 60px;
+	text-align: center;
+}
+.about__a1{
+	display: flex;
+	margin-top: 50px;
+	margin-left: 40px;
+}
+nav ul{
+	display: inline-block;
+	width: 250px;
+}
+nav ul li{
+	list-style: none;
+	margin-left: 50px;
+	padding-top: 10px;
+	font-family: 'Audio Wide', cursive;
+	font-size: 22px;
+}
+nav ul li a{
+	display: block;
+	text-decoration: none;
+	color: white;
+}
+nav ul li a.active,
+nav ul li a:hover{
+	background: white;
+	color: black;
+	transition: 0.5s;
+}
+.about__a2{
+	padding-top: 20px;
+	display: inline-block;
+	width: 800px;
+	font-family: 'Audio Wide', cursive;
+	font-size: 20px;
+	margin-left: 50px;
+	margin-right: 50px;
+}
