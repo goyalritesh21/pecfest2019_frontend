@@ -5,13 +5,15 @@ import PropTypes from "prop-types";
 import {register} from "../../actions/auth";
 import {createMessage} from "../../actions/messages";
 import anime from "animejs";
+import {loadReCaptcha, ReCaptcha} from 'react-recaptcha-google'
 
 export class Register extends Component {
     state = {
         username: "",
         email: "",
         password: "",
-        password2: ""
+        password2: "",
+        disabled: true
     };
 
     static propTypes = {
@@ -28,11 +30,30 @@ export class Register extends Component {
             targets: ".main, .form-group, #login",
             translateY: [100, 0],
             opacity: [0, 1],
-            duration: 1000,
+            duration: 500,
             easing: "easeOutElastic",
             delay: (el, i, l) => i * 200
         });
+        loadReCaptcha();
+        if (this.recaptcha) {
+            // console.log("started, just a second...");
+            this.recaptcha.reset();
+        }
     }
+
+    onLoadRecaptcha = () => {
+        if (this.recaptcha) {
+            this.recaptcha.reset();
+        }
+    };
+
+    verifyCallback = (recaptchaToken) => {
+        // Here you will get the final recaptchaToken!!!
+        // console.log(recaptchaToken, "<= your recaptcha token");
+        this.setState((prevState) => ({
+            disabled: false
+        }))
+    };
 
     onChange = e => {
         const key = e.target.name;
@@ -60,7 +81,7 @@ export class Register extends Component {
                 "Password must contain at least 8 characters"
             );
         }
-        if ( password !== password2) {
+        if (password !== password2) {
             errors.push("Passwords do not match");
         }
         if (errors.length > 0) {
@@ -107,6 +128,7 @@ export class Register extends Component {
                                     spellCheck="false"
                                     autoComplete="new-username"
                                     title={"This will also be your PECFEST ID"}
+                                    placeholder={"Choose your PECFEST ID."}
                                     required
                                 />
                             </div>
@@ -163,9 +185,24 @@ export class Register extends Component {
                             </div>
                         </div>
                         <div className="form-group">
+                            <div className={"input-outer"}>
+                                <ReCaptcha
+                                    ref={(r) => {
+                                        this.recaptcha = r;
+                                    }}
+                                    size="normal"
+                                    render="explicit"
+                                    sitekey="6LcSC7wUAAAAAGpuyaPXinDZGKfMsZpEvqvelrYu"
+                                    onloadCallback={this.onLoadRecaptcha}
+                                    verifyCallback={this.verifyCallback}
+                                />
+                            </div>
+                        </div>
+                        <div className="form-group">
+
                             <button type="submit"
                                     className="btn btn-slide"
-                                    disabled={isLoading.register}
+                                    disabled={isLoading.register || this.state.disabled}
                                     tabIndex="5">
                                 Register
                             </button>
