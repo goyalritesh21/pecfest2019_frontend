@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import Menu from "../../common/Menu";
 import ContentItem from "../../common/ContentItem";
 import _ from "lodash";
@@ -42,7 +42,7 @@ class Events extends Component {
     }
 
     show = () => (this.setState(() => ({
-        hidden: ""
+        hidden: null
     })));
 
     componentWillMount() {
@@ -277,42 +277,42 @@ class Events extends Component {
     };
 
     render() {
-        const {activeTilt, animationState} = this.state;
-        if(this.state.hidden === "hidden"){
-            return (
-                <Loader/>
-            )
-        }
+        const {activeTilt, animationState, hidden} = this.state;
         return (
-            <div className={`Events-main ${this.state.hidden}`}>
-                {this.renderContent()}
-                <div className="Events-content Events-content--first"
-                     ref={this.contentFirstRef}>
-                    <div className="Events-content__move"
-                         ref={this.contentMoveRef}>
-                        <div className="Events-columns"
-                             ref={this.columnWrapperRef}>
-                            {imageColumns.map(column => (
-                                <Column column={column}
-                                        key={column.id}
-                                        animationState={animationState.columns}
-                                        onAnimationComplete={animationState => {
-                                            this.setState((state) => ({
-                                                animationState: {
-                                                    event: state.animationState.event,
-                                                    columns: ANIMATION_STATE['NO_OPS'],
-                                                    menu: state.animationState.menu,
-                                                    content: state.animationState.content,
-                                                }
-                                            }));
-                                        }}
-                                        activeTilt={activeTilt}/>
-                            ))}
+            <Fragment>
+                {
+                    hidden === null ? null : <Loader/>
+                }
+                <div className={`Events-main ${this.state.hidden}`}>
+                    {this.renderContent()}
+                    <div className="Events-content Events-content--first"
+                         ref={this.contentFirstRef}>
+                        <div className="Events-content__move"
+                             ref={this.contentMoveRef}>
+                            <div className="Events-columns"
+                                 ref={this.columnWrapperRef}>
+                                {imageColumns.map(column => (
+                                    <Column column={column}
+                                            key={column.id}
+                                            animationState={animationState.columns}
+                                            onAnimationComplete={animationState => {
+                                                this.setState((state) => ({
+                                                    animationState: {
+                                                        event: state.animationState.event,
+                                                        columns: ANIMATION_STATE['NO_OPS'],
+                                                        menu: state.animationState.menu,
+                                                        content: state.animationState.content,
+                                                    }
+                                                }));
+                                            }}
+                                            activeTilt={activeTilt}/>
+                                ))}
+                            </div>
+                            {this.renderMenu()}
                         </div>
-                        {this.renderMenu()}
                     </div>
                 </div>
-            </div>
+            </Fragment>
         );
     }
 }
@@ -324,9 +324,9 @@ const mapStateToProps = state => ({
 });
 
 Events.propTypes = {
-    eventCategory: PropTypes.number,
-    eventType: PropTypes.number,
-    event: PropTypes.number,
+    eventCategory: PropTypes.string,
+    eventType: PropTypes.string,
+    event: PropTypes.string,
     fetchEvent: PropTypes.func.isRequired,
     fetchEvents: PropTypes.func.isRequired,
     fetchEventCategories: PropTypes.func.isRequired,
