@@ -109,13 +109,13 @@ class ContentItem extends Component {
 
         return (
             <div className="Events-item__titlebar">
-                <a className="Events-item__titlebar-back"
+                <div className="Events-item__titlebar-back"
                    onClick={() => {
                        this.props.onBackPress();
                        this._startCloseAnimation();
                    }}>
                     <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon"/>
-                </a>
+                </div>
                 {!_.isEmpty(selectedEventCategory) && (
                     <a onClick={() => {
                         this.props.onSelectEventCategory();
@@ -196,8 +196,9 @@ class ContentItem extends Component {
 
         return (
             <div className="menu menu--adsila">
-                {filteredEventTypes.map(item => (
+                {filteredEventTypes.map((item, index) => (
                     <div className="menu__item"
+                         key={index}
                          onClick={() => {
                              this.props.onClickEventType(item);
                          }}>
