@@ -16,6 +16,7 @@ const ExtraDetails = lazy(() => import("../components/accounts/ExtraDetails"));
 const NotFound = lazy(() => import("../components/common/NotFound"));
 const Team = lazy(() => import('../components/Pages/Team/Team'));
 const DevTeam = lazy(() => import('../components/Pages/Developer/DevTeam'));
+const Accommodation = lazy(() => import('../components/Pages/Accomodation/Accommodation'));
 
 
 const AppRouter = ({location}) => {
@@ -26,6 +27,8 @@ const AppRouter = ({location}) => {
                     <Route exact path={"/"} render={props => <Home {...props} {...extractSearchParams(props)} />}/>
                     <Route exact path={"/sponsors"}
                            render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/accommodation"}
+                           render={props => <Accommodation {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/megashows"}
                            render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/events"}
