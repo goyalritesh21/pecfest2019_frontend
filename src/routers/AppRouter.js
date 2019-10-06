@@ -1,12 +1,11 @@
 import React, {lazy, Suspense} from 'react';
 import {Route, Switch, withRouter} from 'react-router-dom';
 import Loader from '../components/common/Loader';
-import Past from "../components/Pages/Past/Past";
-import Cursor from "../components/common/Cursor";
 import {extractSearchParams} from "../utils/Utils";
 
 const Home = lazy(() => import('../components/Pages/Home/Home'));
 const Sponsors = lazy(() => import('../components/Pages/Sponsor/Sponsors'));
+const Past = lazy(() => import("../components/Pages/Past/Past"));
 const Events = lazy(() => import('../components/Pages/Events/Events'));
 const LoginPage = lazy(() => import('../components/Pages/Auth/LoginPage'));
 const RegisterPage = lazy(() => import('../components/Pages/Auth/RegisterPage'));
