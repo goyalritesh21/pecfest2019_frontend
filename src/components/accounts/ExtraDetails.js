@@ -31,7 +31,7 @@ class ExtraDetails extends Component {
             targets: '.main, .form-group',
             translateY: [100, 0],
             opacity: [0, 1],
-            duration: 1000,
+            duration: 500,
             easing: 'easeOutElastic',
             delay: (el, i, l) => i * 200
         });

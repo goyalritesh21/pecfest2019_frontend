@@ -48,7 +48,7 @@ const AppRouter = ({location}) => {
                     <Route render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                 </Switch>
             </Suspense>
-            <Cursor/>
+            {/*<Cursor/>*/}
         </div>
 
     );
