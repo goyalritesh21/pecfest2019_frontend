@@ -82,16 +82,19 @@ class Home extends Component {
                     })}/>
 
                 </div>
-                <section ref="aboutRef" id="about"
+                {/*<section ref="aboutRef" id="about"
                          style={{
                              backgroundColor: "#696969",
                              backgroundImage: `url(${backAboutus})`,
                              backgroundRepeat: "no-repeat",
                              backgroundSize: "cover"
                          }}
-                >
+                >*/}
+                <section ref="aboutRef"
+                style ={{position: "relative"}}>
                     <About/>
-                </section>
+                </section> 
+                {/*</section>*/}
             </Fragment>
         );
     }
