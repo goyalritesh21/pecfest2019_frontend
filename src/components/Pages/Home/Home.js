@@ -11,7 +11,7 @@ import TextBox from "../../common/TextBox";
 import moment from "moment";
 import {getBackgroundImage} from "../../../utils/BackgroundUtils";
 import backAboutus from "../../../assets/images/Aboutus/aboutBackground.jpg";
-import pecfestLogo from "../../../images/pecfestLogo80.png";
+import pecfestLogo from "../../../images/pecfestLogo100cropped.png";
 
 class Home extends Component {
     componentDidMount() {
@@ -28,7 +28,7 @@ class Home extends Component {
         return (
             <Fragment>
                 <div className={"homePage"}>
-                    <div style={{ /*marginTop: "64px" */}}>
+                    <div style={{ /*marginTop: "64px"*/ }}>
                         <Image src = { pecfestLogo } className = "img img-responsive" />
                         <TextBox text={"PECFEST'19"} large={true}/>
                         <TextBox text={"8th - 10th November"}/>
