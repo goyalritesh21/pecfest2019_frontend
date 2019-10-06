@@ -4,6 +4,10 @@ export const NavLinks = [
         to: ''
     },
     {
+        name: 'Accommodation',
+        to: 'accommodation'
+    },
+    {
         name: 'Events',
         to: 'events'
     },
@@ -22,9 +26,5 @@ export const NavLinks = [
     {
         name: 'Team',
         to: 'team'
-    },
-    {
-        name: 'Developers',
-        to: 'devteam'
     }
 ];

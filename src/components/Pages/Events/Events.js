@@ -5,13 +5,14 @@ import _ from "lodash";
 import {Ease, Expo, Sine, TimelineMax} from "gsap";
 import BezierEasing from "bezier-easing";
 import Column from "../../common/Column";
-import {imageColumns} from "../../../data/Events";
+import imageColumns from "../../../data/Events";
 import {addQuery, ANIMATION_STATE, removeQuery} from "../../../utils/Utils";
 import {connect} from "react-redux";
 import {fetchEvent, fetchEventCategories, fetchEvents, fetchEventTypes} from "../../../actions/events";
 import * as PropTypes from 'prop-types';
 import {getBackgroundImage} from "../../../utils/BackgroundUtils";
 import moment from "moment";
+import Loader from "../../common/Loader";
 
 class Events extends Component {
     constructor(props) {
@@ -35,8 +36,18 @@ class Events extends Component {
                 columns: ANIMATION_STATE['NO_OPS'],
                 menu: ANIMATION_STATE['NO_OPS'],
                 content: ANIMATION_STATE['NO_OPS'],
-            }
+            },
+            hidden: "hidden"
         };
+    }
+
+    show = () => (this.setState(() => ({
+        hidden: ""
+    })));
+
+    componentWillMount() {
+        let that = this;
+        setTimeout(() => (that.show()), 2000);
     }
 
     componentDidMount() {
@@ -267,9 +278,13 @@ class Events extends Component {
 
     render() {
         const {activeTilt, animationState} = this.state;
-
+        if(this.state.hidden === "hidden"){
+            return (
+                <Loader/>
+            )
+        }
         return (
-            <div className="Events-main">
+            <div className={`Events-main ${this.state.hidden}`}>
                 {this.renderContent()}
                 <div className="Events-content Events-content--first"
                      ref={this.contentFirstRef}>

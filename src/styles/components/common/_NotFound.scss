@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=opensans:500);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400&display=swap');
 
 .NotFound {
   color: #fff;
@@ -21,7 +21,7 @@
   display: inline-block;
   z-index: 2;
   height: 130px;
-  letter-spacing: 15px;
+  letter-spacing: 8px;
 }
 
 @media (max-width: 400px) {
@@ -38,7 +38,7 @@
   text-align: center;
   display: block;
   position: relative;
-  letter-spacing: 12px;
+  letter-spacing: 6px;
   font-size: 4em;
   line-height: 80%;
 }
@@ -47,7 +47,7 @@
   text-align: center;
   display: block;
   position: relative;
-  font-size: 20px;
+  font-size: 30px;
 }
 
 .right {

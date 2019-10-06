@@ -39,8 +39,7 @@ ul {
   transition: 0.5s;
   display: flex;
   flex-direction: row;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .overlay-content {
@@ -50,6 +49,7 @@ ul {
   position: relative;
   top: 10%;
   width: 100%;
+  margin: 0;
   text-align: center;
 }
 :root {
@@ -59,7 +59,7 @@ ul {
   text-transform: uppercase;
   padding: 8px;
   text-decoration: none;
-  font-size: 36px;
+  font-size: 28px;
   color: #0ff;
   display: block;
   transition: background-size 0.3s;

@@ -73,8 +73,8 @@ export class Register extends Component {
         e.preventDefault();
         const {username, email, password, password2} = this.state;
         let errors = [];
-        if (username.length < 4) {
-            errors.push("Invalid username");
+        if (username.length < 4 || username.length >12) {
+            errors.push("Username length must be b/w 4-12");
         }
         if (password.length < 8) {
             errors.push(
@@ -191,10 +191,10 @@ export class Register extends Component {
                                         this.recaptcha = r;
                                     }}
                                     size="normal"
-                                    render="explicit"
+                                    render={"explicit"}
                                     sitekey="6LcSC7wUAAAAAGpuyaPXinDZGKfMsZpEvqvelrYu"
-                                    onloadCallback={this.onLoadRecaptcha}
-                                    verifyCallback={this.verifyCallback}
+                                    onloadCallback={() => (this.onLoadRecaptcha())}
+                                    verifyCallback={() => (this.verifyCallback())}
                                 />
                             </div>
                         </div>

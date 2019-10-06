@@ -114,6 +114,7 @@ a:focus {
   width: 100%;
   display: block;
   opacity: 0.75;
+  transition: opacity 5s linear;
   background-size: cover;
   background-position: 50% 50%;
   height: 25vw;

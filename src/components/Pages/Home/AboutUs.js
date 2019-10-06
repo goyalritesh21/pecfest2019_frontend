@@ -17,12 +17,8 @@ class About extends Component {
                             <header className={"tm-block-brand"}>
                                 <div
                                     className={"tm-bg-primary-dark tm-text-white tm-block-brand-inner"}>
-                                    <p>
-                                        <h1 className={"tm-brand-name"}>PECFEST 19</h1>
-                                    </p>
-                                    <p>
-                                        <h3>The largest fest in North India</h3>
-                                    </p>
+                                    <h1 className={"tm-brand-name"}>PECFEST 19</h1><br/>
+                                    <h3>The largest fest in North India</h3>
                                 </div>
                             </header>
                         </div>
