@@ -27,7 +27,7 @@ const AppRouter = ({location}) => {
                     <Route exact path={"/sponsors"}
                            render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/accommodation"}
-                           render={props => <Accommodation {...props} {...extractSearchParams(props)}/>}/>
+                           render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/megashows"}
                            render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/events"}
