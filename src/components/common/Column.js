@@ -154,7 +154,8 @@ class Column extends Component {
                 {column.images.map((image, index) => (
                     <div className="Events-column__img"
                          key={index}
-                         style={{backgroundImage: `url(${image})`}}/>
+                         style={{backgroundImage: `url(${image})`}}
+                    />
                 ))}
             </div>
         );
