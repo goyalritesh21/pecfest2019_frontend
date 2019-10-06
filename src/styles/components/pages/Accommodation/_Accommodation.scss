@@ -1,9 +1,3 @@
-/*body{*/
-/*	color: white;*/
-/*	background: url(Accommodation.jpg) 50% 50%;*/
-/*	background-attachment: fixed;*/
-/*	background-size: cover;*/
-/*}*/
 .about__t{
   margin-top: 30px;
   font-family: 'Rock Salt', cursive;
@@ -19,8 +13,9 @@
 }
 .about__ul{
   display: inline-block;
-  width: 250px;
+  width: 280px;
 }
+
 .about__li{
   list-style: none;
   margin-left: 50px;
@@ -34,29 +29,77 @@
   color: white;
 }
 .about__li a.active{
-  background: white;
-  color: black;
-  transition: 0.5s all;
+  display: inline-block;
+  background-image: linear-gradient(to right,#fff,#fff);
+  background-position: bottom left;
+  background-repeat: no-repeat;
+  background-size: 100% 5px;
 }
 
-a:hover{
-  text-decoration: none;
-  background: white;
-  color: black;
-  transition: 0.5s all;
-}
 .about__a2{
   padding-top: 20px;
   display: inline-block;
-  width: 800px;
+  width: 100%;
   font-family: 'Audio Wide', cursive;
   font-size: 20px;
   margin-left: 50px;
   margin-right: 50px;
 }
 
-/*.about__li a:hover {*/
-/*	background: white;*/
-/*	color: black;*/
-/*	transition: 0.5s;*/
-/*}*/
+.about__content{
+  display: flex;
+  width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .about__t{
+    margin-top: 50px;
+    font-family: 'Rock Salt', cursive;
+    font-size: 33px;
+    text-align: center;
+    color: white;
+  }
+  .about__a1{
+    margin: 12px;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    -webkit-flex-wrap: wrap;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .about__ul{
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    -webkit-flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .about__li{
+    font-size: 20px;
+    width: 150px;
+    display: inline-block;
+    margin: 0 5px 0 5px;
+    text-decoration: underline;
+  }
+  .about__content{
+    font-size: 20px;
+    display: flex;
+    display: -webkit-flex;
+    display: -moz-flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .about__a2{
+    margin: 25px 15px 0 15px;
+    text-align: justify;
+    font-family: 'Audio Wide', cursive;
+    font-size: 19px;
+  }
+
+}

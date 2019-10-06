@@ -10,7 +10,7 @@ const Events = lazy(() => import('../components/Pages/Events/Events'));
 const LoginPage = lazy(() => import('../components/Pages/Auth/LoginPage'));
 const RegisterPage = lazy(() => import('../components/Pages/Auth/RegisterPage'));
 const MegaShows = lazy(() => import('../components/Pages/MegaShows/MegaShows'));
-const Event = lazy(() => import("../components/Pages/Events/Event"));
+// const Event = lazy(() => import("../components/Pages/Events/Event"));
 const ExtraDetails = lazy(() => import("../components/accounts/ExtraDetails"));
 const NotFound = lazy(() => import("../components/common/NotFound"));
 const Team = lazy(() => import('../components/Pages/Team/Team'));
@@ -40,8 +40,8 @@ const AppRouter = ({location}) => {
                     <Route exact path={"/devteam"}
                            render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/past"} render={props => <Past {...props} {...extractSearchParams(props)}/>}/>
-                    <Route exact path={"/event/:eventId"}
-                           render={props => <Event {...props} {...extractSearchParams(props)}/>}/>
+                    {/*<Route exact path={"/event/:eventId"}*/}
+                    {/*       render={props => <Event {...props} {...extractSearchParams(props)}/>}/>*/}
                     <Route exact path={"/update"}
                            render={props => <ExtraDetails {...props} {...extractSearchParams(props)}/>}/>
                     <Route render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>

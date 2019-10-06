@@ -73,8 +73,8 @@ export class Register extends Component {
         e.preventDefault();
         const {username, email, password, password2} = this.state;
         let errors = [];
-        if (username.length < 4) {
-            errors.push("Invalid username");
+        if (username.length < 4 || username.length >12) {
+            errors.push("Username length must be b/w 4-12");
         }
         if (password.length < 8) {
             errors.push(

@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {logout} from "../../actions/auth";
 import NavBar from './NavBar';
-
+import isMobile from "../../data/Mobile";
 class Header extends Component {
     state = {
         isActive: false,
-        width: "100%"
+        width: isMobile.any() ? "100%" : "30%"
     };
     static propTypes = {
         user: PropTypes.object,
