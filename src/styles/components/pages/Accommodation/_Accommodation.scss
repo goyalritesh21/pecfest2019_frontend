@@ -1,0 +1,62 @@
+/*body{*/
+/*	color: white;*/
+/*	background: url(Accommodation.jpg) 50% 50%;*/
+/*	background-attachment: fixed;*/
+/*	background-size: cover;*/
+/*}*/
+.about__t{
+  margin-top: 30px;
+  font-family: 'Rock Salt', cursive;
+  font-size: 60px;
+  text-align: center;
+  color: white;
+}
+.about__a1{
+  display: flex;
+  margin-top: 50px;
+  margin-left: 40px;
+  color: white;
+}
+.about__ul{
+  display: inline-block;
+  width: 250px;
+}
+.about__li{
+  list-style: none;
+  margin-left: 50px;
+  padding-top: 10px;
+  font-family: 'Audio Wide', cursive;
+  font-size: 22px;
+}
+.about__li a{
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+.about__li a.active{
+  background: white;
+  color: black;
+  transition: 0.5s all;
+}
+
+a:hover{
+  text-decoration: none;
+  background: white;
+  color: black;
+  transition: 0.5s all;
+}
+.about__a2{
+  padding-top: 20px;
+  display: inline-block;
+  width: 800px;
+  font-family: 'Audio Wide', cursive;
+  font-size: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+/*.about__li a:hover {*/
+/*	background: white;*/
+/*	color: black;*/
+/*	transition: 0.5s;*/
+/*}*/

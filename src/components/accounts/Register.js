@@ -191,7 +191,6 @@ export class Register extends Component {
                                         this.recaptcha = r;
                                     }}
                                     size="normal"
-                                    render="explicit"
                                     sitekey="6LcSC7wUAAAAAGpuyaPXinDZGKfMsZpEvqvelrYu"
                                     onloadCallback={this.onLoadRecaptcha}
                                     verifyCallback={this.verifyCallback}
