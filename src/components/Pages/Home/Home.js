@@ -11,6 +11,7 @@ import TextBox from "../../common/TextBox";
 import moment from "moment";
 import {getBackgroundImage} from "../../../utils/BackgroundUtils";
 import backAboutus from "../../../assets/images/Aboutus/aboutBackground.jpg";
+import {theme, about} from '../../../data/Home';
 import pecfestLogo from "../../../images/pecfestLogo100cropped.png";
 
 class Home extends Component {
@@ -27,7 +28,7 @@ class Home extends Component {
     render() {
         return (
             <Fragment>
-                <div className={"homePage"}>
+                <div className={"homePage"} ref={(r) => (this.homeRef = r)}>
                     <div style={{ /*marginTop: "64px"*/ }}>
                         <Image src = { pecfestLogo } className = "img img-responsive" />
                         <TextBox text={"PECFEST'19"} large={true}/>
@@ -76,25 +77,35 @@ class Home extends Component {
                         </div>
                     </div>
 
-                    <Footer onClick={() => this.refs.aboutRef.scrollIntoView({
+                    <Footer onClick={() => this.themeRef.scrollIntoView({
                         behavior: "smooth",
                         inline: "center"
                     })}/>
 
                 </div>
-                {/*<section ref="aboutRef" id="about"
-                         style={{
-                             backgroundColor: "#696969",
-                             backgroundImage: `url(${backAboutus})`,
-                             backgroundRepeat: "no-repeat",
-                             backgroundSize: "cover"
-                         }}
-                >*/}
-                <section ref="aboutRef"
+                <section ref={(r) => (this.themeRef = r)}
                 style ={{position: "relative"}}>
-                    <About/>
-                </section> 
-                {/*</section>*/}
+                    <About
+                        title={"Theme"}
+                        content={theme}
+                        direction={"down"}
+                        onScrollIntoView={() => this.aboutRef.scrollIntoView({
+                            behavior: "smooth",
+                            inline: "center"
+                        })}
+                    />
+                </section>
+                <section ref={(r) => (this.aboutRef = r)}
+                         style ={{position: "relative"}}>
+                    <About
+                        title={"About Us"}
+                        content={about}
+                        direction={"up"}
+                        onScrollIntoView={() => this.homeRef.scrollIntoView({
+                        behavior: "smooth",
+                        inline: "center"
+                    })}/>
+                </section>
             </Fragment>
         );
     }

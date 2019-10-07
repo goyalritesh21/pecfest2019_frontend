@@ -2,6 +2,7 @@ import React, {lazy, Suspense} from 'react';
 import {Route, Switch, withRouter} from 'react-router-dom';
 import Loader from '../components/common/Loader';
 import {extractSearchParams} from "../utils/Utils";
+import EventRegister from "../components/Pages/Events/EventRegister";
 
 const Home = lazy(() => import('../components/Pages/Home/Home'));
 const Sponsors = lazy(() => import('../components/Pages/Sponsor/Sponsors'));
@@ -36,6 +37,8 @@ const AppRouter = ({location}) => {
                            render={props => <LoginPage {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/register"}
                            render={props => <RegisterPage {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/teamRegister/:eventName/:eventID/:minTeam/:maxTeam"}
+                           render={props => <EventRegister {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/team"} render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/devteam"}
                            render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>

@@ -2,7 +2,7 @@ import {
     LOADER_AUTH_LOGIN,
     LOADER_AUTH_LOGOUT,
     LOADER_AUTH_REGISTER, LOADER_AUTH_UPDATE,
-    LOADER_AUTH_USER, LOADER_EVENT_CHECK_REGISTERED, LOADER_EVENT_REGISTER
+    LOADER_AUTH_USER, LOADER_EVENT_CHECK_REGISTERED, LOADER_EVENT_REGISTER, LOADER_TEAM_REGISTER
 } from "../actions/types";
 
 const initialState = {
@@ -67,6 +67,7 @@ export default (state = initialState, action) => {
                     checkRegister: action.payload
                 }
             };
+        case LOADER_TEAM_REGISTER:
         case LOADER_EVENT_REGISTER:
             return {
                 ...state,

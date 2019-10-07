@@ -8,8 +8,8 @@ import {
     EVENT_LOADED,
     EVENT_LOADING,
     EVENT_REGISTER_FAIL,
-    EVENT_REGISTER_SUCCESS, LOADER_EVENT_CHECK_REGISTERED, LOADER_EVENT_REGISTER,
-    SET_EVENT
+    EVENT_REGISTER_SUCCESS, LOADER_EVENT_CHECK_REGISTERED, LOADER_EVENT_REGISTER, LOADER_TEAM_REGISTER,
+    SET_EVENT, TEAM_REGISTER_FAIL, TEAM_REGISTER_SUCCESS
 } from "./types";
 import {tokenConfig} from "./auth";
 
@@ -34,6 +34,48 @@ export const loadEvent = (eventId) => (dispatch) => {
                 type: EVENT_ERROR
             });
         })
+};
+
+export const registerTeam = ({eventID, team}) => (dispatch, getState) => {
+    dispatch({
+        type: LOADER_TEAM_REGISTER,
+        payload: true
+    });
+    const body = JSON.stringify({eventID, team});
+    // console.log(body);
+    // console.log(`${BACKEND_URL}/api/events/register`);
+    axios.post(`${BACKEND_URL}/events/${eventID}/team/`, body, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: TEAM_REGISTER_SUCCESS
+            });
+            dispatch({
+                type: LOADER_TEAM_REGISTER,
+                payload: false
+            });
+            dispatch(createMessage({registerEventSuccess: "Registered Successfully!"}));
+        })
+        .catch(error => {
+            if (error.response.status === 302) {
+                dispatch({
+                    type: TEAM_REGISTER_FAIL
+                });
+                dispatch({
+                    type: LOADER_TEAM_REGISTER,
+                    payload: false
+                });
+                dispatch(createMessage({registerEventFail: "Already Registered!"}));
+            } else {
+                dispatch(createMessage({registerEventFail: "Event Registration failed!"}));
+                dispatch({
+                    type: LOADER_TEAM_REGISTER,
+                    payload: false
+                });
+                dispatch({
+                    type: TEAM_REGISTER_FAIL
+                });
+            }
+        });
 };
 
 export const registerEvent = ({eventID, username}) => (dispatch, getState) => {

@@ -11,6 +11,10 @@ import {faArrowLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import Countdown from "./CountDownTimer";
 import Button from '../common/Button';
 import moment from "moment";
+import {connect} from "react-redux";
+import {checkRegistered, registerEvent} from "../../actions/event";
+import {createMessage} from "../../actions/messages";
+import {withRouter} from "react-router";
 
 class ContentItem extends Component {
     constructor(props) {
@@ -74,6 +78,23 @@ class ContentItem extends Component {
             },
             opacity: 0
         }, 0.01, 0)
+    };
+
+    _onIndividualRegister = (eventID) => {
+        const {username} = this.props.user;
+        this.props.registerEvent({eventID, username});
+    };
+
+    _handleRegister = (selectedEvent) => {
+        if (this.props.user === null) {
+            const loginToRegister = "Login to Register!";
+            this.props.history.push('/login');
+            return this.props.createMessage({loginToRegister});
+        }
+        if(parseInt(selectedEvent.maxTeam) <= 1){
+            return this._onIndividualRegister(selectedEvent.id);
+        }
+        return this.props.history.push(`/teamRegister/${selectedEvent.name}/${selectedEvent.id}/${selectedEvent.minTeam}/${selectedEvent.maxTeam}`);
     };
 
     _startOpenAnimation = () => {
@@ -300,7 +321,12 @@ class ContentItem extends Component {
                 </div>
                 <div className="container-fluid">
                     <Fragment>
-                        <Button title={"Register"} eventID={selectedEvent.id}/>
+                        <Button
+                            title={"Register"}
+                            eventID={selectedEvent.id}
+                            event={selectedEvent}
+                            _onClick={this._handleRegister}
+                        />
                     </Fragment>
                     <div className="row" style={{justifyContent: "center"}}>
                         <Countdown timeTillDate={selectedEvent.dateTime}/>
@@ -413,7 +439,7 @@ class ContentItem extends Component {
             <article className="Events-item Events-item--current">
                 <div className="Events-item__img"
                      style={{
-                         backgroundImage: `url(${selectedEventCategory.coverImage})`,
+                         background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${selectedEventCategory.coverImage})`,
                          overflow: 'hidden'
                      }}>
                     {this.renderTitleBar()}
@@ -431,18 +457,37 @@ ContentItem.protoTypes = {
     eventCategory: PropTypes.number,
     eventType: PropTypes.number,
     event: PropTypes.number,
-
     eventCategories: PropTypes.array.isRequired,
     eventTypes: PropTypes.array.isRequired,
     events: PropTypes.array.isRequired,
-
     onBackPress: PropTypes.func.isRequired,
-
     onSelectEventCategory: PropTypes.func.isRequired,
     onSelectEventType: PropTypes.func.isRequired,
-
     onClickEvents: PropTypes.func.isRequired,
     onClickEventType: PropTypes.func.isRequired,
+    registered: PropTypes.bool.isRequired,
+    checkRegister: PropTypes.bool.isRequired,
+    eventRegister: PropTypes.bool.isRequired,
+    checkRegistered: PropTypes.func.isRequired,
+    registerEvent: PropTypes.func.isRequired,
+    createMessage: PropTypes.func.isRequired,
+    user: PropTypes.object,
 };
 
-export default ContentItem;
+const mapStateToProps = (state) => ({
+    registered: state.event.registered,
+    checkRegistered: state.loaders.isLoading.checkRegistered,
+    eventRegister: state.loaders.isLoading.eventRegister,
+    user: state.auth.user,
+});
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+        {
+            checkRegistered,
+            registerEvent,
+            createMessage}
+        )
+    (ContentItem)
+);
