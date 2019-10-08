@@ -54,28 +54,28 @@ export const registerTeam = ({eventID, teamName, team}) => (dispatch, getState) 
                 payload: false
             });
             dispatch(createMessage({registerEventSuccess: "Registered Successfully!"}));
+            return true;
         })
         .catch(error => {
             if (error.response.status === 302) {
-                dispatch({
-                    type: TEAM_REGISTER_FAIL
-                });
-                dispatch({
-                    type: LOADER_TEAM_REGISTER,
-                    payload: false
-                });
                 dispatch(createMessage({registerEventFail: "Already Registered!"}));
-            } else {
-                dispatch(createMessage({registerEventFail: "Event Registration failed!"}));
-                dispatch({
-                    type: LOADER_TEAM_REGISTER,
-                    payload: false
-                });
-                dispatch({
-                    type: TEAM_REGISTER_FAIL
-                });
             }
+            else if (error.response.status === 404){
+                dispatch(createMessage({registerEventFail: "Team Name not available"}));
+            }
+            else {
+                dispatch(createMessage({registerEventFail: "Event Registration failed!"}));
+
+            }
+            dispatch({
+                type: LOADER_TEAM_REGISTER,
+                payload: false
+            });
+            dispatch({
+                type: TEAM_REGISTER_FAIL
+            });
         });
+    return false;
 };
 
 export const registerEvent = ({eventID, username}) => (dispatch, getState) => {

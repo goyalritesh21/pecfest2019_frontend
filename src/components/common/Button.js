@@ -76,7 +76,7 @@ Button.propTypes = {
 
 const mapStateToProps = (state) => ({
     registered: state.event.registered,
-    checkRegistered: state.loaders.isLoading.checkRegistered,
+    checkRegister: state.loaders.isLoading.checkRegister,
     eventRegister: state.loaders.isLoading.eventRegister,
     user: state.auth.user,
 });

@@ -101,7 +101,9 @@ class EventRegister extends Component {
             teamName,
             team: values
         };
-        this.props.registerTeam(teamObj);
+        if(this.props.registerTeam(teamObj)){
+            this.props.history.goBack();
+        }
     };
 
     render() {
@@ -196,7 +198,7 @@ class EventRegister extends Component {
                             </button>
                             <button type="submit"
                                     className="btn btn-slide"
-                                    disabled={isLoading.update}
+                                    disabled={isLoading.eventRegister}
                                     tabIndex={"9"}>
                                 Register
                             </button>
@@ -215,13 +217,19 @@ EventRegister.propTypes = {
     isAuthenticated: PropTypes.bool,
     createMessage: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
-    isLoading: PropTypes.object.isRequired
+    isLoading: PropTypes.object.isRequired,
+    checkRegister: PropTypes.bool,
+    eventRegister: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
+    registered: state.event.registered,
+    checkRegister: state.loaders.isLoading.checkRegister,
+    eventRegister: state.loaders.isLoading.eventRegister,
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
-    isLoading: state.loaders.isLoading
+    isLoading: state.loaders.isLoading,
+
 });
 
 export default withRouter(
