@@ -61,7 +61,7 @@ export const registerTeam = ({eventID, teamName, team}) => (dispatch, getState) 
                 dispatch(createMessage({registerEventFail: "Already Registered!"}));
             }
             else if (error.response.status === 404){
-                dispatch(createMessage({registerEventFail: "Team Name not available"}));
+                dispatch(createMessage({registerEventFail: "Either Users not available or Team name already in use"}));
             }
             else {
                 dispatch(createMessage({registerEventFail: "Event Registration failed!"}));
