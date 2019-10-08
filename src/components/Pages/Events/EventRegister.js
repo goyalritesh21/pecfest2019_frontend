@@ -36,6 +36,11 @@ class EventRegister extends Component {
                     values: [this.props.user.username]
                 }))
             }
+            if(!_.isEmpty(this.props.isLoading)){
+                if(this.props.registered){
+                    this.props.history.goBack();
+                }
+            }
         }
     }
 
@@ -63,6 +68,15 @@ class EventRegister extends Component {
         if (size <= maxTeam) {
             this.setState((prevState) => ({maxTeam: size, inputs: prevState.inputs.concat(newInput)}));
         }
+        console.log()
+    };
+
+    _getValue = (index1, index2) => {
+        const {values} = this.state;
+        if(!_.isEmpty(values[index1*index2+index2+1])){
+            return values[index1*index2+index2+1].toUpperCase();
+        }
+        return "";
     };
 
     _decreaseSize = (minTeam) => {
@@ -85,7 +99,7 @@ class EventRegister extends Component {
 
     onChange = e => {
         const key = parseInt(e.target.name);
-        const val = e.target.value.toUpperCase();
+        const val = e.target.value.toLowerCase();
         let values = this.state.values;
         values[key] = val;
         this.setState(() => ({values: values}));
@@ -98,18 +112,19 @@ class EventRegister extends Component {
         const {eventID} = this.props.match.params;
         const teamObj = {
             eventID,
-            teamName,
+            teamName: teamName.toLowerCase(),
             team: values
         };
-        if(this.props.registerTeam(teamObj)){
-            this.props.history.goBack();
-        }
+        this.props.registerTeam(teamObj);
+            // console.log("Registered and Redirecting");
+
     };
 
     render() {
         const {teamName, values, inputs} = this.state;
         const {minTeam, maxTeam, eventName} = this.props.match.params;
-        const {isLoading, isAuthenticated} = this.props;
+        const {isLoading, isAuthenticated, registered, checkRegister, eventRegister} = this.props;
+        const disabled = checkRegister || eventRegister || registered;
         if (!isAuthenticated) {
             return <Redirect to="/login" />
         }
@@ -143,6 +158,7 @@ class EventRegister extends Component {
                                         className="form-control input"
                                         name="teamLeader"
                                         onChange={this.onChange}
+                                        readOnly={true}
                                         required
                                         value={values[0].toUpperCase()}
                                         tabIndex={"2"}
@@ -167,7 +183,7 @@ class EventRegister extends Component {
                                                         name={`${index*index2+index2+1}`}
                                                         onChange={this.onChange}
                                                         required
-                                                        value={values[index*index2+index2+1]}
+                                                        value={this._getValue(index, index2)}
                                                         tabIndex={index*index2+index2+3}
                                                         spellCheck="false"
                                                         placeholder={"Enter PECFEST ID"}
@@ -182,7 +198,7 @@ class EventRegister extends Component {
                         <div className="form-group btn-wrap">
                             <button type="button"
                                     className="btn btn-slide"
-                                    disabled={this.state.minTeam === minTeam}
+                                    disabled={_.isEqual(this.state.maxTeam, parseInt(minTeam)) || disabled}
                                     tabIndex={"9"}
                                     onClick={() => (this._decreaseSize(minTeam))}
                             >
@@ -190,7 +206,7 @@ class EventRegister extends Component {
                             </button>
                             <button type="button"
                                     className="btn btn-slide"
-                                    disabled={this.state.maxTeam === maxTeam}
+                                    disabled={_.isEqual(this.state.maxTeam, parseInt(maxTeam)) || disabled}
                                     tabIndex={"9"}
                                     onClick={() => (this._increaseSize(maxTeam))}
                             >
@@ -198,7 +214,7 @@ class EventRegister extends Component {
                             </button>
                             <button type="submit"
                                     className="btn btn-slide"
-                                    disabled={isLoading.eventRegister}
+                                    disabled={disabled}
                                     tabIndex={"9"}>
                                 Register
                             </button>
@@ -220,6 +236,7 @@ EventRegister.propTypes = {
     isLoading: PropTypes.object.isRequired,
     checkRegister: PropTypes.bool,
     eventRegister: PropTypes.bool.isRequired,
+    registered: PropTypes.bool
 };
 
 const mapStateToProps = state => ({

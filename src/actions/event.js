@@ -42,8 +42,6 @@ export const registerTeam = ({eventID, teamName, team}) => (dispatch, getState) 
         payload: true
     });
     const body = JSON.stringify({eventID, teamName, team});
-    // console.log(body);
-    // console.log(`${BACKEND_URL}/api/events/register`);
     axios.post(`${BACKEND_URL}/events/${eventID}/team/`, body, tokenConfig(getState))
         .then(res => {
             dispatch({
@@ -54,7 +52,6 @@ export const registerTeam = ({eventID, teamName, team}) => (dispatch, getState) 
                 payload: false
             });
             dispatch(createMessage({registerEventSuccess: "Registered Successfully!"}));
-            return true;
         })
         .catch(error => {
             if (error.response.status === 302) {
