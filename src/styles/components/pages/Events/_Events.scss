@@ -5,12 +5,12 @@
   margin: 0;
 }
 
-a:focus {
+.Events-item__button button:focus {
   outline: thin dotted;
 }
 
-a:active,
-a:hover {
+.Events-item__button button:active,
+.Events-item__button button:hover {
   outline: 0;
   cursor: pointer;
 }
@@ -49,14 +49,14 @@ img {
   display: none;
 }
 
-a {
+.Events-item__button button {
   text-decoration: none;
   color: var(--color-link);
 
 }
 
-a:hover,
-a:focus {
+.Events-item__button button:hover,
+.Events-item__button button:focus {
   color: var(--color-link-hover);
   outline: 0;
 }
@@ -370,7 +370,7 @@ a:focus {
   height: calc(100vh - 5em);
 }
 
-.menu--adsila a {
+.menu--adsila button {
   color: white;
 }
 
