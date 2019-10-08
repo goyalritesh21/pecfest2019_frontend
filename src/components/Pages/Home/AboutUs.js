@@ -8,15 +8,14 @@ import {faChevronUp, faChevronDown, faArrowLeft, faArrowRight} from "@fortawesom
 class About extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            state1: ''
+        };
     }
 
     componentDidMount() {
         const slideElements = ['.back__slide', '.card__slide', '.content__slide'];
         let inProgress = false;
-        this.state = {
-            state1: ''
-        };
-
         const node = ReactDom.findDOMNode(this);
 
         const goToSlide = (slideElements, index) => {
@@ -104,13 +103,13 @@ class About extends Component {
                                 }
                             </p>
                             <div className="button-wrap">
-                                <a className="button">Learn More &nbsp;
+                                <button className="button">Learn More &nbsp;
 									<FontAwesomeIcon icon={faArrowRight}
-													 size={"0.5x"}
+													 size={"sm"}
 
 									/>
                                     <span className="button__hover"/>
-                                </a>
+                                </button>
                             </div>
                         </div>
                         <div className="content__slide">
@@ -128,13 +127,13 @@ class About extends Component {
                                 }
                             </p>
                             <div className="button-wrap">
-                                <a className="button">
+                                <button className="button">
                                     <FontAwesomeIcon icon={faArrowLeft}
-                                                     size={"0.5x"}
+                                                     size={"sm"}
 
 									/>&nbsp; Back
                                     <span className="button__hover"/>
-                                </a>
+                                </button>
                             </div>
                         </div>
                         <div className="content__ping content__ping--noanimation"/>

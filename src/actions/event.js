@@ -9,7 +9,7 @@ import {
     EVENT_LOADING,
     EVENT_REGISTER_FAIL,
     EVENT_REGISTER_SUCCESS, LOADER_EVENT_CHECK_REGISTERED, LOADER_EVENT_REGISTER, LOADER_TEAM_REGISTER,
-    SET_EVENT, TEAM_REGISTER_FAIL, TEAM_REGISTER_SUCCESS
+    TEAM_REGISTER_FAIL, TEAM_REGISTER_SUCCESS
 } from "./types";
 import {tokenConfig} from "./auth";
 
@@ -36,12 +36,12 @@ export const loadEvent = (eventId) => (dispatch) => {
         })
 };
 
-export const registerTeam = ({eventID, team}) => (dispatch, getState) => {
+export const registerTeam = ({eventID, teamName, team}) => (dispatch, getState) => {
     dispatch({
         type: LOADER_TEAM_REGISTER,
         payload: true
     });
-    const body = JSON.stringify({eventID, team});
+    const body = JSON.stringify({eventID, teamName, team});
     // console.log(body);
     // console.log(`${BACKEND_URL}/api/events/register`);
     axios.post(`${BACKEND_URL}/events/${eventID}/team/`, body, tokenConfig(getState))
@@ -121,9 +121,9 @@ export const registerEvent = ({eventID, username}) => (dispatch, getState) => {
 
 export const checkRegistered = ({eventID, username}) => (dispatch, getState) => {
     dispatch({type: LOADER_EVENT_CHECK_REGISTERED, payload: true});
-    const body = JSON.stringify({eventID, username});
+    // const body = JSON.stringify({eventID, username});
     // console.log(body);
-    axios.get(`${BACKEND_URL}/events/${eventID}/register/`, tokenConfig(getState))
+    axios.get(`${BACKEND_URL}/events/${eventID}/team/`, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: CHECK_REGISTER,

@@ -7,10 +7,6 @@ import _ from "lodash";
 import {withRouter} from "react-router";
 
 class Button extends Component {
-    constructor(props){
-        super(props);
-    }
-
     componentDidMount() {
         const {user, eventID} = this.props;
         if (!_.isEmpty(user)) {
@@ -69,7 +65,7 @@ Button.propTypes = {
     title: propTypes.string.isRequired,
     eventID: propTypes.number.isRequired,
     registered: propTypes.bool.isRequired,
-    checkRegister: propTypes.bool.isRequired,
+    checkRegister: propTypes.bool,
     eventRegister: propTypes.bool.isRequired,
     checkRegistered: propTypes.func.isRequired,
     registerEvent: propTypes.func.isRequired,

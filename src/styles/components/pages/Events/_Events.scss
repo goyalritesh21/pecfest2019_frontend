@@ -301,7 +301,7 @@ a:focus {
   .Events-item__content-container {
     margin: 1.2rem 0 2rem 0;
     height: calc(100vh - 240px);
-    overflow: scroll;
+    //overflow: scroll;
     padding: 0;
   }
 
@@ -380,6 +380,8 @@ a:focus {
 }
 
 .menu--adsila .menu__item-name {
+  background: none;
+  border: none;
   position: relative;
   z-index: 2;
   font-weight: bold;
@@ -419,10 +421,20 @@ a:focus {
   opacity: 0.3;  
 }
 
+.Events-item__button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  //text-decoration: underline;
+  cursor: pointer;
+}
 
 .container-fluid {
-  height: 100vh;
-  overflow: scroll;
+  height: auto;
+  //overflow: scroll;
 }
 .menu--adsila .menu__item-label {
   position: relative;

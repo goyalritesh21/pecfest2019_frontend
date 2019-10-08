@@ -93,25 +93,20 @@ class EventRegister extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        let errors = [];
+        // let errors = [];
         const {values, teamName} = this.state;
-        // if (errors.length > 0) {
-        //     const lastMessage = errors.length > 1 ? " are invalid." : " is invalid.";
-        //     const updateErrorMessage = errors.join(", ") + lastMessage;
-        //     this.props.createMessage({updateErrorMessage});
-        //     return;
-        // }
         const {eventID} = this.props.match.params;
         const teamObj = {
             eventID,
+            teamName,
             team: values
         };
         this.props.registerTeam(teamObj);
     };
 
     render() {
-        const {teamName, values} = this.state;
-        const {minTeam, maxTeam, eventID, eventName} = this.props.match.params;
+        const {teamName, values, inputs} = this.state;
+        const {minTeam, maxTeam, eventName} = this.props.match.params;
         const {isLoading, isAuthenticated} = this.props;
         if (!isAuthenticated) {
             return <Redirect to="/login" />
@@ -122,8 +117,8 @@ class EventRegister extends Component {
                     <h2 className="text-center">{eventName.toUpperCase()}</h2>
                     <br/>
                     <form autoComplete={"off"} onSubmit={this.onSubmit}>
-                        <div className="row">
-                            <div className="form-group col-md-12">
+                        <div className="row row-break">
+                            <div className="form-group col-md-6">
                                 <label>Team Name</label>
                                 <div className="input-outer">
                                     <input
@@ -138,9 +133,7 @@ class EventRegister extends Component {
                                     />
                                 </div>
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="form-group col-md-12">
+                            <div className="form-group col-md-6">
                                 <label>Team Leader</label>
                                 <div className="input-outer">
                                     <input
@@ -158,25 +151,29 @@ class EventRegister extends Component {
                             </div>
                         </div>
                         {
-                            this.state.inputs.map((item, index) => (
-                                <div className="row" key={index+1}>
-                                    <div className="form-group col-md-12">
-                                        <label>Team Member</label>
-                                        <div className="input-outer">
-                                            <input
-                                                ref={item}
-                                                type="text"
-                                                className="form-control input"
-                                                name={`${index+1}`}
-                                                onChange={this.onChange}
-                                                required
-                                                value={values[index+1]}
-                                                tabIndex={index+2}
-                                                spellCheck="false"
-                                                placeholder={"Enter PECFEST ID"}
-                                            />
-                                        </div>
-                                    </div>
+                            _.chunk(inputs, 2).map((group, index) => (
+                                <div className="row row-break" key={index}>
+                                    {
+                                        group.map((item, index2) => (
+                                            <div className="form-group col-md-6" key={index*index2+index2+1}>
+                                                <label>Team Member</label>
+                                                <div className="input-outer">
+                                                    <input
+                                                        ref={item}
+                                                        type="text"
+                                                        className="form-control input"
+                                                        name={`${index*index2+index2+1}`}
+                                                        onChange={this.onChange}
+                                                        required
+                                                        value={values[index*index2+index2+1]}
+                                                        tabIndex={index*index2+index2+3}
+                                                        spellCheck="false"
+                                                        placeholder={"Enter PECFEST ID"}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))
+                                    }
                                 </div>
                             ))
                         }
@@ -218,7 +215,7 @@ EventRegister.propTypes = {
     isAuthenticated: PropTypes.bool,
     createMessage: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
-    isLoading: PropTypes.bool.isRequired
+    isLoading: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -236,6 +233,5 @@ export default withRouter(
             createMessage,
             registerTeam
         }
-    )
-    (EventRegister)
+    )(EventRegister)
 );

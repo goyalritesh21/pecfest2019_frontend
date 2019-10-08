@@ -5,18 +5,18 @@ import {extractSearchParams} from "../utils/Utils";
 import EventRegister from "../components/Pages/Events/EventRegister";
 
 const Home = lazy(() => import('../components/Pages/Home/Home'));
-const Sponsors = lazy(() => import('../components/Pages/Sponsor/Sponsors'));
+// const Sponsors = lazy(() => import('../components/Pages/Sponsor/Sponsors'));
 const Past = lazy(() => import("../components/Pages/Past/Past"));
 const Events = lazy(() => import('../components/Pages/Events/Events'));
 const LoginPage = lazy(() => import('../components/Pages/Auth/LoginPage'));
 const RegisterPage = lazy(() => import('../components/Pages/Auth/RegisterPage'));
-const MegaShows = lazy(() => import('../components/Pages/MegaShows/MegaShows'));
+// const MegaShows = lazy(() => import('../components/Pages/MegaShows/MegaShows'));
 // const Event = lazy(() => import("../components/Pages/Events/Event"));
 const ExtraDetails = lazy(() => import("../components/accounts/ExtraDetails"));
 const NotFound = lazy(() => import("../components/common/NotFound"));
-const Team = lazy(() => import('../components/Pages/Team/Team'));
-const DevTeam = lazy(() => import('../components/Pages/Developer/DevTeam'));
-const Accommodation = lazy(() => import('../components/Pages/Accomodation/Accommodation'));
+// const Team = lazy(() => import('../components/Pages/Team/Team'));
+// const DevTeam = lazy(() => import('../components/Pages/Developer/DevTeam'));
+// const Accommodation = lazy(() => import('../components/Pages/Accomodation/Accommodation'));
 
 
 const AppRouter = ({location}) => {

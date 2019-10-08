@@ -10,7 +10,7 @@ import About from "./AboutUs";
 import TextBox from "../../common/TextBox";
 import moment from "moment";
 import {getBackgroundImage} from "../../../utils/BackgroundUtils";
-import backAboutus from "../../../assets/images/Aboutus/aboutBackground.jpg";
+// import backAboutus from "../../../assets/images/Aboutus/aboutBackground.jpg";
 import {theme, about} from '../../../data/Home';
 import pecfestLogo from "../../../images/pecfestLogo100cropped.png";
 

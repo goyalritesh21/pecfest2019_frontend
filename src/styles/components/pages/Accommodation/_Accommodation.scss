@@ -16,6 +16,17 @@
   width: 280px;
 }
 
+.Accommodation__button {
+  background: none;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  //text-decoration: underline;
+  cursor: pointer;
+}
+
 .about__li{
   list-style: none;
   margin-left: 50px;
@@ -23,14 +34,15 @@
   font-family: 'Audio Wide', cursive;
   font-size: 22px;
 }
-.about__li a{
+.about__li button{
   display: block;
   text-decoration: none;
   color: white;
 }
-.about__li a.active{
-  display: inline-block;
-  background-image: linear-gradient(to right,#fff,#fff);
+.about__li button.active{
+  //display: inline-block;
+  color: #0ff;
+  background-image: linear-gradient(to right,#0ff,#305959);
   background-position: bottom left;
   background-repeat: no-repeat;
   background-size: 100% 5px;

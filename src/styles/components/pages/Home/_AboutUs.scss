@@ -557,6 +557,8 @@ wrap {
   position: relative;
   z-index: 2;
   color: #fff;
+  border-left: none;
+  border-right: none;
   border-top: 0.15rem solid #304ffe;
   border-bottom: 0.15rem solid #7b29ff;
   box-shadow: 0 1rem 2rem rgba(123, 41, 255, 0.2);

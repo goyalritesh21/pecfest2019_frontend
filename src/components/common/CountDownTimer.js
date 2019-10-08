@@ -185,7 +185,7 @@ class Countdown extends React.Component {
 }
 
 Countdown.propTypes = {
-    timeTillDate: PropTypes.object.isRequired,
+    timeTillDate: PropTypes.string.isRequired,
 };
 
 export default withGetScreen(Countdown);
