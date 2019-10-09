@@ -13,13 +13,20 @@ import {getBackgroundImage} from "../../../utils/BackgroundUtils";
 // import backAboutus from "../../../assets/images/Aboutus/aboutBackground.jpg";
 import {theme, about} from '../../../data/Home';
 import pecfestLogo from "../../../images/pecfestLogo100cropped.png";
+import Theme from "./Theme";
 
 class Home extends Component {
     componentDidMount() {
         document.body.style.backgroundImage = `url(${getBackgroundImage(
             moment().hour()
         )})`;
+        this.overflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
         this.props.fetchBrochure();
+    }
+
+    componentWillUnmount() {
+        document.body.style.overflow = this.overflow;
     }
 
     _redirectToRegister = () => {
@@ -28,7 +35,11 @@ class Home extends Component {
     render() {
         return (
             <Fragment>
-                <div className={"homePage"} ref={(r) => (this.homeRef = r)}>
+                <div className={"homePage"} ref={(r) => (this.homeRef = r)}
+                     style={{
+                         overflow: "hidden"
+                     }}
+                >
                     <div style={{ /*marginTop: "64px"*/ }}>
                         <Image src = { pecfestLogo } className = "img img-responsive" />
                         <TextBox text={"PECFEST'19"} large={true}/>
@@ -85,7 +96,7 @@ class Home extends Component {
                 </div>
                 <section ref={(r) => (this.themeRef = r)}
                 style ={{position: "relative"}}>
-                    <About
+                    <Theme
                         title={"Theme"}
                         content={theme}
                         direction={"down"}
