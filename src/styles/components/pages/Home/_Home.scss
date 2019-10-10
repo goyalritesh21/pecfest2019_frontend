@@ -4,7 +4,6 @@
 
 .flexButtons {
   display: flex;
-
   position: absolute;
   bottom: 150px;
   width: 100%;
@@ -64,9 +63,17 @@
   transition: text-decoration 1s ease;
 }
 
+@media all and (max-width: 550px) {
+  .btn1 {
+    margin: 0 5px;
+    font-size: 1em;
+    line-height: 2em;
+  }
+}
+
 .homePage {
   overflow: auto;
-  height: 100vh;
+  height: 100%;
 }
 
 // AboutUs styling

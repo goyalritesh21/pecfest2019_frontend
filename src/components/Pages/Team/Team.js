@@ -1,13 +1,10 @@
 import React, {Component} from 'react';
-// import Ritesh from "../../../images/DevTeam/Ritesh.jpg";
-// import anime from 'animejs';
 import {convenor, pecfestTeam, coco} from '../../../data/PecfestTeam';
 import {getBackgroundImage} from "../../../utils/BackgroundUtils";
 import moment from "moment";
 import * as PropTypes from 'prop-types';
 import _ from 'lodash';
 import TextBox from "../../common/TextBox";
-import Loader from "../../common/Loader";
 
 class TeamCard extends Component {
     constructor(props) {
