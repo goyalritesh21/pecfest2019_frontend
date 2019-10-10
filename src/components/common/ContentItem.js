@@ -11,6 +11,10 @@ import {faArrowLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import Countdown from "./CountDownTimer";
 import Button from '../common/Button';
 import moment from "moment";
+import {connect} from "react-redux";
+import {checkRegistered, registerEvent, registerTeam} from "../../actions/event";
+import {createMessage} from "../../actions/messages";
+import {withRouter} from "react-router";
 
 class ContentItem extends Component {
     constructor(props) {
@@ -76,6 +80,28 @@ class ContentItem extends Component {
         }, 0.01, 0)
     };
 
+    _onIndividualRegister = (eventID) => {
+        const {username} = this.props.user;
+        const teamObj = {
+            eventID,
+            teamName: username,
+            team: [username]
+        };
+        this.props.registerTeam(teamObj);
+    };
+
+    _handleRegister = (selectedEvent) => {
+        if (this.props.user === null) {
+            const loginToRegister = "Login to Register!";
+            this.props.history.push('/login');
+            return this.props.createMessage({loginToRegister});
+        }
+        if(parseInt(selectedEvent.maxTeam) <= 1){
+            return this._onIndividualRegister(selectedEvent.id);
+        }
+        return this.props.history.push(`/teamRegister/${selectedEvent.name}/${selectedEvent.id}/${selectedEvent.minTeam}/${selectedEvent.maxTeam}`);
+    };
+
     _startOpenAnimation = () => {
         // console.log('ContentItem : _startOpenAnimation');
 
@@ -117,7 +143,9 @@ class ContentItem extends Component {
                     <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon"/>
                 </div>
                 {!_.isEmpty(selectedEventCategory) && (
-                    <a onClick={() => {
+                    <button
+                        className={"Events-item__button"}
+                        onClick={() => {
                         this.props.onSelectEventCategory();
                     }}>
                         <h3 className="Events-item__titlebar-title"
@@ -126,7 +154,7 @@ class ContentItem extends Component {
                                 <div ref={this.lettersRef}>{letters}</div>
                             )}/>
                         </h3>
-                    </a>
+                    </button>
                 )}
                 {!_.isEmpty(selectedEventType) && (
                     <div style={{margin: "auto 12px"}}>
@@ -134,7 +162,9 @@ class ContentItem extends Component {
                     </div>
                 )}
                 {!_.isEmpty(selectedEventType) && (
-                    <a onClick={() => {
+                    <button
+                        className={"Events-item__button"}
+                        onClick={() => {
                         this.props.onSelectEventType();
                     }}>
                         <h3 className="Events-item__titlebar-title">
@@ -142,7 +172,7 @@ class ContentItem extends Component {
                                 <div>{letters}</div>
                             )}/>
                         </h3>
-                    </a>
+                    </button>
                 )}
             </div>
         );
@@ -166,7 +196,7 @@ class ContentItem extends Component {
                          onClick={() => {
                              this.props.onClickEvents(item);
                          }}>
-                        <a
+                        <button
                             className="menu__item-name"
                             style={_.isEqual(item.id, parseInt(event)) ? selectedEventStyle : {}}>
                             {item.name}
@@ -176,7 +206,7 @@ class ContentItem extends Component {
                                     style={{backgroundColor: color}}/> :
                                 []
                             }
-                        </a>
+                        </button>
                     </div>
                 ))}
             </div>
@@ -202,7 +232,7 @@ class ContentItem extends Component {
                          onClick={() => {
                              this.props.onClickEventType(item);
                          }}>
-                        <a className="menu__item-name" key={item.id}>{item.name}</a>
+                        <button className="menu__item-name" key={item.id}>{item.name}</button>
                     </div>
                 ))}
             </div>
@@ -289,7 +319,7 @@ class ContentItem extends Component {
         // console.log(selectedEvent);
 
         return (
-            <div style={{width: "100%"}}>
+            <div style={{width: "100%", overflow: "scroll"}}>
                 <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
                     <h2 className="Events-item__titlebar-title">
                         <Charming letters={selectedEvent.name} render={(letters) => (
@@ -300,7 +330,12 @@ class ContentItem extends Component {
                 </div>
                 <div className="container-fluid">
                     <Fragment>
-                        <Button title={"Register"} eventID={selectedEvent.id}/>
+                        <Button
+                            title={"Register"}
+                            eventID={selectedEvent.id}
+                            event={selectedEvent}
+                            _onClick={this._handleRegister}
+                        />
                     </Fragment>
                     <div className="row" style={{justifyContent: "center"}}>
                         <Countdown timeTillDate={selectedEvent.dateTime}/>
@@ -309,21 +344,23 @@ class ContentItem extends Component {
                         <div className="Events-item__content-row row">
                             <h4>Description</h4>
                             <div>
-                                <p>
+                                <div>
                                     {knowMore.description ?
                                         selectedEvent.details.split("\n").map((text, index) => (
                                             <p key={index}>{text}</p>
                                         )) :
                                         <p>{selectedEvent.shortDescription}</p>}
-                                    <a onClick={() => {
+                                    <button
+                                        className={"Events-item__button"}
+                                        onClick={() => {
                                         this.setState({
                                             knowMore: {
                                                 ...knowMore,
                                                 description: !knowMore.description
                                             }
                                         });
-                                    }}>{knowMore.description ? "Know Less..." : "Know More..."}</a>
-                                </p>
+                                    }}>{knowMore.description ? "Know Less..." : "Know More..."}</button>
+                                </div>
                             </div>
                         </div>
                         {selectedEvent.ruleList.length > 0 ?
@@ -413,7 +450,7 @@ class ContentItem extends Component {
             <article className="Events-item Events-item--current">
                 <div className="Events-item__img"
                      style={{
-                         backgroundImage: `url(${selectedEventCategory.coverImage})`,
+                         background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${selectedEventCategory.coverImage})`,
                          overflow: 'hidden'
                      }}>
                     {this.renderTitleBar()}
@@ -431,18 +468,39 @@ ContentItem.protoTypes = {
     eventCategory: PropTypes.number,
     eventType: PropTypes.number,
     event: PropTypes.number,
-
     eventCategories: PropTypes.array.isRequired,
     eventTypes: PropTypes.array.isRequired,
     events: PropTypes.array.isRequired,
-
     onBackPress: PropTypes.func.isRequired,
-
     onSelectEventCategory: PropTypes.func.isRequired,
     onSelectEventType: PropTypes.func.isRequired,
-
     onClickEvents: PropTypes.func.isRequired,
     onClickEventType: PropTypes.func.isRequired,
+    registered: PropTypes.bool.isRequired,
+    checkRegister: PropTypes.bool.isRequired,
+    eventRegister: PropTypes.bool.isRequired,
+    checkRegistered: PropTypes.func.isRequired,
+    registerEvent: PropTypes.func.isRequired,
+    registerTeam: PropTypes.func.isRequired,
+    createMessage: PropTypes.func.isRequired,
+    user: PropTypes.object,
 };
 
-export default ContentItem;
+const mapStateToProps = (state) => ({
+    registered: state.event.registered,
+    checkRegistered: state.loaders.isLoading.checkRegistered,
+    eventRegister: state.loaders.isLoading.eventRegister,
+    user: state.auth.user,
+});
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+        {
+            checkRegistered,
+            registerEvent,
+            registerTeam,
+            createMessage
+        }
+        )(ContentItem)
+);

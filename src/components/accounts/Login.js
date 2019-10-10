@@ -19,7 +19,7 @@ export class Login extends Component {
         login: PropTypes.func.isRequired,
         isAuthenticated: PropTypes.bool,
         user: PropTypes.object,
-        isLoading: PropTypes.bool.isRequired,
+        isLoading: PropTypes.object.isRequired,
         createMessage: PropTypes.func.isRequired
     };
 

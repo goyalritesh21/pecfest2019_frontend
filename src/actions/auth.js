@@ -15,7 +15,7 @@ import {
     USER_LOADED,
     LOADER_AUTH_REGISTER,
     LOADER_AUTH_LOGIN,
-    LOADER_AUTH_LOGOUT, LOADER_AUTH_UPDATE
+    LOADER_AUTH_LOGOUT, LOADER_AUTH_UPDATE, CLEAR_EVENT
 } from './types';
 
 import {
@@ -182,6 +182,9 @@ export const logout = () => (dispatch, getState) => {
         .then(res => {
             dispatch({
                 type: LOGOUT_SUCCESS
+            });
+            dispatch({
+                type: CLEAR_EVENT
             });
             dispatch(createMessage({logoutSuccess: "User logout successful"}));
             dispatch({

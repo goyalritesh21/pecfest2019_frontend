@@ -2,7 +2,6 @@ import React, {Component} from "react";
 import BackgroundImage from "../../../images/Accommodation.jpg";
 import General from "./General";
 import Avail from "./Avail";
-import Cl from "./Cl";
 import Charges from "./Charges";
 import Privileges from "./Privileges";
 import FAQs from "./FAQs";
@@ -74,10 +73,11 @@ class Accommodation extends Component {
                                 <div
                                     key={index}
                                     className={"about__li"}
-                                ><a
+                                ><button
+                                    className={"Accommodation__button"}
                                     ref={(r) => this.myRefs[index] = r}
                                     onClick={() => this.activateLink(index)}
-                                >{item.label}</a></div>
+                                >{item.label}</button></div>
                             ))
                         }
                     </div>

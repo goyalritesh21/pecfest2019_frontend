@@ -4,7 +4,7 @@ import {
     EVENT_LOADING,
     EVENT_REGISTER_SUCCESS,
     EVENT_REGISTER_FAIL,
-    SET_EVENT, CLEAR_EVENT, CHECK_REGISTER
+    SET_EVENT, CLEAR_EVENT, CHECK_REGISTER, TEAM_REGISTER_SUCCESS, TEAM_REGISTER_FAIL
 } from "../actions/types";
 
 const initialState = {
@@ -38,14 +38,17 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 eventLoading: false,
-                event: null
+                event: null,
+                registered: false
             };
+        case TEAM_REGISTER_SUCCESS:
         case EVENT_REGISTER_SUCCESS:
             return {
                 ...state,
                 registered: true,
                 eventLoading: false
             };
+        case TEAM_REGISTER_FAIL:
         case EVENT_REGISTER_FAIL:
             return {
                 ...state,

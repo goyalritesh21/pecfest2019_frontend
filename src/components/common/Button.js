@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import {checkRegistered, registerEvent} from "../../actions/event";
 import {createMessage} from "../../actions/messages";
 import _ from "lodash";
+import {withRouter} from "react-router";
 
 class Button extends Component {
-
     componentDidMount() {
         const {user, eventID} = this.props;
         if (!_.isEmpty(user)) {
@@ -30,6 +30,7 @@ class Button extends Component {
         // console.log("Clicked");
         if (this.props.user === null) {
             const loginToRegister = "Login to Register!";
+            this.props.history.push('/login');
             return this.props.createMessage({loginToRegister});
         }
         const {username} = this.props.user;
@@ -39,7 +40,7 @@ class Button extends Component {
 
     render() {
         // console.log(this.props);
-        const {title, registered, checkRegister, eventRegister} = this.props;
+        const {title, registered, checkRegister, eventRegister, event} = this.props;
         const disabled = checkRegister || eventRegister || registered;
         return (
             <div className="reg-btn-bg Ocean">
@@ -47,7 +48,7 @@ class Button extends Component {
                     <div className="reg-btn Coral">
                         <button
                             disabled={disabled}
-                            onClick={() => this._onEventRegister()}
+                            onClick={() => this.props._onClick(event)}
                         >{registered ? `${title}ed` : `${title}`}
                             <span className="Coralwave1"/>
                             <span className="Coralwave2"/>
@@ -64,19 +65,20 @@ Button.propTypes = {
     title: propTypes.string.isRequired,
     eventID: propTypes.number.isRequired,
     registered: propTypes.bool.isRequired,
-    checkRegister: propTypes.bool.isRequired,
+    checkRegister: propTypes.bool,
     eventRegister: propTypes.bool.isRequired,
     checkRegistered: propTypes.func.isRequired,
     registerEvent: propTypes.func.isRequired,
     createMessage: propTypes.func.isRequired,
     user: propTypes.object,
+    event: propTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
     registered: state.event.registered,
-    checkRegistered: state.loaders.isLoading.checkRegistered,
+    checkRegister: state.loaders.isLoading.checkRegister,
     eventRegister: state.loaders.isLoading.eventRegister,
     user: state.auth.user,
 });
 
-export default connect(mapStateToProps, {checkRegistered, registerEvent, createMessage})(Button);
+export default withRouter(connect(mapStateToProps, {checkRegistered, registerEvent, createMessage})(Button));

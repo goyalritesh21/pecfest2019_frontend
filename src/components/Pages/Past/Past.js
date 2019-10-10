@@ -8,7 +8,7 @@ const pecfestVideos = [
     {
         title: "PECFEST'18",
         year: '2018',
-        videoId: 'BWMzcA-nBQU'
+        videoId: 'SjQwQXcDgKg'
     },
     {
         title: "PECFEST'17",
@@ -50,7 +50,7 @@ class Past extends Component {
         const videoOptions = {
             playerVars: { // https://developers.google.com/youtube/player_parameters
                 autoplay: 1,
-                controls: 0,
+                controls: 1,
                 rel: 0,
                 showinfo: 0
             }

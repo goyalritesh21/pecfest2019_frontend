@@ -5,12 +5,12 @@
   margin: 0;
 }
 
-a:focus {
+.Events-item__button button:focus {
   outline: thin dotted;
 }
 
-a:active,
-a:hover {
+.Events-item__button button:active,
+.Events-item__button button:hover {
   outline: 0;
   cursor: pointer;
 }
@@ -49,14 +49,14 @@ img {
   display: none;
 }
 
-a {
+.Events-item__button button {
   text-decoration: none;
   color: var(--color-link);
 
 }
 
-a:hover,
-a:focus {
+.Events-item__button button:hover,
+.Events-item__button button:focus {
   color: var(--color-link-hover);
   outline: 0;
 }
@@ -182,7 +182,7 @@ a:focus {
   flex: none;
   background-size: cover;
   background-position: 50% 25%;
-  opacity: 0.4;
+  //opacity: 0.4;
 }
 
 .Events-item__content {
@@ -301,7 +301,7 @@ a:focus {
   .Events-item__content-container {
     margin: 1.2rem 0 2rem 0;
     height: calc(100vh - 240px);
-    overflow: scroll;
+    //overflow: scroll;
     padding: 0;
   }
 
@@ -370,7 +370,7 @@ a:focus {
   height: calc(100vh - 5em);
 }
 
-.menu--adsila a {
+.menu--adsila button {
   color: white;
 }
 
@@ -380,6 +380,8 @@ a:focus {
 }
 
 .menu--adsila .menu__item-name {
+  background: none;
+  border: none;
   position: relative;
   z-index: 2;
   font-weight: bold;
@@ -419,10 +421,20 @@ a:focus {
   opacity: 0.3;  
 }
 
+.Events-item__button {
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  //text-decoration: underline;
+  cursor: pointer;
+}
 
 .container-fluid {
-  height: 100vh;
-  overflow: scroll;
+  height: auto;
+  //overflow: scroll;
 }
 .menu--adsila .menu__item-label {
   position: relative;

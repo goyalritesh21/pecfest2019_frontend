@@ -10,15 +10,23 @@ import About from "./AboutUs";
 import TextBox from "../../common/TextBox";
 import moment from "moment";
 import {getBackgroundImage} from "../../../utils/BackgroundUtils";
-import backAboutus from "../../../assets/images/Aboutus/aboutBackground.jpg";
+// import backAboutus from "../../../assets/images/Aboutus/aboutBackground.jpg";
+import {theme, about} from '../../../data/Home';
 import pecfestLogo from "../../../images/pecfestLogo100cropped.png";
+import Theme from "./Theme";
 
 class Home extends Component {
     componentDidMount() {
         document.body.style.backgroundImage = `url(${getBackgroundImage(
             moment().hour()
         )})`;
+        this.overflow = document.body.style.overflow;
+        document.body.style.overflow = "hidden";
         this.props.fetchBrochure();
+    }
+
+    componentWillUnmount() {
+        document.body.style.overflow = this.overflow;
     }
 
     _redirectToRegister = () => {
@@ -27,7 +35,11 @@ class Home extends Component {
     render() {
         return (
             <Fragment>
-                <div className={"homePage"}>
+                <div className={"homePage"} ref={(r) => (this.homeRef = r)}
+                     style={{
+                         overflow: "hidden"
+                     }}
+                >
                     <div style={{ /*marginTop: "64px"*/ }}>
                         <Image src = { pecfestLogo } className = "img img-responsive" />
                         <TextBox text={"PECFEST'19"} large={true}/>
@@ -76,21 +88,34 @@ class Home extends Component {
                         </div>
                     </div>
 
-                    <Footer onClick={() => this.refs.aboutRef.scrollIntoView({
+                    <Footer onClick={() => this.themeRef.scrollIntoView({
                         behavior: "smooth",
                         inline: "center"
                     })}/>
 
                 </div>
-                <section ref="aboutRef" id="about"
-                         style={{
-                             backgroundColor: "#696969",
-                             backgroundImage: `url(${backAboutus})`,
-                             backgroundRepeat: "no-repeat",
-                             backgroundSize: "cover"
-                         }}
-                >
-                    <About/>
+                <section ref={(r) => (this.themeRef = r)}
+                style ={{position: "relative"}}>
+                    <Theme
+                        title={"Theme"}
+                        content={theme}
+                        direction={"down"}
+                        onScrollIntoView={() => this.aboutRef.scrollIntoView({
+                            behavior: "smooth",
+                            inline: "center"
+                        })}
+                    />
+                </section>
+                <section ref={(r) => (this.aboutRef = r)}
+                         style ={{position: "relative"}}>
+                    <About
+                        title={"About Us"}
+                        content={about}
+                        direction={"up"}
+                        onScrollIntoView={() => this.homeRef.scrollIntoView({
+                        behavior: "smooth",
+                        inline: "center"
+                    })}/>
                 </section>
             </Fragment>
         );

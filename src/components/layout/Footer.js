@@ -8,7 +8,7 @@ class Footer extends Component {
         return (
             <Fragment>
                 <div className={"flex-center social-networks bounce"}>
-                    <a href={"https://www.youtube.com/watch?v=BWMzcA-nBQU"} target={"_blank"} className={"my-youtube"}>
+                    <a href={"https://www.youtube.com/watch?v=SjQwQXcDgKg"} target={"_blank"} className={"my-youtube"}>
                         <FontAwesomeIcon icon={faYoutube}
                                          size="3x"/>
                     </a>

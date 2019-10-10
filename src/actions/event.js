@@ -8,8 +8,8 @@ import {
     EVENT_LOADED,
     EVENT_LOADING,
     EVENT_REGISTER_FAIL,
-    EVENT_REGISTER_SUCCESS, LOADER_EVENT_CHECK_REGISTERED, LOADER_EVENT_REGISTER,
-    SET_EVENT
+    EVENT_REGISTER_SUCCESS, LOADER_EVENT_CHECK_REGISTERED, LOADER_EVENT_REGISTER, LOADER_TEAM_REGISTER,
+    TEAM_REGISTER_FAIL, TEAM_REGISTER_SUCCESS
 } from "./types";
 import {tokenConfig} from "./auth";
 
@@ -34,6 +34,45 @@ export const loadEvent = (eventId) => (dispatch) => {
                 type: EVENT_ERROR
             });
         })
+};
+
+export const registerTeam = ({eventID, teamName, team}) => (dispatch, getState) => {
+    dispatch({
+        type: LOADER_TEAM_REGISTER,
+        payload: true
+    });
+    const body = JSON.stringify({eventID, teamName, team});
+    axios.post(`${BACKEND_URL}/events/${eventID}/team/`, body, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: TEAM_REGISTER_SUCCESS
+            });
+            dispatch({
+                type: LOADER_TEAM_REGISTER,
+                payload: false
+            });
+            dispatch(createMessage({registerEventSuccess: "Registered Successfully!"}));
+        })
+        .catch(error => {
+            if (error.response.status === 302) {
+                dispatch(createMessage({registerEventFail: "Already Registered!"}));
+            }
+            else if (error.response.status === 404){
+                dispatch(createMessage({registerEventFail: "Either Users not available or Team name already in use"}));
+            }
+            else {
+                dispatch(createMessage({registerEventFail: "Event Registration failed!"}));
+
+            }
+            dispatch({
+                type: LOADER_TEAM_REGISTER,
+                payload: false
+            });
+            dispatch({
+                type: TEAM_REGISTER_FAIL
+            });
+        });
+    return false;
 };
 
 export const registerEvent = ({eventID, username}) => (dispatch, getState) => {
@@ -79,9 +118,9 @@ export const registerEvent = ({eventID, username}) => (dispatch, getState) => {
 
 export const checkRegistered = ({eventID, username}) => (dispatch, getState) => {
     dispatch({type: LOADER_EVENT_CHECK_REGISTERED, payload: true});
-    const body = JSON.stringify({eventID, username});
+    // const body = JSON.stringify({eventID, username});
     // console.log(body);
-    axios.get(`${BACKEND_URL}/events/${eventID}/register/`, tokenConfig(getState))
+    axios.get(`${BACKEND_URL}/events/${eventID}/team/`, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: CHECK_REGISTER,
