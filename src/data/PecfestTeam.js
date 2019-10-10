@@ -1,5 +1,5 @@
 import aakankasha from '../assets/images/PecfestTeam/aakankasha.jpg';
-import adhitya  from '../assets/images/PecfestTeam/Adhitya.jpg';
+import adhitya from '../assets/images/PecfestTeam/Adhitya.jpg';
 import akshat from '../assets/images/PecfestTeam/akshat.jpg';
 import akshit from '../assets/images/PecfestTeam/akshit.JPG';
 import arshita from '../assets/images/PecfestTeam/arshita.jpg';
@@ -31,32 +31,28 @@ import rupinder from '../assets/images/PecfestTeam/rupinder.jpg';
 import sanket from '../assets/images/PecfestTeam/sanket.jpeg';
 import shirish from '../assets/images/PecfestTeam/shirish.jpg';
 // import  from '../assets/images/PecfestTeam/';
+export const convenor = {
+    committee: "Convenor",
+    members: {
+        name: "Bikramjit Singh",
+        email: "bkiramjit.singh@pecfest.in",
+        photo: bikram
+    }
+};
 
+export const coco = {
+    committee: "Co-Convenor",
+    members: {
+        name: "Lakshay Sofat",
+        email: "lakshay.sofat@pecfest.in",
+        photo: lakshay
+    }
+};
 
 export const pecfestTeam = [
     {
-        committee: "Convenor",
-        members: [
-            {
-                name: "Bikramjit Singh",
-                email: "bkiramjit.singh@pecfest.in",
-                photo: bikram
-            }
-        ]
-    },
-    {
-        committee: "Co-Convenor",
-        members: [
-            {
-                name: "Lakshay Sofat",
-                email: "lakshay.sofat@pecfest.in",
-                photo: lakshay
-            }
-        ]
-    },
-    {
         committee: "Secretaries",
-        members : [
+        members: [
             {
                 name: "Dwija Khanna",
                 email: "dwija.khanna@pecfest.in",
@@ -144,7 +140,7 @@ export const pecfestTeam = [
                 name: "Mukul Sahni",
                 email: "tech.events@pecfest.in",
                 photo: mukul
-            },{
+            }, {
                 name: "Raghav Gautam",
                 email: "tech.events@pecfest.in",
                 photo: raghav
@@ -175,7 +171,7 @@ export const pecfestTeam = [
         committee: "Public Relations",
         members: [
             {
-                name:"Avantika Gargya",
+                name: "Avantika Gargya",
                 email: "public.relations@pecfest.in",
                 photo: avantika
             },
@@ -186,12 +182,12 @@ export const pecfestTeam = [
         committee: "Creative",
         members: [
             {
-                name:"Arshita Bhardwaj",
+                name: "Arshita Bhardwaj",
                 email: "creative@pecfest.in",
                 photo: arshita
             },
             {
-                name:"Rupesh Vaishy",
+                name: "Rupesh Vaishy",
                 email: "creative@pecfest.in",
                 photo: rupesh
             },
@@ -201,7 +197,7 @@ export const pecfestTeam = [
         committee: "Marketing",
         members: [
             {
-                name:"Mayank Sharma",
+                name: "Mayank Sharma",
                 email: "marketing@pecfest.in",
                 photo: mayank
             }
@@ -211,7 +207,7 @@ export const pecfestTeam = [
         committee: "Finance",
         members: [
             {
-                name:"Shirish Gupta",
+                name: "Shirish Gupta",
                 email: "finance@pecfest.in",
                 photo: shirish
             }
@@ -307,7 +303,7 @@ export const pecfestTeam = [
         committee: "Alumni Relations",
         members: [
             {
-                name:"Guneet Bajaj",
+                name: "Guneet Bajaj",
                 email: "alumni@pecfest.in",
                 photo: guneet
             },

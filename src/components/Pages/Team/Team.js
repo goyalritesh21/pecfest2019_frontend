@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // import Ritesh from "../../../images/DevTeam/Ritesh.jpg";
 // import anime from 'animejs';
-import {pecfestTeam} from '../../../data/PecfestTeam';
+import {convenor, pecfestTeam, coco} from '../../../data/PecfestTeam';
 import {getBackgroundImage} from "../../../utils/BackgroundUtils";
 import moment from "moment";
 import * as PropTypes from 'prop-types';
@@ -39,20 +39,22 @@ class TeamCard extends Component {
     }
 
     _onMouseMove(e) {
-        if(!_.isEmpty(e)) {
-            const mouseX = (e.screenX - this.card.offsetLeft - this.state.width/2)%50;
-            const mouseY = (e.screenY - this.card.offsetTop - this.state.height/2)%50;
+        if (!_.isEmpty(e)) {
+            const mouseX = (e.screenX - this.card.offsetLeft - this.state.width / 2) % 50;
+            const mouseY = (e.screenY - this.card.offsetTop - this.state.height / 2) % 50;
             this.setState(() => ({mouseX, mouseY}));
         }
     }
+
     handleMouseEnter() {
         clearTimeout(this.mouseLeaveDelay);
     }
+
     handleMouseLeave() {
-        this.mouseLeaveDelay = setTimeout(()=> (this.setState(() => ({mouseX: 0, mouseY: 0}))) , 1000);
+        this.mouseLeaveDelay = setTimeout(() => (this.setState(() => ({mouseX: 0, mouseY: 0}))), 1000);
     }
 
-    _onLoad = () => (this.setState(() =>({loaded: true})));
+    _onLoad = () => (this.setState(() => ({loaded: true})));
 
     render() {
         const {header, name, email, dataImage} = this.props;
@@ -83,7 +85,7 @@ class TeamCard extends Component {
                             height: "350px",
                         }}
                         className={"Team__card-bg"}
-                        >
+                    >
                     </div>
                     <div className="Team__card-info">
                         <h3>{header}</h3>
@@ -122,13 +124,28 @@ export default class Team extends Component {
         )})`;
     }
 
-    _onLoad(){this.setState(() =>({loaded: true}))}
+    _onLoad() {
+        this.setState(() => ({loaded: true}))
+    }
 
     render() {
         return (
             <div id="parent_">
-                {/*<h1 className="Team__title">Team</h1>*/}
                 <TextBox text={"TEAM"} large={true}/>
+                <div className="Team__mycontainer">
+                    <TeamCard
+                        dataImage={convenor.members.photo}
+                        header={convenor.committee}
+                        name={convenor.members.name}
+                        email={convenor.members.email}
+                    />
+                    <TeamCard
+                        dataImage={coco.members.photo}
+                        header={coco.committee}
+                        name={coco.members.name}
+                        email={coco.members.email}
+                    />
+                </div>
                 {
                     pecfestTeam.map(({committee, members}, index) => (
                         <div id={`cards${index}`} key={index} className="Team__mycontainer">
