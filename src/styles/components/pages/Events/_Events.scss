@@ -38,7 +38,12 @@ img {
   --color-menu-text: #ffffff;
   // --color-bg-move: #afb6bc;
   color: var(--color-text);
-  background-color: var(--color-bg);
+  //background-color: var(--color-bg);
+  background: #DBE6F6;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom right, #C5796D 25%, #DBE6F6);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom right, #C5796D 25%, #DBE6F6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  //background: linear-gradient(to top left, #fff 10%,#7b29ff );
   font-family: fieldwork-hum, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
