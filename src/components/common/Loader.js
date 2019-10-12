@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import loader from '../../images/Loader2.gif';
+import loader from '../../assets/images/Loaders/Loader2.gif';
 import { TransitionMotion, spring } from 'react-motion';
 const styles = [{
     key: "1",

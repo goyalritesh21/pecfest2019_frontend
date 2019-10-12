@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-// import BackgroundImage from "../../../images/Accommodation.jpg";
 import BackgroundImage from "../../../assets/images/Accommodation/Acco.jpg"
 import General from "./General";
 import Avail from "./Avail";

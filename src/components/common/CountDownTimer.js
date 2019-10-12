@@ -154,7 +154,7 @@ class Countdown extends React.Component {
                 )}
                 {hours >= 0 && (
                     <div className="countdown-item">
-                        <SVGCircle radius={hoursRadius} stroke="#87CEEB" view={view}/>
+                        <SVGCircle radius={hoursRadius} stroke="yellow" view={view}/>
                         {hours}
                         <span className={"subTextCount"} style={{color: "#ffffff"}}>
               hours

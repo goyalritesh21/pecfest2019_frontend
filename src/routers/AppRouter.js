@@ -14,7 +14,7 @@ const RegisterPage = lazy(() => import('../components/Pages/Auth/RegisterPage'))
 const ExtraDetails = lazy(() => import("../components/accounts/ExtraDetails"));
 const NotFound = lazy(() => import("../components/common/NotFound"));
 const Team = lazy(() => import('../components/Pages/Team/Team'));
-// const Accommodation = lazy(() => import('../components/Pages/Accomodation/Accommodation'));
+// const Accommodation = lazy(() => import('../components/Pages/AccomodationAccommodation'));
 
 
 const AppRouter = ({location}) => {
