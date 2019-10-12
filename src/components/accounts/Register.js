@@ -25,6 +25,11 @@ export class Register extends Component {
     };
 
     componentDidMount() {
+        loadReCaptcha();
+        if (this.recaptcha) {
+            // console.log("started, just a second...");
+            this.recaptcha.reset();
+        }
         const timeline = anime.timeline();
         timeline.add({
             targets: ".main, .form-group, #login",
@@ -34,11 +39,6 @@ export class Register extends Component {
             easing: "easeOutElastic",
             delay: (el, i, l) => i * 200
         });
-        loadReCaptcha();
-        if (this.recaptcha) {
-            // console.log("started, just a second...");
-            this.recaptcha.reset();
-        }
     }
 
     onLoadRecaptcha = () => {

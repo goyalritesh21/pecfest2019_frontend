@@ -146,6 +146,7 @@ class ContentItem extends Component {
                     <button
                         className={"Events-item__button"}
                         onClick={() => {
+                            console.log(selectedEventCategory);
                         this.props.onSelectEventCategory();
                     }}>
                         <h3 className="Events-item__titlebar-title"
@@ -187,11 +188,12 @@ class ContentItem extends Component {
 
         const color = event % 2 === 0 ? '#fe628e' : '#6265fe';
         const selectedEventStyle = {position: 'relative', color: color};
+        const selectedHeight = !_.isEmpty(event) ? 'menu--adsila__height' : '';
 
         return (
-            <div className="container-fluid menu menu--adsila" style={{height: 'calc(100vh - 100px)'}}>
-                {filteredEvents.map(item => (
-                    <div className="row menu__item"
+            <div className={`menu menu--adsila ${selectedHeight}`}>
+                {filteredEvents.map((item, index) => (
+                    <div className="menu__item"
                          key={item.id}
                          onClick={() => {
                              this.props.onClickEvents(item);
@@ -216,13 +218,9 @@ class ContentItem extends Component {
     renderEventTypes = () => {
         const {eventCategory, eventTypes} = this.props;
 
-        // console.log(eventCategory, eventTypes);
-
         const filteredEventTypes = _.filter(eventTypes, item => {
             return _.isEqual(item.eventCategory.id, parseInt(eventCategory));
         });
-
-        // console.log(filteredEventTypes);
 
         return (
             <div className="menu menu--adsila">
@@ -260,21 +258,9 @@ class ContentItem extends Component {
             return _.isEqual(item.id, parseInt(eventCategory));
         });
 
-        if (!_.isEmpty(selectedEventCategory)) {
-            return [];
-        }
 
         return (
             <div style={{width: "100%"}}>
-                <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
-                    <h2 className="Events-item__titlebar-title">
-                        <Charming letters={selectedEventCategory.name} render={(letters) => (
-                            <div>{letters}</div>
-                        )}/>
-                    </h2>
-                </div>
-                <div className="container-fluid">
-                </div>
             </div>
         );
     };
@@ -292,13 +278,6 @@ class ContentItem extends Component {
 
         return (
             <div style={{width: "100%"}}>
-                <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
-                    <h2 className="Events-item__titlebar-title">
-                        <Charming letters={selectedEventType.name} render={(letters) => (
-                            <div>{letters}</div>
-                        )}/>
-                    </h2>
-                </div>
                 <div className="container-fluid">
                 </div>
             </div>
@@ -389,7 +368,7 @@ class ContentItem extends Component {
                                 <ul>
                                     <li><label>Location:</label> {selectedEvent.locations}</li>
                                     <li><label>Day:</label> {moment(selectedEvent.dateTime).format("Do MMM YYYY")}</li>
-                                    <li><label>Time:</label> {moment(selectedEvent.dateTime).format("HH:MM a")}</li>
+                                    <li><label>Time:</label> {moment(selectedEvent.dateTime).format("h:mm A")}</li>
                                 </ul>
                             </div>
                         </div>
@@ -439,26 +418,73 @@ class ContentItem extends Component {
         return this.renderMainContent();
     };
 
-    render() {
+    _renderSmallSideBar = () => {
         const {eventCategory, eventCategories} = this.props;
 
         const selectedEventCategory = _.find(eventCategories, item => {
             return _.isEqual(item.id, parseInt(eventCategory));
         });
-
         return (
-            <article className="Events-item Events-item--current">
-                <div className="Events-item__img"
-                     style={{
-                         background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${selectedEventCategory.coverImage})`,
-                         overflow: 'hidden'
-                     }}>
-                    {this.renderTitleBar()}
-                    {this.renderSideBar()}
-                </div>
+            <div
+                className="Events-item__img"
+                style={{
+                    background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${selectedEventCategory.coverImage})`,
+                    overflow: 'hidden'
+                }}>
+                {this.renderTitleBar()}
+                {this.renderSideBar()}
+            </div>
+        )
+    };
+
+    _renderBigSideBar = () => {
+        const {eventCategory, eventCategories} = this.props;
+
+        const selectedEventCategory = _.find(eventCategories, item => {
+            return _.isEqual(item.id, parseInt(eventCategory));
+        });
+        return(
+            <div
+                className="Events-item__img-big"
+                style={{
+                    background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${selectedEventCategory.coverImage})`,
+                    overflow: 'hidden'
+                }}>
+                {this.renderTitleBar()}
+                {this.renderSideBar()}
+            </div>
+        )
+
+    };
+    _renderSideContent = () => {
+        const {event} = this.props;
+        if(_.isEmpty(event)){
+            // console.log("Rendering big");
+            return  this._renderBigSideBar();
+        }
+        else {
+            return this._renderSmallSideBar();
+        }
+    };
+    _renderMain = () => {
+        const {event} = this.props;
+        if(!_.isEmpty(event)){
+            return(
                 <div className="Events-item__content">
                     {this.renderContent()}
                 </div>
+            )
+        }
+        else {
+            return null;
+        }
+    };
+
+    render() {
+        return (
+            <article className="Events-item Events-item--current">
+                {this._renderSideContent()}
+                {this._renderMain()}
             </article>
         );
     }
