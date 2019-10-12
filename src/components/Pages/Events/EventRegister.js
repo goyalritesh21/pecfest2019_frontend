@@ -31,7 +31,7 @@ class EventRegister extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(!_.isEqual(prevProps, this.props)){
             if(!_.isEmpty(this.props.user)){
-                console.log(this.props.user.username);
+                // console.log(this.props.user.username);
                 this.setState(() =>({
                     values: [this.props.user.username]
                 }))
@@ -68,7 +68,7 @@ class EventRegister extends Component {
         if (size <= maxTeam) {
             this.setState((prevState) => ({maxTeam: size, inputs: prevState.inputs.concat(newInput)}));
         }
-        console.log()
+        // console.log();
     };
 
     _getValue = (index1, index2) => {

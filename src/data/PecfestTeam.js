@@ -194,16 +194,6 @@ export const pecfestTeam = [
         ]
     },
     {
-        committee: "Marketing",
-        members: [
-            {
-                name: "Mayank Sharma",
-                email: "marketing@pecfest.in",
-                photo: mayank
-            }
-        ]
-    },
-    {
         committee: "Finance",
         members: [
             {
@@ -251,17 +241,7 @@ export const pecfestTeam = [
                 name: "Girika Khanna",
                 email: "publicity@pecfest.in",
                 photo: girika
-            },
-            {
-                name: "Aakankasha Sharma",
-                email: "publicity@pecfest.in",
-                photo: aakankasha
-            },
-            {
-                name: "Ritesh Goyal",
-                email: "publicity@pecfest.in",
-                photo: ritesh
-            },
+            }
         ]
     },
     {
@@ -272,11 +252,6 @@ export const pecfestTeam = [
                 email: "megashows@pecfest.in",
                 photo: diksha
             },
-            {
-                name: "Lakshay Sofat",
-                email: "megashows@pecfest.in",
-                photo: lakshay
-            },
         ]
     },
     {
@@ -286,17 +261,7 @@ export const pecfestTeam = [
                 name: "Jai Aditya Jaswal",
                 email: "infrastructure@pecfest.in",
                 photo: jai
-            },
-            {
-                name: "Bikramjit Singh",
-                email: "infrastructure@pecfest.in",
-                photo: bikram
-            },
-            {
-                name: "Ayush Verma",
-                email: "infrastructure@pecfest.in",
-                photo: ayush
-            },
+            }
         ]
     },
     {

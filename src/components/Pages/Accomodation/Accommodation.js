@@ -1,5 +1,6 @@
 import React, {Component} from "react";
-import BackgroundImage from "../../../images/Accommodation.jpg";
+// import BackgroundImage from "../../../images/Accommodation.jpg";
+import BackgroundImage from "../../../assets/images/Accommodation/Acco.jpg"
 import General from "./General";
 import Avail from "./Avail";
 import Charges from "./Charges";
@@ -64,7 +65,7 @@ class Accommodation extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))", height: "100vh", width: "100vw", position: "fixed", top: "0", left:"0"}}>
                 <div className="about__t">Accommodation</div>
                 <div className="about__a1">
                     <div className={"about__ul"}>

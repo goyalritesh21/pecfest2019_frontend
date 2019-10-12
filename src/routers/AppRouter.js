@@ -38,15 +38,12 @@ const AppRouter = ({location}) => {
                     <Route exact path={"/teamRegister/:eventName/:eventID/:minTeam/:maxTeam"}
                            render={props => <EventRegister {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/team"} render={props => <Team {...props} {...extractSearchParams(props)}/>}/>
-                    {/*<Route exact path={"/devteam"}*/}
-                    {/*       render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>*/}
                     <Route exact path={"/past"} render={props => <Past {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/update"}
                            render={props => <ExtraDetails {...props} {...extractSearchParams(props)}/>}/>
                     <Route render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                 </Switch>
             </Suspense>
-            {/*<Cursor/>*/}
         </div>
 
     );

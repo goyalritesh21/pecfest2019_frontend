@@ -230,10 +230,11 @@ img {
 
 .Events-item__titlebar-icon {
   font-size: 2rem;
+  color: whitesmoke;
 }
 
 .Events-item__titlebar-title {
-  font-weight: 500;
+  font-weight: bolder;
   font-size: 1.8rem;
   white-space: nowrap;
   margin: 0;
@@ -355,16 +356,17 @@ img {
   }
 
   .Events-item__titlebar-icon {
-    font-size: 3rem;
+    color: whitesmoke;
+    font-size: 2.5rem;
   }
 
   .Events-item__titlebar-title {
-    font-weight: 500;
+    font-weight: bolder;
     font-size: 3vw;
   }
 
   .Events-item__content-title {
-    font-weight: 500;
+    font-weight: bolder;
     font-size: 3vw;
   }
 
@@ -473,7 +475,7 @@ img {
   /*optional*/
   font-family: arial, sans-serif;
   /*input has OS specific font-family*/
-  //text-decoration: underline;
+  text-decoration: underline;
   cursor: pointer;
 }
 
