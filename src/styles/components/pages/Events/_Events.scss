@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Chivo&display=swap");
 .Events-main {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -29,7 +30,6 @@ img {
   font-size: 14px;
 }
 
-
 .Events-main {
   --color-text: #252528;
   --color-bg: #afb6bc;
@@ -39,9 +39,17 @@ img {
   // --color-bg-move: #afb6bc;
   color: var(--color-text);
   //background-color: var(--color-bg);
-  background: #DBE6F6;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to bottom right, #C5796D 25%, #DBE6F6);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to bottom right, #C5796D 25%, #DBE6F6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #dbe6f6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom right,
+    #a6c56d 25%,
+    #dbe6f6
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom right,
+    #13c7b8 20%,
+    rgb(255, 255, 255)
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   //background: linear-gradient(to top left, #fff 10%,#7b29ff );
   font-family: fieldwork-hum, sans-serif;
@@ -57,7 +65,6 @@ img {
 .Events-item__button button {
   text-decoration: none;
   color: var(--color-link);
-
 }
 
 .Events-item__button button:hover,
@@ -282,7 +289,7 @@ img {
 }
 
 .Events-item__content-text::after {
-  content: '';
+  content: "";
   width: 2rem;
   height: 2px;
   position: absolute;
@@ -410,8 +417,8 @@ img {
 }
 
 .menu--adsila {
-  font-family: 'Play', sans-serif;
-  font-size: 1.45em;
+  font-family: "Chivo", sans-serif;
+  font-size: 2em;
   overflow: scroll;
   height: calc(100vh - 5em);
 }
@@ -443,7 +450,7 @@ img {
 }
 
 .menu--adsila .menu__item-name::before {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 1;
   bottom: 0;
@@ -458,7 +465,7 @@ img {
 }
 
 .menu__item-name__visible {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 1;
   bottom: 0;
@@ -495,7 +502,7 @@ img {
 }
 
 .menu--adsila .menu__item-label::before {
-  content: '';
+  content: "";
   position: absolute;
   z-index: 1;
   top: calc(100% + 0.1em);
@@ -568,7 +575,7 @@ img {
   nav {
     height: auto;
   }
-  .Events-row{
+  .Events-row {
     flex-direction: column;
     -ms-flex-direction: column;
     -webkit-flex-direction: column;
@@ -580,7 +587,7 @@ img {
   color: black;
 }
 
-@media(max-width: 850px) {
+@media (max-width: 850px) {
   .Events-item__category-column {
     height: 240px;
   }
@@ -590,11 +597,9 @@ img {
   height: 100%;
 }
 
-@media(max-width: 850px) {
+@media (max-width: 850px) {
   .menu--adsila__height {
     height: 230px !important;
     //height: 90%;
   }
 }
-
-

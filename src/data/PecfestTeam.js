@@ -15,7 +15,7 @@ import jai from '../assets/images/PecfestTeam/Jai_Aditya_Jaswal_Infrastructure.j
 import jaswinder from '../assets/images/PecfestTeam/jaswinder.jpg';
 import kartik from '../assets/images/PecfestTeam/Kartik_Kaushal_Website.jpg';
 import lakshay from '../assets/images/PecfestTeam/Lakshay.jpg';
-import madhav from '../assets/images/PecfestTeam/Madhav.jpg';
+import madhav from '../assets/images/PecfestTeam/madhav.jpg';
 import malaika from '../assets/images/PecfestTeam/malaika.jpg';
 import mayank from '../assets/images/PecfestTeam/mayank.jpg';
 import mehakdeep from '../assets/images/PecfestTeam/mehakdeep.jpg';
