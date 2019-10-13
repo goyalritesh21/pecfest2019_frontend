@@ -96,6 +96,6 @@ export default class TeamCard extends Component {
 TeamCard.propTypes = {
     header: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
+    email: PropTypes.string,
     dataImage: PropTypes.any
 };
