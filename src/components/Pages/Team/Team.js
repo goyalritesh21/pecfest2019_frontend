@@ -34,13 +34,12 @@ export default class Team extends Component {
                     _.chunk(faculty, 3).map((group, index) => (
                         <div id={`cards${index}`} key={index} className="Team__mycontainer">
                             {
-                                group.map(({post, name, email, photo}, index2) => (
+                                group.map(({post, name, photo}, index2) => (
                                     <TeamCard
                                         key={index2}
                                         dataImage={photo}
                                         header={post}
                                         name={name}
-                                        email={email}
                                     />
                                 ))
                             }

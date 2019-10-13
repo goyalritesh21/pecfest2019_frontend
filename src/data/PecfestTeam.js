@@ -42,31 +42,26 @@ export const faculty = [
     {
         post: "Director",
         name: "Dr. Dheeraj Sanghi",
-        email: "director@pec.edu.in",
         photo: director
     },
     {
         post: "DSA",
         name: "Dr. Sanjeev Kumar",
-        email: "sanjeev@pec.edu.in",
         photo: sanjeev
     },
     {
         post: "Chairman",
         name: "Dr. Ravinderjit Singh Walia",
-        email: "waliaravinder@gmail.com",
         photo: rswalia
     },
     {
         post: "Organizing Secretary",
         name: "Dr. Arun Kumar Singh",
-        email: "arun@pec.edu.in",
         photo: aksingh
     },
     {
         post: "Organizing Secretary",
         name: "Dr. Sanjay Kumar Batish",
-        email: "sbatish@pec.edu.in",
         photo: sbatish
     },
 
