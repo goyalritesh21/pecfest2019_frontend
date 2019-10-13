@@ -17,7 +17,18 @@ class Charges extends Component {
     render() {
         return (
             <div className="about__a2">
-                Rs. 800 for 3 nights.
+                <ul style={{listStyle: 'circle', textAlign: "left"}}>
+                    <li>
+                        Charges will be out soon.
+                    </li>
+                    <li>
+                        Stay will be provided for maximum of 3 days i.e from 8th November 2019-10th November 2019.
+                    </li>
+                    <li>
+                        Food is not included. However, it can be availed on a paying basis from the respective hostel
+                        mess.
+                    </li>
+                </ul>
             </div>
         );
     }

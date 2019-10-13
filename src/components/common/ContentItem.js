@@ -96,7 +96,7 @@ class ContentItem extends Component {
             this.props.history.push('/login');
             return this.props.createMessage({loginToRegister});
         }
-        if(parseInt(selectedEvent.maxTeam) <= 1){
+        if (parseInt(selectedEvent.maxTeam) <= 1) {
             return this._onIndividualRegister(selectedEvent.id);
         }
         return this.props.history.push(`/teamRegister/${selectedEvent.name}/${selectedEvent.id}/${selectedEvent.minTeam}/${selectedEvent.maxTeam}`);
@@ -136,18 +136,19 @@ class ContentItem extends Component {
         return (
             <div className="Events-item__titlebar">
                 <div className="Events-item__titlebar-back"
-                   onClick={() => {
-                       this.props.onBackPress();
-                       this._startCloseAnimation();
-                   }}>
+                     onClick={() => {
+                         this.props.onBackPress();
+                         this._startCloseAnimation();
+                     }}>
                     <FontAwesomeIcon icon={faArrowLeft} className="Events-item__titlebar-icon"/>
                 </div>
                 {!_.isEmpty(selectedEventCategory) && (
                     <button
                         className={"Events-item__button"}
                         onClick={() => {
-                        this.props.onSelectEventCategory();
-                    }}>
+                            // console.log(selectedEventCategory);
+                            this.props.onSelectEventCategory();
+                        }}>
                         <h3 className="Events-item__titlebar-title"
                             ref={this.contentTitleRef}>
                             <Charming letters={selectedEventCategory.name} render={(letters) => (
@@ -165,8 +166,8 @@ class ContentItem extends Component {
                     <button
                         className={"Events-item__button"}
                         onClick={() => {
-                        this.props.onSelectEventType();
-                    }}>
+                            this.props.onSelectEventType();
+                        }}>
                         <h3 className="Events-item__titlebar-title">
                             <Charming letters={selectedEventType.name} render={(letters) => (
                                 <div>{letters}</div>
@@ -187,11 +188,12 @@ class ContentItem extends Component {
 
         const color = event % 2 === 0 ? '#fe628e' : '#6265fe';
         const selectedEventStyle = {position: 'relative', color: color};
+        const selectedHeight = !_.isEmpty(event) ? 'menu--adsila__height' : '';
 
         return (
-            <div className="container-fluid menu menu--adsila" style={{height: 'calc(100vh - 100px)'}}>
-                {filteredEvents.map(item => (
-                    <div className="row menu__item"
+            <div className={`menu menu--adsila ${selectedHeight}`}>
+                {filteredEvents.map((item, index) => (
+                    <div className="menu__item"
                          key={item.id}
                          onClick={() => {
                              this.props.onClickEvents(item);
@@ -216,13 +218,9 @@ class ContentItem extends Component {
     renderEventTypes = () => {
         const {eventCategory, eventTypes} = this.props;
 
-        // console.log(eventCategory, eventTypes);
-
         const filteredEventTypes = _.filter(eventTypes, item => {
             return _.isEqual(item.eventCategory.id, parseInt(eventCategory));
         });
-
-        // console.log(filteredEventTypes);
 
         return (
             <div className="menu menu--adsila">
@@ -250,58 +248,14 @@ class ContentItem extends Component {
     };
 
     renderMainContent = () => {
-        const {eventCategory, eventCategories} = this.props;
-
-        if (_.isEmpty(eventCategories)) {
-            return [];
-        }
-
-        const selectedEventCategory = _.find(eventCategories, item => {
-            return _.isEqual(item.id, parseInt(eventCategory));
-        });
-
-        if (!_.isEmpty(selectedEventCategory)) {
-            return [];
-        }
-
         return (
-            <div style={{width: "100%"}}>
-                <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
-                    <h2 className="Events-item__titlebar-title">
-                        <Charming letters={selectedEventCategory.name} render={(letters) => (
-                            <div>{letters}</div>
-                        )}/>
-                    </h2>
-                </div>
-                <div className="container-fluid">
-                </div>
-            </div>
+            []
         );
     };
 
     renderEventTypeContent = () => {
-        const {eventType, eventTypes} = this.props;
-
-        if (_.isEmpty(eventTypes)) {
-            return [];
-        }
-
-        const selectedEventType = _.find(eventTypes, item => {
-            return _.isEqual(item.id, parseInt(eventType));
-        });
-
         return (
-            <div style={{width: "100%"}}>
-                <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
-                    <h2 className="Events-item__titlebar-title">
-                        <Charming letters={selectedEventType.name} render={(letters) => (
-                            <div>{letters}</div>
-                        )}/>
-                    </h2>
-                </div>
-                <div className="container-fluid">
-                </div>
-            </div>
+            []
         );
     };
 
@@ -316,15 +270,15 @@ class ContentItem extends Component {
         const selectedEvent = _.find(events, item => {
             return _.isEqual(item.id, parseInt(event));
         });
-        // console.log(selectedEvent);
 
         return (
             <div style={{width: "100%", overflow: "scroll"}}>
                 <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
                     <h2 className="Events-item__titlebar-title">
-                        <Charming letters={selectedEvent.name} render={(letters) => (
-                            <div>{letters}</div>
-                        )}/>
+                        {/*<Charming letters={selectedEvent.name} render={(letters) => (*/}
+                        {/*    <div>{letters}</div>*/}
+                        {/*)}/>*/}
+                        {selectedEvent.name}
                     </h2>
 
                 </div>
@@ -353,14 +307,22 @@ class ContentItem extends Component {
                                     <button
                                         className={"Events-item__button"}
                                         onClick={() => {
-                                        this.setState({
-                                            knowMore: {
-                                                ...knowMore,
-                                                description: !knowMore.description
-                                            }
-                                        });
-                                    }}>{knowMore.description ? "Know Less..." : "Know More..."}</button>
+                                            this.setState({
+                                                knowMore: {
+                                                    ...knowMore,
+                                                    description: !knowMore.description
+                                                }
+                                            });
+                                        }}>{knowMore.description ? "Know Less..." : "Know More..."}</button>
                                 </div>
+                                <br/>
+                                {
+                                    !_.isEmpty(selectedEvent.rulesPDF) && <div>
+                                        <button
+                                            className={"Events-item__button"}
+                                            onClick={()=>(window.open(selectedEvent.rulesPDF, "_blank"))}>Rules PDF</button>
+                                    </div>
+                                }
                             </div>
                         </div>
                         {selectedEvent.ruleList.length > 0 ?
@@ -374,7 +336,7 @@ class ContentItem extends Component {
                                     </ul>
                                 </div>
                                 <br/>
-                                {selectedEvent.minTeam < selectedEvent.maxTeam ? <div>
+                                {selectedEvent.minTeam > 0 && selectedEvent.minTeam <= selectedEvent.maxTeam ? <div>
                                     <label>Minimum Team Size:</label> {selectedEvent.minTeam}
                                     <br/>
                                     <label>Maximum Team Size:</label> {selectedEvent.maxTeam}
@@ -389,7 +351,7 @@ class ContentItem extends Component {
                                 <ul>
                                     <li><label>Location:</label> {selectedEvent.locations}</li>
                                     <li><label>Day:</label> {moment(selectedEvent.dateTime).format("Do MMM YYYY")}</li>
-                                    <li><label>Time:</label> {moment(selectedEvent.dateTime).format("HH:MM a")}</li>
+                                    <li><label>Time:</label> {moment(selectedEvent.dateTime).format("h:mm A")}</li>
                                 </ul>
                             </div>
                         </div>
@@ -439,26 +401,74 @@ class ContentItem extends Component {
         return this.renderMainContent();
     };
 
-    render() {
+    _renderSmallSideBar = () => {
         const {eventCategory, eventCategories} = this.props;
 
         const selectedEventCategory = _.find(eventCategories, item => {
             return _.isEqual(item.id, parseInt(eventCategory));
         });
-
         return (
-            <article className="Events-item Events-item--current">
-                <div className="Events-item__img"
-                     style={{
-                         background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${selectedEventCategory.coverImage})`,
-                         overflow: 'hidden'
-                     }}>
-                    {this.renderTitleBar()}
-                    {this.renderSideBar()}
+            <div
+                className="Events-item__img"
+                style={{
+                    backgroundImage: `url(${selectedEventCategory.coverImage})`,
+                    overflow: 'hidden'
+                }}>
+                <div style={{background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))", height:"100%", width:"100%"}}>
+                {this.renderTitleBar()}
+                {this.renderSideBar()}
                 </div>
+            </div>
+        )
+    };
+
+    _renderBigSideBar = () => {
+        const {eventCategory, eventCategories} = this.props;
+
+        const selectedEventCategory = _.find(eventCategories, item => {
+            return _.isEqual(item.id, parseInt(eventCategory));
+        });
+        return (
+            <div
+                className="Events-item__img-big"
+                style={{
+                    backgroundImage: `url(${selectedEventCategory.coverImage})`,
+                    overflow: 'hidden'
+                }}>
+                <div style={{background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))", height:"100%", width:"100%"}}>
+                {this.renderTitleBar()}
+                {this.renderSideBar()}
+                </div>
+            </div>
+        )
+
+    };
+    _renderSideContent = () => {
+        const {event} = this.props;
+        if (_.isEmpty(event)) {
+            return this._renderBigSideBar();
+        } else {
+            return this._renderSmallSideBar();
+        }
+    };
+    _renderMain = () => {
+        const {event} = this.props;
+        if (!_.isEmpty(event)) {
+            return (
                 <div className="Events-item__content">
                     {this.renderContent()}
                 </div>
+            )
+        } else {
+            return null;
+        }
+    };
+
+    render() {
+        return (
+            <article className="Events-item Events-item--current">
+                {this._renderSideContent()}
+                {this._renderMain()}
             </article>
         );
     }
@@ -502,5 +512,5 @@ export default withRouter(
             registerTeam,
             createMessage
         }
-        )(ContentItem)
+    )(ContentItem)
 );

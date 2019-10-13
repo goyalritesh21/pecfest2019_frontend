@@ -14,7 +14,7 @@ const RegisterPage = lazy(() => import('../components/Pages/Auth/RegisterPage'))
 const ExtraDetails = lazy(() => import("../components/accounts/ExtraDetails"));
 const NotFound = lazy(() => import("../components/common/NotFound"));
 const Team = lazy(() => import('../components/Pages/Team/Team'));
-// const Accommodation = lazy(() => import('../components/Pages/Accomodation/Accommodation'));
+const Accommodation = lazy(() => import('../components/Pages/Accomodation/Accommodation'));
 
 
 const AppRouter = ({location}) => {
@@ -26,7 +26,7 @@ const AppRouter = ({location}) => {
                     <Route exact path={"/sponsors"}
                            render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/accommodation"}
-                           render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
+                           render={props => <Accommodation {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/megashows"}
                            render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/events"}
@@ -38,15 +38,12 @@ const AppRouter = ({location}) => {
                     <Route exact path={"/teamRegister/:eventName/:eventID/:minTeam/:maxTeam"}
                            render={props => <EventRegister {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/team"} render={props => <Team {...props} {...extractSearchParams(props)}/>}/>
-                    {/*<Route exact path={"/devteam"}*/}
-                    {/*       render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>*/}
                     <Route exact path={"/past"} render={props => <Past {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/update"}
                            render={props => <ExtraDetails {...props} {...extractSearchParams(props)}/>}/>
                     <Route render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                 </Switch>
             </Suspense>
-            {/*<Cursor/>*/}
         </div>
 
     );

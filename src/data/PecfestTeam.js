@@ -30,24 +30,85 @@ import rupesh from '../assets/images/PecfestTeam/rupesh.jpeg';
 import rupinder from '../assets/images/PecfestTeam/rupinder.jpg';
 import sanket from '../assets/images/PecfestTeam/sanket.jpeg';
 import shirish from '../assets/images/PecfestTeam/shirish.jpg';
+import director from '../assets/images/PecfestTeam/dheeraj_sanghi_director_pec.jpg';
+import sanjeev from '../assets/images/PecfestTeam/dsa_sanjeev.jpg';
+import rswalia from '../assets/images/PecfestTeam/rswalia.jpg';
+import aksingh from '../assets/images/PecfestTeam/Arun_kumar_singh.jpg'
+import sbatish from '../assets/images/PecfestTeam/sanjay_batish.jpg';
+import raminder from '../assets/images/PecfestTeam/raminder.jpg';
 // import  from '../assets/images/PecfestTeam/';
-export const convenor = {
-    committee: "Convenor",
-    members: {
+
+export const faculty = [
+    {
+        post: "Director",
+        name: "Dr. Dheeraj Sanghi",
+        email: "director@pec.edu.in",
+        photo: director
+    },
+    {
+        post: "DSA",
+        name: "Dr. Sanjeev Kumar",
+        email: "sanjeev@pec.edu.in",
+        photo: sanjeev
+    },
+    {
+        post: "Chairman",
+        name: "Dr. Ravinderjit Singh Walia",
+        email: "waliaravinder@gmail.com",
+        photo: rswalia
+    },
+    {
+        post: "Organizing Secretary",
+        name: "Dr. Arun Kumar Singh",
+        email: "arun@pec.edu.in",
+        photo: aksingh
+    },
+    {
+        post: "Organizing Secretary",
+        name: "Dr. Sanjay Kumar Batish",
+        email: "sbatish@pec.edu.in",
+        photo: sbatish
+    },
+
+    {
+        post: "Organizing Secretary",
+        name: "Dr. Raminder Karu",
+        email: "raminderkaur@pec.ac.in",
+        photo: raminder
+    },
+
+];
+
+export const AccoTeam = [
+    {
+        name: "Adhitya Venugopal",
+        email: "logistics@pecfest.in",
+        photo: adhitya,
+        contact: "9592468729"
+    },
+    {
+        name: "Dwija Khanna",
+        email: "logistics@pecfest.in",
+        photo: dwija,
+        contact: "8968269125"
+    }
+];
+
+export const convenors = [
+    {
+        post: "Convenor",
         name: "Bikramjit Singh",
         email: "bkiramjit.singh@pecfest.in",
         photo: bikram
-    }
-};
-
-export const coco = {
-    committee: "Co-Convenor",
-    members: {
+    },
+    {
+        post: "Co-Convenor",
         name: "Lakshay Sofat",
         email: "lakshay.sofat@pecfest.in",
         photo: lakshay
     }
-};
+
+];
 
 export const pecfestTeam = [
     {
@@ -194,16 +255,6 @@ export const pecfestTeam = [
         ]
     },
     {
-        committee: "Marketing",
-        members: [
-            {
-                name: "Mayank Sharma",
-                email: "marketing@pecfest.in",
-                photo: mayank
-            }
-        ]
-    },
-    {
         committee: "Finance",
         members: [
             {
@@ -251,17 +302,7 @@ export const pecfestTeam = [
                 name: "Girika Khanna",
                 email: "publicity@pecfest.in",
                 photo: girika
-            },
-            {
-                name: "Aakankasha Sharma",
-                email: "publicity@pecfest.in",
-                photo: aakankasha
-            },
-            {
-                name: "Ritesh Goyal",
-                email: "publicity@pecfest.in",
-                photo: ritesh
-            },
+            }
         ]
     },
     {
@@ -272,11 +313,6 @@ export const pecfestTeam = [
                 email: "megashows@pecfest.in",
                 photo: diksha
             },
-            {
-                name: "Lakshay Sofat",
-                email: "megashows@pecfest.in",
-                photo: lakshay
-            },
         ]
     },
     {
@@ -286,17 +322,7 @@ export const pecfestTeam = [
                 name: "Jai Aditya Jaswal",
                 email: "infrastructure@pecfest.in",
                 photo: jai
-            },
-            {
-                name: "Bikramjit Singh",
-                email: "infrastructure@pecfest.in",
-                photo: bikram
-            },
-            {
-                name: "Ayush Verma",
-                email: "infrastructure@pecfest.in",
-                photo: ayush
-            },
+            }
         ]
     },
     {

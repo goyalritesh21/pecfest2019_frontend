@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import anime from "animejs";
 
-class General extends Component{
+class General extends Component {
     componentDidMount() {
         const timeline = anime.timeline();
         timeline.add({
@@ -17,19 +17,20 @@ class General extends Component{
     render() {
         return (
             <div className="about__a2">
-                For the convenience of the enthusiastic participants of PecFest, we here in the Hospitality
-                Department of PecFest take it upon ourselves to provide you with a convenient stay place within
-                the institute itself. Owing to the huge scale participation, we have established a set of
-                procedural guidelines to help make the process seamless and without glitches.<br/><br/>
-                NOTE:<br/>
-                <ul style={{listStyle: 'circle'}}>
+                <p>
+                    Convenience of the participants matters the most for a successful event. So, the Hospitality
+                    department at PECFEST is here to provide you with comfortable stay within the institute.</p>
+                <p>
+                    Due to large participation from various colleges all over India, we have implemented procedural
+                    guidelines to make your stay and the fest a memorable one.
+                </p><br/><br/>
+                <em>NOTE:</em><br/>
+                <ul style={{listStyle: 'circle', textAlign: "left"}}>
                     <li>
-                        Owing to a large number of requests for accommodation, we are bound to provide it
-                        strictly on a shared basis.
+                        The stay will be strictly on first come first serve basis.
                     </li>
                     <li>
-                        You will be given accommodation only after it has been confirmed by the Hospitality Core
-                        Group members of the festival, through the CL of your college.
+                        Owing to large participation, the accommodation will be provided on sharing basis.
                     </li>
                 </ul>
             </div>

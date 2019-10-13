@@ -1,7 +1,9 @@
 import React, {Component} from "react";
 import anime from "animejs";
+import {AccoTeam, convenors} from "../../../data/PecfestTeam";
+import AccoCard from "../../common/AccoCard";
 
-class Avail extends Component{
+class Avail extends Component {
     componentDidMount() {
         const timeline = anime.timeline();
         timeline.add({
@@ -13,10 +15,26 @@ class Avail extends Component{
             delay: (el, i, l) => i * 200
         });
     }
+
     render() {
         return (
             <div className="about__a2">
-                Avail
+                <p>
+                    Everyone willing to avail accommodation during PECFEST has to report at the campus and contact the
+                    below mentioned people.
+                </p>
+                <div className="Team__mycontainer">
+                    {
+                        AccoTeam.map(({contact, name, email, photo}, index)=>(
+                            <AccoCard
+                                dataImage={photo}
+                                name={name}
+                                contact={contact}
+                                email={email}
+                            />
+                        ))
+                    }
+                </div>
             </div>
         );
     }
