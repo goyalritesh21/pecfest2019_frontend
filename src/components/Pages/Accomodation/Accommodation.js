@@ -3,8 +3,6 @@ import BackgroundImage from "../../../assets/images/Accommodation/Acco.jpg"
 import General from "./General";
 import Avail from "./Avail";
 import Charges from "./Charges";
-import Privileges from "./Privileges";
-import FAQs from "./FAQs";
 import anime from "animejs";
 
 const data = [
@@ -19,15 +17,7 @@ const data = [
     {
         label: "CHARGES",
         data: <Charges/>
-    },
-    {
-        label: "PRIVILEGES",
-        data: <Privileges/>
-    },
-    {
-        label: "FAQs",
-        data: <FAQs/>
-    },
+    }
 ];
 
 class Accommodation extends Component {
@@ -64,7 +54,7 @@ class Accommodation extends Component {
 
     render() {
         return (
-            <div style={{background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))", height: "100vh", width: "100vw", position: "fixed", top: "0", left:"0"}}>
+            <div style={{background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))", height: "100vh", width: "100vw", position: "fixed", top: "0", left:"0", overflow:"scroll"}}>
                 <div className="about__t">Accommodation</div>
                 <div className="about__a1">
                     <div className={"about__ul"}>

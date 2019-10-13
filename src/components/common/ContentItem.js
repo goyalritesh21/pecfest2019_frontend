@@ -275,9 +275,10 @@ class ContentItem extends Component {
             <div style={{width: "100%", overflow: "scroll"}}>
                 <div className="Events-item__titlebar" style={{padding: "3vh 2rem"}}>
                     <h2 className="Events-item__titlebar-title">
-                        <Charming letters={selectedEvent.name} render={(letters) => (
-                            <div>{letters}</div>
-                        )}/>
+                        {/*<Charming letters={selectedEvent.name} render={(letters) => (*/}
+                        {/*    <div>{letters}</div>*/}
+                        {/*)}/>*/}
+                        {selectedEvent.name}
                     </h2>
 
                 </div>
