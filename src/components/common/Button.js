@@ -40,8 +40,9 @@ class Button extends Component {
 
     render() {
         // console.log(this.props);
-        const {title, registered, checkRegister, eventRegister, event} = this.props;
-        const disabled = checkRegister || eventRegister || registered;
+        const {title, registered, checkRegister, eventRegister, event, registrationEnded} = this.props;
+        const disabled = registrationEnded || checkRegister || eventRegister || registered;
+        const titleButton = registered ? `${title}ed` : registrationEnded ? "Registration Ended" : title;
         return (
             <div className="reg-btn-bg Ocean">
                 <div className="reg-btn-group">
@@ -49,7 +50,7 @@ class Button extends Component {
                         <button
                             disabled={disabled}
                             onClick={() => this.props._onClick(event)}
-                        >{registered ? `${title}ed` : `${title}`}
+                        >{titleButton}
                             <span className="Coralwave1"/>
                             <span className="Coralwave2"/>
                             <span className="Coralwave3"/>
@@ -71,7 +72,8 @@ Button.propTypes = {
     registerEvent: propTypes.func.isRequired,
     createMessage: propTypes.func.isRequired,
     user: propTypes.object,
-    event: propTypes.object.isRequired
+    event: propTypes.object.isRequired,
+    registrationEnded: propTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => ({

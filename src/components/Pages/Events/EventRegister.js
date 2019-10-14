@@ -13,9 +13,10 @@ class EventRegister extends Component {
     constructor(props){
         super(props);
         this.state = {
-            inputs: ['input-0'],
+            inputs: [''],
             values: [''],
-            teamName: ''
+            teamName: '',
+            teamLeader: ''
         };
     }
 
@@ -31,9 +32,8 @@ class EventRegister extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if(!_.isEqual(prevProps, this.props)){
             if(!_.isEmpty(this.props.user)){
-                // console.log(this.props.user.username);
                 this.setState(() =>({
-                    values: [this.props.user.username]
+                    teamLeader: this.props.user.username
                 }))
             }
             if(!_.isEmpty(this.props.isLoading)){
@@ -46,7 +46,7 @@ class EventRegister extends Component {
 
     _setState = ({minTeam}) => {
         let inputs = [];
-        for (let i = 1; i < minTeam; i++) {
+        for (let i = 0; i < parseInt(minTeam)-1; i++) {
             inputs.push(`input-${i}`);
         }
         this.setState(() => ({
@@ -63,18 +63,16 @@ class EventRegister extends Component {
         const size = this.state.maxTeam + 1;
         let inputs = this.state.inputs;
         const newInput = `input-${inputs.length}`;
-        // console.log(`inputs size - ${inputs.length}`);
-        // console.log(size, maxTeam);
         if (size <= maxTeam) {
             this.setState((prevState) => ({maxTeam: size, inputs: prevState.inputs.concat(newInput)}));
         }
         // console.log();
     };
 
-    _getValue = (index1, index2) => {
+    _getValue = (index1, index2, length) => {
         const {values} = this.state;
-        if(!_.isEmpty(values[index1*index2+index2+1])){
-            return values[index1*index2+index2+1].toUpperCase();
+        if(!_.isEmpty(values[index1*(length)+index2])){
+            return values[index1*(length)+index2].toUpperCase();
         }
         return "";
     };
@@ -107,23 +105,27 @@ class EventRegister extends Component {
 
     onSubmit = (e) => {
         e.preventDefault();
-        // let errors = [];
-        const {values, teamName} = this.state;
+        const {values, teamName, teamLeader} = this.state;
         const {eventID} = this.props.match.params;
+        let team = [teamLeader];
+        values.map((item)=>{
+            if(!_.isEmpty(item)){
+                team.push(item);
+            }
+        });
         const teamObj = {
             eventID,
             teamName: teamName.toLowerCase(),
-            team: values
+            team
         };
         this.props.registerTeam(teamObj);
-            // console.log("Registered and Redirecting");
 
     };
 
     render() {
-        const {teamName, values, inputs} = this.state;
+        const {teamName, inputs, teamLeader} = this.state;
         const {minTeam, maxTeam, eventName} = this.props.match.params;
-        const {isLoading, isAuthenticated, registered, checkRegister, eventRegister} = this.props;
+        const {isAuthenticated, registered, checkRegister, eventRegister} = this.props;
         const disabled = checkRegister || eventRegister || registered;
         if (!isAuthenticated) {
             return <Redirect to="/login" />
@@ -160,7 +162,7 @@ class EventRegister extends Component {
                                         onChange={this.onChange}
                                         readOnly={true}
                                         required
-                                        value={values[0].toUpperCase()}
+                                        value={teamLeader.toUpperCase()}
                                         tabIndex={"2"}
                                         spellCheck="false"
                                         placeholder={"Enter PECFEST ID"}
@@ -173,18 +175,18 @@ class EventRegister extends Component {
                                 <div className="row row-break" key={index}>
                                     {
                                         group.map((item, index2) => (
-                                            <div className="form-group col-md-6" key={index*index2+index2+1}>
+                                            <div className="form-group col-md-6" key={index*(2)+index2}>
                                                 <label>Team Member</label>
                                                 <div className="input-outer">
                                                     <input
                                                         ref={item}
                                                         type="text"
                                                         className="form-control input"
-                                                        name={`${index*index2+index2+1}`}
+                                                        name={index*(2)+index2}
                                                         onChange={this.onChange}
                                                         required
-                                                        value={this._getValue(index, index2)}
-                                                        tabIndex={index*index2+index2+3}
+                                                        value={this._getValue(index, index2, 2)}
+                                                        tabIndex={index*(2)+index2+3}
                                                         spellCheck="false"
                                                         placeholder={"Enter PECFEST ID"}
                                                     />
