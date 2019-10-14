@@ -67,7 +67,7 @@ export const faculty = [
 
     {
         post: "Organizing Secretary",
-        name: "Dr. Raminder Karu",
+        name: "Dr. Raminder Kaur",
         email: "raminderkaur@pec.ac.in",
         photo: raminder
     },
