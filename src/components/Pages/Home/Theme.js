@@ -139,7 +139,7 @@ class Theme extends Component {
                         <div className="Theme__content__ping Theme__content__ping--noanimation"/>
                     </div>
                 </div>
-                <div className={"flex-center"} onClick={this.props.onScrollIntoView}>
+                <div className={"flex-center__icon"} onClick={this.props.onScrollIntoView}>
                     <FontAwesomeIcon icon={direction === "up" ? faChevronUp : faChevronDown}
                                      size={"3x"}
                                      style={{color: "white", cursor: "pointer"}}

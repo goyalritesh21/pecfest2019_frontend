@@ -7,7 +7,7 @@ class Footer extends Component {
     render() {
         return (
             <Fragment>
-                <div className={"flex-center social-networks bounce"}>
+                <div className={"flex-center__social social-networks bounce"}>
                     <a href={"https://www.youtube.com/watch?v=SjQwQXcDgKg"} target={"_blank"} className={"my-youtube"}>
                         <FontAwesomeIcon icon={faYoutube}
                                          size="3x"/>
@@ -21,7 +21,7 @@ class Footer extends Component {
                                          size="3x"/>
                     </a>
                 </div>
-                <div className={"flex-center"} onClick={this.props.onClick}>
+                <div className={"flex-center__icon"} onClick={this.props.onClick}>
                     <FontAwesomeIcon icon={faChevronDown}
                                      size={"3x"}
                                      style={{color: "white", cursor: "pointer"}}

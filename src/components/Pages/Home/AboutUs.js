@@ -137,7 +137,7 @@ class About extends Component {
                         <div className="About__content__ping About__content__ping--noanimation"/>
                     </div>
                 </div>
-                <div className={"flex-center"} onClick={this.props.onScrollIntoView}>
+                <div className={"flex-center__icon"} onClick={this.props.onScrollIntoView}>
                     <FontAwesomeIcon icon={direction === "up" ? faChevronUp : faChevronDown}
                                      size={"3x"}
                                      style={{color: "white", cursor: "pointer"}}
