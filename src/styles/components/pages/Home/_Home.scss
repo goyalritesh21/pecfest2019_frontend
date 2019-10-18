@@ -1,14 +1,12 @@
 /* Main styles */
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:800');
 @import url('https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap');
 
 .flexButtons {
-  display: flex;
+  //display: flex;
   position: absolute;
   bottom: 150px;
   width: 100%;
-  justify-content: center;
-  align-items: center;
 }
 
 :root {
@@ -72,7 +70,8 @@
 }
 
 .homePage {
-  overflow: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   height: 100%;
 }
 

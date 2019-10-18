@@ -102,7 +102,6 @@ class MegaShow extends Component {
         this.headingObject.position.set(0, 0, 350);
 
         this.scene.add(this.headingObject);
-
         window.addEventListener('resize', this.handleWindowResize);
         window.addEventListener('orientationchange', this.handleOrientationChange);
         window.addEventListener('deviceorientation', this.handleOrientationChange);

@@ -10,7 +10,7 @@ const Past = lazy(() => import("../components/Pages/Past/Past"));
 const Events = lazy(() => import('../components/Pages/Events/Events'));
 const LoginPage = lazy(() => import('../components/Pages/Auth/LoginPage'));
 const RegisterPage = lazy(() => import('../components/Pages/Auth/RegisterPage'));
-// const MegaShows = lazy(() => import('../components/Pages/MegaShows/MegaShows'));
+const MegaShows = lazy(() => import('../components/Pages/MegaShows/MegaShows'));
 const ExtraDetails = lazy(() => import("../components/accounts/ExtraDetails"));
 const NotFound = lazy(() => import("../components/common/NotFound"));
 const Team = lazy(() => import('../components/Pages/Team/Team'));
@@ -28,7 +28,7 @@ const AppRouter = ({location}) => {
                     <Route exact path={"/accommodation"}
                            render={props => <Accommodation {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/megashows"}
-                           render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
+                           render={props => <MegaShows {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/events"}
                            render={props => <Events {...props} {...extractSearchParams(props)} />}/>
                     <Route exact path={"/login"}

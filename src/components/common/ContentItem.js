@@ -317,6 +317,14 @@ class ContentItem extends Component {
                                 </div>
                                 <br/>
                                 {
+                                    !_.isEmpty(selectedEvent.prelimsLink) && <div>
+                                        <button
+                                            className={"Events-item__button"}
+                                            onClick={()=>(window.open(selectedEvent.prelimsLink, "_blank"))}>Link to Prelims</button>
+                                    </div>
+                                }
+                                <br/>
+                                {
                                     !_.isEmpty(selectedEvent.rulesPDF) && <div>
                                         <button
                                             className={"Events-item__button"}
@@ -373,7 +381,9 @@ class ContentItem extends Component {
                                             {!_.isEmpty(coordinator.participant) ?
                                                 <Fragment>
                                                     <label>Contact:</label>
-                                                    <a href={`tel:${coordinator.participant.contactNumber}`}>
+                                                    <a
+                                                        className={"Events-item__button"}
+                                                        href={`tel:${coordinator.participant.contactNumber}`}>
                                                         {`${coordinator.participant.contactNumber}`}
                                                     </a>
                                                 </Fragment> : null

@@ -113,8 +113,8 @@ export const register = ({username, email, password}) => dispatch => {
         })
         .catch(err => {
             console.log(err.response);
-            if(!_.isEmpty(err.response.data) && err.response.data.username.length > 0){
-                const errorMessage = err.response.data.username.join('\n');
+            if(!_.isEmpty(err.response) && (err.response.status === 404 || err.response.status === 400)){
+                const errorMessage = "Username/Email already in use.";
                 dispatch(createMessage({registerFail: errorMessage}));
             }
             else {

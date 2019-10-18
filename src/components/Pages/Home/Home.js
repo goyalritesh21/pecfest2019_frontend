@@ -13,6 +13,7 @@ import {getBackgroundImage} from "../../../utils/BackgroundUtils";
 import {theme, about} from '../../../data/Home';
 import pecfestLogo from "../../../assets/images/Logos/pecfestLogo100cropped.png";
 import Theme from "./Theme";
+import FloatingButtons from "./FloatingButtons";
 
 class Home extends Component {
     componentDidMount() {
@@ -49,42 +50,28 @@ class Home extends Component {
                         A Tropical Extravaganza
                     </div>
 
-
                     <div className={"flexButtons"}>
-                        <div
-                            className={"btn1"}
+                        <FloatingButtons
+                            title={"Brochure"}
                             onClick={() => {
-                                // window.open("http://api.pecfest.in/media/pdf/brochure/Brochure.pdf", "_blank");
-                                // window.focus();
-                                if (!_.isEmpty(this.props.brochures)) {
-                                    window.open(this.props.brochures[0].brochurePDF, "_blank");
-                                    window.focus();
-                                }
-                            }}
-                        >
-                            <span>Brochure</span>
-                        </div>
-
-                        {!this.props.isAuthenticated && (
-                            <div
-                                className="btn1"
-                                onClick={() => {
-                                    this._redirectToRegister();
-                                }}
-                            >
-                                <span>Register</span>
-                            </div>
-                        )}
-
-                        <div
-                            className={"btn1"}
-                            onClick={() => {
-                                window.open("https://forms.gle/gWvUa4egFdfmzL4o8", "_blank");
+                            if (!_.isEmpty(this.props.brochures)) {
+                                window.open(this.props.brochures[0].brochurePDF, "_blank");
                                 window.focus();
-                            }}
-                        >
-                            <span>Ambassador</span>
-                        </div>
+                            }
+                        }}/>
+                        {!this.props.isAuthenticated && (
+                            <FloatingButtons title={"Register"} onClick={() => {
+                                this._redirectToRegister();
+                            }}/>
+                        )}
+                        <FloatingButtons title={"Ambassador"} onClick={() => {
+                            window.open("https://forms.gle/gWvUa4egFdfmzL4o8", "_blank");
+                            window.focus();
+                        }}/>
+                        <FloatingButtons title={"Mr. & Ms. PECfest"} onClick={() => {
+                            window.open("https://forms.gle/THR4ofdrXnw7rtax7", "_blank");
+                            window.focus();
+                        }}/>
                     </div>
 
                     <Footer onClick={() => this.themeRef.scrollIntoView({
