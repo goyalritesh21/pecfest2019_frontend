@@ -1,30 +1,30 @@
 export const NavLinks = [
     {
         name: 'Home',
-        to: ''
+        to: '/'
     },
     {
         name: 'Accommodation',
-        to: 'accommodation'
-    },
-    {
-        name: 'Events',
-        to: 'events'
+        to: '/accommodation'
     },
     {
         name: 'Megashows',
-        to: 'megashows'
+        to: '/megashows'
+    },
+    {
+        name: 'Events',
+        to: '/events'
+    },
+    {
+        name: 'Sessions',
+        to: '/sessions'
     },
     {
         name: 'Past',
-        to: 'past'
-    },
-    {
-        name: 'Sponsors',
-        to: 'sponsors'
+        to: '/past'
     },
     {
         name: 'Team',
-        to: 'team'
+        to: '/team'
     }
 ];
