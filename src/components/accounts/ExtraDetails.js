@@ -33,7 +33,7 @@ class ExtraDetails extends Component {
         )})`;
         const timeline = anime.timeline();
         timeline.add({
-            targets: '.main, .form-group',
+            targets: '.main, .form-group, #query',
             translateY: [100, 0],
             opacity: [0, 1],
             duration: 500,
@@ -288,6 +288,9 @@ class ExtraDetails extends Component {
                                 Update
                             </button>
                         </div>
+                        <p id={"query"}>
+                            For any queries, drop an email on: <a href={"mailto:registrations@pecfest.in"}>registrations@pecfest.in</a>
+                        </p>
                     </form>
                 </div>
             </div>

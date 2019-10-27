@@ -32,7 +32,7 @@ export class Register extends Component {
         }
         const timeline = anime.timeline();
         timeline.add({
-            targets: ".main, .form-group, #login",
+            targets: ".main, .form-group, #login, #query",
             translateY: [100, 0],
             opacity: [0, 1],
             duration: 500,
@@ -209,6 +209,9 @@ export class Register extends Component {
                         </div>
                         <p id={"login"}>
                             Already have an account? <Link to="/login">Login</Link>
+                        </p>
+                        <p id={"query"}>
+                            For any queries, drop an email on: <a href={"mailto:registrations@pecfest.in"}>registrations@pecfest.in</a>
                         </p>
                     </form>
                 </div>

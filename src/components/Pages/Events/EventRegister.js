@@ -221,6 +221,9 @@ class EventRegister extends Component {
                                 Register
                             </button>
                         </div>
+                        <p id={"query"}>
+                            For any queries, drop an email on: <a href={"mailto:registrations@pecfest.in"}>registrations@pecfest.in</a>
+                        </p>
                     </form>
                 </div>
             </div>

@@ -58,7 +58,7 @@
 // Buttons
 // =========================
 
-.btn {
+.session-btn {
   background-color: var(--color-primary);
   border: none;
   border-radius: 0.125rem;
@@ -92,7 +92,7 @@
   top: calc(100% + 1rem);
   width: 100%;
 
-  .btn {
+  .session-btn {
     --size: 3rem;
 
     align-items: center;
