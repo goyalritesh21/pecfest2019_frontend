@@ -4,6 +4,9 @@ import General from "./General";
 import Avail from "./Avail";
 import Charges from "./Charges";
 import anime from "animejs";
+import {Redirect, withRouter} from "react-router";
+import {connect} from "react-redux";
+import _ from 'lodash';
 
 const data = [
     {
@@ -30,6 +33,12 @@ class Accommodation extends Component {
     }
 
     componentDidMount() {
+        const { user } = this.props;
+        if(!_.isEmpty(user) && !_.isEmpty(user.participant)){
+            if(user.participant.firstTimer){
+                this.props.history.push("/update");
+            }
+        }
         document.body.style.backgroundImage = `url(${BackgroundImage})`;
         this.activateLink(0);
         const timeline = anime.timeline();
@@ -81,5 +90,13 @@ class Accommodation extends Component {
         );
     }
 }
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
+});
 
-export default Accommodation;
+export default withRouter(
+    connect(
+        mapStateToProps,
+    )(Accommodation)
+);

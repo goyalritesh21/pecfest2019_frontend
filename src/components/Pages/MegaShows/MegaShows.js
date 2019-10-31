@@ -4,6 +4,9 @@ import MegaShow from './MegaShow';
 import Swipeable from '../../common/Swipeable'
 import Slide from '../../common/Slide'
 import megaShowList from '../../../data/MegaShows'
+import _ from "lodash";
+import {withRouter} from "react-router";
+import {connect} from "react-redux";
 
 class MegaShows extends Component {
     constructor(props) {
@@ -12,6 +15,15 @@ class MegaShows extends Component {
 
         this.state = {
             activeIndex: 0,
+        }
+    }
+
+    componentDidMount() {
+        const {user} = this.props;
+        if (!_.isEmpty(user) && !_.isEmpty(user.participant)) {
+            if (user.participant.firstTimer) {
+                this.props.history.push("/update");
+            }
         }
     }
 
@@ -74,4 +86,13 @@ class MegaShows extends Component {
     }
 }
 
-export default MegaShows;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
+});
+
+export default withRouter(
+    connect(
+        mapStateToProps,
+    )(MegaShows)
+);

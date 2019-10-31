@@ -66,7 +66,6 @@ class EventRegister extends Component {
         if (size <= maxTeam) {
             this.setState((prevState) => ({maxTeam: size, inputs: prevState.inputs.concat(newInput)}));
         }
-        // console.log();
     };
 
     _getValue = (index1, index2, length) => {

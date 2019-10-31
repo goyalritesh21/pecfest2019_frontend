@@ -51,6 +51,12 @@ class Events extends Component {
     }
 
     componentDidMount() {
+        const { user } = this.props;
+        if(!_.isEmpty(user) && !_.isEmpty(user.participant)){
+            if(user.participant.firstTimer){
+                this.props.history.push("/update");
+            }
+        }
         document.body.style.backgroundImage = `url(${getBackgroundImage(
             moment().hour()
         )})`;
@@ -321,6 +327,7 @@ const mapStateToProps = state => ({
     eventCategories: state.events.eventCategories,
     eventTypes: state.events.eventTypes,
     events: state.events.events,
+    user: state.auth.user
 });
 
 Events.propTypes = {
@@ -331,6 +338,7 @@ Events.propTypes = {
     fetchEvents: PropTypes.func.isRequired,
     fetchEventCategories: PropTypes.func.isRequired,
     fetchEventTypes: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, {

@@ -112,13 +112,10 @@ export const register = ({username, email, password}) => dispatch => {
             });
         })
         .catch(err => {
-            console.log(err.response);
-            if(!_.isEmpty(err.response) && (err.response.status === 404 || err.response.status === 400)){
-                const errorMessage = "Username/Email already in use.";
+            // console.log(err.response);
+            if(!_.isEmpty(err.response.data.errors)){
+                const errorMessage = err.response.data.errors.join("\n");
                 dispatch(createMessage({registerFail: errorMessage}));
-            }
-            else {
-                dispatch(createMessage({registerFail: "User registration failed"}));
             }
             dispatch({
                 type: REGISTER_FAIL
@@ -130,7 +127,7 @@ export const register = ({username, email, password}) => dispatch => {
         })
 };
 
-export const update = ({firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender, id, firstTimer}) => (dispatch, getState) => {
+export const update = ({firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender, id, firstTimer}, onSuccess) => (dispatch, getState) => {
 
     dispatch({
         type: LOADER_AUTH_UPDATE,
@@ -160,6 +157,7 @@ export const update = ({firstName, lastName, contactNumber, accommodation, colle
                 type: LOADER_AUTH_UPDATE,
                 payload: false
             });
+            onSuccess();
         }).catch(err => {
         dispatch(createMessage({updateFail: "User update failed"}));
         dispatch({
