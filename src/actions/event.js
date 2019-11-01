@@ -14,6 +14,7 @@ import {
 import {tokenConfig} from "./auth";
 
 import {BACKEND_URL} from '../api/endpoints'
+import _ from "lodash";
 
 export const clearEvent = () => (dispatch) => {
     dispatch({type: CLEAR_EVENT});
@@ -54,15 +55,9 @@ export const registerTeam = ({eventID, teamName, team}) => (dispatch, getState) 
             dispatch(createMessage({registerEventSuccess: "Registered Successfully!"}));
         })
         .catch(error => {
-            if (error.response.status === 302) {
-                dispatch(createMessage({registerEventFail: "Already Registered!"}));
-            }
-            else if (error.response.status === 404){
-                dispatch(createMessage({registerEventFail: "Either Users not available or Team name already in use"}));
-            }
-            else {
-                dispatch(createMessage({registerEventFail: "Event Registration failed!"}));
-
+            if(!_.isEmpty(error.response.data.errors)){
+                const errorMessage = error.response.data.errors.join("\n");
+                dispatch(createMessage({registerEventFail: errorMessage}));
             }
             dispatch({
                 type: LOADER_TEAM_REGISTER,
@@ -81,7 +76,6 @@ export const registerEvent = ({eventID, username}) => (dispatch, getState) => {
         payload: true
     });
     const body = JSON.stringify({eventID, username});
-    // console.log(`${BACKEND_URL}/api/events/register`);
     axios.post(`${BACKEND_URL}/events/${eventID}/register/`, body, tokenConfig(getState))
         .then(res => {
             dispatch({
@@ -118,19 +112,15 @@ export const registerEvent = ({eventID, username}) => (dispatch, getState) => {
 
 export const checkRegistered = ({eventID, username}) => (dispatch, getState) => {
     dispatch({type: LOADER_EVENT_CHECK_REGISTERED, payload: true});
-    // const body = JSON.stringify({eventID, username});
-    // console.log(body);
     axios.get(`${BACKEND_URL}/events/${eventID}/team/`, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: CHECK_REGISTER,
                 payload: !res.data.response
             });
-            // console.log(eventID, username, res.data.response);
             dispatch({type: LOADER_EVENT_CHECK_REGISTERED, payload: false});
         })
         .catch(error => {
             dispatch({type: LOADER_EVENT_CHECK_REGISTERED, payload: false});
-            // dispatch(returnErrors(error.response.data, error.response.status));
         });
 };
