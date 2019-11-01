@@ -2,7 +2,7 @@ export const NavLinks = [
     {
         name: 'Home',
         to: '/'
-    },
+    },                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
     {
         name: 'Accommodation',
         to: '/accommodation'
@@ -15,13 +15,13 @@ export const NavLinks = [
         name: 'Events',
         to: '/events'
     },
-    // {
-    //     name: 'Sessions',
-    //     to: '/sessions'
-    // },
+    {
+        name: 'Sessions',
+        to: '/sessions'
+    },
     {
         name: 'Past',
-        to: '/past'
+        to: '/past'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     },
     {
         name: 'Team',

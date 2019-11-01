@@ -42,8 +42,12 @@ class Slide extends React.Component {
         event.target.style.opacity = 1
     }
 
+    handleButtonClick = (link) => {
+        window.open(link, '_blank');
+    };
+
     render() {
-        const {src, button, headline, index} = this.props.slide;
+        const {src, button, headline, index, link, extra} = this.props.slide;
         const current = this.props.current;
         let classNames = 'slide';
 
@@ -70,7 +74,8 @@ class Slide extends React.Component {
 
                 <article className="slide__content">
                     <h2 className="slide__headline">{headline}</h2>
-                    <button className="slide__action session-btn">{button}</button>
+                    <h4 className="slide__headline">{extra}</h4>
+                    <button className="slide__action session-btn" onClick={() => (this.handleButtonClick(link))}>{button}</button>
                 </article>
             </li>
         )
