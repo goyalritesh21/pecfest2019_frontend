@@ -22,7 +22,7 @@ export default [
     },
     {
         title: 'Groovz',
-        titleLine: 'Dance to the Rythm',
+        titleLine: 'Dance to the Rhythm',
         venue: 'Day 1, Main Arena',
         coverPhoto: GroovzImage
     },

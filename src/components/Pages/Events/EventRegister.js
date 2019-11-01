@@ -66,7 +66,6 @@ class EventRegister extends Component {
         if (size <= maxTeam) {
             this.setState((prevState) => ({maxTeam: size, inputs: prevState.inputs.concat(newInput)}));
         }
-        // console.log();
     };
 
     _getValue = (index1, index2, length) => {
@@ -221,6 +220,9 @@ class EventRegister extends Component {
                                 Register
                             </button>
                         </div>
+                        <p id={"query"}>
+                            For any queries, drop an email on: <a href={"mailto:registrations@pecfest.in"}>registrations@pecfest.in</a>
+                        </p>
                     </form>
                 </div>
             </div>

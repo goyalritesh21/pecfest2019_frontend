@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
-import { withRouter, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {withRouter, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import { update } from '../../actions/auth';
-import { createMessage } from '../../actions/messages';
+import {update} from '../../actions/auth';
+import {createMessage} from '../../actions/messages';
 import anime from 'animejs';
 import {getBackgroundImage} from "../../utils/BackgroundUtils";
 import moment from "moment";
 
 class ExtraDetails extends Component {
     state = {
+        username: "",
         firstName: undefined,
         lastName: undefined,
         contactNumber: undefined,
@@ -33,7 +34,7 @@ class ExtraDetails extends Component {
         )})`;
         const timeline = anime.timeline();
         timeline.add({
-            targets: '.main, .form-group',
+            targets: '.main, .form-group, #query',
             translateY: [100, 0],
             opacity: [0, 1],
             duration: 500,
@@ -41,15 +42,15 @@ class ExtraDetails extends Component {
             delay: (el, i, l) => i * 200
         });
         const {user} = this.props;
-        if(user !== null){
+        if (user !== null) {
             this._setState(user);
         }
     }
 
-    _setState = ({first_name, last_name, participant }) => {
+    _setState = ({username, first_name, last_name, participant}) => {
         const {contactNumber, accommodation, college, address, yearOfStudy, gender} = participant;
-        console.log(typeof(accommodation), accommodation);
         this.setState(() => ({
+            username: username,
             firstName: first_name,
             lastName: last_name,
             contactNumber: contactNumber,
@@ -65,19 +66,17 @@ class ExtraDetails extends Component {
         const key = e.target.name;
         const val = e.target.value;
         if (key === "firstName" || key === "lastName" || key === "college" || key === "address") {
-            this.setState(() => ({ [key]: val.toUpperCase() }));
-        }
-        else {
-            this.setState(() => ({ [key]: val }));
+            this.setState(() => ({[key]: val.toUpperCase()}));
+        } else {
+            this.setState(() => ({[key]: val}));
         }
     };
 
     onAccommodationChange = e => {
         if (e.target.checked) {
-            this.setState(() => ({ accommodation: true }));
-        }
-        else {
-            this.setState(() => ({ accommodation: false }));
+            this.setState(() => ({accommodation: true}));
+        } else {
+            this.setState(() => ({accommodation: false}));
         }
     };
 
@@ -99,7 +98,7 @@ class ExtraDetails extends Component {
     onSubmit = (e) => {
         e.preventDefault();
         let errors = [];
-        const { firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender } = this.state;
+        const {firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender} = this.state;
         if (!this.isValidName(firstName)) {
             errors.push("First Name");
         }
@@ -121,28 +120,48 @@ class ExtraDetails extends Component {
         if (errors.length > 0) {
             const lastMessage = errors.length > 1 ? " are invalid." : " is invalid.";
             const updateErrorMessage = errors.join(", ") + lastMessage;
-            this.props.createMessage({ updateErrorMessage });
+            this.props.createMessage({updateErrorMessage});
             return;
         }
         const id = this.props.user.id;
-        const user = { id, firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender, firstTimer: false };
-        console.log(user);
-        this.props.update(user);
+        const user = {
+            id,
+            firstName,
+            lastName,
+            contactNumber,
+            accommodation,
+            college,
+            address,
+            yearOfStudy,
+            gender,
+            firstTimer: false
+        };
+        this.props.update(user, this.onSuccess);
+
+    };
+
+    onSuccess = () => {
+        this.props.history.push('/events');
     };
 
     render() {
-        const { firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender } = this.state;
-        console.log(accommodation, typeof(accommodation));
-        const { isLoading, isAuthenticated } = this.props;
+        const { username, firstName, lastName, contactNumber, accommodation, college, address, yearOfStudy, gender} = this.state;
+        const {isLoading, isAuthenticated} = this.props;
         if (!isAuthenticated) {
-            return <Redirect to="/login" />
+            return <Redirect to="/login"/>
         }
         return (
             <div className="col-md-8 m-auto">
                 <div className="mt-5 main">
                     <h2 className="text-center">Profile</h2>
-                    <br />
+                    <br/>
                     <form autoComplete={"off"} onSubmit={this.onSubmit}>
+                        <p id={"query"}>
+                            Your PECFest ID is <span style={{fontSize: "1.5em", fontWeight:"bold"}}>{username.toUpperCase()}</span><br/>
+                            <b>These details are required.</b><br/>
+                            For any queries, drop an email on: <a
+                            href={"mailto:registrations@pecfest.in"}>registrations@pecfest.in</a>
+                        </p>
                         <div className="row row-break">
                             <div className="form-group col-md-6">
                                 <label>First Name</label>
@@ -195,11 +214,11 @@ class ExtraDetails extends Component {
                                 <label>Year of Study</label>
                                 <div className="input-outer">
                                     <select className="form-control input"
-                                        name="yearOfStudy"
-                                        onChange={this.onChange}
-                                        required
-                                        value={yearOfStudy}
-                                        tabIndex={"4"}
+                                            name="yearOfStudy"
+                                            onChange={this.onChange}
+                                            required
+                                            value={yearOfStudy}
+                                            tabIndex={"4"}
                                     >
                                         <option value={"1"}>1</option>
                                         <option value={"2"}>2</option>
@@ -244,7 +263,7 @@ class ExtraDetails extends Component {
 
                         <div className="form-group">
                             <label>Gender&nbsp; &nbsp; &nbsp;
-                            <label className={"radio-inline"}><input
+                                <label className={"radio-inline"}><input
                                     type="radio"
                                     name="gender"
                                     required
@@ -301,4 +320,4 @@ const mapStateToProps = state => ({
     isLoading: state.loaders.isLoading
 });
 
-export default withRouter(connect(mapStateToProps, { update, createMessage })(ExtraDetails));
+export default withRouter(connect(mapStateToProps, {update, createMessage})(ExtraDetails));

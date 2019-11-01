@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, {Component, Fragment} from "react";
 import Image from "react-bootstrap/Image";
 import Footer from "../../layout/Footer";
 import * as PropTypes from "prop-types";
@@ -17,6 +17,12 @@ import FloatingButtons from "./FloatingButtons";
 
 class Home extends Component {
     componentDidMount() {
+        const {user} = this.props;
+        if (!_.isEmpty(user) && !_.isEmpty(user.participant)) {
+            if (user.participant.firstTimer) {
+                this.props.history.push("/update");
+            }
+        }
         document.body.style.backgroundImage = `url(${getBackgroundImage(
             moment().hour()
         )})`;
@@ -32,6 +38,7 @@ class Home extends Component {
     _redirectToRegister = () => {
         this.props.history.push("/register");
     };
+
     render() {
         return (
             <Fragment>
@@ -40,8 +47,8 @@ class Home extends Component {
                          overflow: "hidden"
                      }}
                 >
-                    <div style={{ /*marginTop: "64px"*/ }}>
-                        <Image src = { pecfestLogo } className = "img img-responsive" />
+                    <div style={{ /*marginTop: "64px"*/}}>
+                        <Image src={pecfestLogo} className="img img-responsive"/>
                         <TextBox text={"PECFEST'19"} large={true}/>
                         <TextBox text={"8th - 10th November"}/>
                     </div>
@@ -54,11 +61,11 @@ class Home extends Component {
                         <FloatingButtons
                             title={"Brochure"}
                             onClick={() => {
-                            if (!_.isEmpty(this.props.brochures)) {
-                                window.open(this.props.brochures[0].brochurePDF, "_blank");
-                                window.focus();
-                            }
-                        }}/>
+                                if (!_.isEmpty(this.props.brochures)) {
+                                    window.open(this.props.brochures[0].brochurePDF, "_blank");
+                                    window.focus();
+                                }
+                            }}/>
                         {!this.props.isAuthenticated && (
                             <FloatingButtons title={"Register"} onClick={() => {
                                 this._redirectToRegister();
@@ -81,7 +88,7 @@ class Home extends Component {
 
                 </div>
                 <section ref={(r) => (this.themeRef = r)}
-                style ={{position: "relative"}}>
+                         style={{position: "relative"}}>
                     <Theme
                         title={"Theme"}
                         content={theme}
@@ -93,15 +100,15 @@ class Home extends Component {
                     />
                 </section>
                 <section ref={(r) => (this.aboutRef = r)}
-                         style ={{position: "relative"}}>
+                         style={{position: "relative"}}>
                     <About
                         title={"About Us"}
                         content={about}
                         direction={"up"}
                         onScrollIntoView={() => this.homeRef.scrollIntoView({
-                        behavior: "smooth",
-                        inline: "center"
-                    })}/>
+                            behavior: "smooth",
+                            inline: "center"
+                        })}/>
                 </section>
             </Fragment>
         );
@@ -110,13 +117,14 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
     brochures: state.home.brochures,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
 });
 
 Home.propTypes = {
     brochures: PropTypes.array.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
-
+    user: PropTypes.object.isRequired,
     fetchBrochure: PropTypes.func.isRequired
 };
 

@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {logout} from "../../actions/auth";
 import anime from 'animejs';
-import {NavLink} from 'react-router-dom';
+import {NavLink, Link} from 'react-router-dom';
 import {NavLinks} from '../../data/NavLinks';
 
 class Navbar extends Component {
@@ -22,6 +22,11 @@ class Navbar extends Component {
         auth: PropTypes.object.isRequired
     };
 
+    onClick = () => {
+        this.props.toggleButton();
+        window.open("https://sponsors.pecfest.in", "_blank")
+    };
+
     render() {
         const {isAuthenticated /* TODO user*/} = this.props.auth;
         return (
@@ -31,12 +36,19 @@ class Navbar extends Component {
                         <li key={index} className={"slide-fade"}>
                             <NavLink exact={true}
                                      onClick={this.props.toggleButton}
-                                     to={`/${link.to}`}
+                                     to={`${link.to}`}
                             >{link.name}
                             </NavLink>
                         </li>
                     ))
                 }
+                <li className={"slide-fade"}>
+                    <Link exact={true}
+                             onClick={this.onClick}
+                             to={'/'}
+                    >Sponsors
+                    </Link>
+                </li>
                 {
                     isAuthenticated ?
                         <Fragment>

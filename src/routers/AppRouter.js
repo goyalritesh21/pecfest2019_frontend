@@ -3,9 +3,8 @@ import {Route, Switch, withRouter} from 'react-router-dom';
 import Loader from '../components/common/Loader';
 import {extractSearchParams} from "../utils/Utils";
 import EventRegister from "../components/Pages/Events/EventRegister";
-
+import Slider from "../components/Pages/Sessions/Sessions";
 const Home = lazy(() => import('../components/Pages/Home/Home'));
-// const Sponsors = lazy(() => import('../components/Pages/Sponsor/Sponsors'));
 const Past = lazy(() => import("../components/Pages/Past/Past"));
 const Events = lazy(() => import('../components/Pages/Events/Events'));
 const LoginPage = lazy(() => import('../components/Pages/Auth/LoginPage'));
@@ -23,8 +22,6 @@ const AppRouter = ({location}) => {
             <Suspense fallback={<Loader/>}>
                 <Switch location={location}>
                     <Route exact path={"/"} render={props => <Home {...props} {...extractSearchParams(props)} />}/>
-                    <Route exact path={"/sponsors"}
-                           render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/accommodation"}
                            render={props => <Accommodation {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/megashows"}
@@ -41,7 +38,10 @@ const AppRouter = ({location}) => {
                     <Route exact path={"/past"} render={props => <Past {...props} {...extractSearchParams(props)}/>}/>
                     <Route exact path={"/update"}
                            render={props => <ExtraDetails {...props} {...extractSearchParams(props)}/>}/>
+                    <Route exact path={"/sessions"}
+                           render={props => <Slider {...props} {...extractSearchParams(props)}/>}/>
                     <Route render={props => <NotFound {...props} {...extractSearchParams(props)}/>}/>
+
                 </Switch>
             </Suspense>
         </div>

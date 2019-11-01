@@ -12,7 +12,6 @@ import BackgroundImage10 from "../assets/images/Background/10.jpg"
 import BackgroundImage11 from "../assets/images/Background/11.jpg"
 
 export function getBackgroundImage(hourOfDay) {
-    console.log(hourOfDay);
     switch (hourOfDay) {
         case 0:
         case 1:
