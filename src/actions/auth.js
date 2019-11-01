@@ -63,7 +63,6 @@ export const login = (username, password) => dispatch => {
 
     axios.post(`${BACKEND_URL}/api/auth/login`, body, config)
         .then(res => {
-            // console.log(res.data);
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
@@ -112,7 +111,6 @@ export const register = ({username, email, password}) => dispatch => {
             });
         })
         .catch(err => {
-            // console.log(err.response);
             if(!_.isEmpty(err.response.data.errors)){
                 const errorMessage = err.response.data.errors.join("\n");
                 dispatch(createMessage({registerFail: errorMessage}));
@@ -159,7 +157,10 @@ export const update = ({firstName, lastName, contactNumber, accommodation, colle
             });
             onSuccess();
         }).catch(err => {
-        dispatch(createMessage({updateFail: "User update failed"}));
+        if(!_.isEmpty(err.response.data.errors)){
+            const errorMessage = err.response.data.errors.join("\n");
+            dispatch(createMessage({updateFail: errorMessage}));
+        }
         dispatch({
             type: UPDATE_FAIL
         });

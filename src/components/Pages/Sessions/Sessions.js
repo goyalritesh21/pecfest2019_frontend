@@ -90,7 +90,7 @@ class Slide extends React.Component {
 const SliderControl = ({type, title, handleClick}) => {
     return (
         <button className={`session-btn session-btn--${type}`} title={title} onClick={handleClick}>
-            <svg className="icon" viewBox="0 0 24 24">
+            <svg className="icon" viewBox="0 0 24 24" style={{color:"white"}}>
                 <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/>
             </svg>
         </button>
