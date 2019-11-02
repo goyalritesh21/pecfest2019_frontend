@@ -227,6 +227,10 @@ img {
   overflow: auto;
 }
 
+.Events-item__content-container {
+  padding: 0 0 5em 0 !important;
+}
+
 .Events-item__content-title {
   font-size: 1.8rem;
   white-space: nowrap;
@@ -353,7 +357,7 @@ img {
     margin: 1.2rem 0 2rem 0;
     height: calc(100vh - 240px);
     //overflow: scroll;
-    padding: 0;
+    padding: 0 0 5em 0 !important;
   }
 
   .Events-item__content-row {
@@ -421,7 +425,7 @@ img {
   font-family: "Chivo", sans-serif;
   font-size: 2em;
   overflow: scroll;
-  height: calc(100vh - 5em);
+  height: calc(100vh - 4.5em);
 }
 
 .menu--adsila button {

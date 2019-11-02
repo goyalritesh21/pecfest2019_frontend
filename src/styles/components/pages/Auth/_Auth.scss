@@ -6,7 +6,7 @@
 .main {
 	background : linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
 	color: white;
-	padding: 1em;
+	padding: 1em 1em 3em 1em;
     font-family: 'Play', sans-serif; /* up for it*/
     box-shadow: 0px 0px 5px 7px #0ff;
     max-height: 80%;
@@ -93,8 +93,9 @@ input:focus + label {
 }
 
 .upper-padding-register {
-	padding-top: 2.5em;
-	padding-bottom: 2.5em;
+	padding: 3.5em 1.5em 5em 1.5em;
+	//padding-bottom: 5em;
+	outline-offset: 20px;
 }
 
 .row-break {

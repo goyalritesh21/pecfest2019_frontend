@@ -1,18 +1,31 @@
-.about__t{
+.accommodation {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-bottom: 3em;
+  overflow-y: scroll;
+}
+
+.about__t {
   margin-top: 30px;
   font-family: 'Rock Salt', cursive;
   font-size: 60px;
   text-align: center;
   color: white;
 }
-.about__a1{
+
+.about__a1 {
   display: flex;
   margin-top: 50px;
   margin-left: 40px;
   font-weight: bolder;
   color: white;
 }
-.about__ul{
+
+.about__ul {
   display: inline-block;
   width: 280px;
 }
@@ -20,7 +33,7 @@
 .Accommodation__button {
   background: none;
   border: none;
-  padding: 0!important;
+  padding: 0 !important;
   /*optional*/
   font-family: arial, sans-serif;
   /*input has OS specific font-family*/
@@ -28,29 +41,31 @@
   cursor: pointer;
 }
 
-.about__li{
+.about__li {
   list-style: none;
   margin-left: 50px;
   padding-top: 10px;
   font-family: 'Audio Wide', cursive;
   font-size: 22px;
 }
-.about__li button{
+
+.about__li button {
   display: block;
   text-decoration: none;
   color: white;
   font-weight: bolder;
 }
-.about__li button.active{
+
+.about__li button.active {
   //display: inline-block;
   color: #0ff;
-  background-image: linear-gradient(to right,#0ff,#305959);
+  background-image: linear-gradient(to right, #0ff, #305959);
   background-position: bottom left;
   background-repeat: no-repeat;
   background-size: 100% 5px;
 }
 
-.about__a2{
+.about__a2 {
   padding-top: 20px;
   display: inline-block;
   width: 100%;
@@ -61,20 +76,20 @@
   margin-right: 50px;
 }
 
-.about__content{
+.about__content {
   display: flex;
   width: 100%;
 }
 
 @media screen and (max-width: 800px) {
-  .about__t{
+  .about__t {
     margin-top: 50px;
     font-family: 'Rock Salt', cursive;
     font-size: 33px;
     text-align: center;
     color: white;
   }
-  .about__a1{
+  .about__a1 {
     margin: 12px;
     display: flex;
     display: -webkit-flex;
@@ -83,7 +98,7 @@
     flex-direction: column;
     flex-wrap: wrap;
   }
-  .about__ul{
+  .about__ul {
     display: flex;
     display: -webkit-flex;
     display: -moz-flex;
@@ -94,13 +109,13 @@
     flex-wrap: wrap;
     width: 100%;
   }
-  .about__li{
+  .about__li {
     font-size: 20px;
     width: 150px;
     display: inline-block;
     margin: 0 5px 0 5px;
   }
-  .about__content{
+  .about__content {
     font-size: 20px;
     display: flex;
     display: -webkit-flex;
@@ -109,7 +124,7 @@
     flex-wrap: wrap;
     width: 100%;
   }
-  .about__a2{
+  .about__a2 {
     margin: 25px 15px 0 15px;
     text-align: justify;
     font-family: 'Audio Wide', cursive;
