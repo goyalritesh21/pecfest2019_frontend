@@ -225,7 +225,10 @@ img {
 .Events-item__content {
   height: calc(100vh - 300px);
   overflow: auto;
-  padding-bottom: 5em;
+}
+
+.Events-item__content-container {
+  padding: 0 0 5em 0 !important;
 }
 
 .Events-item__content-title {
@@ -354,7 +357,7 @@ img {
     margin: 1.2rem 0 2rem 0;
     height: calc(100vh - 240px);
     //overflow: scroll;
-    padding: 0;
+    padding: 0 0 5em 0 !important;
   }
 
   .Events-item__content-row {
