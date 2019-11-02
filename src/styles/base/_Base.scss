@@ -9,14 +9,15 @@ body {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   position: fixed;
-  margin: 0;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+  margin: 10px;
+  outline-offset: 30px;
+  //-webkit-touch-callout: none; /* iOS Safari */
+  //-webkit-user-select: none; /* Safari */
+  //-khtml-user-select: none; /* Konqueror HTML */
+  //-moz-user-select: none; /* Firefox */
+  //-ms-user-select: none; /* Internet Explorer/Edge */
+  //user-select: none; /* Non-prefixed version, currently
+  //                                supported by Chrome and Opera */
 }
 
 ::-webkit-scrollbar {
@@ -38,7 +39,10 @@ body {
 
 .Base-page__wrapper {
   text-align: center;
+  overflow-y: scroll;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-x: hidden;
   width: 100vw;
   height: 100vh;
   position: fixed;

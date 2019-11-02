@@ -151,7 +151,7 @@ class ExtraDetails extends Component {
             return <Redirect to="/login"/>
         }
         return (
-            <div className="col-md-8 m-auto">
+            <div className="col-md-8 m-auto upper-padding-register">
                 <div className="mt-5 main">
                     <h2 className="text-center">Profile</h2>
                     <br/>
