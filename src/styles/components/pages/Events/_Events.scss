@@ -239,6 +239,12 @@ img {
   pointer-events: none;
 }
 
+.Events-item__content-description{
+  width: 100%;
+  flex-wrap: wrap;
+  overflow-wrap: break-word;
+}
+
 .Events-item__titlebar-icon {
   font-size: 2rem;
   color: whitesmoke;
