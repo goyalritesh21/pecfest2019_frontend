@@ -297,7 +297,7 @@ class ContentItem extends Component {
                     <div className="Events-item__content-container container-fluid">
                         <div className="Events-item__content-row row">
                             <h4>Description</h4>
-                            <div>
+                            <div className={"Events-item__content-description"}>
                                 <div>
                                     {knowMore.description ?
                                         selectedEvent.details.split("\n").map((text, index) => (
