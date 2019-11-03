@@ -320,7 +320,9 @@ class ContentItem extends Component {
                                     !_.isEmpty(selectedEvent.prelimsLink) && <div>
                                         <button
                                             className={"Events-item__button"}
-                                            onClick={()=>(window.open(selectedEvent.prelimsLink, "_blank"))}>Link to Prelims</button>
+                                            onClick={() => (window.open(selectedEvent.prelimsLink, "_blank"))}>
+                                            {selectedEvent.prelimsLink}
+                                        </button>
                                     </div>
                                 }
                                 <br/>
@@ -328,7 +330,8 @@ class ContentItem extends Component {
                                     !_.isEmpty(selectedEvent.rulesPDF) && <div>
                                         <button
                                             className={"Events-item__button"}
-                                            onClick={()=>(window.open(selectedEvent.rulesPDF, "_blank"))}>Rules PDF</button>
+                                            onClick={() => (window.open(selectedEvent.rulesPDF, "_blank"))}>Rules PDF
+                                        </button>
                                     </div>
                                 }
                             </div>
@@ -424,9 +427,13 @@ class ContentItem extends Component {
                     backgroundImage: `url(${selectedEventCategory.coverImage})`,
                     overflow: 'hidden'
                 }}>
-                <div style={{background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))", height:"100%", width:"100%"}}>
-                {this.renderTitleBar()}
-                {this.renderSideBar()}
+                <div style={{
+                    background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))",
+                    height: "100%",
+                    width: "100%"
+                }}>
+                    {this.renderTitleBar()}
+                    {this.renderSideBar()}
                 </div>
             </div>
         )
@@ -445,9 +452,13 @@ class ContentItem extends Component {
                     backgroundImage: `url(${selectedEventCategory.coverImage})`,
                     overflow: 'hidden'
                 }}>
-                <div style={{background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))", height:"100%", width:"100%"}}>
-                {this.renderTitleBar()}
-                {this.renderSideBar()}
+                <div style={{
+                    background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5))",
+                    height: "100%",
+                    width: "100%"
+                }}>
+                    {this.renderTitleBar()}
+                    {this.renderSideBar()}
                 </div>
             </div>
         )
