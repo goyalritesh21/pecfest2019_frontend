@@ -299,11 +299,15 @@ class ContentItem extends Component {
                             <h4>Description</h4>
                             <div className={"Events-item__content-description"}>
                                 <div>
-                                    {knowMore.description ?
+                                    {
+                                        knowMore.description ?
                                         selectedEvent.details.split("\n").map((text, index) => (
                                             <p key={index}>{text}</p>
                                         )) :
-                                        <p>{selectedEvent.shortDescription}</p>}
+                                        selectedEvent.shortDescription.split("\n").map((text, index) => (
+                                            <p key={index}>{text}</p>
+                                        ))
+                                    }
                                     <button
                                         className={"Events-item__button"}
                                         onClick={() => {
@@ -370,7 +374,9 @@ class ContentItem extends Component {
                             <div className="Events-item__content-row row">
                                 <h4>Prizes</h4>
                                 <div>
-                                    <p>{selectedEvent.prize}</p>
+                                    {selectedEvent.prize.split("\n").map((text, index) => (
+                                        <p key={index}>{text}</p>
+                                    ))}
                                 </div>
                             </div> : null
                         }
