@@ -17,7 +17,7 @@ class ExtraDetails extends Component {
         accommodation: false,
         college: undefined,
         address: undefined,
-        yearOfStudy: "1",
+        yearOfStudy: "0",
         gender: undefined
     };
     static propTypes = {
@@ -159,6 +159,7 @@ class ExtraDetails extends Component {
                         <p id={"query"}>
                             Your PECFest ID is <span style={{fontSize: "1.5em", fontWeight:"bold"}}>{username.toUpperCase()}</span><br/>
                             <b>These details are required.</b><br/>
+                            If not a college Student, write <b>N/A</b> in College.<br/>
                             For any queries, drop an email on: <a
                             href={"mailto:registrations@pecfest.in"}>registrations@pecfest.in</a>
                         </p>
@@ -220,6 +221,7 @@ class ExtraDetails extends Component {
                                             value={yearOfStudy}
                                             tabIndex={"4"}
                                     >
+                                        <option value={"0"}>-----</option>
                                         <option value={"1"}>1</option>
                                         <option value={"2"}>2</option>
                                         <option value={"3"}>3</option>
