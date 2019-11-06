@@ -23,8 +23,22 @@
   z-index: 1;
 }
 
+.controls-link {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  z-index: 1;
+  width: 100vw;
+  margin: 1em auto;
+}
+
 .controls-next {
   right: 1em;
+}
+
+.control-link {
+  top: 2em;
 }
 
 .controls-prev {
@@ -36,6 +50,15 @@
   height: 2em;
   border-left: 1px solid white;
   border-top: 1px solid white;
+}
+
+.Controls-linkButton {
+  margin: 0 auto;
+  height: 2em;
+  font-size: 2em;
+  color: gold;
+  text-align: center;
+  text-decoration: underline;
 }
 
 .Controls-nextButton {

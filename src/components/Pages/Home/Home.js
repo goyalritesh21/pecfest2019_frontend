@@ -39,6 +39,10 @@ class Home extends Component {
         this.props.history.push("/register");
     };
 
+    _redirectToMegashows = () => {
+        this.props.history.push('/megashows');
+    };
+
     render() {
         return (
             <Fragment>
@@ -55,6 +59,9 @@ class Home extends Component {
 
                     <div className="theme">
                         A Tropical Extravaganza
+                    </div>
+                    <div className={"starInfo"} onClick={() => (this._redirectToMegashows())}>
+                        Catch Guru Randhawa Live!
                     </div>
 
                     <div className={"flexButtons"}>

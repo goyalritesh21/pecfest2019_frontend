@@ -260,6 +260,7 @@ class ExtraDetails extends Component {
                                         spellCheck="false"
                                     />
                                 </div>
+                                <p>We will use this number to communicate</p>
                             </div>
                         </div>
 
@@ -291,14 +292,15 @@ class ExtraDetails extends Component {
                             </label>
                         </div>
                         <div className="form-group">
-                            <label className={"checkbox-inline"}><input
-                                type="checkbox"
-                                name="accommodation"
-                                onChange={this.onAccommodationChange}
-                                value={accommodation}
-                                checked={accommodation}
-                                tabIndex={"8"}
-                            />Accommodation Required</label>
+                            <label className={"checkbox-inline"}>Accommodation Required
+                                <input
+                                    type="checkbox"
+                                    name="accommodation"
+                                    onChange={this.onAccommodationChange}
+                                    value={accommodation}
+                                    checked={accommodation}
+                                    tabIndex={"8"}
+                                /></label>
 
                         </div>
                         <div className="form-group">

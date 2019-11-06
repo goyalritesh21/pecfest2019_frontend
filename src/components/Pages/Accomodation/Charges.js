@@ -19,7 +19,8 @@ class Charges extends Component {
             <div className="about__a2">
                 <ul style={{listStyle: 'circle', textAlign: "left"}}>
                     <li>
-                        Charges will be out soon.
+                        Rs. 800/- per participant. Payment can be made on spot or online to Adhitya Venugopal on <span
+                        style={{textDecoration: "underline"}}>9592468729</span>.
                     </li>
                     <li>
                         Stay will be provided for maximum of 3 days i.e from 8th November 2019-10th November 2019.

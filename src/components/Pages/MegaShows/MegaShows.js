@@ -7,6 +7,7 @@ import megaShowList from '../../../data/MegaShows'
 import _ from "lodash";
 import {withRouter} from "react-router";
 import {connect} from "react-redux";
+import '../../../styles/components/pages/MegsShows/_MegaShows.scss';
 
 class MegaShows extends Component {
     constructor(props) {
@@ -31,6 +32,9 @@ class MegaShows extends Component {
         this.setState((state, props) => {
             return {activeIndex: (megaShowList.length + state.activeIndex - 1) % megaShowList.length};
         });
+    };
+    handleSelectLink = () => {
+        window.open(megaShowList[this.state.activeIndex].link, "_blank")
     };
 
     handleNext = () => {
@@ -74,6 +78,8 @@ class MegaShows extends Component {
                                        style={style.style}
                                        onNext={this.handleNext}
                                        onPrev={this.handlePrev}
+                                       onSelectLink={this.handleSelectLink}
+                                       isEvent={megaShowList[activeIndex].isEvent}
                                        current={parseInt(style.key)}>
                                     <MegaShow show={megaShowList[activeIndex]}/>
                                 </Slide>
