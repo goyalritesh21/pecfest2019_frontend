@@ -6,8 +6,8 @@ const Controls = (props) => {
         <div className="controls">
             {
                 isEvent ? <div className={"controls-link"}>
-                    <div className={"ControlButton Controls-link hover"}
-                         onClick={onSelectLink}
+                    <div className={"ControlButton Controls-linkButton hover"}
+                         onClick={()=>(onSelectLink())}
                     >
                         Register
                     </div>
