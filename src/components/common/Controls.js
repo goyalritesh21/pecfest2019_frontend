@@ -1,9 +1,18 @@
 import React from "react";
 
 const Controls = (props) => {
-    const {onNext, onPrev} = props;
+    const {onNext, onPrev, onSelectLink, isEvent} = props;
     return (
         <div className="controls">
+            {
+                isEvent ? <div className={"controls-link"}>
+                    <div className={"ControlButton Controls-link hover"}
+                         onClick={onSelectLink}
+                    >
+                        Register
+                    </div>
+                </div> : null
+            }
             <div className="controls-next">
                 <div onClick={onNext} className="ControlButton Controls-nextButton hover"/>
             </div>

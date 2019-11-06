@@ -4,7 +4,7 @@ import General from "./General";
 import Avail from "./Avail";
 import Charges from "./Charges";
 import anime from "animejs";
-import {Redirect, withRouter} from "react-router";
+import {withRouter} from "react-router";
 import {connect} from "react-redux";
 import _ from 'lodash';
 
